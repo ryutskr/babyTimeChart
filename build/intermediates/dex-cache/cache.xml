@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Android\AndroidstudioProjects\babyTimeChart\libs\achartengine-1.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250">
+        <dex dex="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\achartengine-1.1.0-adc02237e3e2669276eb4b6eb5f0979cd2b7b4c1.jar" />
+    </item>
+    <item
+        jar="D:\Android\AndroidstudioProjects\babyTimeChart\libs\android-support-v13.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f5fa2183e286730a81f3076f19022539902a24f3">
+        <dex dex="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\android-support-v13-3e4eab29a4190f2a846fcecf9069ff27373cf498.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,3 @@
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\achartengine-1.1.0-adc02237e3e2669276eb4b6eb5f0979cd2b7b4c1.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\android-support-v13-3e4eab29a4190f2a846fcecf9069ff27373cf498.jar

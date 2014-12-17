@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\Android\AndroidstudioProjects\babyTimeChart\res"><file name="ic_launcher" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-xxhdpi\ic_launcher.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="activity_data" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\activity_data.xml" qualifiers="" type="layout"/><file name="activity_main" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="fragment_chart_pie" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\fragment_chart_pie.xml" qualifiers="" type="layout"/><file name="fragment_etc" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\fragment_etc.xml" qualifiers="" type="layout"/><file name="fragment_feeding" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\fragment_feeding.xml" qualifiers="" type="layout"/><file name="fragment_playing" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\fragment_playing.xml" qualifiers="" type="layout"/><file name="fragment_sleeping" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\fragment_sleeping.xml" qualifiers="" type="layout"/><file name="xy_chart" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\layout\xy_chart.xml" qualifiers="" type="layout"/><file name="pie" path="D:\Android\AndroidstudioProjects\babyTimeChart\res\menu\pie.xml" qualifiers="" type="menu"/><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values\colors.xml" qualifiers=""><color name="lightgoldenrodyellow">#fafad2</color><color name="brown">#a52a2a</color><color name="turquoise">#40e0d0</color><color name="greenyellow">#adff2f</color><color name="slateblue">#6a5acd</color><color name="rosybrown">#bc8f8f</color><color name="orange">#ffa500</color><color name="mediumseagreen">#3cb371</color><color name="mediumpurple">#9370db</color><color name="darkolivegreen">#556b2f</color><color name="blueviolet">#8a2be2</color><color name="lightsalmon">#ffa07a</color><color name="aliceblue">#f0f8ff</color><color name="linen">#faf0e6</color><color name="mediumorchid">#ba55d3</color><color name="red">#ff0000</color><color name="mintcream">#f5fffa</color><color name="aqua">#00ffff</color><color name="darkviolet">#9400d3</color><color name="orchid">#da70d6</color><color name="violet">#ee82ee</color><color name="darkgreen">#006400</color><color name="darkgoldenrod">#b8860b</color><color name="maroon">#800000</color><color name="palegoldenrod">#eee8aa</color><color name="darkseagreen">#8fbc8f</color><color name="indigo">#4b0082</color><color name="teal">#008080</color><color name="plum">#dda0dd</color><color name="chartreuse">#7fff00</color><color name="hotpink">#ff69b4</color><color name="cadetblue">#5f9ea0</color><color name="darkturquoise">#00ced1</color><color name="steelblue">#4682b4</color><color name="slategray">#708090</color><color name="springgreen">#00ff7f</color><color name="lightcyan">#e0ffff</color><color name="darkred">#8b0000</color><color name="mediumslateblue">#7b68ee</color><color name="cornflowerblue">#6495ed</color><color name="darkslategray">#2f4f4f</color><color name="darkkhaki">#bdb76b</color><color name="lightblue">#add8e6</color><color name="gainsboro">#dcdcdc</color><color name="darkcyan">#008b8b</color><color name="coral">#ff7f50</color><color name="powderblue">#b0e0e6</color><color name="seashell">#fff5ee</color><color name="whitesmoke">#f5f5f5</color><color name="thistle">#d8bfd8</color><color name="lime">#00ff00</color><color name="deepskyblue">#00bfff</color><color name="silver">#c0c0c0</color><color name="snow">#fffafa</color><color name="magenta">#ff00ff</color><color name="olivedrab">#6b8e23</color><color name="honeydew">#f0fff0</color><color name="olive">#808000</color><color name="seagreen">#2e8b57</color><color name="moccasin">#ffe4b5</color><color name="cyan">#00ffff</color><color name="mediumturquoise">#48d1cc</color><color name="lightyellow">#ffffe0</color><color name="paleturquoise">#afeeee</color><color name="mediumvioletred">#c71585</color><color name="chocolate">#d2691e</color><color name="darksalmon">#e9967a</color><color name="bisque">#ffe4c4</color><color name="lawngreen">#7cfc00</color><color name="burlywood">#deb887</color><color name="lightgreen">#00ee90</color><color name="lavenderblush">#fff0f5</color><color name="khaki">#f0e68c</color><color name="midnightblue">#191970</color><color name="azure">#f0ffff</color><color name="black">#000000</color><color name="saddlebrown">#8b4513</color><color name="lightgrey">#d3d3d3</color><color name="ivory">#fffff0</color><color name="mediumaquamarine">#66cdaa</color><color name="lemonchiffon">#fffacd</color><color name="blue">#0000ff</color><color name="ghostwhite">#f8f8ff</color><color name="navy">#000080</color><color name="gold">#ffd700</color><color name="tomato">#ff6347</color><color name="lightpink">#ffb6c1</color><color name="mediumblue">#0000cd</color><color name="pink">#ffc0cb</color><color name="indianred">#cd5c5c</color><color name="darkgray">#a9a9a9</color><color name="purple">#800080</color><color name="dodgerblue">#1e90ff</color><color name="salmon">#fa8072</color><color name="mistyrose">#ffe4e1</color><color name="darkorchid">#9932cc</color><color name="dimgray">#696969</color><color name="navajowhite">#ffdead</color><color name="lightskyblue">#87cefa</color><color name="blanchedalmond">#ffebcd</color><color name="darkorange">#ff8c00</color><color name="oldlace">#fdf5e6</color><color name="green">#008000</color><color name="sienna">#a0522d</color><color name="cornsilk">#fff8dc</color><color name="peachpuff">#ffdab9</color><color name="deeppink">#ff1493</color><color name="beige">#f5f5dc</color><color name="yellowgreen">#9acd32</color><color name="fuchsia">#ff00ff</color><color name="limegreen">#32cd32</color><color name="lavender">#e6e6fa</color><color name="tan">#d2b48c</color><color name="orangered">#ff4500</color><color name="lightsteelblue">#add8e6</color><color name="darkmagenta">#8b008b</color><color name="antiquewhite">#faebd7</color><color name="forestgreen">#228b22</color><color name="crimson">#dc143c</color><color name="skyblue">#87ceeb</color><color name="wheat">#f5deb3</color><color name="palevioletred">#db7093</color><color name="aquamarine">#7fffd4</color><color name="royalblue">#4169e1</color><color name="peru">#cd853f</color><color name="darkslateblue">#483d8b</color><color name="gray">#808080</color><color name="darkblue">#00008b</color><color name="yellow">#ffff00</color><color name="lightseagreen">#20b2aa</color><color name="lightslategray">#778899</color><color name="sandybrown">#f4a460</color><color name="firebrick">#b22222</color><color name="goldenrod">#daa520</color><color name="white">#ffffff</color><color name="lightcoral">#f08080</color><color name="mediumspringgreen">#00fa9a</color><color name="floralwhite">#fffaf0</color><color name="papayawhip">#ffefd5</color></file><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values\dimens.xml" qualifiers=""><dimen name="btn_text_size_15">15dp</dimen><dimen name="btn_text_size_25">25dp</dimen><dimen name="activity_horizontal_margin">16dp</dimen><dimen name="activity_vertical_margin">16dp</dimen><dimen name="activity_vertical_margin_qhalf">4dp</dimen><dimen name="btn_text_size_20">20dp</dimen><dimen name="btn_text_size_10">10dp</dimen></file><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values\strings.xml" qualifiers=""><string name="title_section1">Section 1</string><string name="mothersmilk">모유</string><string name="title_section3">Section 3</string><string name="action_settings">Settings</string><string name="title_section2">Section 2</string><string name="feeding_type_direct">직접 수유</string><string name="stime_titile">시작</string><string name="minus_small_time">-20분</string><string name="plus_big_time">+20분</string><string name="cancel">취소</string><string name="tab_3">잠자기</string><string name="tab_2">놀기</string><string name="babyfood">이유식</string><string name="tab_1">먹기</string><string name="minus_big_ml">-10ml</string><string name="etc">기타</string><string name="milkpowder">분유</string><string name="tab_4">기타</string><string name="feeding">먹기</string><string name="notice">* 수유와 놀이 수면만 그래프에 표시 됩니다.</string><string name="playing">놀기</string><string name="feeding_type_bottle">유축 수유</string><string name="new_series">New series</string><string name="x">X</string><string name="y">Y</string><string name="babypoop">아기똥</string><string name="plus_big_ml">+20ml</string><string name="plus_small_ml">+10ml</string><string name="add_values">Add values to the chart</string><string name="plus_small_time">+5분</string><string name="memo_hint">메모를 입력하세요</string><string name="memo">메모</string><string name="add">Add</string><string name="etime_titile">종료</string><string name="save">저장</string><string name="minus_big_time">-5분</string><string name="minus_small_ml">-20ml</string><string name="app_name">babyTimeChart</string><string name="sleeping">잠자기</string></file><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values\styles.xml" qualifiers=""><style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style><style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style></file><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values\vpi__attrs.xml" qualifiers=""><attr format="boolean" name="centered"/><declare-styleable name="CirclePageIndicator">
+        <!-- Whether or not the indicators should be centered. -->
+        <attr name="centered"/>
+        <!-- Color of the filled circle that represents the current page. -->
+        <attr format="color" name="fillColor"/>
+        <!-- Color of the filled circles that represents pages. -->
+        <attr format="color" name="pageColor"/>
+        <!-- Orientation of the indicator. -->
+        <attr name="android:orientation"/>
+        <!-- Radius of the circles. This is also the spacing between circles. -->
+        <attr format="dimension" name="radius"/>
+        <!-- Whether or not the selected indicator snaps to the circles. -->
+        <attr format="boolean" name="snap"/>
+        <!-- Color of the open circles. -->
+        <attr format="color" name="strokeColor"/>
+        <!-- Width of the stroke used to draw the circles. -->
+        <attr name="strokeWidth"/>
+    </declare-styleable><attr format="color" name="selectedColor"/><declare-styleable name="TitlePageIndicator">
+        <!-- Screen edge padding. -->
+        <attr format="dimension" name="clipPadding"/>
+        <!-- Color of the footer line and indicator. -->
+        <attr format="color" name="footerColor"/>
+        <!-- Height of the footer line. -->
+        <attr format="dimension" name="footerLineHeight"/>
+        <!-- Style of the indicator. Default is triangle. -->
+        <attr name="footerIndicatorStyle">
+            <enum name="none" value="0"/>
+            <enum name="triangle" value="1"/>
+            <enum name="underline" value="2"/>
+        </attr>
+        <!-- Height of the indicator above the footer line. -->
+        <attr format="dimension" name="footerIndicatorHeight"/>
+        <!-- Left and right padding of the underline indicator. -->
+        <attr format="dimension" name="footerIndicatorUnderlinePadding"/>
+        <!-- Padding between the bottom of the title and the footer. -->
+        <attr format="dimension" name="footerPadding"/>
+        <!-- Color of the selected title. -->
+        <attr name="selectedColor"/>
+        <!-- Whether or not the selected item is displayed as bold. -->
+        <attr format="boolean" name="selectedBold"/>
+        <!-- Color of regular titles. -->
+        <attr name="android:textColor"/>
+        <!-- Size of title text. -->
+        <attr name="android:textSize"/>
+        <!-- Padding between titles when bumping into each other. -->
+        <attr format="dimension" name="titlePadding"/>
+        <!-- Padding between titles and the top of the View. -->
+        <attr format="dimension" name="topPadding"/>
+    </declare-styleable><declare-styleable name="UnderlinePageIndicator">
+        <!-- Whether or not the selected indicator fades. -->
+        <attr format="boolean" name="fades"/>
+        <!-- Length of the delay to fade the indicator. -->
+        <attr format="integer" name="fadeDelay"/>
+        <!-- Length of the indicator fade to transparent. -->
+        <attr format="integer" name="fadeLength"/>
+        <!-- Color of the selected line that represents the current page. -->
+        <attr name="selectedColor"/>
+    </declare-styleable><declare-styleable name="ViewPagerIndicator">
+        <!-- Style of the circle indicator. -->
+        <attr format="reference" name="vpiCirclePageIndicatorStyle"/>
+        <!-- Style of the line indicator. -->
+        <attr format="reference" name="vpiLinePageIndicatorStyle"/>
+        <!-- Style of the title indicator. -->
+        <attr format="reference" name="vpiTitlePageIndicatorStyle"/>
+        <!-- Style of the tab indicator's tabs. -->
+        <attr format="reference" name="vpiTabPageIndicatorStyle"/>
+        <!-- Style of the underline indicator. -->
+        <attr format="reference" name="vpiUnderlinePageIndicatorStyle"/>
+    </declare-styleable><attr format="color" name="unselectedColor"/><declare-styleable name="LinePageIndicator">
+        <!-- Whether or not the indicators should be centered. -->
+        <attr name="centered"/>
+        <!-- Color of the unselected lines that represent the pages. -->
+        <attr name="unselectedColor"/>
+        <!-- Color of the selected line that represents the current page. -->
+        <attr name="selectedColor"/>
+        <!-- Width of each indicator line. -->
+        <attr format="dimension" name="lineWidth"/>
+        <!-- Width of each indicator line's stroke. -->
+        <attr name="strokeWidth"/>
+        <!-- Width of the gap between each indicator line. -->
+        <attr format="dimension" name="gapWidth"/>
+    </declare-styleable><attr format="dimension" name="strokeWidth"/></file><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values-v11\styles.xml" qualifiers="v11"><style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <!-- API 11 theme customizations can go here. -->
+    </style></file><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values-v14\styles.xml" qualifiers="v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- API 14 theme customizations can go here. -->
+    </style></file><file path="D:\Android\AndroidstudioProjects\babyTimeChart\res\values-w820dp\dimens.xml" qualifiers="w820dp-v13"><dimen name="activity_horizontal_margin">64dp</dimen></file></source><source path="D:\Android\AndroidstudioProjects\babyTimeChart\build\generated\res\rs\debug"/><source path="D:\Android\AndroidstudioProjects\babyTimeChart\build\generated\res\generated\debug"/></dataSet><dataSet config="debug"><source path="D:\Android\AndroidstudioProjects\babyTimeChart\build-types\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="UnderlinePageIndicator"><attr format="boolean" name="fades"/><attr format="integer" name="fadeDelay"/><attr format="integer" name="fadeLength"/><attr name="selectedColor"/></declare-styleable><declare-styleable name="CirclePageIndicator"><attr name="centered"/><attr format="color" name="fillColor"/><attr format="color" name="pageColor"/><attr name="android:orientation"/><attr format="dimension" name="radius"/><attr format="boolean" name="snap"/><attr format="color" name="strokeColor"/><attr name="strokeWidth"/></declare-styleable><declare-styleable name="ViewPagerIndicator"><attr format="reference" name="vpiCirclePageIndicatorStyle"/><attr format="reference" name="vpiLinePageIndicatorStyle"/><attr format="reference" name="vpiTitlePageIndicatorStyle"/><attr format="reference" name="vpiTabPageIndicatorStyle"/><attr format="reference" name="vpiUnderlinePageIndicatorStyle"/></declare-styleable><declare-styleable name="TitlePageIndicator"><attr format="dimension" name="clipPadding"/><attr format="color" name="footerColor"/><attr format="dimension" name="footerLineHeight"/><attr name="footerIndicatorStyle"><enum name="none" value="0"/><enum name="triangle" value="1"/><enum name="underline" value="2"/></attr><attr format="dimension" name="footerIndicatorHeight"/><attr format="dimension" name="footerIndicatorUnderlinePadding"/><attr format="dimension" name="footerPadding"/><attr name="selectedColor"/><attr format="boolean" name="selectedBold"/><attr name="android:textColor"/><attr name="android:textSize"/><attr format="dimension" name="titlePadding"/><attr format="dimension" name="topPadding"/></declare-styleable><declare-styleable name="LinePageIndicator"><attr name="centered"/><attr name="unselectedColor"/><attr name="selectedColor"/><attr format="dimension" name="lineWidth"/><attr name="strokeWidth"/><attr format="dimension" name="gapWidth"/></declare-styleable></configuration></mergedItems></merger>

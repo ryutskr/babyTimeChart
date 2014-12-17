@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/chocolate"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ToggleButton
+            android:id="@+id/tBtn_Feeding_mm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOn="@string/mothersmilk"
+            android:textOff="@string/mothersmilk"/>
+
+        <ToggleButton
+            android:id="@+id/tBtn_Feeding_mp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOn="@string/milkpowder"
+            android:textOff="@string/milkpowder" />
+
+        <ToggleButton
+            android:id="@+id/tBtn_Feeding_bf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textOn="@string/babyfood"
+            android:textOff="@string/babyfood" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/D:/Android/AndroidstudioProjects/babyTimeChart/res/layout/fragment_sleeping.xml -->

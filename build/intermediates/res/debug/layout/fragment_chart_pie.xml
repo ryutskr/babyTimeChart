@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/section_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Page View Number" />
+
+    <com.babytimechart.ui.RoundChartView
+        android:id="@+id/roundchartview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3dip"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
+        android:background="@color/peru" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/aquamarine"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <Button
+            android:id="@+id/feedingBtn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/feeding"
+            android:textSize="15dip" />
+
+        <Button
+            android:id="@+id/playingBtn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/playing"
+            android:textSize="15dip" />
+
+        <Button
+            android:id="@+id/sleepingBtn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sleeping"
+            android:textSize="15dip" />
+
+        <Button
+            android:id="@+id/etcBtn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/etc"
+            android:textSize="15dip" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/datattime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="@string/notice"
+        android:textSize="15dp" />
+
+</LinearLayout><!-- From: file:/D:/Android/AndroidstudioProjects/babyTimeChart/res/layout/fragment_chart_pie.xml -->
