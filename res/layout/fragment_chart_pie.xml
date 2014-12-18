@@ -8,12 +8,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Page View Number" />
-
     <com.babytimechart.ui.RoundChartView
         android:id="@+id/roundchartview"
         android:layout_width="wrap_content"
@@ -29,7 +23,6 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/aquamarine"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="4" >

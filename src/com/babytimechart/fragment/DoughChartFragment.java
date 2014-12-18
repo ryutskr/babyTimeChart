@@ -59,21 +59,6 @@ public class DoughChartFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_chart_pie, container,
 				false);
-		TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-		textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-
-//		Button btn = (Button)rootView.findViewById(R.id.test_btn);
-//
-//		btn.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				Intent intent = null;
-//				intent = new Intent(getActivity(), PieChartBuilder.class);
-//				startActivity(intent);
-//			}
-//		});
-
 
 		List<double[]> values = new ArrayList<double[]>();
 		values.add(new double[] { 12, 10  });

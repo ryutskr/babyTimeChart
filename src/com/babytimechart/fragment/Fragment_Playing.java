@@ -27,9 +27,6 @@ public class Fragment_Playing extends Fragment {
 	 */
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
-	private BabyTimeDbOpenHelper mDbhelper =  null;
-	private SQLiteDatabase mDb = null;
-
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
@@ -50,11 +47,6 @@ public class Fragment_Playing extends Fragment {
 		Log.i("babytime", getActivity().getComponentName() + "  / onCreateView() ");
 		View rootView = inflater.inflate(R.layout.fragment_playing, container, false);
 		
-		rootView.findViewById(R.id.tBtn_Feeding_mm).setOnClickListener(mOnClickListener);
-		rootView.findViewById(R.id.tBtn_Feeding_mp).setOnClickListener(mOnClickListener);
-		rootView.findViewById(R.id.tBtn_Feeding_bf).setOnClickListener(mOnClickListener);
-		rootView.findViewById(R.id.toggleButton4).setOnClickListener(mOnClickListener);
-		
 		return rootView;
 	}
 	
@@ -72,13 +64,6 @@ public class Fragment_Playing extends Fragment {
 		Log.i("babytime", getActivity().getComponentName() + "  / onDestroy() ");
 		super.onDestroy();
 	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.i("babytime", getActivity().getComponentName() + "  / onActivityResult() retCode : " + resultCode);
-		super.onActivityResult(requestCode, resultCode, data);
-	}
-	
 }
 
 

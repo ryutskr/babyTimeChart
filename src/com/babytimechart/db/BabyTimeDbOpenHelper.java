@@ -22,8 +22,8 @@ public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 				"_id 	INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				Dbinfo.DB_TYPE 		+ " TEXT, " +
 				Dbinfo.DB_DATE		+ " TEXT, " + 
-				Dbinfo.DB_S_TIME 	+ " TEXT, " +			
-				Dbinfo.DB_E_TIME 	+ " TEXT, " +			
+				Dbinfo.DB_S_TIME 	+ " INTEGER, " +			
+				Dbinfo.DB_E_TIME 	+ " INTEGER, " +			
 				Dbinfo.DB_MEMO 		+ " TEXT );");		
 	}
 

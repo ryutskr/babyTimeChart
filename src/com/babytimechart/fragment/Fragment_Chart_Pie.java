@@ -1,20 +1,24 @@
 package com.babytimechart.fragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.app.Fragment;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.activity.babytimechart.R;
 import com.babytimechart.activity.BabyTimeDataActivity;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
+import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.RoundChartView;
 
 /**
@@ -46,28 +50,27 @@ public class Fragment_Chart_Pie extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_chart_pie, container,false);
-		
-		TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-		textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 
 		mPieChart = (RoundChartView)rootView.findViewById(R.id.roundchartview);
-		
+
 		rootView.findViewById(R.id.feedingBtn).setOnClickListener(mOnClickListener);
 		rootView.findViewById(R.id.playingBtn).setOnClickListener(mOnClickListener);
 		rootView.findViewById(R.id.sleepingBtn).setOnClickListener(mOnClickListener);
 		rootView.findViewById(R.id.etcBtn).setOnClickListener(mOnClickListener);
-		
+		mPieChart.drawChart();
+
 		return rootView;
 	}
-	
-	
+
+
 	OnClickListener mOnClickListener = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View v) {
 			switch( v.getId() ){
 			case R.id.feedingBtn:
 				Intent intent = new Intent(getActivity(), BabyTimeDataActivity.class);
+				intent.putExtra("lasttime", mPieChart.getLasttime());
 				startActivityForResult(intent, 1);
 				break;
 			case R.id.playingBtn:
@@ -75,6 +78,7 @@ public class Fragment_Chart_Pie extends Fragment {
 			case R.id.sleepingBtn:
 				break;
 			case R.id.etcBtn:
+				fakeDBData();
 				break;
 			}
 		}
@@ -88,12 +92,53 @@ public class Fragment_Chart_Pie extends Fragment {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		Log.i("1111", "onActivityResult " );
-		mPieChart.setBackgroundColor(Color.GRAY);
-		mPieChart.setPercentage(40);
 		mPieChart.drawChart();
 	}
-	
+
+	public void fakeDBData()
+	{
+		long time = System.currentTimeMillis();
+
+		SimpleDateFormat insertDateformat1 = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat insertDateformat2 = new SimpleDateFormat("dd");
+		String strToday1 = insertDateformat1.format(new Date(time));
+		String strToday2 = insertDateformat2.format(new Date(time));
+
+		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getActivity());
+		SQLiteDatabase db = dbhelper.getWritableDatabase();
+
+		Calendar today = Calendar.getInstance();
+		today.set(2014, 11, Integer.parseInt(strToday2)-1, 23, 30);
+		long time1 = today.getTimeInMillis();
+		today.set(2014, 11, Integer.parseInt(strToday2), 8, 30);
+		long time2 = today.getTimeInMillis();
+		today.set(2014, 11, Integer.parseInt(strToday2), 10, 30);
+		long time3 = today.getTimeInMillis();
+		today.set(2014, 11, Integer.parseInt(strToday2), 13, 30);
+		long time4 = today.getTimeInMillis();
+		today.set(2014, 11, Integer.parseInt(strToday2), 16, 30);
+		long time5 = today.getTimeInMillis();
+		today.set(2014, 11, Integer.parseInt(strToday2), 17, 30);
+		long time6 = today.getTimeInMillis();
+		
+		
+		long[] arrtime = {time1,time2, time3, time4, time5, time6};
+		String[] arrType = {"eat", "play", "sleep", "etc","play"};
+		ContentValues contentValues = new ContentValues();
+		for(int i=0; i< 5; i++)
+		{
+			contentValues.clear();
+			contentValues.put(Dbinfo.DB_TYPE, arrType[i] );
+			contentValues.put(Dbinfo.DB_DATE, strToday1 );
+			contentValues.put(Dbinfo.DB_S_TIME, arrtime[i] );
+			contentValues.put(Dbinfo.DB_E_TIME, arrtime[i+1] );
+			contentValues.put(Dbinfo.DB_MEMO, "" + i  );
+			db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
+		}
+		db.close();
+		
+		mPieChart.drawChart();
+	}
 }
 
 

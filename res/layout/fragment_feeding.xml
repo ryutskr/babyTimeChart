@@ -37,10 +37,12 @@
             android:textOn="@string/babyfood" />
 
         <ToggleButton
-            android:id="@+id/toggleButton4"
+            android:id="@+id/tBtn_Feeding_bp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textOff="@string/babypoop"
+            android:textOn="@string/babypoop" />
     </LinearLayout>
 
     <LinearLayout

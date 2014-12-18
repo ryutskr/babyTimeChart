@@ -4,7 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Fragment;
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,9 +21,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.activity.babytimechart.R;
+import com.babytimechart.db.BabyTimeDbOpenHelper;
+import com.babytimechart.db.Dbinfo;
+import com.babytimechart.ui.ChartInfomation;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -38,7 +45,7 @@ public class Fragment_Feeding extends Fragment {
 	private ToggleButton tbtn_mm = null;
 	private ToggleButton tbtn_mp = null;
 	private ToggleButton tbtn_bf = null;
-	private ToggleButton tbtn_4  = null;
+	private ToggleButton tbtn_bp  = null;
 
 	private RadioButton mRadio_direct = null;
 	private RadioButton mRadio_bottle = null;
@@ -60,9 +67,10 @@ public class Fragment_Feeding extends Fragment {
 	private Button mButton_time_minus_big = null;
 	private Button mButton_time_plus_small = null;
 	private Button mButton_time_plus_big = null;
-	
+
 	private long mMillsSTime = 0;
 	private long mMillsETime = 0;
+	private long mLastMillsTime = 0;
 
 	/**
 	 * Returns a new instance of this fragment for the given section number.
@@ -94,11 +102,11 @@ public class Fragment_Feeding extends Fragment {
 		tbtn_mm  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_mm);
 		tbtn_mp  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_mp);
 		tbtn_bf  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_bf);
-		tbtn_4  = (ToggleButton)rootView.findViewById(R.id.toggleButton4);
+		tbtn_bp  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_bp);
 		tbtn_mm.setOnCheckedChangeListener(mOnCheckedChangeListener);
 		tbtn_mp.setOnCheckedChangeListener(mOnCheckedChangeListener);
 		tbtn_bf.setOnCheckedChangeListener(mOnCheckedChangeListener);
-		tbtn_4.setOnCheckedChangeListener(mOnCheckedChangeListener);
+		tbtn_bp.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
 		mRadio_direct = (RadioButton)rootView.findViewById(R.id.rBtn_Feeding_direct);
 		mRadio_bottle = (RadioButton)rootView.findViewById(R.id.rBtn_Feeding_bottle);
@@ -116,24 +124,26 @@ public class Fragment_Feeding extends Fragment {
 		mButton_ml_minus_big.setOnClickListener(mOnClickListener);
 		mButton_ml_plus_small.setOnClickListener(mOnClickListener);
 		mButton_ml_plus_big.setOnClickListener(mOnClickListener);
-		
+
 		mEditeText_ml = (EditText)rootView.findViewById(R.id.editText_Feeding_ml);
 
 		mTextView_stime = (TextView)rootView.findViewById(R.id.txtView_Feeding_stime);
 		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_Feeding_etime);    
 		mTextView_stime.setOnClickListener(mOnClickListener);
 		mTextView_etime.setOnClickListener(mOnClickListener);
-		
+
 		mMillsSTime = System.currentTimeMillis();
 		mMillsETime = mMillsSTime + SPACE_IN_TIME;
+
 		SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 		String sTime = dateformat.format(new Date(mMillsSTime));
 		String eTime = dateformat.format(new Date(mMillsETime));
+
 		mTextView_stime.setText(sTime);
 		mTextView_etime.setText(eTime);
 		mTextView_stime.setContentDescription("" + mMillsSTime);
 		mTextView_etime.setContentDescription("" + mMillsETime);
-		
+
 		mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
 
 		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Feeding_minus_small_time);
@@ -144,7 +154,7 @@ public class Fragment_Feeding extends Fragment {
 		mButton_time_minus_big.setOnClickListener(mOnClickListener);
 		mButton_time_plus_small.setOnClickListener(mOnClickListener);
 		mButton_time_plus_big.setOnClickListener(mOnClickListener);
-		
+
 		tbtn_mm.setChecked(true);
 	}
 
@@ -158,34 +168,39 @@ public class Fragment_Feeding extends Fragment {
 			switch( buttonView.getId())
 			{
 			case R.id.tBtn_Feeding_mm:
-				mLinearLayout_volume.setVisibility(View.GONE);
 				mLinearLayout_radio.setVisibility(View.VISIBLE);
+				mLinearLayout_volume.setVisibility(View.GONE);
 
 				tbtn_mp.setChecked(false);
 				tbtn_bf.setChecked(false);
-				tbtn_4.setChecked(false);
+				tbtn_bp.setChecked(false);
+				mRadio_direct.setChecked(true);
+				mRadio_bottle.setChecked(false);
 
 				break;
 			case R.id.tBtn_Feeding_mp:
-				mLinearLayout_volume.setVisibility(View.VISIBLE);
 				mLinearLayout_radio.setVisibility(View.GONE);
+				mLinearLayout_volume.setVisibility(View.VISIBLE);
+
 
 				tbtn_mm.setChecked(false);
 				tbtn_bf.setChecked(false);
-				tbtn_4.setChecked(false);
+				tbtn_bp.setChecked(false);
 				break;
 			case R.id.tBtn_Feeding_bf:
-				mLinearLayout_volume.setVisibility(View.VISIBLE);
 				mLinearLayout_radio.setVisibility(View.GONE);
-				
+				mLinearLayout_volume.setVisibility(View.VISIBLE);
+
 				tbtn_mm.setChecked(false);
 				tbtn_mp.setChecked(false);
-				tbtn_4.setChecked(false);
+				tbtn_bp.setChecked(false);
 				break;
-			case R.id.toggleButton4:
+			case R.id.tBtn_Feeding_bp:
 				tbtn_mm.setChecked(false);
 				tbtn_mp.setChecked(false);
 				tbtn_bf.setChecked(false);
+				mLinearLayout_radio.setVisibility(View.GONE);
+				mLinearLayout_volume.setVisibility(View.GONE);
 				break;
 			case R.id.rBtn_Feeding_direct:
 				mLinearLayout_volume.setVisibility(View.GONE);
@@ -220,11 +235,13 @@ public class Fragment_Feeding extends Fragment {
 				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
 				mEditeText_ml.setText("" + (iValue + 20) + "ml");
 				break;
-				
+
 			case R.id.btn_Feeding_minus_small_time:
 				if( mTextView_stime.isFocused() )
 				{
-					mMillsSTime =  mMillsSTime - SPACE_IN_TIME_BIG; 
+//					if( mLastMillsTime > (mMillsSTime - SPACE_IN_TIME_BIG) )
+//						Toast.makeText(getActivity(), getResources().getString(R.string.time_err), Toast.LENGTH_SHORT).show();
+					mMillsSTime =  mMillsSTime - SPACE_IN_TIME_BIG;
 					mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
 					mTextView_stime.setContentDescription("" + mMillsSTime);
 				}else if( mTextView_etime.isFocused() ){
@@ -269,7 +286,7 @@ public class Fragment_Feeding extends Fragment {
 					mTextView_etime.setContentDescription("" + mMillsETime);
 				}
 				break;
-				
+
 			case R.id.txtView_Feeding_stime:
 				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
 				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.papayawhip));
@@ -282,18 +299,24 @@ public class Fragment_Feeding extends Fragment {
 		}
 	};
 
+	
+	public boolean timeValidation()
+	{
+		
+		
+		// case 1 start < last
+		// case 2 start > end
+		// case 3 end < last
+		// case 4 end < start
+		
+		return true;
+	}
+	
 	@Override
 	public void onDestroy() {
 		Log.i("babytime", getActivity().getComponentName() + "  / onDestroy() ");
 		super.onDestroy();
 	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.i("babytime", getActivity().getComponentName() + "  / onActivityResult() retCode : " + resultCode);
-		super.onActivityResult(requestCode, resultCode, data);
-	}
-
 }
 
 

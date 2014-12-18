@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.util.Log;
 import android.view.View;
@@ -204,47 +207,19 @@ public class BabyTimeDataActivity extends Activity{
 
 		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
 		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
-
-		SimpleDateFormat calcDateformat = new SimpleDateFormat("dd");
-		int iStime = Integer.parseInt( calcDateformat.format(new Date(stime)) );
-		int iEtime = Integer.parseInt( calcDateformat.format(new Date(etime)) );
-
+		
 		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
-		String strStime = insertDateformat.format(new Date(stime));
 		String strEtime = insertDateformat.format(new Date(etime));
 
 		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
 		SQLiteDatabase db = dbhelper.getWritableDatabase();
-
-		if( (iEtime - iStime) > 0 )
-		{
-			ContentValues contentValues = new ContentValues();
-			contentValues.put(Dbinfo.DB_TYPE, Dbinfo.DB_TYPE_EAT );
-			contentValues.put(Dbinfo.DB_DATE, strStime );
-			contentValues.put(Dbinfo.DB_S_TIME, mTextView_stime.getText().toString() );
-			contentValues.put(Dbinfo.DB_E_TIME, "0");
-			contentValues.put(Dbinfo.DB_MEMO, strMemo );
-
-			db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-
-			contentValues.clear();
-			contentValues.put(Dbinfo.DB_TYPE, Dbinfo.DB_TYPE_EAT );
-			contentValues.put(Dbinfo.DB_DATE, strEtime );
-			contentValues.put(Dbinfo.DB_S_TIME, "0" );
-			contentValues.put(Dbinfo.DB_E_TIME, mTextView_etime.getText().toString() );
-			contentValues.put(Dbinfo.DB_MEMO, strMemo );
-
-			db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-		}else{
-			ContentValues contentValues = new ContentValues();
-			contentValues.put(Dbinfo.DB_TYPE, Dbinfo.DB_TYPE_EAT );
-			contentValues.put(Dbinfo.DB_DATE, strStime );
-			contentValues.put(Dbinfo.DB_S_TIME, mTextView_stime.getText().toString() );
-			contentValues.put(Dbinfo.DB_E_TIME, mTextView_etime.getText().toString());
-			contentValues.put(Dbinfo.DB_MEMO, strMemo );
-			db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-		}
-
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(Dbinfo.DB_TYPE, Dbinfo.DB_TYPE_EAT );
+		contentValues.put(Dbinfo.DB_DATE, strEtime );
+		contentValues.put(Dbinfo.DB_S_TIME, stime );
+		contentValues.put(Dbinfo.DB_E_TIME, etime );
+		contentValues.put(Dbinfo.DB_MEMO, strMemo );
+		db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
 		db.close();
 	}
 
