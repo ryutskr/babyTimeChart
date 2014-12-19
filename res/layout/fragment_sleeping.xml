@@ -2,45 +2,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@color/papayawhip"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linear_Sleeping_mm_radio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"  >
+
+            <RadioButton
+                android:id="@+id/rBtn_Sleeping_nap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/nap" />
+
+            <RadioButton
+                android:id="@+id/rBtn_Sleeping_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/night_sleep"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+        </RadioGroup>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/mistyrose"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/chocolate"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="4" >
+        android:weightSum="2" >
 
-        <ToggleButton
-            android:id="@+id/tBtn_Feeding_mm"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtView_Sleeping_stime_title"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@string/mothersmilk"
-            android:textOff="@string/mothersmilk"/>
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/stime_titile"
+            android:textSize="@dimen/btn_text_size_10" />
 
-        <ToggleButton
-            android:id="@+id/tBtn_Feeding_mp"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtView_Sleeping_etime_title"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@string/milkpowder"
-            android:textOff="@string/milkpowder" />
+            android:gravity="center"
+            android:text="@string/etime_titile"
+            android:textSize="@dimen/btn_text_size_10" />
+    </LinearLayout>
 
-        <ToggleButton
-            android:id="@+id/tBtn_Feeding_bf"
-            android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/txtView_Sleeping_stime"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@string/babyfood"
-            android:textOff="@string/babyfood" />
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:textSize="@dimen/btn_text_size_25" />
 
-        <ToggleButton
-            android:id="@+id/toggleButton4"
+        <TextView
+            android:id="@+id/txtView_Sleeping_etime"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:textSize="@dimen/btn_text_size_25" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" 
+        android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf">
+
+        <Button
+            android:id="@+id/btn_Sleeping_minus_small_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:text="@string/minus_small_time"
+            android:textSize="@dimen/btn_text_size_10" />
+
+        <Button
+            android:id="@+id/btn_Sleeping_minus_big_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_big_time"
+            android:textSize="@dimen/btn_text_size_10" />
+
+        <Button
+            android:id="@+id/btn_Sleeping_plus_small_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_small_time"
+            android:textSize="@dimen/btn_text_size_10" />
+
+        <Button
+            android:id="@+id/btn_Sleeping_plus_big_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_big_time"
+            android:textSize="@dimen/btn_text_size_10" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/mistyrose"/>
+        
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/activity_vertical_margin_qhalf" >
+
+        <TextView
+            android:id="@+id/txtView_Sleeping_Memo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/memo"
+            android:textSize="@dimen/btn_text_size_20" />
+
+        <EditText
+            android:id="@+id/editText_Sleeping_Memo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/memo_hint" />
     </LinearLayout>
 
 </LinearLayout>

@@ -10,10 +10,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="4" >
+        android:weightSum="3" >
 
         <ToggleButton
-            android:id="@+id/tBtn_Feeding_mm"
+            android:id="@+id/tBtn_Eating_mm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,7 +21,7 @@
             android:textOn="@string/mothersmilk" />
 
         <ToggleButton
-            android:id="@+id/tBtn_Feeding_mp"
+            android:id="@+id/tBtn_Eating_mp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,24 +29,17 @@
             android:textOn="@string/milkpowder" />
 
         <ToggleButton
-            android:id="@+id/tBtn_Feeding_bf"
+            android:id="@+id/tBtn_Eating_bf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textOff="@string/babyfood"
             android:textOn="@string/babyfood" />
 
-        <ToggleButton
-            android:id="@+id/tBtn_Feeding_bp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="@string/babypoop"
-            android:textOn="@string/babypoop" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_Feeding_mm_radio"
+        android:id="@+id/linear_Eating_mm_radio"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -59,22 +52,22 @@
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/rBtn_Feeding_direct"
+                android:id="@+id/rBtn_Eating_direct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="@string/feeding_type_direct" />
+                android:text="@string/eating_type_direct" />
 
             <RadioButton
-                android:id="@+id/rBtn_Feeding_bottle"
+                android:id="@+id/rBtn_Eating_bottle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/feeding_type_bottle" />
+                android:text="@string/eating_type_bottle" />
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_Feeding_volume"
+        android:id="@+id/linear_Eating_volume"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
@@ -84,7 +77,7 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf" >
 
         <Button
-            android:id="@+id/btn_Feeding_minus_small_ml"
+            android:id="@+id/btn_Eating_minus_small_ml"
             style="@style/AppTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,14 +85,14 @@
             android:textSize="@dimen/btn_text_size_10" />
 
         <Button
-            android:id="@+id/btn_Feeding_minus_big_ml"
+            android:id="@+id/btn_Eating_minus_big_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_big_ml"
             android:textSize="@dimen/btn_text_size_10" />
 
         <EditText
-            android:id="@+id/editText_Feeding_ml"
+            android:id="@+id/editText_Eating_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
@@ -109,14 +102,14 @@
             android:textSize="@dimen/btn_text_size_15" />
 
         <Button
-            android:id="@+id/btn_Feeding_plus_small_ml"
+            android:id="@+id/btn_Eating_plus_small_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_small_ml"
             android:textSize="@dimen/btn_text_size_10" />
 
         <Button
-            android:id="@+id/btn_Feeding_plus_big_ml"
+            android:id="@+id/btn_Eating_plus_big_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_big_ml"
@@ -138,7 +131,7 @@
         android:weightSum="2" >
 
         <TextView
-            android:id="@+id/txtView_Feeding_stime_title"
+            android:id="@+id/txtView_Eating_stime_title"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -148,7 +141,7 @@
             android:textSize="@dimen/btn_text_size_10" />
 
         <TextView
-            android:id="@+id/txtView_Feeding_etime_title"
+            android:id="@+id/txtView_Eating_etime_title"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -166,7 +159,7 @@
         android:weightSum="2" >
 
         <TextView
-            android:id="@+id/txtView_Feeding_stime"
+            android:id="@+id/txtView_Eating_stime"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -176,7 +169,7 @@
             android:textSize="@dimen/btn_text_size_25" />
 
         <TextView
-            android:id="@+id/txtView_Feeding_etime"
+            android:id="@+id/txtView_Eating_etime"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -194,28 +187,28 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf">
 
         <Button
-            android:id="@+id/btn_Feeding_minus_small_time"
+            android:id="@+id/btn_Eating_minus_small_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_small_time"
             android:textSize="@dimen/btn_text_size_10" />
 
         <Button
-            android:id="@+id/btn_Feeding_minus_big_time"
+            android:id="@+id/btn_Eating_minus_big_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_big_time"
             android:textSize="@dimen/btn_text_size_10" />
 
         <Button
-            android:id="@+id/btn_Feeding_plus_small_time"
+            android:id="@+id/btn_Eating_plus_small_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_small_time"
             android:textSize="@dimen/btn_text_size_10" />
 
         <Button
-            android:id="@+id/btn_Feeding_plus_big_time"
+            android:id="@+id/btn_Eating_plus_big_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_big_time"
@@ -235,14 +228,14 @@
         android:layout_marginTop="@dimen/activity_vertical_margin_qhalf" >
 
         <TextView
-            android:id="@+id/txtView_Feeding_Memo"
+            android:id="@+id/txtView_Eating_Memo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memo"
             android:textSize="@dimen/btn_text_size_20" />
 
         <EditText
-            android:id="@+id/editText_Feeding_Memo"
+            android:id="@+id/editText_Eating_Memo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/memo_hint" />

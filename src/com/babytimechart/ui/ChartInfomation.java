@@ -6,7 +6,9 @@ import java.util.Date;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.activity.babytimechart.R;
@@ -15,9 +17,12 @@ import com.babytimechart.db.Dbinfo;
 
 public class ChartInfomation {
 
-	private static final int ANGLE_PER_HOUR = 15;
-	private static final float  ANGLE_PER_TENMIN = 15/6 ;
+	private static final int 	ANGLE_PER_HOUR = 15;
+	private static final float  ANGLE_PER_TENMIN = (float)15/6 ;
 	private static final float  STANDARD_ANGLE = 6 ;
+	
+	private static final int ARC_ALPHA = 120; 	// 0 ~ 255
+	
 	
 	private Context mContext = null;
 	private Cursor mCursor = null;
@@ -74,6 +79,7 @@ public class ChartInfomation {
 		{
 			Paint paint = new Paint();
 			paint.setAntiAlias(true);
+			paint.setAlpha(ARC_ALPHA);
 			paint.setStyle(Paint.Style.FILL);
 			
 			if( data.mType.equals(Dbinfo.DB_TYPE_EAT) )
@@ -91,7 +97,7 @@ public class ChartInfomation {
 					Math.round(Integer.parseInt(new SimpleDateFormat("mm").format(new Date(data.mStime)))/10) * ANGLE_PER_TENMIN;
 			
 			float fEndAngle = ((Integer.parseInt(new SimpleDateFormat("HH").format(new Date(data.mEtime))) - STANDARD_ANGLE )* ANGLE_PER_HOUR) +
-					Math.round(Integer.parseInt(new SimpleDateFormat("mm").format(new Date(data.mStime)))/10) * ANGLE_PER_TENMIN;
+					Math.round(Integer.parseInt(new SimpleDateFormat("mm").format(new Date(data.mEtime)))/10) * ANGLE_PER_TENMIN;
 			
 			if( data.mStartAngle < 0 )
 				data.mStartAngle = 360 + data.mStartAngle;
@@ -116,8 +122,8 @@ public class ChartInfomation {
 			Log.i("1111", "STIME: "+data.mStime + "  | " + new SimpleDateFormat("HH:mm").format(new Date(data.mStime)));
 			Log.i("1111", "ETIME: " + data.mEtime + "  | " + new SimpleDateFormat("HH:mm").format(new Date(data.mEtime)));
 			Log.i("1111", "MEMO: " + data.mMemo);
-			Log.i("1111", "startAngle: " + data.mStartAngle);
-			Log.i("1111", "endAngle: " + data.mSweepAngle);
+			Log.i("1111", "StartAngle: " + data.mStartAngle);
+			Log.i("1111", "SweepAngle: " + data.mSweepAngle);
 			Log.i("1111", "Paint: " + data.mPaint.getColor());
 			Log.i("1111", "=============================");
 		}

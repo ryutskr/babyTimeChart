@@ -32,12 +32,13 @@ import com.babytimechart.ui.ChartInfomation;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class Fragment_Feeding extends Fragment {
+public class Fragment_Eating extends Fragment {
 	/**
 	 * The fragment argument representing the section number for this
 	 * fragment.
 	 */
 	private static final String ARG_SECTION_NUMBER = "section_number";
+	private static final String EXTRA_TODAY_LAST_TIME = "lasttime";
 	private static final int SPACE_IN_TIME = 30 * 60 * 1000;
 	private static final int SPACE_IN_TIME_SMALL 	= 5 * 60 * 1000;
 	private static final int SPACE_IN_TIME_BIG 		= 20 * 60 * 1000;
@@ -45,7 +46,6 @@ public class Fragment_Feeding extends Fragment {
 	private ToggleButton tbtn_mm = null;
 	private ToggleButton tbtn_mp = null;
 	private ToggleButton tbtn_bf = null;
-	private ToggleButton tbtn_bp  = null;
 
 	private RadioButton mRadio_direct = null;
 	private RadioButton mRadio_bottle = null;
@@ -71,71 +71,82 @@ public class Fragment_Feeding extends Fragment {
 	private long mMillsSTime = 0;
 	private long mMillsETime = 0;
 	private long mLastMillsTime = 0;
+	private SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
-	public static Fragment_Feeding newInstance(int sectionNumber) {
-		Fragment_Feeding fragment = new Fragment_Feeding();
+	public static Fragment_Eating newInstance(int sectionNumber, long todaylasttime) {
+		Fragment_Eating fragment = new Fragment_Eating();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+		args.putLong(EXTRA_TODAY_LAST_TIME, todaylasttime);
 		fragment.setArguments(args);
 		return fragment;
 	}
 
-	public Fragment_Feeding() {
+	public Fragment_Eating() {
 	}
 
 	@Override 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Log.i("babytime", getActivity().getComponentName() + "  / onCreateView() ");
-		View rootView = inflater.inflate(R.layout.fragment_feeding, container, false);
 
+		mLastMillsTime = getArguments().getLong(EXTRA_TODAY_LAST_TIME, 0);
+
+		View rootView = inflater.inflate(R.layout.fragment_eating, container, false);
 		initView(rootView);
-
 		return rootView;
 	}
 
 	public void initView(View rootView)
 	{
-		tbtn_mm  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_mm);
-		tbtn_mp  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_mp);
-		tbtn_bf  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_bf);
-		tbtn_bp  = (ToggleButton)rootView.findViewById(R.id.tBtn_Feeding_bp);
+		tbtn_mm  = (ToggleButton)rootView.findViewById(R.id.tBtn_Eating_mm);
+		tbtn_mp  = (ToggleButton)rootView.findViewById(R.id.tBtn_Eating_mp);
+		tbtn_bf  = (ToggleButton)rootView.findViewById(R.id.tBtn_Eating_bf);
 		tbtn_mm.setOnCheckedChangeListener(mOnCheckedChangeListener);
 		tbtn_mp.setOnCheckedChangeListener(mOnCheckedChangeListener);
 		tbtn_bf.setOnCheckedChangeListener(mOnCheckedChangeListener);
-		tbtn_bp.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
-		mRadio_direct = (RadioButton)rootView.findViewById(R.id.rBtn_Feeding_direct);
-		mRadio_bottle = (RadioButton)rootView.findViewById(R.id.rBtn_Feeding_bottle);
+		mRadio_direct = (RadioButton)rootView.findViewById(R.id.rBtn_Eating_direct);
+		mRadio_bottle = (RadioButton)rootView.findViewById(R.id.rBtn_Eating_bottle);
 		mRadio_direct.setOnCheckedChangeListener(mOnCheckedChangeListener);
 		mRadio_bottle.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
-		mLinearLayout_radio = (LinearLayout)rootView.findViewById(R.id.linear_Feeding_mm_radio);  
-		mLinearLayout_volume = (LinearLayout)rootView.findViewById(R.id.linear_Feeding_volume); 
+		mLinearLayout_radio = (LinearLayout)rootView.findViewById(R.id.linear_Eating_mm_radio);  
+		mLinearLayout_volume = (LinearLayout)rootView.findViewById(R.id.linear_Eating_volume); 
 
-		mButton_ml_minus_small = (Button)rootView.findViewById(R.id.btn_Feeding_minus_small_ml);
-		mButton_ml_minus_big = (Button)rootView.findViewById(R.id.btn_Feeding_minus_big_ml);
-		mButton_ml_plus_small = (Button)rootView.findViewById(R.id.btn_Feeding_plus_small_ml);
-		mButton_ml_plus_big = (Button)rootView.findViewById(R.id.btn_Feeding_plus_big_ml); 
+		mButton_ml_minus_small = (Button)rootView.findViewById(R.id.btn_Eating_minus_small_ml);
+		mButton_ml_minus_big = (Button)rootView.findViewById(R.id.btn_Eating_minus_big_ml);
+		mButton_ml_plus_small = (Button)rootView.findViewById(R.id.btn_Eating_plus_small_ml);
+		mButton_ml_plus_big = (Button)rootView.findViewById(R.id.btn_Eating_plus_big_ml); 
 		mButton_ml_minus_small.setOnClickListener(mOnClickListener);
 		mButton_ml_minus_big.setOnClickListener(mOnClickListener);
 		mButton_ml_plus_small.setOnClickListener(mOnClickListener);
 		mButton_ml_plus_big.setOnClickListener(mOnClickListener);
 
-		mEditeText_ml = (EditText)rootView.findViewById(R.id.editText_Feeding_ml);
+		mEditeText_ml = (EditText)rootView.findViewById(R.id.editText_Eating_ml);
 
-		mTextView_stime = (TextView)rootView.findViewById(R.id.txtView_Feeding_stime);
-		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_Feeding_etime);    
+		mTextView_stime = (TextView)rootView.findViewById(R.id.txtView_Eating_stime);
+		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_Eating_etime);    
 		mTextView_stime.setOnClickListener(mOnClickListener);
 		mTextView_etime.setOnClickListener(mOnClickListener);
 
-		mMillsSTime = System.currentTimeMillis();
-		mMillsETime = mMillsSTime + SPACE_IN_TIME;
+		if( mLastMillsTime != 0)
+		{
+			mMillsSTime = mLastMillsTime;
+			if( mLastMillsTime > System.currentTimeMillis() )
+				mMillsETime = mMillsSTime + SPACE_IN_TIME;
+			else
+				mMillsETime = System.currentTimeMillis();
+		}
+		else
+		{
+			mMillsSTime = System.currentTimeMillis();
+			mMillsETime = mMillsSTime + SPACE_IN_TIME;
+		}
 
-		SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 		String sTime = dateformat.format(new Date(mMillsSTime));
 		String eTime = dateformat.format(new Date(mMillsETime));
 
@@ -146,10 +157,10 @@ public class Fragment_Feeding extends Fragment {
 
 		mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
 
-		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Feeding_minus_small_time);
-		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_Feeding_minus_big_time);
-		mButton_time_plus_small = (Button)rootView.findViewById(R.id.btn_Feeding_plus_small_time);
-		mButton_time_plus_big = (Button)rootView.findViewById(R.id.btn_Feeding_plus_big_time);
+		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Eating_minus_small_time);
+		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_Eating_minus_big_time);
+		mButton_time_plus_small = (Button)rootView.findViewById(R.id.btn_Eating_plus_small_time);
+		mButton_time_plus_big = (Button)rootView.findViewById(R.id.btn_Eating_plus_big_time);
 		mButton_time_minus_small.setOnClickListener(mOnClickListener);
 		mButton_time_minus_big.setOnClickListener(mOnClickListener);
 		mButton_time_plus_small.setOnClickListener(mOnClickListener);
@@ -167,45 +178,35 @@ public class Fragment_Feeding extends Fragment {
 
 			switch( buttonView.getId())
 			{
-			case R.id.tBtn_Feeding_mm:
+			case R.id.tBtn_Eating_mm:
 				mLinearLayout_radio.setVisibility(View.VISIBLE);
 				mLinearLayout_volume.setVisibility(View.GONE);
 
 				tbtn_mp.setChecked(false);
 				tbtn_bf.setChecked(false);
-				tbtn_bp.setChecked(false);
 				mRadio_direct.setChecked(true);
 				mRadio_bottle.setChecked(false);
 
 				break;
-			case R.id.tBtn_Feeding_mp:
+			case R.id.tBtn_Eating_mp:
 				mLinearLayout_radio.setVisibility(View.GONE);
 				mLinearLayout_volume.setVisibility(View.VISIBLE);
 
 
 				tbtn_mm.setChecked(false);
 				tbtn_bf.setChecked(false);
-				tbtn_bp.setChecked(false);
 				break;
-			case R.id.tBtn_Feeding_bf:
+			case R.id.tBtn_Eating_bf:
 				mLinearLayout_radio.setVisibility(View.GONE);
 				mLinearLayout_volume.setVisibility(View.VISIBLE);
 
 				tbtn_mm.setChecked(false);
 				tbtn_mp.setChecked(false);
-				tbtn_bp.setChecked(false);
 				break;
-			case R.id.tBtn_Feeding_bp:
-				tbtn_mm.setChecked(false);
-				tbtn_mp.setChecked(false);
-				tbtn_bf.setChecked(false);
-				mLinearLayout_radio.setVisibility(View.GONE);
+			case R.id.rBtn_Eating_direct:
 				mLinearLayout_volume.setVisibility(View.GONE);
 				break;
-			case R.id.rBtn_Feeding_direct:
-				mLinearLayout_volume.setVisibility(View.GONE);
-				break;
-			case R.id.rBtn_Feeding_bottle:
+			case R.id.rBtn_Eating_bottle:
 				mLinearLayout_volume.setVisibility(View.VISIBLE);
 				break;
 			}
@@ -219,67 +220,88 @@ public class Fragment_Feeding extends Fragment {
 			int iValue = 0;
 			SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 			switch(v.getId()){
-			case R.id.btn_Feeding_minus_small_ml:
+			case R.id.btn_Eating_minus_small_ml:
 				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
 				mEditeText_ml.setText("" + (iValue - 20) + "ml");
 				break;
-			case R.id.btn_Feeding_minus_big_ml:
+			case R.id.btn_Eating_minus_big_ml:
 				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
 				mEditeText_ml.setText("" + (iValue - 10) + "ml");
 				break;
-			case R.id.btn_Feeding_plus_small_ml:
+			case R.id.btn_Eating_plus_small_ml:
 				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
 				mEditeText_ml.setText("" + (iValue + 10) + "ml");
 				break;
-			case R.id.btn_Feeding_plus_big_ml:
+			case R.id.btn_Eating_plus_big_ml:
 				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
 				mEditeText_ml.setText("" + (iValue + 20) + "ml");
 				break;
-
-			case R.id.btn_Feeding_minus_small_time:
+			case R.id.btn_Eating_minus_small_time:
 				if( mTextView_stime.isFocused() )
 				{
-//					if( mLastMillsTime > (mMillsSTime - SPACE_IN_TIME_BIG) )
-//						Toast.makeText(getActivity(), getResources().getString(R.string.time_err), Toast.LENGTH_SHORT).show();
-					mMillsSTime =  mMillsSTime - SPACE_IN_TIME_BIG;
-					mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
-					mTextView_stime.setContentDescription("" + mMillsSTime);
+					if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_BIG)
+						Toast.makeText(getActivity(), getResources().getString(R.string.time_err1), Toast.LENGTH_SHORT).show();
+					else{
+						mMillsSTime =  mMillsSTime - SPACE_IN_TIME_BIG;
+						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
+						mTextView_stime.setContentDescription("" + mMillsSTime);
+					}
 				}else if( mTextView_etime.isFocused() ){
-					mMillsETime =  mMillsETime - SPACE_IN_TIME_BIG; 
-					mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
-					mTextView_etime.setContentDescription("" + mMillsETime);
+					if( mMillsSTime > mMillsETime - SPACE_IN_TIME_BIG)
+						Toast.makeText(getActivity(), getResources().getString(R.string.time_err2), Toast.LENGTH_SHORT).show();
+					else{
+						mMillsETime =  mMillsETime - SPACE_IN_TIME_BIG; 
+						mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
+						mTextView_etime.setContentDescription("" + mMillsETime);
+					}
 				}
 				break;
-			case R.id.btn_Feeding_minus_big_time:
+			case R.id.btn_Eating_minus_big_time:
 				if( mTextView_stime.isFocused() )
 				{
-					mMillsSTime =  mMillsSTime - SPACE_IN_TIME_SMALL; 
-					mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
-					mTextView_stime.setContentDescription("" + mMillsSTime);
+					if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_SMALL)
+						Toast.makeText(getActivity(), getResources().getString(R.string.time_err1), Toast.LENGTH_SHORT).show();
+					else{
+						mMillsSTime =  mMillsSTime - SPACE_IN_TIME_SMALL;
+						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
+						mTextView_stime.setContentDescription("" + mMillsSTime);
+					}
 				}else if( mTextView_etime.isFocused() ){
-					mMillsETime =  mMillsETime - SPACE_IN_TIME_SMALL; 
-					mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
-					mTextView_etime.setContentDescription("" + mMillsETime);
+					if( mMillsSTime > mMillsETime - SPACE_IN_TIME_SMALL)
+						Toast.makeText(getActivity(), getResources().getString(R.string.time_err2), Toast.LENGTH_SHORT).show();
+					else{
+						mMillsETime =  mMillsETime - SPACE_IN_TIME_SMALL; 
+						mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
+						mTextView_etime.setContentDescription("" + mMillsETime);
+					}
 				}
 				break;
-			case R.id.btn_Feeding_plus_small_time:
+			case R.id.btn_Eating_plus_small_time:
 				if( mTextView_stime.isFocused() )
 				{
-					mMillsSTime =  mMillsSTime + SPACE_IN_TIME_SMALL; 
-					mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
-					mTextView_stime.setContentDescription("" + mMillsSTime);
+					if( mMillsSTime + SPACE_IN_TIME_SMALL > mMillsETime )
+						Toast.makeText(getActivity(), getResources().getString(R.string.time_err3), Toast.LENGTH_SHORT).show();
+					else{
+						mMillsSTime =  mMillsSTime + SPACE_IN_TIME_SMALL; 
+						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
+						mTextView_stime.setContentDescription("" + mMillsSTime);
+					}
 				}else if( mTextView_etime.isFocused() ){
 					mMillsETime =  mMillsETime + SPACE_IN_TIME_SMALL; 
 					mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
 					mTextView_etime.setContentDescription("" + mMillsETime);
 				}
 				break;
-			case R.id.btn_Feeding_plus_big_time:
+			case R.id.btn_Eating_plus_big_time:
 				if( mTextView_stime.isFocused() )
 				{
-					mMillsSTime =  mMillsSTime + SPACE_IN_TIME_BIG; 
-					mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
-					mTextView_stime.setContentDescription("" + mMillsSTime);
+					if( mMillsSTime + SPACE_IN_TIME_SMALL > mMillsETime )
+						Toast.makeText(getActivity(), getResources().getString(R.string.time_err3), Toast.LENGTH_SHORT).show();
+					else{
+						mMillsSTime =  mMillsSTime + SPACE_IN_TIME_BIG; 
+						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
+						mTextView_stime.setContentDescription("" + mMillsSTime);
+					}
 				}else if( mTextView_etime.isFocused() ){
 					mMillsETime =  mMillsETime + SPACE_IN_TIME_BIG; 
 					mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
@@ -287,11 +309,11 @@ public class Fragment_Feeding extends Fragment {
 				}
 				break;
 
-			case R.id.txtView_Feeding_stime:
+			case R.id.txtView_Eating_stime:
 				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
 				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.papayawhip));
 				break;
-			case R.id.txtView_Feeding_etime:
+			case R.id.txtView_Eating_etime:
 				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.papayawhip));
 				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
 				break;
@@ -299,25 +321,12 @@ public class Fragment_Feeding extends Fragment {
 		}
 	};
 
-	
-	public boolean timeValidation()
-	{
-		
-		
-		// case 1 start < last
-		// case 2 start > end
-		// case 3 end < last
-		// case 4 end < start
-		
-		return true;
-	}
-	
 	@Override
 	public void onDestroy() {
 		Log.i("babytime", getActivity().getComponentName() + "  / onDestroy() ");
 		super.onDestroy();
 	}
-}
+}     
 
 
 

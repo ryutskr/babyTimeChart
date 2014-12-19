@@ -2,45 +2,153 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@color/papayawhip"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linear_Etc_CheckBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/cBox_Etc_bath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bath" />
+
+        <CheckBox
+            android:id="@+id/cBox_Etc_babypoop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/babypoop" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/mistyrose"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/chocolate"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="4" >
+        android:weightSum="2" >
 
-        <ToggleButton
-            android:id="@+id/tBtn_Feeding_mm"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtView_Etc_stime_title"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@string/mothersmilk"
-            android:textOff="@string/mothersmilk"/>
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/stime_titile"
+            android:textSize="@dimen/btn_text_size_10" />
 
-        <ToggleButton
-            android:id="@+id/tBtn_Feeding_mp"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txtView_Etc_etime_title"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@string/milkpowder"
-            android:textOff="@string/milkpowder" />
+            android:gravity="center"
+            android:text="@string/etime_titile"
+            android:textSize="@dimen/btn_text_size_10" />
+    </LinearLayout>
 
-        <ToggleButton
-            android:id="@+id/tBtn_Feeding_bf"
-            android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/txtView_Etc_stime"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@string/babyfood"
-            android:textOff="@string/babyfood" />
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:textSize="@dimen/btn_text_size_25" />
 
-        <ToggleButton
-            android:id="@+id/toggleButton4"
+        <TextView
+            android:id="@+id/txtView_Etc_etime"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:textSize="@dimen/btn_text_size_25" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" 
+        android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf">
+
+        <Button
+            android:id="@+id/btn_Etc_minus_small_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:text="@string/minus_small_time"
+            android:textSize="@dimen/btn_text_size_10" />
+
+        <Button
+            android:id="@+id/btn_Etc_minus_big_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_big_time"
+            android:textSize="@dimen/btn_text_size_10" />
+
+        <Button
+            android:id="@+id/btn_Etc_plus_small_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_small_time"
+            android:textSize="@dimen/btn_text_size_10" />
+
+        <Button
+            android:id="@+id/btn_Etc_plus_big_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_big_time"
+            android:textSize="@dimen/btn_text_size_10" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/mistyrose"/>
+        
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/activity_vertical_margin_qhalf" >
+
+        <TextView
+            android:id="@+id/txtView_Etc_Memo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/memo"
+            android:textSize="@dimen/btn_text_size_20" />
+
+        <EditText
+            android:id="@+id/editText_Etc_Memo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/memo_hint" />
     </LinearLayout>
 
 </LinearLayout>

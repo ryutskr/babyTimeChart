@@ -39,7 +39,7 @@ public class RoundChartView extends View {
 
 	private Paint mDefaultPaint;
 	private RectF mDefaultRect;
-	private long mTodayLastTime = 0l;
+	private long mTodayLastTime = 0;
 
 	private ArrayList<ChartInfomation> mListChartInfo = new ArrayList<ChartInfomation>();
 
@@ -151,7 +151,6 @@ public class RoundChartView extends View {
 			invalidate();
 			cursor.moveToLast();
 			mTodayLastTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
-			Log.i("1111", "drawChart - mTodayLastTime : " + new SimpleDateFormat("yyyy-MM-dd:HH:mm").format(new Date(mTodayLastTime)) );
 		}
 		else
 			Toast.makeText(getContext(), getResources().getString(R.string.empty_data), Toast.LENGTH_SHORT).show();
