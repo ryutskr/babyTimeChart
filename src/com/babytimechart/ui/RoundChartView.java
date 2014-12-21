@@ -144,8 +144,8 @@ public class RoundChartView extends View {
 		String strToday = queryDateformat.format(new Date(System.currentTimeMillis()));
 
 		strSelection = "date ='"+ strToday +"'";
-		Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);		
-		if( cursor != null && cursor.getCount() > 0)
+		Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
+        if( cursor != null && cursor.getCount() > 0)
 		{
 			mListChartInfo.add(new ChartInfomation(getContext(), cursor));
 			invalidate();

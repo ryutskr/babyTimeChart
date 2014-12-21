@@ -2,16 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    tools:showIn="@layout/styles">
+    <Spinner
+        android:id="@+id/activity_spinner_Today"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:textSize="@dimen/btn_text_size_20"
+        android:text="@string/app_name"/>
 
     <Spinner
-        android:id="@+id/activity_spinner1"
+        android:id="@+id/activity_spinner_Otherday"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
-    
-    <Spinner
-        android:id="@+id/activity_spinner2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="fill_parent"
+        android:visibility="gone"/>
 
 </LinearLayout>
