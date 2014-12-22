@@ -1,16 +1,17 @@
 package com.babytimechart.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.util.Log;
 import android.view.View;
@@ -26,17 +27,12 @@ import android.widget.ToggleButton;
 import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
-import com.babytimechart.fragment.Fragment_Etc;
 import com.babytimechart.fragment.Fragment_Eating;
+import com.babytimechart.fragment.Fragment_Etc;
 import com.babytimechart.fragment.Fragment_Playing;
 import com.babytimechart.fragment.Fragment_Sleeping;
 import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.ui.SlidingTabLayout;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 
 public class BabyTimeDataActivity extends Activity{
@@ -128,6 +124,15 @@ public class BabyTimeDataActivity extends Activity{
 			}
 
 		});
+		
+		setActinbar();
+	
+	}
+
+	private void setActinbar() {
+		getActionBar().setTitle(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+		getActionBar().setDisplayShowCustomEnabled(false);
+		getActionBar().setDisplayShowTitleEnabled(true);
 	}
 
 	OnClickListener mOnClickListener = new OnClickListener() {

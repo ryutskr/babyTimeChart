@@ -6,6 +6,7 @@ public class Dbinfo {
 	public static final String 	DB_TABLE_NAME = "BabyChartDatas";
 	public static final int 	DB_VERSION 	  = 1;
 
+	public static final String DB_ID	 	= "_id";
 	public static final String DB_TYPE 		= "type";		// EAT / PLAY / SLEEP / ETC
 	public static final String DB_DATE	 	= "date"; 	
 	public static final String DB_S_TIME 	= "s_time"; 	

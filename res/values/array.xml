@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string-array name="spinner_prompt">
+        <item>1983-06-10</item>
+    </string-array>
+</resources>

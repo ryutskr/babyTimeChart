@@ -8,7 +8,9 @@
     <Spinner
         android:id="@+id/activity_spinner_Today"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"/>
+        android:layout_height="fill_parent"
+        android:entries="@array/spinner_prompt"/>
+    
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
@@ -20,6 +22,7 @@
         android:id="@+id/activity_spinner_Otherday"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:entries="@array/spinner_prompt"
         android:visibility="gone"/>
 
 </LinearLayout>

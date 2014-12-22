@@ -6,12 +6,20 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
     <com.babytimechart.ui.RoundChartView
         android:id="@+id/roundchartview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textViewMemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="@string/notice"
+        android:textSize="15dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -59,13 +67,5 @@
             android:text="@string/etc"
             android:textSize="15dip" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/datattime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:text="@string/notice"
-        android:textSize="15dp" />
 
 </LinearLayout>

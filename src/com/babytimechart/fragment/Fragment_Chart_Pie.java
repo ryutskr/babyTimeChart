@@ -1,5 +1,8 @@
 package com.babytimechart.fragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,7 +52,7 @@ public class Fragment_Chart_Pie extends Fragment {
 		rootView.findViewById(R.id.playingBtn).setOnClickListener(mOnClickListener);
 		rootView.findViewById(R.id.sleepingBtn).setOnClickListener(mOnClickListener);
 		rootView.findViewById(R.id.etcBtn).setOnClickListener(mOnClickListener);
-		mPieChart.drawChart();
+		drawChart(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
 		return rootView;
 	}
@@ -96,8 +99,10 @@ public class Fragment_Chart_Pie extends Fragment {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		mPieChart.drawChart();
+		drawChart(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 	}
+	
+	public void drawChart(String selection){ mPieChart.drawChart(selection);}
 	
 }
 

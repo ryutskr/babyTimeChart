@@ -1,6 +1,6 @@
 package com.babytimechart.ui;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.Context;
@@ -17,18 +17,20 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
+import com.babytimechart.ui.ChartInfomation.Data;
 
 public class RoundChartView extends View {
 
 	private static final int DEFAULT_CIRCLE_LEFT_MARGIN = 20;
 	private static final int DEFAULT_CIRCLE_TOP_MARGIN = 20;
 	private static final int DEFAULT_CIRCLE_COLOR = Color.WHITE;
-	
+
 	private static final int CUSTOME_CIRCLE_COLOR = Color.BLACK;
 	private static final int CUSTOME_CIRCLE_STROKE_WIDTH = 5; 	// dip
 	private static final int CUSTOME_CENTER_CIRCLE_COLOR = Color.BLACK;
@@ -40,9 +42,12 @@ public class RoundChartView extends View {
 	private Paint mDefaultPaint;
 	private RectF mDefaultRect;
 	private long mTodayLastTime = 0;
+	private int mSelectArc = 0;
+	private boolean mDeleteColumn = false;
 
-	private ArrayList<ChartInfomation> mListChartInfo = new ArrayList<ChartInfomation>();
+	private ChartInfomation mChartInfo = null;
 
+	private String mSelection = "";
 	public RoundChartView (Context context) {
 		super(context);
 	}
@@ -51,6 +56,26 @@ public class RoundChartView extends View {
 	}
 	public RoundChartView (Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+
+		init(canvas);
+		if( mChartInfo != null ){
+			for(int i=0; i< mChartInfo.getData().size();i++)
+			{
+				canvas.drawArc(mDefaultRect, mChartInfo.getData().get(i).getStartAngle(), 
+						mChartInfo.getData().get(i).getSweepAngle(), true, mChartInfo.getData().get(i).getPaint());
+			}
+		}
+		customeCircle(canvas);
 	}
 
 	private void init(Canvas canvas) {
@@ -69,7 +94,7 @@ public class RoundChartView extends View {
 	private void customeCircle(Canvas canvas)
 	{
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
-		
+
 		// Custome Stroke Draw
 		Paint customePaint = new Paint();
 		customePaint.setColor(CUSTOME_CIRCLE_COLOR);
@@ -113,54 +138,87 @@ public class RoundChartView extends View {
 		canvas.drawPath(path, customePaint);
 	}
 
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, widthMeasureSpec);
-	}
-
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		init(canvas);
-
-		for( ChartInfomation data : mListChartInfo )
-		{
-			for(int i=0; i< data.getData().size();i++)
-			{
-				canvas.drawArc(mDefaultRect, data.getData().get(i).getStartAngle(), 
-						data.getData().get(i).getSweepAngle(), true, data.getData().get(i).getPaint());
-			}
-		}
-		customeCircle(canvas);
-	}
-
-	public void drawChart(){
+	public void drawChart(String selection){
+		mSelection = selection;
 		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
 		SQLiteDatabase db = dbhelper.getReadableDatabase();
 
 		String strSelection = "";
 
-		SimpleDateFormat queryDateformat = new SimpleDateFormat("yyyy-MM-dd");
-		String strToday = queryDateformat.format(new Date(System.currentTimeMillis()));
-
-		strSelection = "date ='"+ strToday +"'";
+		strSelection = "date ='"+ selection +"'";
 		Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
-        if( cursor != null && cursor.getCount() > 0)
+		if( cursor != null && cursor.getCount() > 0)
 		{
-			mListChartInfo.add(new ChartInfomation(getContext(), cursor));
-			invalidate();
+			mChartInfo = new ChartInfomation(getContext(), cursor);
 			cursor.moveToLast();
 			mTodayLastTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
+			cursor.close();
 		}
-		else
+		else{
+			mChartInfo = null;
 			Toast.makeText(getContext(), getResources().getString(R.string.empty_data), Toast.LENGTH_SHORT).show();
+		}
+			
+		
+		invalidate();
 	}
-	
+
 	public long getLasttime(){ return mTodayLastTime; }
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		return super.onTouchEvent(event);
+		// P1 ( mDefaultRect.centerX() , mDefaultRect.centerY() )
+		// P2 ( event.getX() , event.getY() )
+		if( mChartInfo == null )
+			return super.onTouchEvent(event);
+		
+		if( event.getAction() == MotionEvent.ACTION_MOVE ){
+			Log.i("1111", "MotionEvent.ACTION_MOVE" );
+			int r = (getWidth()- (DEFAULT_CIRCLE_LEFT_MARGIN*2))/2;
+			
+			double distance = Math.sqrt(Math.pow(Math.abs(mDefaultRect.centerX() - event.getX()), 2) 
+					+ Math.pow(Math.abs(mDefaultRect.centerY() - event.getY()),2));
+			
+			
+			Log.i("1111", "distance : " + distance  + "  r : "+ r);
+			if( distance > r )
+				mDeleteColumn = true;
+			Log.i("1111", "mDeleteColumn : " + mDeleteColumn  + "  mSelectArc : "+ mSelectArc);
+			
+			
+		}else if( event.getAction() == MotionEvent.ACTION_DOWN ){
+			Log.i("1111", "MotionEvent.ACTION_DOWN" );
+			float x = event.getX() - mDefaultRect.centerX();
+			float y = event.getY() -  mDefaultRect.centerY();
+			
+			 double dAngle = Math.toDegrees( Math.atan2(y, x) );
+			
+			if( dAngle < 0 )
+				dAngle = 360 + dAngle;
+			
+			String strMemo =  "";
+			
+			for( Data data : mChartInfo.getData() ){
+				if ( dAngle > data.mStartAngle && dAngle < (data.mStartAngle+data.mSweepAngle) ){
+					strMemo = data.mMemo;
+					mSelectArc = data.mId;
+					break;
+				}
+			}
+			((TextView) ((View)getParent()).findViewById(R.id.textViewMemo)).setText(strMemo);
+		}else if( event.getAction() == MotionEvent.ACTION_UP ){
+			Log.i("1111", "MotionEvent.ACTION_UP" );
+			if( mDeleteColumn ){
+				BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
+				SQLiteDatabase db = dbhelper.getReadableDatabase();
+				int iret = db.delete(Dbinfo.DB_TABLE_NAME, "_id="+mSelectArc, null);
+				Log.i("1111", "MotionEvent.ACTION_UP ret : " + iret );
+				
+				db.close();
+				drawChart(mSelection);
+			}
+		}
+		return true;
 	}
 }
 

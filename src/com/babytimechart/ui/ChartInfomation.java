@@ -26,10 +26,11 @@ public class ChartInfomation {
 	
 	private Context mContext = null;
 	private Cursor mCursor = null;
-	private ArrayList<Data> mListData = new ArrayList<ChartInfomation.Data>();
+	private ArrayList<Data> mListData = new ArrayList<Data>();
 	
 	public class Data
 	{
+		int mId;
 		String mType;
 		long mStime;
 		long mEtime;
@@ -60,7 +61,7 @@ public class ChartInfomation {
 		do
 		{
 			Data data = new Data();
-			
+			data.mId    = mCursor.getInt(mCursor.getColumnIndex(Dbinfo.DB_ID));
 			data.mType  = mCursor.getString(mCursor.getColumnIndex(Dbinfo.DB_TYPE));
 			data.mStime = mCursor.getLong(mCursor.getColumnIndex(Dbinfo.DB_S_TIME));
 			data.mEtime = mCursor.getLong(mCursor.getColumnIndex(Dbinfo.DB_E_TIME));
