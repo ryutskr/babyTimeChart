@@ -27,199 +27,200 @@ import com.babytimechart.ui.ChartInfomation.Data;
 
 public class RoundChartView extends View {
 
-	private static final int DEFAULT_CIRCLE_LEFT_MARGIN = 20;
-	private static final int DEFAULT_CIRCLE_TOP_MARGIN = 20;
-	private static final int DEFAULT_CIRCLE_COLOR = Color.WHITE;
+    private static final int DEFAULT_CIRCLE_LEFT_MARGIN = 20;
+    private static final int DEFAULT_CIRCLE_TOP_MARGIN = 20;
+    private static final int DEFAULT_CIRCLE_COLOR = Color.WHITE;
 
-	private static final int CUSTOME_CIRCLE_COLOR = Color.BLACK;
-	private static final int CUSTOME_CIRCLE_STROKE_WIDTH = 5; 	// dip
-	private static final int CUSTOME_CENTER_CIRCLE_COLOR = Color.BLACK;
-	private static final int CUSTOME_CENTER_CIRCLE_RADIUS = 15;
-	private static final int CUSTOME_DOT_LINE_WIDTH = 1; 		// dip
-	private static final int CUSTOME_DOT_LINE_INTERVALS = 5; 	// dip
-	private static final int CUSTOME_DOT_LINE_ALPHA = 120; 	// 0 ~ 255
+    private static final int CUSTOME_CIRCLE_COLOR = Color.BLACK;
+    private static final int CUSTOME_CIRCLE_STROKE_WIDTH = 3; 	// dip
+    private static final int CUSTOME_CENTER_CIRCLE_COLOR = Color.BLACK;
+    private static final int CUSTOME_CENTER_CIRCLE_RADIUS = 15;
+    private static final int CUSTOME_DOT_LINE_WIDTH = 1; 		// dip
+    private static final int CUSTOME_DOT_LINE_INTERVALS = 5; 	// dip
+    private static final int CUSTOME_DOT_LINE_ALPHA = 120; 	// 0 ~ 255
 
-	private Paint mDefaultPaint;
-	private RectF mDefaultRect;
-	private long mTodayLastTime = 0;
-	private int mSelectArc = 0;
-	private boolean mDeleteColumn = false;
+    private static final int SELECT_ARC_COLOR = Color.GREEN;
+    private static final int SELECT_ARC_STROKE_WIDTH = 2; 	// dip
 
-	private ChartInfomation mChartInfo = null;
+    private Paint mDefaultPaint;
+    private RectF mDefaultRect;
+    private long mTodayLastTime = 0;
+    private int mSelectArcId = 0;
 
-	private String mSelection = "";
-	public RoundChartView (Context context) {
-		super(context);
-	}
-	public RoundChartView (Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
-	public RoundChartView (Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+    private ChartInfomation mChartInfo = null;
 
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, widthMeasureSpec);
-	}
+    private String mSelection = "";
+    public RoundChartView (Context context) {
+        super(context);
+    }
+    public RoundChartView (Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+    public RoundChartView (Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+    }
 
-		init(canvas);
-		if( mChartInfo != null ){
-			for(int i=0; i< mChartInfo.getData().size();i++)
-			{
-				canvas.drawArc(mDefaultRect, mChartInfo.getData().get(i).getStartAngle(), 
-						mChartInfo.getData().get(i).getSweepAngle(), true, mChartInfo.getData().get(i).getPaint());
-			}
-		}
-		customeCircle(canvas);
-	}
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
 
-	private void init(Canvas canvas) {
+        init(canvas);
+        if( mChartInfo != null ){
+            for(int i=0; i< mChartInfo.getData().size();i++)
+                canvas.drawArc(mDefaultRect, mChartInfo.getData().get(i).getStartAngle(),
+                        mChartInfo.getData().get(i).getSweepAngle(), true, mChartInfo.getData().get(i).getPaint());
 
-		mDefaultPaint = new Paint();
-		mDefaultPaint.setColor(DEFAULT_CIRCLE_COLOR);
-		mDefaultPaint.setAntiAlias(true);
-		mDefaultPaint.setStyle(Paint.Style.FILL);
-		mDefaultRect = new RectF();
+            selectArc(canvas);
+        }
+        customeCircle(canvas);
+    }
 
-		int width = getWidth()- (DEFAULT_CIRCLE_LEFT_MARGIN);
-		mDefaultRect.set(DEFAULT_CIRCLE_LEFT_MARGIN, DEFAULT_CIRCLE_TOP_MARGIN, width, width); 
-		canvas.drawOval(mDefaultRect, mDefaultPaint);
-	}
+    private void init(Canvas canvas) {
 
-	private void customeCircle(Canvas canvas)
-	{
-		DisplayMetrics metrics = getResources().getDisplayMetrics();
+        mDefaultPaint = new Paint();
+        mDefaultPaint.setColor(DEFAULT_CIRCLE_COLOR);
+        mDefaultPaint.setAntiAlias(true);
+        mDefaultPaint.setStyle(Paint.Style.FILL);
+        mDefaultRect = new RectF();
 
-		// Custome Stroke Draw
-		Paint customePaint = new Paint();
-		customePaint.setColor(CUSTOME_CIRCLE_COLOR);
-		customePaint.setStyle(Paint.Style.STROKE);
-		customePaint.setAntiAlias(true);
-		customePaint.setStrokeWidth(metrics.density*CUSTOME_CIRCLE_STROKE_WIDTH);
-		canvas.drawOval(mDefaultRect, customePaint);
+        int width = getWidth()- (DEFAULT_CIRCLE_LEFT_MARGIN);
+        mDefaultRect.set(DEFAULT_CIRCLE_LEFT_MARGIN, DEFAULT_CIRCLE_TOP_MARGIN, width, width);
+        canvas.drawOval(mDefaultRect, mDefaultPaint);
+    }
 
-		// Center Circle Draw
-		RectF rect = new RectF();
-		rect.set(mDefaultRect.centerX()-CUSTOME_CENTER_CIRCLE_RADIUS,mDefaultRect.centerY()-CUSTOME_CENTER_CIRCLE_RADIUS,
-				mDefaultRect.centerX()+CUSTOME_CENTER_CIRCLE_RADIUS,mDefaultRect.centerY()+CUSTOME_CENTER_CIRCLE_RADIUS );
+    private void customeCircle(Canvas canvas)
+    {
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
 
-		customePaint.setColor(CUSTOME_CENTER_CIRCLE_COLOR);
-		customePaint.setStyle(Paint.Style.FILL);
-		canvas.drawOval(rect, customePaint);
+        // Custome Stroke Draw
+        Paint customePaint = new Paint();
+        customePaint.setColor(CUSTOME_CIRCLE_COLOR);
+        customePaint.setStyle(Paint.Style.STROKE);
+        customePaint.setAntiAlias(true);
+        customePaint.setStrokeWidth(metrics.density*CUSTOME_CIRCLE_STROKE_WIDTH);
+        canvas.drawOval(mDefaultRect, customePaint);
 
-		// Dot Line Draw
-		customePaint.setColor(CUSTOME_CENTER_CIRCLE_COLOR);
-		customePaint.setStyle(Paint.Style.STROKE);
-		customePaint.setAlpha(CUSTOME_DOT_LINE_ALPHA);
-		customePaint.setStrokeWidth(metrics.density * CUSTOME_DOT_LINE_WIDTH);
-		customePaint.setPathEffect(new DashPathEffect(new float[] {metrics.density*CUSTOME_DOT_LINE_INTERVALS,
-				metrics.density*CUSTOME_DOT_LINE_INTERVALS}, 0));
-		Path path = new Path();
-		// >
-		path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
-		path.lineTo(getWidth()-DEFAULT_CIRCLE_LEFT_MARGIN, mDefaultRect.centerY());
-		canvas.drawPath(path, customePaint);
-		// ^
-		path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
-		path.lineTo(mDefaultRect.centerX(), DEFAULT_CIRCLE_TOP_MARGIN);
-		canvas.drawPath(path, customePaint);
-		// <
-		path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
-		path.lineTo(DEFAULT_CIRCLE_LEFT_MARGIN, mDefaultRect.centerY());
-		canvas.drawPath(path, customePaint);
-		// v
-		path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
-		path.lineTo(mDefaultRect.centerX(), getWidth()-DEFAULT_CIRCLE_TOP_MARGIN);
-		canvas.drawPath(path, customePaint);
-	}
+        // Center Circle Draw
+        RectF rect = new RectF();
+        rect.set(mDefaultRect.centerX()-CUSTOME_CENTER_CIRCLE_RADIUS,mDefaultRect.centerY()-CUSTOME_CENTER_CIRCLE_RADIUS,
+                mDefaultRect.centerX()+CUSTOME_CENTER_CIRCLE_RADIUS,mDefaultRect.centerY()+CUSTOME_CENTER_CIRCLE_RADIUS );
 
-	public void drawChart(String selection){
-		mSelection = selection;
-		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
-		SQLiteDatabase db = dbhelper.getReadableDatabase();
+        customePaint.setColor(CUSTOME_CENTER_CIRCLE_COLOR);
+        customePaint.setStyle(Paint.Style.FILL);
+        canvas.drawOval(rect, customePaint);
 
-		String strSelection = "";
+        // Dot Line Draw
+        customePaint.setColor(CUSTOME_CENTER_CIRCLE_COLOR);
+        customePaint.setStyle(Paint.Style.STROKE);
+        customePaint.setAlpha(CUSTOME_DOT_LINE_ALPHA);
+        customePaint.setStrokeWidth(metrics.density * CUSTOME_DOT_LINE_WIDTH);
+        customePaint.setPathEffect(new DashPathEffect(new float[] {metrics.density*CUSTOME_DOT_LINE_INTERVALS,
+                metrics.density*CUSTOME_DOT_LINE_INTERVALS}, 0));
+        Path path = new Path();
+        // >
+        path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
+        path.lineTo(getWidth()-DEFAULT_CIRCLE_LEFT_MARGIN, mDefaultRect.centerY());
+        canvas.drawPath(path, customePaint);
+        // ^
+        path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
+        path.lineTo(mDefaultRect.centerX(), DEFAULT_CIRCLE_TOP_MARGIN);
+        canvas.drawPath(path, customePaint);
+        // <
+        path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
+        path.lineTo(DEFAULT_CIRCLE_LEFT_MARGIN, mDefaultRect.centerY());
+        canvas.drawPath(path, customePaint);
+        // v
+        path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
+        path.lineTo(mDefaultRect.centerX(), getWidth()-DEFAULT_CIRCLE_TOP_MARGIN);
+        canvas.drawPath(path, customePaint);
+    }
 
-		strSelection = "date ='"+ selection +"'";
-		Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
-		if( cursor != null && cursor.getCount() > 0)
-		{
-			mChartInfo = new ChartInfomation(getContext(), cursor);
-			cursor.moveToLast();
-			mTodayLastTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
-			cursor.close();
-		}
-		else{
-			mChartInfo = null;
-			Toast.makeText(getContext(), getResources().getString(R.string.empty_data), Toast.LENGTH_SHORT).show();
-		}
-			
-		
-		invalidate();
-	}
+    private void selectArc(Canvas canvas) {
 
-	public long getLasttime(){ return mTodayLastTime; }
+        for( Data data : mChartInfo.getData() ) {
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// P1 ( mDefaultRect.centerX() , mDefaultRect.centerY() )
-		// P2 ( event.getX() , event.getY() )
-		if( mChartInfo == null )
-			return super.onTouchEvent(event);
-		
-		if( event.getAction() == MotionEvent.ACTION_MOVE ){
-			Log.i("1111", "MotionEvent.ACTION_MOVE" );
-			int r = (getWidth()- (DEFAULT_CIRCLE_LEFT_MARGIN*2))/2;
-			
-			double distance = Math.sqrt(Math.pow(Math.abs(mDefaultRect.centerX() - event.getX()), 2) 
-					+ Math.pow(Math.abs(mDefaultRect.centerY() - event.getY()),2));
-			
-			
-			Log.i("1111", "distance : " + distance  + "  r : "+ r);
-			if( distance > r )
-				mDeleteColumn = true;
-			Log.i("1111", "mDeleteColumn : " + mDeleteColumn  + "  mSelectArc : "+ mSelectArc);
-			
-			
-		}else if( event.getAction() == MotionEvent.ACTION_DOWN ){
-			Log.i("1111", "MotionEvent.ACTION_DOWN" );
-			float x = event.getX() - mDefaultRect.centerX();
-			float y = event.getY() -  mDefaultRect.centerY();
-			
-			 double dAngle = Math.toDegrees( Math.atan2(y, x) );
-			
-			if( dAngle < 0 )
-				dAngle = 360 + dAngle;
-			
-			String strMemo =  "";
-			
-			for( Data data : mChartInfo.getData() ){
-				if ( dAngle > data.mStartAngle && dAngle < (data.mStartAngle+data.mSweepAngle) ){
-					strMemo = data.mMemo;
-					mSelectArc = data.mId;
-					break;
-				}
-			}
-			((TextView) ((View)getParent()).findViewById(R.id.textViewMemo)).setText(strMemo);
-		}else if( event.getAction() == MotionEvent.ACTION_UP ){
-			Log.i("1111", "MotionEvent.ACTION_UP" );
-			if( mDeleteColumn ){
-				BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
-				SQLiteDatabase db = dbhelper.getReadableDatabase();
-				int iret = db.delete(Dbinfo.DB_TABLE_NAME, "_id="+mSelectArc, null);
-				Log.i("1111", "MotionEvent.ACTION_UP ret : " + iret );
-				
-				db.close();
-				drawChart(mSelection);
-			}
-		}
-		return true;
-	}
+            if( data.mId == mSelectArcId ) {
+
+                DisplayMetrics metrics = getResources().getDisplayMetrics();
+                Paint selectArcPaint = new Paint();
+                selectArcPaint.setColor(SELECT_ARC_COLOR);
+                selectArcPaint.setStyle(Paint.Style.STROKE);
+                selectArcPaint.setAntiAlias(true);
+                selectArcPaint.setStrokeWidth(metrics.density*SELECT_ARC_STROKE_WIDTH);
+
+                RectF rect = new RectF();
+                int width = getWidth()- (DEFAULT_CIRCLE_LEFT_MARGIN + CUSTOME_CIRCLE_STROKE_WIDTH);
+
+                rect.set(DEFAULT_CIRCLE_LEFT_MARGIN + CUSTOME_CIRCLE_STROKE_WIDTH, DEFAULT_CIRCLE_TOP_MARGIN + CUSTOME_CIRCLE_STROKE_WIDTH,
+                        width, width);
+                canvas.drawArc(rect, data.getStartAngle(), data.getSweepAngle(), true, selectArcPaint);
+            }
+        }
+    }
+
+    public void drawChart(String selection){
+        mSelection = selection;
+        BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
+        SQLiteDatabase db = dbhelper.getReadableDatabase();
+
+        String strSelection = "";
+
+        strSelection = "date ='"+ selection +"'";
+        Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
+        if( cursor != null && cursor.getCount() > 0)
+        {
+            mChartInfo = new ChartInfomation(getContext(), cursor);
+            cursor.moveToLast();
+            mTodayLastTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
+            cursor.close();
+        }
+        else{
+            mChartInfo = null;
+            Toast.makeText(getContext(), getResources().getString(R.string.empty_data), Toast.LENGTH_SHORT).show();
+        }
+
+
+        invalidate();
+    }
+
+    public long getLasttime(){ return mTodayLastTime; }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // P1 ( mDefaultRect.centerX() , mDefaultRect.centerY() )
+        // P2 ( event.getX() , event.getY() )
+        if( mChartInfo == null )
+            return super.onTouchEvent(event);
+
+        mSelectArcId = 0;
+        Log.i("1111", "MotionEvent.ACTION_DOWN" );
+        float x = event.getX() - mDefaultRect.centerX();
+        float y = event.getY() -  mDefaultRect.centerY();
+
+        double dAngle = Math.toDegrees( Math.atan2(y, x) );
+
+        if( dAngle < 0 )
+            dAngle = 360 + dAngle;
+
+        String strMemo =  "";
+
+        for( Data data : mChartInfo.getData() ){
+            if ( dAngle > data.mStartAngle && dAngle < (data.mStartAngle+data.mSweepAngle) ){
+                strMemo = data.mMemo;
+                mSelectArcId = data.mId;
+                break;
+            }
+        }
+        ((TextView) ((View)getParent()).findViewById(R.id.textViewMemo)).setText(strMemo);
+        invalidate();
+
+        return super.onTouchEvent(event);
+    }
 }
 
 
