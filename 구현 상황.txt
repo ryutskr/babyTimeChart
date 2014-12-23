@@ -9,3 +9,5 @@
 5. 메모 보여 줄수 있는 UI 구현
 
 
+칼라 피커 참고 소스
+https://github.com/gabrielemariotti/colorpickercollection

@@ -157,10 +157,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_vertical_margin_qhalf">4dp</dimen>
-    <dimen name="btn_text_size_10">10dp</dimen>
-    <dimen name="btn_text_size_15">15dp</dimen>
-    <dimen name="btn_text_size_20">20dp</dimen>
-    <dimen name="btn_text_size_25">25dp</dimen>
+    <dimen name="text_size_10">10dp</dimen>
+    <dimen name="text_size_15">15dp</dimen>
+    <dimen name="text_size_20">20dp</dimen>
+    <dimen name="text_size_25">25dp</dimen>
     <!-- From: file:/D:/Android/AndroidstudioProjects/babyTimeChart/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>

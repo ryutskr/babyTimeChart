@@ -18,13 +18,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,8 +35,6 @@ import android.widget.Spinner;
 import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.fragment.Fragment_Chart_Pie;
-import com.babytimechart.fragment.Fragment_Eating;
-import com.babytimechart.ui.RoundChartView;
 
 public class BabyTimeMainActivity extends Activity {
 
@@ -160,7 +158,9 @@ public class BabyTimeMainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			fakeDBData();
+			Intent intent = new Intent(this, BabyTimeSetting.class);
+			startActivity(intent);
+//			fakeDBData();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -249,7 +249,7 @@ public class BabyTimeMainActivity extends Activity {
 		}
 		db.close();
 		Fragment_Chart_Pie fg = (Fragment_Chart_Pie)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
-		((RoundChartView)fg.getView().findViewById(R.id.roundchartview)).drawChart(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+		fg.drawChart(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 	}
 
 }

@@ -62,6 +62,26 @@
     <string name="time_err1">마지막으로 지정한 시간보다 빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err2">시작 시간보다  빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err3">종료 시간보다  늦은 시간으로 설정 할 수 없습니다.</string>
+    
+    <!-- 설정 -->
+    <string name="normal">일반</string>
+    <string name="manege">관리</string>
+    <string name="data_backup">데이터 저장</string>
+    <string name="data_backup_explain">데이터를 저장하여 다른 폰으로 이동 시킵니다.</string>
+    <string name="data_restore">데이터 복구</string>
+    <string name="data_restore_eplain">저장된 데이터를 복구 합니다.</string>
+    <string name="data_initialization">데이터 초기화</string>
+    <string name="data_initialization_explain">데이터 초기화를 초기화 합니다.</string>
+    
+    <string name="eat_eplain">시간표에 보여지는 먹기의 색상을 변경합니다.</string>
+    <string name="play_eplain">시간표에 보여지는 놀기의 색상을 변경합니다.</string>
+    <string name="sleep_eplain">시간표에 보여지는 잠자기의 색상을 변경합니다.</string>
+    <string name="etc_eplain">시간표에 보여지는 기타의 색상을 변경합니다.</string>
+    
+    <string name="baby_profile">아기 프로필</string>
+    <string name="baby_profile_eplain">사진, 이름, 생년 월일을 변경합니다.</string>
+    
+    
 </resources>
 
 

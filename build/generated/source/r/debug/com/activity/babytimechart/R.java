@@ -399,10 +399,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
         public static final int activity_vertical_margin_qhalf=0x7f050002;
-        public static final int btn_text_size_10=0x7f050003;
-        public static final int btn_text_size_15=0x7f050004;
-        public static final int btn_text_size_20=0x7f050005;
-        public static final int btn_text_size_25=0x7f050006;
+        public static final int text_size_10=0x7f050003;
+        public static final int text_size_15=0x7f050004;
+        public static final int text_size_20=0x7f050005;
+        public static final int text_size_25=0x7f050006;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;

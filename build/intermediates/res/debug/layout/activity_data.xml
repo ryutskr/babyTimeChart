@@ -44,14 +44,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save"
-            android:textSize="@dimen/btn_text_size_15" />
+            android:textSize="@dimen/text_size_15" />
 
         <Button
             android:id="@+id/btn_Activity_Data_Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
-            android:textSize="@dimen/btn_text_size_15" />
+            android:textSize="@dimen/text_size_15" />
     </LinearLayout>
 
 </LinearLayout><!-- From: file:/D:/Android/AndroidstudioProjects/babyTimeChart/res/layout/activity_data.xml -->

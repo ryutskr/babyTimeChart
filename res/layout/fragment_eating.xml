@@ -82,14 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_small_ml"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
             android:id="@+id/btn_Eating_minus_big_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_big_ml"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
 
         <EditText
             android:id="@+id/editText_Eating_ml"
@@ -99,21 +99,21 @@
             android:gravity="center"
             android:inputType="number"
             android:text="80ml"
-            android:textSize="@dimen/btn_text_size_15" />
+            android:textSize="@dimen/text_size_15" />
 
         <Button
             android:id="@+id/btn_Eating_plus_small_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_small_ml"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
             android:id="@+id/btn_Eating_plus_big_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_big_ml"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
     </LinearLayout>
     
     <LinearLayout
@@ -138,7 +138,7 @@
             android:clickable="true"
             android:gravity="center"
             android:text="@string/stime_titile"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
 
         <TextView
             android:id="@+id/txtView_Eating_etime_title"
@@ -147,7 +147,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/etime_titile"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
     </LinearLayout>
 
     <LinearLayout
@@ -166,7 +166,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center"
-            android:textSize="@dimen/btn_text_size_25" />
+            android:textSize="@dimen/text_size_25" />
 
         <TextView
             android:id="@+id/txtView_Eating_etime"
@@ -176,7 +176,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center"
-            android:textSize="@dimen/btn_text_size_25" />
+            android:textSize="@dimen/text_size_25" />
     </LinearLayout>
 
     <LinearLayout
@@ -191,28 +191,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_small_time"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
             android:id="@+id/btn_Eating_minus_big_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_big_time"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
             android:id="@+id/btn_Eating_plus_small_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_small_time"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
             android:id="@+id/btn_Eating_plus_big_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_big_time"
-            android:textSize="@dimen/btn_text_size_10" />
+            android:textSize="@dimen/text_size_10" />
     </LinearLayout>
 
         <LinearLayout
@@ -232,7 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memo"
-            android:textSize="@dimen/btn_text_size_20" />
+            android:textSize="@dimen/text_size_20" />
 
         <EditText
             android:id="@+id/editText_Eating_Memo"

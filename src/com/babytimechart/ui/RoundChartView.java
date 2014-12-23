@@ -1,8 +1,5 @@
 package com.babytimechart.ui;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,7 +11,6 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -49,7 +45,6 @@ public class RoundChartView extends View {
 
     private ChartInfomation mChartInfo = null;
 
-    private String mSelection = "";
     public RoundChartView (Context context) {
         super(context);
     }
@@ -164,7 +159,6 @@ public class RoundChartView extends View {
     }
 
     public void drawChart(String selection){
-        mSelection = selection;
         BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
         SQLiteDatabase db = dbhelper.getReadableDatabase();
 
@@ -198,7 +192,6 @@ public class RoundChartView extends View {
             return super.onTouchEvent(event);
 
         mSelectArcId = 0;
-        Log.i("1111", "MotionEvent.ACTION_DOWN" );
         float x = event.getX() - mDefaultRect.centerX();
         float y = event.getY() -  mDefaultRect.centerY();
 

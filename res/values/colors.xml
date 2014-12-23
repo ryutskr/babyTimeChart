@@ -2,7 +2,6 @@
 <!-- Copyright (C) 2007 The Android Open Source Project -->
 
 <resources>
-
     <color name="black">#000000</color>
     <color name="darkslategray">#2f4f4f</color>
     <color name="slategray">#708090</color>
