@@ -28,8 +28,11 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.activity.babytimechart.R;
@@ -54,6 +57,7 @@ public class BabyTimeMainActivity extends Activity {
 	Spinner mSpinnerToday = null;
 	Spinner mSpinnerOtherDay = null;
 	Context mContext = null;
+    ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +76,25 @@ public class BabyTimeMainActivity extends Activity {
 		mSpinnerToday = (Spinner) getActionBar().getCustomView().findViewById(R.id.activity_spinner_Today);
 		mSpinnerOtherDay = (Spinner) getActionBar().getCustomView().findViewById(R.id.activity_spinner_Otherday);
 		mSpinnerToday.setOnItemSelectedListener(mOnItemSelectedListener);
+
+        addDotIndicator();
 	}
 
-	void setSpinnerData(){
+    private void addDotIndicator() {
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dotindicater);
+
+        for(int i = 0; i <mSectionsPagerAdapter.getCount(); i++){
+            ImageView imageView = new ImageView(this);
+            if( i== 0)
+                imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
+            else
+                imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
+            linearLayout.addView(imageView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            mDotIndicator.add(imageView);
+        }
+    }
+
+    void setSpinnerData(){
 		new Handler().post(new Runnable() {
 
 			@Override
@@ -123,6 +143,13 @@ public class BabyTimeMainActivity extends Activity {
 
 		@Override
 		public void onPageSelected(int i) {
+            for(int k=0; k<mDotIndicator.size();k++){
+                if( k == i)
+                    mDotIndicator.get(i).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
+                else
+                    mDotIndicator.get(k).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
+            }
+
 			if( i == 0 ){
 				mSpinnerOtherDay.setVisibility(View.GONE);
 			}else if( i == 1 ){

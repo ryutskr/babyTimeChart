@@ -43,19 +43,19 @@ public class BabyTimeDataActivity extends Activity{
 	private HeightWrappingViewPager mViewPager = null;
 	private SectionsPagerAdapter mSectionsPagerAdapter = null;
 	private SlidingTabLayout mSlidingTabLayout = null;
-	private List<SamplePagerItem> mTabs = new ArrayList<SamplePagerItem>();
+	private List<ViewPagerItem> mTabs = new ArrayList<ViewPagerItem>();
 	private Button mBtnSave = null;
 	private Button mBtnCancel = null;
 	private long mTodayLastTime = 0;
 	private int mFragmentIndex = 0;
 
 
-	static class SamplePagerItem {
+	static class ViewPagerItem {
 		private final CharSequence mTitle;
 		private final int mIndicatorColor;
 		private final int mDividerColor;
 
-		SamplePagerItem(CharSequence title, int indicatorColor, int dividerColor) {
+		ViewPagerItem(CharSequence title, int indicatorColor, int dividerColor) {
 			mTitle = title;
 			mIndicatorColor = indicatorColor;
 			mDividerColor = dividerColor;
@@ -340,30 +340,26 @@ public class BabyTimeDataActivity extends Activity{
 		db.close();
 	}
 
-	
-	public int calcDate(String stime_dec, String etime_dec){
-		return 0;
-	}
 	public void addTabs(){
-		mTabs.add(new SamplePagerItem(
+		mTabs.add(new ViewPagerItem(
 				getString(R.string.eating), // Title
 				Color.BLUE, // Indicator color
 				Color.GRAY // Divider color
 				));
 
-		mTabs.add(new SamplePagerItem(
+		mTabs.add(new ViewPagerItem(
 				getString(R.string.playing), // Title
 				Color.RED, // Indicator color
 				Color.GRAY // Divider color
 				));
 
-		mTabs.add(new SamplePagerItem(
+		mTabs.add(new ViewPagerItem(
 				getString(R.string.sleeping), // Title
 				Color.YELLOW, // Indicator color
 				Color.GRAY // Divider color
 				));
 
-		mTabs.add(new SamplePagerItem(
+		mTabs.add(new ViewPagerItem(
 				getString(R.string.etc), // Title
 				Color.GREEN, // Indicator color
 				Color.GRAY // Divider color
