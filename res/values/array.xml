@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+
     <string-array name="spinner_prompt">
         <item>1983-06-10</item>
+    </string-array>
+    <string-array name="color_picker_values" translatable="false">
+        <item>#556270</item>
+        <item>#4ecdc4</item>
+        <item>#c7f464</item>
+        <item>#ff6b6b</item>
+        <item>#c44d58</item>
+        
+        <item>#fe4365</item>
+        <item>#fc9d9a</item>
+        <item>#f9cdad</item>
+        <item>#c8c8a9</item>
+        <item>#83af9b</item>
+        
+        <item>#490a3d</item>
+        <item>#bd1150</item>
+        <item>#e97f02</item>
+        <item>#f8ca00</item>
+        <item>#8a9b0f</item>
     </string-array>
 </resources>

@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +39,7 @@ import android.widget.Spinner;
 import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.fragment.Fragment_Chart_Pie;
+import com.babytimechart.utils.Utils;
 
 public class BabyTimeMainActivity extends Activity {
 
@@ -78,6 +80,8 @@ public class BabyTimeMainActivity extends Activity {
 		mSpinnerToday.setOnItemSelectedListener(mOnItemSelectedListener);
 
         addDotIndicator();
+        
+        Utils.getColorFromPref(this);
 	}
 
     private void addDotIndicator() {
@@ -180,23 +184,28 @@ public class BabyTimeMainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			Intent intent = new Intent(this, BabyTimeSetting.class);
-			startActivity(intent);
-//			fakeDBData();
+			startActivityForResult(intent, 10);
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 
-	/**
-	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-	 * one of the sections/tabs/pages.
-	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		// color Change
+		if( requestCode == 10 && resultCode == RESULT_OK){
+			Fragment_Chart_Pie fg = (Fragment_Chart_Pie)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+			fg.drawChart(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+		}
+	}
+
+
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm){
@@ -225,58 +234,4 @@ public class BabyTimeMainActivity extends Activity {
 			return null;
 		}
 	}
-
-	public void fakeDBData()
-	{
-		long time = System.currentTimeMillis();
-
-		SimpleDateFormat insertDateformat1 = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat insertDateformat2 = new SimpleDateFormat("dd");
-		String strToday1 = "";
-		String strToday2 = insertDateformat2.format(new Date(time));
-
-		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
-
-		Calendar today = Calendar.getInstance();
-		today.set(2014, 11, Integer.parseInt(strToday2)-1, 23, 30);
-		long time1 = today.getTimeInMillis();
-
-		today.set(2014, 11, Integer.parseInt(strToday2), 3, 20);
-		long time2 = today.getTimeInMillis();
-
-		today.set(2014, 11, Integer.parseInt(strToday2), 5, 40);
-		long time3 = today.getTimeInMillis();
-
-		today.set(2014, 11, Integer.parseInt(strToday2), 6, 30);
-		long time4 = today.getTimeInMillis();
-
-		today.set(2014, 11, Integer.parseInt(strToday2), 8, 10);
-		long time5 = today.getTimeInMillis();
-
-		today.set(2014, 11, Integer.parseInt(strToday2), 9, 50);
-		long time6 = today.getTimeInMillis();
-
-
-		long[] arrtime = {time1,time2, time3, time4, time5, time6};
-		String[] arrType = {"eat", "play", "sleep", "etc","play"};
-		ContentValues contentValues = new ContentValues();
-		for(int i=0; i< 5; i++)
-		{
-			strToday1 = insertDateformat1.format(new Date(time -(i* 24*60*60*1000)));
-			for(int k=0; k<5; k++){
-				contentValues.clear();
-				contentValues.put(DB_TYPE, arrType[k] );
-				contentValues.put(DB_DATE, strToday1 );
-				contentValues.put(DB_S_TIME, arrtime[k]+(k*60*60*1000) + (i*60*60*1000) );
-				contentValues.put(DB_E_TIME, arrtime[k+1] + (k*60*60*1000) + (i*60*60*1000) );
-				contentValues.put(DB_MEMO, "" + i +k  );
-				db.insert(DB_TABLE_NAME, null, contentValues);
-			}
-		}
-		db.close();
-		Fragment_Chart_Pie fg = (Fragment_Chart_Pie)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
-		fg.drawChart(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
-	}
-
 }

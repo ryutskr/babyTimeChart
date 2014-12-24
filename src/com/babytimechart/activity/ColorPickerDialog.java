@@ -24,10 +24,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.activity.babytimechart.R;
 import com.babytimechart.ui.ColorPickerPalette;
@@ -41,169 +49,167 @@ import com.babytimechart.ui.ColorPickerSwatch.OnColorSelectedListener;
  */
 public class ColorPickerDialog extends DialogFragment implements OnColorSelectedListener {
 
-    public static final int SIZE_LARGE = 1;
-    public static final int SIZE_SMALL = 2;
+	public static final int SIZE_LARGE = 1;
+	public static final int SIZE_SMALL = 2;
 
-    protected AlertDialog mAlertDialog;
+	protected AlertDialog mAlertDialog;
 
-    protected static final String KEY_TITLE_ID = "title_id";
-    protected static final String KEY_COLORS = "colors";
-    protected static final String KEY_SELECTED_COLOR = "selected_color";
-    protected static final String KEY_COLUMNS = "columns";
-    protected static final String KEY_SIZE = "size";
+	protected static final String KEY_TITLE_ID = "title_id";
+	protected static final String KEY_COLORS = "colors";
+	protected static final String KEY_SELECTED_COLOR = "selected_color";
+	protected static final String KEY_COLUMNS = "columns";
+	protected static final String KEY_SIZE = "size";
 
-    protected int mTitleResId = R.string.color_picker_default_title;
-    protected int[] mColors = null;
-    protected int mSelectedColor;
-    protected int mColumns;
-    protected int mSize;
+	protected int mTitleResId = R.string.color_picker_default_title;
+	protected int[] mColors = null;
+	protected int mSelectedColor;
+	protected int mColumns;
+	protected int mSize;
 
-    private ColorPickerPalette mPalette;
-    private ProgressBar mProgress;
+	private ColorPickerPalette mPalette;
 
-    protected OnColorSelectedListener mListener;
+	protected OnColorSelectedListener mListener;
 
-    public ColorPickerDialog() {
-        // Empty constructor required for dialog fragments.
-    }
+	public ColorPickerDialog() {
+		// Empty constructor required for dialog fragments.
+	}
 
-    public static ColorPickerDialog newInstance(int titleResId, int[] colors, int selectedColor,
-            int columns, int size) {
-        ColorPickerDialog ret = new ColorPickerDialog();
-        ret.initialize(titleResId, colors, selectedColor, columns, size);
-        return ret;
-    }
+	public static ColorPickerDialog newInstance(int titleResId, int[] colors, int selectedColor,
+			int columns, int size) {
+		ColorPickerDialog ret = new ColorPickerDialog();
+		ret.initialize(titleResId, colors, selectedColor, columns, size);
+		return ret;
+	}
 
-    public void initialize(int titleResId, int[] colors, int selectedColor, int columns, int size) {
-        setArguments(titleResId, columns, size);
-        setColors(colors, selectedColor);
-    }
+	public void initialize(int titleResId, int[] colors, int selectedColor, int columns, int size) {
+		setArguments(titleResId, columns, size);
+		setColors(colors, selectedColor);
+	}
 
-    public void setArguments(int titleResId, int columns, int size) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(KEY_TITLE_ID, titleResId);
-        bundle.putInt(KEY_COLUMNS, columns);
-        bundle.putInt(KEY_SIZE, size);
-        setArguments(bundle);
-    }
+	public void setArguments(int titleResId, int columns, int size) {
+		Bundle bundle = new Bundle();
+		bundle.putInt(KEY_TITLE_ID, titleResId);
+		bundle.putInt(KEY_COLUMNS, columns);
+		bundle.putInt(KEY_SIZE, size);
+		setArguments(bundle);
+	}
 
-    public void setOnColorSelectedListener(OnColorSelectedListener listener) {
-        mListener = listener;
-    }
+	public void setOnColorSelectedListener(OnColorSelectedListener listener) {
+		mListener = listener;
+	}
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mTitleResId = getArguments().getInt(KEY_TITLE_ID);
-            mColumns = getArguments().getInt(KEY_COLUMNS);
-            mSize = getArguments().getInt(KEY_SIZE);
-        }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) {
-            mColors = savedInstanceState.getIntArray(KEY_COLORS);
-            mSelectedColor = (Integer) savedInstanceState.getSerializable(KEY_SELECTED_COLOR);
-        }
-    }
+		if (getArguments() != null) {
+			mTitleResId = getArguments().getInt(KEY_TITLE_ID);
+			mColumns = getArguments().getInt(KEY_COLUMNS);
+			mSize = getArguments().getInt(KEY_SIZE);
+		}
 
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final Activity activity = getActivity();
+		if (savedInstanceState != null) {
+			mColors = savedInstanceState.getIntArray(KEY_COLORS);
+			mSelectedColor = (Integer) savedInstanceState.getSerializable(KEY_SELECTED_COLOR);
+		}
+	}
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.calendar_color_picker_dialog, null);
-        mProgress = (ProgressBar) view.findViewById(android.R.id.progress);
-        mPalette = (ColorPickerPalette) view.findViewById(R.id.color_picker);
-        mPalette.init(mSize, mColumns, this);
+	@Override
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		final Activity activity = getActivity();
 
-        if (mColors != null) {
-            showPaletteView();
-        }
+		View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_colorpicker, null);
+		mPalette = (ColorPickerPalette) view.findViewById(R.id.color_picker);
+		mPalette.init(mSize, mColumns, this);
 
-        mAlertDialog = new AlertDialog.Builder(activity)
-            .setTitle(mTitleResId)
-            .setView(view)
-            .create();
+		if (mColors != null) {
+			showPaletteView();
+		}
 
-        return mAlertDialog;
-    }
+		mAlertDialog = new AlertDialog.Builder(activity)
+		.setTitle(mTitleResId)
+		.setView(view)
+		.create();
+		
+		return mAlertDialog;
+	}
 
-    @Override
-    public void onColorSelected(int color) {
-        if (mListener != null) {
-            mListener.onColorSelected(color);
-        }
+	@Override
+	public void onStart() {
+		super.onStart();
+		// Custome Color Dialog Title
+		int titleId = getResources().getIdentifier("alertTitle", "id", "android");
+		((TextView)mAlertDialog.findViewById(titleId)).setTextColor(Color.BLACK);
+		int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
+        mAlertDialog.findViewById(titleDividerId).setBackgroundColor(Color.BLACK);
+	}
 
-        if (getTargetFragment() instanceof OnColorSelectedListener) {
-            final OnColorSelectedListener listener =
-                    (OnColorSelectedListener) getTargetFragment();
-            listener.onColorSelected(color);
-        }
+	@Override
+	public void onColorSelected(int color) {
+		if (mListener != null) {
+			mListener.onColorSelected(color);
+		}
 
-        if (color != mSelectedColor) {
-            mSelectedColor = color;
-            // Redraw palette to show checkmark on newly selected color before dismissing.
-            mPalette.drawPalette(mColors, mSelectedColor);
-        }
+		if (getTargetFragment() instanceof OnColorSelectedListener) {
+			final OnColorSelectedListener listener =
+					(OnColorSelectedListener) getTargetFragment();
+			listener.onColorSelected(color);
+		}
 
-        dismiss();
-    }
+		if (color != mSelectedColor) {
+			mSelectedColor = color;
+			// Redraw palette to show checkmark on newly selected color before dismissing.
+			mPalette.drawPalette(mColors, mSelectedColor);
+		}
 
-    public void showPaletteView() {
-        if (mProgress != null && mPalette != null) {
-            mProgress.setVisibility(View.GONE);
-            refreshPalette();
-            mPalette.setVisibility(View.VISIBLE);
-        }
-    }
+		dismiss();
+	}
 
-    public void showProgressBarView() {
-        if (mProgress != null && mPalette != null) {
-            mProgress.setVisibility(View.VISIBLE);
-            mPalette.setVisibility(View.GONE);
-        }
-    }
+	public void showPaletteView() {
+		refreshPalette();
+	}
 
-    public void setColors(int[] colors, int selectedColor) {
-        if (mColors != colors || mSelectedColor != selectedColor) {
-            mColors = colors;
-            mSelectedColor = selectedColor;
-            refreshPalette();
-        }
-    }
+	public void setColors(int[] colors, int selectedColor) {
+		if (mColors != colors || mSelectedColor != selectedColor) {
+			mColors = colors;
+			mSelectedColor = selectedColor;
+			refreshPalette();
+		}
+	}
 
-    public void setColors(int[] colors) {
-        if (mColors != colors) {
-            mColors = colors;
-            refreshPalette();
-        }
-    }
+	public void setColors(int[] colors) {
+		if (mColors != colors) {
+			mColors = colors;
+			refreshPalette();
+		}
+	}
 
-    public void setSelectedColor(int color) {
-        if (mSelectedColor != color) {
-            mSelectedColor = color;
-            refreshPalette();
-        }
-    }
+	public void setSelectedColor(int color) {
+		if (mSelectedColor != color) {
+			mSelectedColor = color;
+			refreshPalette();
+		}
+	}
 
-    private void refreshPalette() {
-        if (mPalette != null && mColors != null) {
-            mPalette.drawPalette(mColors, mSelectedColor);
-        }
-    }
+	private void refreshPalette() {
+		if (mPalette != null && mColors != null) {
+			mPalette.drawPalette(mColors, mSelectedColor);
+		}
+	}
 
-    public int[] getColors() {
-        return mColors;
-    }
+	public int[] getColors() {
+		return mColors;
+	}
 
-    public int getSelectedColor() {
-        return mSelectedColor;
-    }
+	public int getSelectedColor() {
+		return mSelectedColor;
+	}
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putIntArray(KEY_COLORS, mColors);
-        outState.putSerializable(KEY_SELECTED_COLOR, mSelectedColor);
-    }
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putIntArray(KEY_COLORS, mColors);
+		outState.putSerializable(KEY_SELECTED_COLOR, mSelectedColor);
+	}
 }

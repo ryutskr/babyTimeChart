@@ -14,6 +14,7 @@ import android.util.Log;
 import com.activity.babytimechart.R;
 import com.activity.babytimechart.R.color;
 import com.babytimechart.db.Dbinfo;
+import com.babytimechart.utils.Utils;
 
 public class ChartInfomation {
 
@@ -84,13 +85,13 @@ public class ChartInfomation {
 			paint.setStyle(Paint.Style.FILL);
 			
 			if( data.mType.equals(Dbinfo.DB_TYPE_EAT) )
-				paint.setColor(mContext.getResources().getColor(R.color.chocolate));
+				paint.setColor(Utils.mEatColor);
 			else if( data.mType.equals(Dbinfo.DB_TYPE_PLAY) )
-				paint.setColor(mContext.getResources().getColor(R.color.cadetblue));
+				paint.setColor(Utils.mPlayColor);
 			else if( data.mType.equals(Dbinfo.DB_TYPE_SLEEP))
-				paint.setColor(mContext.getResources().getColor(R.color.blueviolet));
+				paint.setColor(Utils.mSleepColor);
 			else if( data.mType.equals(Dbinfo.DB_TYPE_ETC))
-				paint.setColor(mContext.getResources().getColor(R.color.cornflowerblue));
+				paint.setColor(Utils.mEtcColor);
 			
 			data.mPaint = paint;
 			

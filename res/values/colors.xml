@@ -2,6 +2,12 @@
 <!-- Copyright (C) 2007 The Android Open Source Project -->
 
 <resources>
+    <color name="eat_default">#fff5ee</color>
+    <color name="play_default">#228b22</color>
+    <color name="sleep_default">#d2691e</color>
+    <color name="etc_default">#800000</color>
+    <color name="tab_divider">#888888</color>
+    
     <color name="black">#000000</color>
     <color name="darkslategray">#2f4f4f</color>
     <color name="slategray">#708090</color>

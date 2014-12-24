@@ -33,6 +33,7 @@ import com.babytimechart.fragment.Fragment_Playing;
 import com.babytimechart.fragment.Fragment_Sleeping;
 import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.ui.SlidingTabLayout;
+import com.babytimechart.utils.Utils;
 
 
 public class BabyTimeDataActivity extends Activity{
@@ -343,26 +344,26 @@ public class BabyTimeDataActivity extends Activity{
 	public void addTabs(){
 		mTabs.add(new ViewPagerItem(
 				getString(R.string.eating), // Title
-				Color.BLUE, // Indicator color
-				Color.GRAY // Divider color
+				Utils.mEatColor, // Indicator color
+				getResources().getColor(R.color.tab_divider) // Divider color
 				));
 
 		mTabs.add(new ViewPagerItem(
 				getString(R.string.playing), // Title
-				Color.RED, // Indicator color
-				Color.GRAY // Divider color
+				Utils.mPlayColor, // Indicator color
+				getResources().getColor(R.color.tab_divider) // Divider color
 				));
 
 		mTabs.add(new ViewPagerItem(
 				getString(R.string.sleeping), // Title
-				Color.YELLOW, // Indicator color
-				Color.GRAY // Divider color
+				Utils.mSleepColor, // Indicator color
+				getResources().getColor(R.color.tab_divider) // Divider color
 				));
 
 		mTabs.add(new ViewPagerItem(
 				getString(R.string.etc), // Title
-				Color.GREEN, // Indicator color
-				Color.GRAY // Divider color
+				Utils.mEtcColor, // Indicator color
+				getResources().getColor(R.color.tab_divider) // Divider color
 				));
 	}
 
