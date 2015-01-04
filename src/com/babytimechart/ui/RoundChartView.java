@@ -14,12 +14,12 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.ChartInfomation.Data;
+import com.babytimechart.utils.Utils;
 
 public class RoundChartView extends View {
 
@@ -40,7 +40,6 @@ public class RoundChartView extends View {
 
     private Paint mDefaultPaint;
     private RectF mDefaultRect;
-    private long mTodayLastTime = 0;
     private int mSelectArcId = 0;
 
     private ChartInfomation mChartInfo = null;
@@ -159,30 +158,32 @@ public class RoundChartView extends View {
     }
 
     public void drawChart(String selection){
-        BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
-        SQLiteDatabase db = dbhelper.getReadableDatabase();
 
-        String strSelection = "";
+        try {
+            BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
+            SQLiteDatabase db = dbhelper.getReadableDatabase();
 
-        strSelection = "date ='"+ selection +"'";
-        Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
-        if( cursor != null && cursor.getCount() > 0)
-        {
-            mChartInfo = new ChartInfomation(getContext(), cursor);
-            cursor.moveToLast();
-            mTodayLastTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
-            cursor.close();
+            String strSelection = "";
+
+            strSelection = "date ='"+ selection +"'";
+            Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
+            if( cursor != null && cursor.getCount() > 0)
+            {
+                mChartInfo = new ChartInfomation(getContext(), cursor);
+                cursor.moveToLast();
+                Utils.mLastTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
+                cursor.close();
+            }else
+                mChartInfo = null;
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if( mChartInfo == null ){
+                new Utils().makeToast(getContext(), getResources().getString(R.string.empty_data) );
+            }
+            invalidate();
         }
-        else{
-            mChartInfo = null;
-            Toast.makeText(getContext(), getResources().getString(R.string.empty_data), Toast.LENGTH_SHORT).show();
-        }
-
-
-        invalidate();
     }
-
-    public long getLasttime(){ return mTodayLastTime; }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

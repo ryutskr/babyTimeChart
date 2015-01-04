@@ -21,6 +21,7 @@ import com.activity.babytimechart.R;
 import com.babytimechart.activity.BabyTimeDataActivity;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.ui.RoundChartView;
+import com.babytimechart.utils.Utils;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -51,11 +52,10 @@ public class Fragment_Etc extends Fragment {
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
-	public static Fragment_Etc newInstance(int sectionNumber, long todaylasttime) {
+	public static Fragment_Etc newInstance(int sectionNumber) {
 		Fragment_Etc fragment = new Fragment_Etc();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-		args.putLong(EXTRA_TODAY_LAST_TIME, todaylasttime);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -66,8 +66,8 @@ public class Fragment_Etc extends Fragment {
 	@Override 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-		mLastMillsTime = getArguments().getLong(EXTRA_TODAY_LAST_TIME, 0);
+
+        mLastMillsTime = Utils.mLastTime;
 		View rootView = inflater.inflate(R.layout.fragment_etc, container, false);
 		initView(rootView);
 		return rootView;

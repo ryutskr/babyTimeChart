@@ -12,6 +12,7 @@
     <dimen name="text_size_25">25dp</dimen>
     <dimen name="deiver_height_2">2dp</dimen>
     <dimen name="deiver_height_4">4dp</dimen>
+    <dimen name="toast_yoffset">70dp</dimen>
     
     
 

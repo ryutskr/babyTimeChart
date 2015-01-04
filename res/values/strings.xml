@@ -8,21 +8,21 @@
     <string name="y">Y</string>
     <string name="add">Add</string>
     <string name="new_series">New series</string>
-    
-    <!--  Tab Title  -->
+    <string name="action_text1">아 기</string>
+    <string name="action_text2">하 루</string>
+
+    <!-- Tab Title -->
     <string name="eating">먹기</string>
     <string name="playing">놀기</string>
     <string name="sleeping">잠자기</string>
     <string name="etc">기타</string>
-  
+
     <!-- 먹기 Tab -->
     <string name="mothersmilk">모유</string>
     <string name="milkpowder">분유</string>
     <string name="babyfood">이유식</string>
-    
     <string name="eating_type_direct">직접 수유</string>
     <string name="eating_type_bottle">유축 수유</string>
-    
     <string name="minus_small_ml">-20ml</string>
     <string name="minus_big_ml">-10ml</string>
     <string name="plus_small_ml">+10ml</string>
@@ -32,37 +32,33 @@
     <string name="mom">엄마</string>
     <string name="daddy">아빠</string>
     <string name="family">가족</string>
-    <string name="friend">친구</string>    
-    
-    <!--  잠자기 Tab -->
+    <string name="friend">친구</string>
+
+    <!-- 잠자기 Tab -->
     <string name="nap">낮잠</string>
     <string name="night_sleep">밤잠</string>
-    
+
     <!-- 기타 Tab -->
     <string name="bath">목욕</string>
     <string name="babypoop">아기 응가</string>
-    
-    <!--  공통  -->
+
+    <!-- 공통 -->
     <string name="save">저장</string>
     <string name="cancel">취소</string>
-    
     <string name="stime_titile">시작 시간</string>
     <string name="etime_titile">종료 시간</string>
-    
     <string name="minus_small_time">-20분</string>
     <string name="minus_big_time">-5분</string>
     <string name="plus_small_time">+5분</string>
     <string name="plus_big_time">+20분</string>
-    
     <string name="memo">메모</string>
     <string name="memo_hint">메모를 입력하세요</string>
-    
     <string name="notice">* 수유와 놀이 수면만 그래프에 표시 됩니다.</string>
     <string name="empty_data">아래 버튼을 눌러 아기의 패턴을 입력하세요.</string>
     <string name="time_err1">마지막으로 지정한 시간보다 빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err2">시작 시간보다  빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err3">종료 시간보다  늦은 시간으로 설정 할 수 없습니다.</string>
-    
+
     <!-- 설정 -->
     <string name="setting">설 정</string>
     <string name="normal">일 반</string>
@@ -73,35 +69,15 @@
     <string name="data_restore_eplain">저장된 데이터를 복구 합니다.</string>
     <string name="data_initialization">데이터 초기화</string>
     <string name="data_initialization_explain">데이터 초기화를 초기화 합니다.</string>
-    
     <string name="eat_eplain">시간표에 보여지는 먹기의 색상을 변경합니다.</string>
     <string name="play_eplain">시간표에 보여지는 놀기의 색상을 변경합니다.</string>
     <string name="sleep_eplain">시간표에 보여지는 잠자기의 색상을 변경합니다.</string>
     <string name="etc_eplain">시간표에 보여지는 기타의 색상을 변경합니다.</string>
-    
     <string name="baby_profile">아기 프로필</string>
-    <string name="baby_profile_eplain">사진, 이름, 생년 월일을 변경합니다.</string>
-    
+    <string name="baby_profile_eplain">사진, 이름, 생년 월일을 입력합니다.</string>
+
     <!-- Color Picker -->
     <string name="select_color">색상 선택</string>
-    
-    
+    <string name="title_activity_calender">CalenderActivity</string>
+
 </resources>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

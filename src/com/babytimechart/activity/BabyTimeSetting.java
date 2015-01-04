@@ -1,29 +1,30 @@
 package com.babytimechart.activity;
 
+import android.app.ListActivity;
+import android.content.ContentValues;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+
+import com.activity.babytimechart.R;
+import com.babytimechart.db.BabyTimeDbOpenHelper;
+import com.babytimechart.db.Dbinfo;
+import com.babytimechart.ui.BabyTimeSettingMenuAdapter;
+import com.babytimechart.ui.ColorPickerSwatch;
+import com.babytimechart.utils.Utils;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static com.babytimechart.db.Dbinfo.DB_DATE;
 import static com.babytimechart.db.Dbinfo.DB_E_TIME;
 import static com.babytimechart.db.Dbinfo.DB_MEMO;
 import static com.babytimechart.db.Dbinfo.DB_S_TIME;
 import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
 import static com.babytimechart.db.Dbinfo.DB_TYPE;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import android.app.ListActivity;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ListView;
-
-import com.activity.babytimechart.R;
-import com.babytimechart.db.BabyTimeDbOpenHelper;
-import com.babytimechart.ui.BabyTimeSettingMenuAdapter;
-import com.babytimechart.ui.ColorPickerSwatch;
-import com.babytimechart.utils.Utils;
 
 public class BabyTimeSetting extends ListActivity {
 
@@ -40,6 +41,7 @@ public class BabyTimeSetting extends ListActivity {
 	BabyTimeSettingMenuAdapter mAdapter = null;
 	int mLastPosition = 0;
 	int[] mColorChoices = null;
+    Utils mUtils = null;
 	// Selected colors
 
 	@Override
@@ -56,8 +58,8 @@ public class BabyTimeSetting extends ListActivity {
 	}
 	
 	private void initMenu() {
-
-		mColorChoices = Utils.getColorsForPicker(this);
+        mUtils = new Utils();
+		mColorChoices = mUtils.getColorsForPicker(this);
 		mAdapter = new BabyTimeSettingMenuAdapter(this);
 
 		// nomal
@@ -99,11 +101,26 @@ public class BabyTimeSetting extends ListActivity {
 			break;
 
 		case MENU_BACKUP_DATA:
+            fakeDBData();
+            break;
 		case MENU_RESTORE_DATA:
 		case MENU_INITIALIZATION_DATA:
-			fakeDBData();
+            try {
+                // clear DB
+                BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
+                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                db.delete(Dbinfo.DB_TABLE_NAME, null, null);
+                db.close();
+
+                // clear Utils
+                mUtils.clearUtilsValues(this);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
 			break;
 		}
+
+        setResult(RESULT_OK);
 	}
 
 	// Implement listener to get selected color value
@@ -112,10 +129,9 @@ public class BabyTimeSetting extends ListActivity {
 		public void onColorSelected(int color) {
 			BabyTimeSettingMenuAdapter.MenuItemModel item = mAdapter.getItem(mLastPosition);
 			if (item!=null){
-				setResult(RESULT_OK);	// 색상이 한번이라도 바뀌면
 				item.colorSquare = color;
 				mAdapter.notifyDataSetChanged();
-				Utils.setChangeColor(item._id, color);
+                mUtils.setChangeColor(item._id, color);
 			}
 		}
 	};
@@ -123,7 +139,7 @@ public class BabyTimeSetting extends ListActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Utils.setColorsToPref(this);
+        mUtils.setColorsToPref(this);
 	}
 
 	public void fakeDBData()

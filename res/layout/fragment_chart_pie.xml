@@ -66,6 +66,7 @@
             android:layout_weight="1"
             android:text="@string/etc"
             android:textSize="15dip" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 
 public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 
@@ -17,8 +18,7 @@ public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-
-		db.execSQL("CREATE TABLE " + Dbinfo.DB_TABLE_NAME + "(" +
+        db.execSQL("CREATE TABLE " + Dbinfo.DB_TABLE_NAME + "(" +
 				"_id 	INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				Dbinfo.DB_TYPE 		+ " TEXT, " +
 				Dbinfo.DB_DATE		+ " TEXT, " + 
@@ -38,8 +38,7 @@ public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 
 			if( cursor != null )
 			{
-				cursor.moveToFirst();
-				do{
+                while (cursor != null && cursor.moveToNext()){
 					Bundle bundle = new Bundle();
 					bundle.putString(Dbinfo.DB_TYPE, cursor.getString(cursor.getColumnIndex(Dbinfo.DB_TYPE)));
 					bundle.putString(Dbinfo.DB_DATE, cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE)));
@@ -47,11 +46,11 @@ public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 					bundle.putString(Dbinfo.DB_E_TIME, cursor.getString(cursor.getColumnIndex(Dbinfo.DB_E_TIME)));
 					bundle.putString(Dbinfo.DB_MEMO, cursor.getString(cursor.getColumnIndex(Dbinfo.DB_MEMO)));
 					arrBundle.add(bundle);
-				}while (cursor != null && cursor.moveToNext());
+				}
 
 				cursor.close();
 
-				db.execSQL("DROP TABLE IF EXIST " + Dbinfo.DB_TABLE_NAME);
+				db.execSQL("DROP TABLE IF EXISTS " + Dbinfo.DB_TABLE_NAME);
 				onCreate(db);
 				
 				for(Bundle bundleData : arrBundle)
@@ -67,7 +66,7 @@ public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 				}
 
 			}else{
-				db.execSQL("DROP TABLE IF EXIST " + Dbinfo.DB_TABLE_NAME);
+				db.execSQL("DROP TABLE IF EXISTS " + Dbinfo.DB_TABLE_NAME );
 				onCreate(db);
 			}
 		}
