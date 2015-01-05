@@ -8,8 +8,8 @@
     <string name="y">Y</string>
     <string name="add">Add</string>
     <string name="new_series">New series</string>
-    <string name="action_text1">아 기</string>
-    <string name="action_text2">하 루</string>
+    <string name="action_text1">S</string>
+    <string name="count_day">일</string>
 
     <!-- Tab Title -->
     <string name="eating">먹기</string>
@@ -79,5 +79,10 @@
     <!-- Color Picker -->
     <string name="select_color">색상 선택</string>
     <string name="title_activity_calender">CalenderActivity</string>
+    
+    <!-- profile  -->
+    <string name="baby_name">이 름</string>
+    <string name="birthday">생년월일</string>
+    
 
 </resources>

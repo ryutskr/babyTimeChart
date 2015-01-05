@@ -1,12 +1,31 @@
 package com.babytimechart.activity;
 
+import static com.babytimechart.db.Dbinfo.DB_DATE;
+import static com.babytimechart.db.Dbinfo.DB_E_TIME;
+import static com.babytimechart.db.Dbinfo.DB_MEMO;
+import static com.babytimechart.db.Dbinfo.DB_S_TIME;
+import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
+import static com.babytimechart.db.Dbinfo.DB_TYPE;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
@@ -14,17 +33,6 @@ import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.BabyTimeSettingMenuAdapter;
 import com.babytimechart.ui.ColorPickerSwatch;
 import com.babytimechart.utils.Utils;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import static com.babytimechart.db.Dbinfo.DB_DATE;
-import static com.babytimechart.db.Dbinfo.DB_E_TIME;
-import static com.babytimechart.db.Dbinfo.DB_MEMO;
-import static com.babytimechart.db.Dbinfo.DB_S_TIME;
-import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
-import static com.babytimechart.db.Dbinfo.DB_TYPE;
 
 public class BabyTimeSetting extends ListActivity {
 
@@ -41,7 +49,14 @@ public class BabyTimeSetting extends ListActivity {
 	BabyTimeSettingMenuAdapter mAdapter = null;
 	int mLastPosition = 0;
 	int[] mColorChoices = null;
-    Utils mUtils = null;
+	Utils mUtils = null;
+	Context mContext = null;
+
+	// dialog
+	AlertDialog mAlertDialogProfile = null;  // profile or datepicker
+	TextView mTextViewbirthday = null;		 // set Date	
+	DatePicker mDatePicker = null;
+
 	// Selected colors
 
 	@Override
@@ -49,6 +64,7 @@ public class BabyTimeSetting extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setActinbar();
 		initMenu();
+		mContext = this;
 	}
 
 	private void setActinbar() {
@@ -56,9 +72,9 @@ public class BabyTimeSetting extends ListActivity {
 		getActionBar().setDisplayShowCustomEnabled(false);
 		getActionBar().setDisplayShowTitleEnabled(true);
 	}
-	
+
 	private void initMenu() {
-        mUtils = new Utils();
+		mUtils = new Utils();
 		mColorChoices = mUtils.getColorsForPicker(this);
 		mAdapter = new BabyTimeSettingMenuAdapter(this);
 
@@ -99,29 +115,109 @@ public class BabyTimeSetting extends ListActivity {
 			colorcalendar.setOnColorSelectedListener(colorcalendarListener);
 			colorcalendar.show(getFragmentManager(), "");
 			break;
-
+		case MENU_PROFILE:
+			//			startActivity(new Intent(this, BabyTimeProfile.class));
+			createAlerDialog();
+			break;
 		case MENU_BACKUP_DATA:
-            fakeDBData();
-            break;
+			fakeDBData();
+			break;
 		case MENU_RESTORE_DATA:
 		case MENU_INITIALIZATION_DATA:
-            try {
-                // clear DB
-                BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
-                db.delete(Dbinfo.DB_TABLE_NAME, null, null);
-                db.close();
+			try {
+				// clear DB
+				BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
+				SQLiteDatabase db = dbhelper.getWritableDatabase();
+				db.delete(Dbinfo.DB_TABLE_NAME, null, null);
+				db.close();
 
-                // clear Utils
-                mUtils.clearUtilsValues(this);
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
+				// clear Utils
+				mUtils.clearUtilsValues(this);
+			}catch (SQLException e){
+				e.printStackTrace();
+			}
 			break;
 		}
 
-        setResult(RESULT_OK);
+		setResult(RESULT_OK);
 	}
+
+	public void createAlerDialog(){
+
+		View view = getLayoutInflater().inflate(R.layout.activity_profile, null);
+
+		mAlertDialogProfile = new AlertDialog.Builder(mContext)
+		.setTitle(mContext.getString(R.string.baby_profile))
+		.setView(view)
+		.setNegativeButton(mContext.getString(R.string.save), mOnDialogBtnClickListener)
+		.create();
+
+		mAlertDialogProfile.show();
+
+		int titleId = getResources().getIdentifier("alertTitle", "id", "android");
+		((TextView)mAlertDialogProfile.findViewById(titleId)).setTextColor(Color.BLACK);
+		int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
+		mAlertDialogProfile.findViewById(titleDividerId).setBackgroundColor(Color.BLACK);
+
+		mTextViewbirthday = (TextView)view.findViewById(R.id.textview_birthbay);
+		mTextViewbirthday.setText(new SimpleDateFormat("yyyy / MM / dd").format(new Date(System.currentTimeMillis())));
+		mTextViewbirthday.setOnClickListener(mOnClickListener);
+	}
+
+	OnClickListener mOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+
+			View view = getLayoutInflater().inflate(R.layout.activity_profile_datepicker, null);
+
+			AlertDialog mAlertDialogDatePicker = new AlertDialog.Builder(mContext)
+			.setTitle(mContext.getString(R.string.baby_profile))
+			.setView(view)
+			.setNegativeButton(mContext.getString(R.string.save), mOnDialogBtnClickListener)
+			.setPositiveButton(mContext.getString(R.string.cancel), mOnDialogBtnClickListener)
+			.create();
+
+			mAlertDialogDatePicker.show();
+
+
+			mDatePicker = (DatePicker)mAlertDialogDatePicker.findViewById(R.id.datePicker);
+
+			int titleId = getResources().getIdentifier("alertTitle", "id", "android");
+			((TextView)mAlertDialogDatePicker.findViewById(titleId)).setTextColor(Color.BLACK);
+			int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
+			mAlertDialogDatePicker.findViewById(titleDividerId).setBackgroundColor(Color.BLACK);
+
+		}
+	};
+	android.content.DialogInterface.OnClickListener mOnDialogBtnClickListener = new android.content.DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			Log.i("1111", "dialog  : " + dialog + " which : " + which);
+			if( dialog.equals(mAlertDialogProfile)){
+				// pref에 생년 write
+
+			}else{
+				if( mDatePicker != null ){
+
+					String strTemp = mDatePicker.getYear() +" / ";
+					if( mDatePicker.getYear() < 10)
+						strTemp = strTemp + "0"+(mDatePicker.getMonth()+1) + " / ";
+					else
+						strTemp = strTemp + (mDatePicker.getMonth()+1) + " / ";
+
+					if( mDatePicker.getDayOfMonth() < 10) 
+						strTemp = strTemp + "0"+mDatePicker.getDayOfMonth();
+					else
+						strTemp = strTemp + mDatePicker.getDayOfMonth();
+
+					mTextViewbirthday.setText(strTemp);
+				}
+			}
+		}
+	};
+
 
 	// Implement listener to get selected color value
 	ColorPickerSwatch.OnColorSelectedListener colorcalendarListener = new ColorPickerSwatch.OnColorSelectedListener(){
@@ -131,7 +227,7 @@ public class BabyTimeSetting extends ListActivity {
 			if (item!=null){
 				item.colorSquare = color;
 				mAdapter.notifyDataSetChanged();
-                mUtils.setChangeColor(item._id, color);
+				mUtils.setChangeColor(item._id, color);
 			}
 		}
 	};
@@ -139,7 +235,7 @@ public class BabyTimeSetting extends ListActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-        mUtils.setColorsToPref(this);
+		mUtils.setColorsToPref(this);
 	}
 
 	public void fakeDBData()

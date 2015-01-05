@@ -116,14 +116,17 @@ public class Utils{
                 e.printStackTrace();
             }
 
-            return count + "일째";
+            return count + context.getString(R.string.count_day);
     }
 
     public String getBabyName(Context context) {
         SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
         String strBabyName = pref.getString("babyname", "No Data");
 
-        return "";
+        if( strBabyName.equals("No Data"))
+        	return "";
+        else
+        	return strBabyName + context.getString(R.string.action_text1);
     }
 }
 

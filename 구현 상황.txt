@@ -11,3 +11,6 @@
 
 칼라 피커 참고 소스
 https://github.com/gabrielemariotti/colorpickercollection
+
+UI
+http://android-holo-colors.com/
