@@ -8,6 +8,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
@@ -148,7 +149,7 @@ public class BabyTimeSetting extends ListActivity {
                 if( utils.getBabyBirthDayFromPref(mContext).length() > 0 )
                     mTextViewBirthday.setText(utils.getBabyBirthDayFromPref(mContext));
                 else
-                    mTextViewBirthday.setText(new SimpleDateFormat("yyyy / MM / dd").format(new Date(System.currentTimeMillis())));
+                    mTextViewBirthday.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date(System.currentTimeMillis())));
                 break;
             case MENU_BACKUP_DATA:
                 title = mContext.getString(R.string.data_backup);
@@ -220,17 +221,18 @@ public class BabyTimeSetting extends ListActivity {
                 case DATE_PICKER:
                     if( mDatePicker != null ) {
 
-                        String strTemp = mDatePicker.getYear() + " / ";
-                        if (mDatePicker.getYear() < 10)
-                            strTemp = strTemp + "0" + (mDatePicker.getMonth() + 1) + " / ";
+                        String strTemp = mDatePicker.getYear() + "/";
+                        if (mDatePicker.getMonth() < 10)
+                            strTemp = strTemp + "0" + (mDatePicker.getMonth() + 1) + "/";
                         else
-                            strTemp = strTemp + (mDatePicker.getMonth() + 1) + " / ";
+                            strTemp = strTemp + (mDatePicker.getMonth() + 1) + "/";
 
                         if (mDatePicker.getDayOfMonth() < 10)
                             strTemp = strTemp + "0" + mDatePicker.getDayOfMonth();
                         else
                             strTemp = strTemp + mDatePicker.getDayOfMonth();
 
+                        Log.i("1111", "strTemp : " + strTemp);
                         mTextViewBirthday.setText(strTemp);
                     }
                     mSelectedDialog = MENU_PROFILE;
@@ -240,6 +242,7 @@ public class BabyTimeSetting extends ListActivity {
                     break;
                 case MENU_RESTORE_DATA:
                     mSelectedDialog = 0;
+                    new Utils().fakeDBData(mContext);
                     break;
                 case MENU_INITIALIZATION_DATA:
                     try {

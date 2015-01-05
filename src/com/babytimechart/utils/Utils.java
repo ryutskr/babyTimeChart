@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -109,6 +110,7 @@ public class Utils{
             if( strBirthday.equals("No Data") )
                 return  date;
 
+        Log.i("1111", "strBirthday : " + strBirthday);
             try {
                 Calendar inputDate = Calendar.getInstance();
                 Calendar birthday = Calendar.getInstance();
@@ -133,9 +135,9 @@ public class Utils{
 
     public String getBabyName(Context context) {
         SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        String strBabyName = pref.getString("babyname", "No Data");
+        String strBabyName = pref.getString("babyname", "");
 
-        if( strBabyName.equals("No Data"))
+        if( strBabyName.length() < 1)
         	return "";
         else
         	return strBabyName + context.getString(R.string.action_text1);
