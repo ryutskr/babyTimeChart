@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
@@ -110,7 +109,6 @@ public class Utils{
             if( strBirthday.equals("No Data") )
                 return  date;
 
-        Log.i("1111", "strBirthday : " + strBirthday);
             try {
                 Calendar inputDate = Calendar.getInstance();
                 Calendar birthday = Calendar.getInstance();

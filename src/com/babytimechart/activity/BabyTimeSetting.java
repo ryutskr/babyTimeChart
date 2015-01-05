@@ -8,7 +8,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
@@ -232,7 +231,6 @@ public class BabyTimeSetting extends ListActivity {
                         else
                             strTemp = strTemp + mDatePicker.getDayOfMonth();
 
-                        Log.i("1111", "strTemp : " + strTemp);
                         mTextViewBirthday.setText(strTemp);
                     }
                     mSelectedDialog = MENU_PROFILE;
