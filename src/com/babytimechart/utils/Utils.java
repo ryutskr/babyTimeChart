@@ -1,15 +1,27 @@
 package com.babytimechart.utils;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.Toast;
 
 import com.activity.babytimechart.R;
+import com.babytimechart.db.BabyTimeDbOpenHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import static com.babytimechart.db.Dbinfo.DB_DATE;
+import static com.babytimechart.db.Dbinfo.DB_E_TIME;
+import static com.babytimechart.db.Dbinfo.DB_MEMO;
+import static com.babytimechart.db.Dbinfo.DB_S_TIME;
+import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
+import static com.babytimechart.db.Dbinfo.DB_TYPE;
 
 public class Utils{
 
@@ -127,6 +139,74 @@ public class Utils{
         	return "";
         else
         	return strBabyName + context.getString(R.string.action_text1);
+    }
+
+    public void setBabyProfileToPref(Context context, String name, String birthday){
+        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+        pref.edit()
+                .putString("babyname", name)
+                .putString("birthday", birthday).apply();
+    }
+
+    public String getBabyNameFromPref(Context context){
+        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+        return pref.getString("babyname", "");
+    }
+
+    public String getBabyBirthDayFromPref(Context context){
+        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+        return pref.getString("birthday", "");
+    }
+
+    public void fakeDBData(Context context)
+    {
+        long time = System.currentTimeMillis();
+
+        SimpleDateFormat insertDateformat1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat insertDateformat2 = new SimpleDateFormat("dd");
+        String strToday1 = "";
+        String strToday2 = insertDateformat2.format(new Date(time));
+
+        BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(context);
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+
+        Calendar today = Calendar.getInstance();
+        today.set(2014, 11, Integer.parseInt(strToday2)-1, 23, 30);
+        long time1 = today.getTimeInMillis();
+
+        today.set(2014, 11, Integer.parseInt(strToday2), 3, 20);
+        long time2 = today.getTimeInMillis();
+
+        today.set(2014, 11, Integer.parseInt(strToday2), 5, 40);
+        long time3 = today.getTimeInMillis();
+
+        today.set(2014, 11, Integer.parseInt(strToday2), 6, 30);
+        long time4 = today.getTimeInMillis();
+
+        today.set(2014, 11, Integer.parseInt(strToday2), 8, 10);
+        long time5 = today.getTimeInMillis();
+
+        today.set(2014, 11, Integer.parseInt(strToday2), 9, 50);
+        long time6 = today.getTimeInMillis();
+
+
+        long[] arrtime = {time1,time2, time3, time4, time5, time6};
+        String[] arrType = {"eat", "play", "sleep", "etc","play"};
+        ContentValues contentValues = new ContentValues();
+        for(int i=0; i< 5; i++)
+        {
+            strToday1 = insertDateformat1.format(new Date(time -(i* 24*60*60*1000)));
+            for(int k=0; k<5; k++){
+                contentValues.clear();
+                contentValues.put(DB_TYPE, arrType[k] );
+                contentValues.put(DB_DATE, strToday1 );
+                contentValues.put(DB_S_TIME, arrtime[k]+(k*60*60*1000) + (i*60*60*1000) );
+                contentValues.put(DB_E_TIME, arrtime[k+1] + (k*60*60*1000) + (i*60*60*1000) );
+                contentValues.put(DB_MEMO, "" + i +k  );
+                db.insert(DB_TABLE_NAME, null, contentValues);
+            }
+        }
+        db.close();
     }
 }
 
