@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.activity.babytimechart.R;
 import com.babytimechart.utils.Utils;
+import com.ryutskr.babytimechart.R;
 
 public class BabyTimeSpinnerAdapter extends ArrayAdapter<String> {
 

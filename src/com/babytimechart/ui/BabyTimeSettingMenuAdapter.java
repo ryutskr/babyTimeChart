@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.activity.babytimechart.R;
 import com.babytimechart.ui.BabyTimeSettingMenuAdapter.MenuItemModel;
+import com.ryutskr.babytimechart.R;
 
 public class BabyTimeSettingMenuAdapter extends ArrayAdapter<MenuItemModel>{
 

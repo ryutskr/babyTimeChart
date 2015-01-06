@@ -1,5 +1,10 @@
 package com.babytimechart.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -21,17 +26,13 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.fragment.Fragment_Chart_Pie;
 import com.babytimechart.ui.BabyTimeSpinnerAdapter;
 import com.babytimechart.utils.Utils;
+import com.ryutskr.babytimechart.R;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class BabyTimeMainActivity extends Activity {
 
@@ -40,7 +41,7 @@ public class BabyTimeMainActivity extends Activity {
     ViewPager mViewPager;
     Spinner mSpinnerToday = null;
     Spinner mSpinnerOtherDay = null;
-    TextView mBabyName = null;
+    TextView mTextViewBabyName = null;
     Context mContext = null;
     ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
 
@@ -56,11 +57,11 @@ public class BabyTimeMainActivity extends Activity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOnPageChangeListener(mOnPageChangeListener);
 
-        mSpinnerToday = (Spinner) getActionBar().getCustomView().findViewById(R.id.activity_spinner_Today);
-        mSpinnerOtherDay = (Spinner) getActionBar().getCustomView().findViewById(R.id.activity_spinner_Otherday);
+        mTextViewBabyName = (TextView)getActionBar().getCustomView().findViewById(R.id.actionbar_Babyname);
+        
+        mSpinnerToday = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Today);
+        mSpinnerOtherDay = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Otherday);
         mSpinnerToday.setOnItemSelectedListener(mOnItemSelectedListener);
-
-        mBabyName = (TextView)getActionBar().getCustomView().findViewById(R.id.activity_Babyname);
 
         addDotIndicator();
 
@@ -155,7 +156,7 @@ public class BabyTimeMainActivity extends Activity {
                         adapter.addItem(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
                     mSpinnerToday.setAdapter(adapter);
-                    mBabyName.setText(new Utils().getBabyName(getApplicationContext()));
+                    mTextViewBabyName.setText(new Utils().getBabyName(getApplicationContext()));
                 }
             }
         });
@@ -180,7 +181,6 @@ public class BabyTimeMainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

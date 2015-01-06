@@ -14,3 +14,20 @@ https://github.com/gabrielemariotti/colorpickercollection
 
 UI
 http://android-holo-colors.com/
+
+
+
+
+백업 key생성 - 부적합
+https://developer.android.com/google/backup/signup.html
+
+Android Backup Service 키에 가입해 주셔서 감사합니다.
+사용자 키:
+
+AEdPqrEAAAAIORyYupCjCiHOfzcsQeZeQh0oL0rO-U6_VF9FrQ
+이 키는 다음 패키지 이름으로 된 앱에 적합합니다.
+
+com.ryutskr.babytimechart
+사용자의 AndroidManifest.xml 파일에 있는 이 키를 <application> 요소 내부에 있는 다음의 <meta-data> 요소에 입력하세요.
+
+<meta-data android:name="com.google.android.backup.api_key" android:value="AEdPqrEAAAAIORyYupCjCiHOfzcsQeZeQh0oL0rO-U6_VF9FrQ" />

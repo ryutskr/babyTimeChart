@@ -30,9 +30,9 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.activity.babytimechart.R;
 import com.babytimechart.activity.ColorPickerDialog;
 import com.babytimechart.ui.ColorPickerSwatch.OnColorSelectedListener;
+import com.ryutskr.babytimechart.R;
 
 
 

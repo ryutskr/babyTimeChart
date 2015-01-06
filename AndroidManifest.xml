@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.activity.babytimechart"
+    package="com.ryutskr.babytimechart"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -12,17 +12,25 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme" >
+        android:theme="@style/AppBaseTheme">
+        <!-- 
+        android:allowBackup="true"
+        android:backupAgent="com.babytimechart.utils.BabyTimeBackUpAgent" >
+         
+       
+        <meta-data 
+            android:name="com.google.android.backup.api_key" 
+            android:value="AEdPqrEAAAAIORyYupCjCiHOfzcsQeZeQh0oL0rO-U6_VF9FrQ" />
+            -->
+        
         <activity
             android:name="com.babytimechart.activity.BabyTimeMainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

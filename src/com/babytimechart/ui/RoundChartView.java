@@ -15,11 +15,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.ChartInfomation.Data;
 import com.babytimechart.utils.Utils;
+import com.ryutskr.babytimechart.R;
 
 public class RoundChartView extends View {
 

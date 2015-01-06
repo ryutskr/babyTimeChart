@@ -4,11 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Fragment;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,11 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.activity.babytimechart.R;
-import com.babytimechart.activity.BabyTimeDataActivity;
-import com.babytimechart.db.BabyTimeDbOpenHelper;
-import com.babytimechart.ui.RoundChartView;
 import com.babytimechart.utils.Utils;
+import com.ryutskr.babytimechart.R;
 
 /**
  * A placeholder fragment containing a simple view.

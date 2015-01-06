@@ -31,7 +31,7 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
-import com.activity.babytimechart.R;
+import com.ryutskr.babytimechart.R;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to

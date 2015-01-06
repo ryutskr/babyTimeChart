@@ -22,8 +22,6 @@ import org.achartengine.model.SeriesSelection;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
-import com.activity.babytimechart.R;
-
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,6 +31,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.ryutskr.babytimechart.R;
 
 public class PieChartBuilder extends Activity {
 	/** Colors to be used for the pie slices. */

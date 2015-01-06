@@ -4,30 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Fragment;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
-import com.activity.babytimechart.R;
-import com.babytimechart.activity.BabyTimeDataActivity;
-import com.babytimechart.db.BabyTimeDbOpenHelper;
-import com.babytimechart.ui.RoundChartView;
 import com.babytimechart.utils.Utils;
+import com.ryutskr.babytimechart.R;
 
 /**
  * A placeholder fragment containing a simple view.

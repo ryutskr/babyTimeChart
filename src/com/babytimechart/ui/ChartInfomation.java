@@ -6,13 +6,9 @@ import java.util.Date;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.DisplayMetrics;
 import android.util.Log;
 
-import com.activity.babytimechart.R;
-import com.activity.babytimechart.R.color;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.utils.Utils;
 

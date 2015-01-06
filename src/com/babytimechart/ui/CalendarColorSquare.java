@@ -24,7 +24,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.QuickContactBadge;
 
-import com.activity.babytimechart.R;
+import com.ryutskr.babytimechart.R;
 
 /**
  * 

@@ -25,7 +25,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import com.activity.babytimechart.R;
+
+import com.ryutskr.babytimechart.R;
+
 
 /**
  * Creates a circular swatch of a specified color.  Adds a checkmark if marked as checked.

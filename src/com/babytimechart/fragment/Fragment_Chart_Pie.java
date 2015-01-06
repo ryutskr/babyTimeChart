@@ -1,5 +1,8 @@
 package com.babytimechart.fragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,13 +11,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.activity.babytimechart.R;
 import com.babytimechart.activity.BabyTimeDataActivity;
-import com.babytimechart.activity.CalenderActivity;
 import com.babytimechart.ui.RoundChartView;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.ryutskr.babytimechart.R;
 
 /**
  * A placeholder fragment containing a simple view.

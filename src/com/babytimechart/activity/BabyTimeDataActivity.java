@@ -1,5 +1,10 @@
 package com.babytimechart.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -18,7 +23,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.activity.babytimechart.R;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.fragment.Fragment_Eating;
@@ -28,11 +32,7 @@ import com.babytimechart.fragment.Fragment_Sleeping;
 import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.ui.SlidingTabLayout;
 import com.babytimechart.utils.Utils;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.ryutskr.babytimechart.R;
 
 
 public class BabyTimeDataActivity extends Activity{
