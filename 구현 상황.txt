@@ -1,15 +1,15 @@
-1. Â÷Æ® Å¬¸¯½Ã »èÁ¦ ±¸Çö.
- - DBÀÇ ³»¿ë »èÁ¦ ÇÒ¼ö ÀÖ´Â UI Á¦°ø.
+1. ì°¨íŠ¸ í´ë¦­ì‹œ ì‚­ì œ êµ¬í˜„.
+ - DBì˜ ë‚´ìš© ì‚­ì œ í• ìˆ˜ ìˆëŠ” UI ì œê³µ.
  
-2. Setting ºÎºĞ ±¸Çö.
- - Chart Color ¼±ÅÃ ÇÒ ¼ö ÀÖ°Ô ±¸Çö.
+2. Setting ë¶€ë¶„ êµ¬í˜„.
+ - Chart Color ì„ íƒ í•  ìˆ˜ ìˆê²Œ êµ¬í˜„.
 
-3. µğÀÚÀÎ ÀÔÈ÷±â.
-4. ±¤°í ´Ş±â.
-5. ¸Ş¸ğ º¸¿© ÁÙ¼ö ÀÖ´Â UI ±¸Çö
+3. ë””ìì¸ ì…íˆê¸°.
+4. ê´‘ê³  ë‹¬ê¸°.
+5. ë©”ëª¨ ë³´ì—¬ ì¤„ìˆ˜ ìˆëŠ” UI êµ¬í˜„
 
 
-Ä®¶ó ÇÇÄ¿ Âü°í ¼Ò½º
+ì¹¼ë¼ í”¼ì»¤ ì°¸ê³  ì†ŒìŠ¤
 https://github.com/gabrielemariotti/colorpickercollection
 
 UI
@@ -18,16 +18,10 @@ http://android-holo-colors.com/
 
 
 
-¹é¾÷ key»ı¼º - ºÎÀûÇÕ
+ë°±ì—… keyìƒì„± - ë¶€ì í•©
 https://developer.android.com/google/backup/signup.html
 
-Android Backup Service Å°¿¡ °¡ÀÔÇØ ÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù.
-»ç¿ëÀÚ Å°:
-
-AEdPqrEAAAAIORyYupCjCiHOfzcsQeZeQh0oL0rO-U6_VF9FrQ
-ÀÌ Å°´Â ´ÙÀ½ ÆĞÅ°Áö ÀÌ¸§À¸·Î µÈ ¾Û¿¡ ÀûÇÕÇÕ´Ï´Ù.
-
-com.ryutskr.babytimechart
-»ç¿ëÀÚÀÇ AndroidManifest.xml ÆÄÀÏ¿¡ ÀÖ´Â ÀÌ Å°¸¦ <application> ¿ä¼Ò ³»ºÎ¿¡ ÀÖ´Â ´ÙÀ½ÀÇ <meta-data> ¿ä¼Ò¿¡ ÀÔ·ÂÇÏ¼¼¿ä.
-
-<meta-data android:name="com.google.android.backup.api_key" android:value="AEdPqrEAAAAIORyYupCjCiHOfzcsQeZeQh0oL0rO-U6_VF9FrQ" />
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="google_play_services_version">4242000</integer>
+</resources>
