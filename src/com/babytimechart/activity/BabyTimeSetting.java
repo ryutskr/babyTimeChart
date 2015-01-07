@@ -1,18 +1,26 @@
 package com.babytimechart.activity;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
+import android.accounts.AccountManager;
 import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.app.backup.BackupManager;
-import android.app.backup.RestoreObserver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,12 +28,24 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.BabyTimeSettingMenuAdapter;
 import com.babytimechart.ui.ColorPickerSwatch;
 import com.babytimechart.utils.Utils;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
+import com.google.api.client.http.FileContent;
+import com.google.api.client.http.GenericUrl;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.Drive.Files;
+import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 import com.ryutskr.babytimechart.R;
 
 public class BabyTimeSetting extends ListActivity {
@@ -54,6 +74,14 @@ public class BabyTimeSetting extends ListActivity {
 	private EditText mEditTextName = null;		 // set Date
 	private TextView mTextViewBirthday = null;		 // set Date
 	private DatePicker mDatePicker = null;
+
+
+	// Google Drive 
+	private GoogleAccountCredential mCredential;
+	static final int 				REQUEST_ACCOUNT_PICKER = 1;
+	static final int 				REQUEST_AUTHORIZATION = 2;
+	private Drive 			mService;
+	private Uri 				mFileUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -239,15 +267,12 @@ public class BabyTimeSetting extends ListActivity {
 				mSelectedDialog = MENU_PROFILE;
 				break;
 			case MENU_BACKUP_DATA:
-//				BackupManager bm = new BackupManager(mContext);
-//				bm.dataChanged();
+				googleDrive(MENU_BACKUP_DATA);
 				mSelectedDialog = 0;
 				break;
 			case MENU_RESTORE_DATA:
-//				BackupManager bm2 = new BackupManager(mContext);
-//				bm2.requestRestore(new RestoreObserver() {});
 				mSelectedDialog = 0;
-				new Utils().exportDB(mContext);
+				googleDrive(MENU_RESTORE_DATA);
 				break;
 			case MENU_INITIALIZATION_DATA:
 				try {
@@ -268,6 +293,182 @@ public class BabyTimeSetting extends ListActivity {
 		}
 	};
 
+	private void googleDrive(int requestCode) {
+		mCredential = GoogleAccountCredential.usingOAuth2(this, Arrays.asList(DriveScopes.DRIVE));
+		startActivityForResult(mCredential.newChooseAccountIntent(), requestCode);			
+	}
+
+	private Drive getDriveService(GoogleAccountCredential credential) {
+		return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
+		.build();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch(requestCode){
+		case MENU_BACKUP_DATA :
+			if (resultCode == RESULT_OK && data != null && data.getExtras() != null) 
+			{
+				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+				if (accountName != null) {
+					mCredential.setSelectedAccountName(accountName);
+					mService = getDriveService(mCredential);
+					saveFileToDrive();
+				}
+			}else {
+				startActivityForResult(mCredential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+			}
+
+			break;
+		case MENU_RESTORE_DATA :
+			if (resultCode == RESULT_OK && data != null && data.getExtras() != null) 
+			{
+				String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+				if (accountName != null) {
+					mCredential.setSelectedAccountName(accountName);
+					mService = getDriveService(mCredential);
+					getDownloadFileFromDrive();
+				}
+			}else {
+				startActivityForResult(mCredential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
+			}
+			break;
+		}
+	}
+	private void saveFileToDrive() 
+	{
+		Thread t = new Thread(new Runnable() 
+		{
+			@Override
+			public void run() 
+			{
+				try 
+				{
+					// Create URI from real path
+					java.io.File dbFile =  mContext.getDatabasePath(Dbinfo.DB_NAME);
+
+					mFileUri = Uri.fromFile(dbFile);
+
+					ContentResolver cR = mContext.getContentResolver();
+					// File's binary content
+					java.io.File fileContent = new java.io.File(mFileUri.getPath());
+					FileContent mediaContent = new FileContent(cR.getType(mFileUri), fileContent);
+
+					// File's meta data. 
+					File body = new File();
+					body.setTitle(fileContent.getName());
+					body.setMimeType(cR.getType(mFileUri));
+
+					File file = mService.files().insert(body, mediaContent).execute();
+					if (file != null) 
+					{
+						showToast(mContext.getString(R.string.upload_complete).toString());
+					}
+				} catch (UserRecoverableAuthIOException e) {
+					startActivityForResult(e.getIntent(), MENU_BACKUP_DATA);
+				} catch (IOException e) {
+					e.printStackTrace();
+
+				}
+			}
+		});
+		t.start();
+	}
+
+	private void getDownloadFileFromDrive()
+	{
+		Thread t = new Thread(new Runnable() 
+		{
+			@Override
+			public void run() 
+			{
+				File downloadFile = null;
+				Files.List request = null;
+				try {
+					request = mService.files().list();
+					do {
+
+						FileList files = request.execute();
+
+						for( File file : files.getItems() ){
+							if( file.getTitle().equals(Dbinfo.DB_NAME)){
+								downloadFile = file;
+								break;
+							}
+						}
+						request.setPageToken(files.getNextPageToken());
+					} while (request.getPageToken() != null && request.getPageToken().length() > 0);
+
+
+					if (downloadFile.getDownloadUrl() != null && downloadFile.getDownloadUrl().length() >0)
+					{
+						try
+						{
+							com.google.api.client.http.HttpResponse resp = 
+									mService.getRequestFactory()
+									.buildGetRequest(new GenericUrl(downloadFile.getDownloadUrl()))
+									.execute();
+							InputStream iStream = resp.getContent();
+							try 
+							{
+								java.io.File dbFile =  mContext.getDatabasePath(Dbinfo.DB_NAME);
+								storeFile(dbFile, iStream);
+							} finally {
+								iStream.close();
+								showToast(mContext.getString(R.string.download_complete).toString());
+							}
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+
+				} catch (UserRecoverableAuthIOException e) {
+					startActivityForResult(e.getIntent(), MENU_RESTORE_DATA);
+				}catch (IOException e) {
+					request.setPageToken(null);
+				}
+			}
+		});
+		t.start();
+	}
+
+	
+	public void showToast(final String toast) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	private void storeFile(java.io.File file, InputStream iStream)
+	{
+		try 
+		{
+			final OutputStream oStream = new FileOutputStream(file);
+			try
+			{
+				try
+				{
+					final byte[] buffer = new byte[1024];
+					int read;
+					while ((read = iStream.read(buffer)) != -1)
+					{
+						oStream.write(buffer, 0, read);
+					}
+					oStream.flush();
+				} finally {
+					oStream.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// Implement listener to get selected color value
 	ColorPickerSwatch.OnColorSelectedListener colorcalendarListener = new ColorPickerSwatch.OnColorSelectedListener(){

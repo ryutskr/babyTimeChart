@@ -165,68 +165,6 @@ public class Utils{
 		return pref.getString("birthday", "");
 	}
 
-	public void importDB(Context context) {
-		try {
-			File sd = Environment.getExternalStorageDirectory();
-			File data = Environment.getDataDirectory();
-			if (sd.canWrite()) {
-				String currentDBPath = "//data//" + context.getPackageName()
-						+ "//databases//" + Dbinfo.DB_NAME;
-				String backupDBPath = "<backup db filename>"; // From SD directory.
-				File backupDB = new File(data, currentDBPath);
-				File currentDB = new File(sd, backupDBPath);
-
-				FileChannel src = new FileInputStream(currentDB).getChannel();
-				FileChannel dst = new FileOutputStream(backupDB).getChannel();
-				dst.transferFrom(src, 0, src.size());
-				src.close();
-				dst.close();
-				Toast.makeText(context, "Import Successful!",
-						Toast.LENGTH_SHORT).show();
-
-			}
-		} catch (Exception e) {
-
-			Toast.makeText(context, "Import Failed!", Toast.LENGTH_SHORT)
-			.show();
-
-		}
-	}
-
-	public void exportDB(Context context) {
-		try {
-			File sd = Environment.getExternalStorageDirectory();
-			Log.i("1111", "sd.getAbsolutePath()  : " + sd.getAbsolutePath() );
-			
-			Log.i("1111", "context.getFilesDir()  : " + context.getDatabasePath(Dbinfo.DB_NAME) );
-			if (sd.canWrite()) {
-				String currentDBPath = "//data//" + context.getPackageName()
-						+ "//databases//" + Dbinfo.DB_NAME;
-				String backupDBPath = sd + "//BabyTimeChart//";
-				File currentDB = new File(currentDBPath, Dbinfo.DB_NAME);
-				File backupDB = new File(backupDBPath, Dbinfo.DB_NAME);
-
-				Log.i("1111", "currentDBPath path : " + currentDBPath );
-				Log.i("1111", "backupDBPath path : " + backupDBPath );
-				
-				FileChannel src = new FileInputStream(currentDB).getChannel();
-				FileChannel dst = new FileOutputStream(backupDB).getChannel();
-				dst.transferFrom(src, 0, src.size());
-				src.close();
-				dst.close();
-				Toast.makeText(context, "Backup Successful!",
-						Toast.LENGTH_SHORT).show();
-
-			}
-		} catch (Exception e) {
-
-			Toast.makeText(context, "Backup Failed!", Toast.LENGTH_SHORT)
-			.show();
-
-		}
-	}
-
-
 	public void fakeDBData(Context context)
 	{
 		long time = System.currentTimeMillis();

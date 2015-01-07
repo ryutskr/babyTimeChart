@@ -68,12 +68,15 @@
     <string name="manege">관 리</string>
 
     <string name="data_backup">데이터 저장</string>
-    <string name="data_backup_explain">데이터를 저장하여 다른 폰으로 이동 시킵니다.</string>
-    <string name="data_backup_message">데이터를 저장하여 다른 폰으로 이동 시킵니다.\n저장하시겠습니까?</string>
+    <string name="data_backup_explain">데이터를 구글 드라이브에 저장합니다.</string>
+    <string name="data_backup_message">데이터를 구글 드라이브에 저장합니다.\n저장하시겠습니까?</string>
+    <string name="upload_complete">저장이 완료 되었습니다.</string>
+    
 
     <string name="data_restore">데이터 복구</string>
-    <string name="data_restore_eplain">저장된 데이터를 복구 합니다.</string>
-    <string name="data_restore_message">저장된 데이터를 복구 합니다.\n복구 하시겠습니까?</string>
+    <string name="data_restore_eplain">구글 드라이브에 저장된 데이터를 복구 합니다.</string>
+    <string name="data_restore_message">복구 시 현재 데이터는 사라집니다.\n복구 하시겠습니까?</string>
+    <string name="download_complete">복구가 완료 되었습니다.</string>
 
     <string name="data_initialization">데이터 초기화</string>
     <string name="data_initialization_explain">데이터 초기화를 초기화 합니다.</string>
