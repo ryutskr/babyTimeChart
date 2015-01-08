@@ -1,16 +1,15 @@
 package com.babytimechart.ui;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.util.Log;
 
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.utils.Utils;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class DrawArcData {
 
@@ -21,11 +20,10 @@ public class DrawArcData {
     private static final int ARC_ALPHA = 120; 	// 0 ~ 255
 
 
-    private Context mContext = null;
     private Cursor mCursor = null;
-    private ArrayList<Data> mListData = new ArrayList<Data>();
+    private ArrayList<ArcData> mListData = new ArrayList<ArcData>();
 
-    public class Data
+    public class ArcData
     {
         int mId;
         String mType;
@@ -42,20 +40,19 @@ public class DrawArcData {
         float getSweepAngle(){ return mSweepAngle; }
     }
 
-    public DrawArcData(Context context, Cursor cursor)
+    public DrawArcData(Cursor cursor)
     {
-        mContext = context;
         mCursor = cursor;
 
         getDataFromCursor();
     }
 
-    public ArrayList<Data> getData(){ return mListData; }
+    public ArrayList<ArcData> getData(){ return mListData; }
 
     private void getDataFromCursor()
     {
         while( mCursor.moveToNext() ){
-            Data data = new Data();
+            ArcData data = new ArcData();
             data.mId    = mCursor.getInt(mCursor.getColumnIndex(Dbinfo.DB_ID));
             data.mType  = mCursor.getString(mCursor.getColumnIndex(Dbinfo.DB_TYPE));
             data.mStime = mCursor.getLong(mCursor.getColumnIndex(Dbinfo.DB_S_TIME));
@@ -70,7 +67,7 @@ public class DrawArcData {
 
     private void makeArcData()
     {
-        for(Data data : mListData )
+        for(ArcData data : mListData )
         {
             Paint paint = new Paint();
             paint.setAntiAlias(true);
@@ -110,7 +107,7 @@ public class DrawArcData {
 
     void LogData()
     {
-        for(Data data : mListData )
+        for(ArcData data : mListData )
         {
             Log.i("1111", "=============================");
             Log.i("1111", "TYPE: "+data.mType);

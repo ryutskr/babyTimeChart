@@ -1,10 +1,5 @@
 package com.babytimechart.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -28,22 +23,29 @@ import android.widget.TextView;
 
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
-import com.babytimechart.fragment.Fragment_Chart_Pie;
+import com.babytimechart.fragment.Fragment_Chart;
 import com.babytimechart.ui.BabyTimeSpinnerAdapter;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class BabyTimeMainActivity extends Activity {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    ViewPager mViewPager;
-    Spinner mSpinnerToday = null;
-    Spinner mSpinnerOtherDay = null;
-    TextView mTextViewBabyName = null;
-    Context mContext = null;
-    ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
+    private ViewPager mViewPager;
+    private Spinner mSpinnerToday = null;
+    private Spinner mSpinnerOtherDay = null;
+    private TextView mTextViewBabyName = null;
+    private Context mContext = null;
+    private ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
+    private String mLastSelectedToday = "";
+    private String mLastSelectedOtherday = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +60,11 @@ public class BabyTimeMainActivity extends Activity {
         mViewPager.setOnPageChangeListener(mOnPageChangeListener);
 
         mTextViewBabyName = (TextView)getActionBar().getCustomView().findViewById(R.id.actionbar_Babyname);
-        
+
         mSpinnerToday = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Today);
         mSpinnerOtherDay = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Otherday);
         mSpinnerToday.setOnItemSelectedListener(mOnItemSelectedListener);
+        mSpinnerOtherDay.setOnItemSelectedListener(mOnItemSelectedListener);
 
         addDotIndicator();
 
@@ -85,15 +88,18 @@ public class BabyTimeMainActivity extends Activity {
     AdapterView.OnItemSelectedListener mOnItemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            if( view.getParent().equals(mSpinnerToday)){
-                Fragment_Chart_Pie fragmentC = (Fragment_Chart_Pie) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
-                fragmentC.drawChart(adapterView.getSelectedItem().toString());
+            Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+            if( adapterView.equals(mSpinnerToday)){
+                mLastSelectedToday = adapterView.getSelectedItem().toString();
+                fragmentC.changeChartDate(0, mLastSelectedToday);
+            }else if(adapterView.equals(mSpinnerOtherDay)){
+                mLastSelectedOtherday = adapterView.getSelectedItem().toString();
+                fragmentC.changeChartDate(1, mLastSelectedOtherday);
             }
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
-
         }
     };
 
@@ -104,6 +110,8 @@ public class BabyTimeMainActivity extends Activity {
 
         @Override
         public void onPageSelected(int i) {
+            Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+
             for(int k=0; k<mDotIndicator.size();k++){
                 if( k == i)
                     mDotIndicator.get(i).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
@@ -113,8 +121,14 @@ public class BabyTimeMainActivity extends Activity {
 
             if( i == 0 ){
                 mSpinnerOtherDay.setVisibility(View.GONE);
+                mTextViewBabyName.setVisibility(View.VISIBLE);
+//                fragmentC.removeChart(1);
+//                fragmentC.changeChartDate(0, mLastSelectedToday);
             }else if( i == 1 ){
+                mTextViewBabyName.setVisibility(View.GONE);
                 mSpinnerOtherDay.setVisibility(View.VISIBLE);
+                fragmentC.addChart(1, mLastSelectedOtherday);
+                fragmentC.changeChartDate(0, mLastSelectedToday);
             }
         }
 
@@ -156,7 +170,9 @@ public class BabyTimeMainActivity extends Activity {
                         adapter.addItem(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
                     mSpinnerToday.setAdapter(adapter);
+                    mSpinnerOtherDay.setAdapter(adapter);
                     mTextViewBabyName.setText(new Utils().getBabyName(getApplicationContext()));
+
                 }
             }
         });
@@ -187,7 +203,7 @@ public class BabyTimeMainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         // color Change
         if( requestCode == 10 && resultCode == RESULT_OK){
-            Fragment_Chart_Pie fg = (Fragment_Chart_Pie)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+            Fragment_Chart fg = (Fragment_Chart)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
             fg.drawChart(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
         }
     }
@@ -201,7 +217,7 @@ public class BabyTimeMainActivity extends Activity {
 
         @Override
         public Fragment getItem(int position) {
-            return Fragment_Chart_Pie.newInstance(position + 1);
+            return Fragment_Chart.newInstance(position + 1);
         }
 
         @Override

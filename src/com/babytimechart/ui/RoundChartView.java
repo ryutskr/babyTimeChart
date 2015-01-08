@@ -17,9 +17,11 @@ import android.widget.TextView;
 
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
-import com.babytimechart.ui.ChartInfomation.Data;
+import com.babytimechart.ui.DrawArcData.ArcData;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.util.ArrayList;
 
 public class RoundChartView extends View {
 
@@ -37,12 +39,26 @@ public class RoundChartView extends View {
 
     private static final int SELECT_ARC_COLOR = Color.GREEN;
     private static final int SELECT_ARC_STROKE_WIDTH = 2; 	// dip
+    private static final int ADD_RECT_DIVISION = 6;
 
     private Paint mDefaultPaint;
     private RectF mDefaultRect;
     private int mSelectArcId = 0;
 
     private DrawArcData mChartInfo = null;
+    private ArrayList<ChartData> mChartDataArrayList = new ArrayList<ChartData>();
+
+    public class ChartData{
+        RectF mRect = null;
+        DrawArcData mDrawArcData = null;
+        String mDate = null;
+
+        public ChartData (RectF rect, DrawArcData arcData, String date) {
+            this.mRect = rect;
+            this.mDrawArcData = arcData;
+            this.mDate = date;
+        }
+    }
 
     public RoundChartView (Context context) {
         super(context);
@@ -62,31 +78,17 @@ public class RoundChartView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        init(canvas);
-        if( mChartInfo != null ){
-            for(int i=0; i< mChartInfo.getData().size();i++)
-                canvas.drawArc(mDefaultRect, mChartInfo.getData().get(i).getStartAngle(),
-                        mChartInfo.getData().get(i).getSweepAngle(), true, mChartInfo.getData().get(i).getPaint());
-
-            selectArc(canvas);
+        init();
+        for(ChartData data : mChartDataArrayList){
+            if (data.mRect != null && data.mDrawArcData != null) {
+                canvas.drawOval(data.mRect, mDefaultPaint);
+                for( ArcData arcData : data.mDrawArcData.getData() ) {
+                    canvas.drawArc(data.mRect, arcData.getStartAngle(),arcData.getSweepAngle(), true, arcData.getPaint());
+                }
+            }
         }
         customeCircle(canvas);
     }
-
-    private void init(Canvas canvas) {
-
-        mDefaultPaint = new Paint();
-        mDefaultPaint.setColor(DEFAULT_CIRCLE_COLOR);
-        mDefaultPaint.setAntiAlias(true);
-        mDefaultPaint.setStyle(Paint.Style.FILL);
-        mDefaultRect = new RectF();
-
-        int width = getWidth()- (DEFAULT_CIRCLE_LEFT_MARGIN);
-        mDefaultRect.set(DEFAULT_CIRCLE_LEFT_MARGIN, DEFAULT_CIRCLE_TOP_MARGIN, width, width);
-        canvas.drawOval(mDefaultRect, mDefaultPaint);
-    }
-
     private void customeCircle(Canvas canvas)
     {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -97,7 +99,9 @@ public class RoundChartView extends View {
         customePaint.setStyle(Paint.Style.STROKE);
         customePaint.setAntiAlias(true);
         customePaint.setStrokeWidth(metrics.density*CUSTOME_CIRCLE_STROKE_WIDTH);
-        canvas.drawOval(mDefaultRect, customePaint);
+
+        for(ChartData data : mChartDataArrayList)
+            canvas.drawOval(data.mRect, customePaint);
 
         // Center Circle Draw
         RectF rect = new RectF();
@@ -136,7 +140,7 @@ public class RoundChartView extends View {
 
     private void selectArc(Canvas canvas) {
 
-        for( Data data : mChartInfo.getData() ) {
+        for( ArcData data : mChartInfo.getData() ) {
 
             if( data.mId == mSelectArcId ) {
 
@@ -156,6 +160,79 @@ public class RoundChartView extends View {
             }
         }
     }
+    private void init() {
+
+        if( mChartDataArrayList.size() == 0) {
+            mDefaultPaint = new Paint();
+            mDefaultPaint.setColor(DEFAULT_CIRCLE_COLOR);
+            mDefaultPaint.setAntiAlias(true);
+            mDefaultPaint.setStyle(Paint.Style.FILL);
+            mDefaultRect = new RectF();
+
+            int width = getWidth() - (DEFAULT_CIRCLE_LEFT_MARGIN);
+            mDefaultRect.set(DEFAULT_CIRCLE_LEFT_MARGIN, DEFAULT_CIRCLE_TOP_MARGIN, width, width);
+            mChartDataArrayList.add(new ChartData(mDefaultRect, null, null));
+        }
+
+    }
+    public void addChart(int chartIndex, String lastSelecteDate){
+        if( mChartDataArrayList.size() == (chartIndex+1))
+            return;
+
+        RectF rect =  new RectF();
+        rect.set(mChartDataArrayList.get(chartIndex-1).mRect.left+ mChartDataArrayList.get(chartIndex-1).mRect.width()/ADD_RECT_DIVISION,
+                mChartDataArrayList.get(chartIndex-1).mRect.top + mChartDataArrayList.get(chartIndex-1).mRect.width()/ADD_RECT_DIVISION,
+                mChartDataArrayList.get(chartIndex-1).mRect.right - mChartDataArrayList.get(chartIndex-1).mRect.width()/ADD_RECT_DIVISION,
+                mChartDataArrayList.get(chartIndex-1).mRect.bottom- mChartDataArrayList.get(chartIndex-1).mRect.width()/ADD_RECT_DIVISION);
+        mChartDataArrayList.add(new ChartData(rect, null, lastSelecteDate));
+
+        makeChartDatas();
+    }
+
+    public void removeChart(int chartIndex){
+
+        if( mChartDataArrayList.size() < (chartIndex+1))
+            return;
+        mChartDataArrayList.remove(chartIndex);
+        invalidate();
+    }
+
+    public void changeChartDate(int chartIndex, String selecteDate ){
+        init();
+
+        if( (chartIndex+1) > mChartDataArrayList.size())
+            return;
+
+        mChartDataArrayList.get(chartIndex).mDate = selecteDate;
+        makeChartDatas();
+    }
+
+    public void makeChartDatas(){
+        try {
+            BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
+            SQLiteDatabase db = dbhelper.getReadableDatabase();
+
+            String strSelection;
+            Cursor cursor;
+
+            for (int i=0; i<mChartDataArrayList.size();i++) {
+                strSelection = "date ='" + mChartDataArrayList.get(i).mDate + "'";
+                cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
+                if (cursor != null && cursor.getCount() > 0) {
+                    mChartDataArrayList.get(i).mDrawArcData = new DrawArcData(cursor);
+                    cursor.close();
+                } else
+                    mChartDataArrayList.get(i).mDrawArcData = null;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if (mChartDataArrayList.size() > 0 && mChartDataArrayList.get(0).mDrawArcData == null) {
+                new Utils().makeToast(getContext(), getResources().getString(R.string.empty_data));
+            }
+            invalidate();
+        }
+    }
 
     public void drawChart(String selection){
 
@@ -163,13 +240,13 @@ public class RoundChartView extends View {
             BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(getContext());
             SQLiteDatabase db = dbhelper.getReadableDatabase();
 
-            String strSelection = "";
+            String strSelection;
 
             strSelection = "date ='"+ selection +"'";
             Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, strSelection, null, null, null, null);
             if( cursor != null && cursor.getCount() > 0)
             {
-                mChartInfo = new ChartInfomation(getContext(), cursor);
+                mChartInfo = new DrawArcData(cursor);
                 cursor.moveToLast();
                 Utils.mLastTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
                 cursor.close();
@@ -203,7 +280,7 @@ public class RoundChartView extends View {
 
         String strMemo =  "";
 
-        for( Data data : mChartInfo.getData() ){
+        for( ArcData data : mChartInfo.getData() ){
             if ( dAngle > data.mStartAngle && dAngle < (data.mStartAngle+data.mSweepAngle) ){
                 strMemo = data.mMemo;
                 mSelectArcId = data.mId;
