@@ -42,7 +42,7 @@ public class RoundChartView extends View {
     private RectF mDefaultRect;
     private int mSelectArcId = 0;
 
-    private ChartInfomation mChartInfo = null;
+    private DrawArcData mChartInfo = null;
 
     public RoundChartView (Context context) {
         super(context);
