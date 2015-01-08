@@ -32,7 +32,7 @@ public class Fragment_Eating extends Fragment {
 	 * fragment.
 	 */
 	private static final String ARG_SECTION_NUMBER = "section_number";
-	private static final String EXTRA_TODAY_LAST_TIME = "lasttime";
+	private static final String ARG_TODAY_LAST_TIME = "lasttime";
 	private static final int SPACE_IN_TIME = 30 * 60 * 1000;
 	private static final int SPACE_IN_TIME_SMALL 	= 5 * 60 * 1000;
 	private static final int SPACE_IN_TIME_BIG 		= 20 * 60 * 1000;
@@ -70,10 +70,11 @@ public class Fragment_Eating extends Fragment {
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
-	public static Fragment_Eating newInstance(int sectionNumber) {
+	public static Fragment_Eating newInstance(int sectionNumber, long lastMillsTime) {
 		Fragment_Eating fragment = new Fragment_Eating();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+		args.putLong(ARG_TODAY_LAST_TIME, lastMillsTime);
 		fragment.setArguments(args);
 		return fragment;
 	}
@@ -85,7 +86,8 @@ public class Fragment_Eating extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		mLastMillsTime = Utils.mLastTime;
+		if( getArguments() != null )
+			mLastMillsTime = getArguments().getLong(ARG_TODAY_LAST_TIME, 0);
 		View rootView = inflater.inflate(R.layout.fragment_eating, container, false);
 		initView(rootView);
 		return rootView;

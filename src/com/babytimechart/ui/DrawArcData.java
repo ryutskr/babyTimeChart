@@ -12,7 +12,7 @@ import android.util.Log;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.utils.Utils;
 
-public class ChartInfomation {
+public class DrawArcData {
 
     private static final int 	ANGLE_PER_HOUR = 15;
     private static final float  ANGLE_PER_TENMIN = (float)15/6 ;
@@ -42,7 +42,7 @@ public class ChartInfomation {
         float getSweepAngle(){ return mSweepAngle; }
     }
 
-    public ChartInfomation(Context context, Cursor cursor)
+    public DrawArcData(Context context, Cursor cursor)
     {
         mContext = context;
         mCursor = cursor;

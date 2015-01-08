@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -38,8 +39,7 @@ import com.ryutskr.babytimechart.R;
 public class BabyTimeDataActivity extends Activity{
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
-	private static final String EXTRA_TODAY_LAST_TIME = "lasttime";
-	
+
 	private HeightWrappingViewPager mViewPager = null;
 	private SectionsPagerAdapter mSectionsPagerAdapter = null;
 	private SlidingTabLayout mSlidingTabLayout = null;
@@ -47,7 +47,7 @@ public class BabyTimeDataActivity extends Activity{
 	private Button mBtnSave = null;
 	private Button mBtnCancel = null;
 	private int mFragmentIndex = 0;
-
+	private long mLastMillsTime = 0;
 
 	static class ViewPagerItem {
 		private final CharSequence mTitle;
@@ -88,8 +88,8 @@ public class BabyTimeDataActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_data);
 
-        if( getIntent() != null )
-				mFragmentIndex = getIntent().getIntExtra(ARG_SECTION_NUMBER, 0);
+		if( getIntent() != null )
+			mFragmentIndex = getIntent().getIntExtra(ARG_SECTION_NUMBER, 0);
 
 		addTabs();
 
@@ -98,6 +98,7 @@ public class BabyTimeDataActivity extends Activity{
 		mBtnSave.setOnClickListener(mOnClickListener);
 		mBtnCancel.setOnClickListener(mOnClickListener);
 
+		getLastTimeToday();
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
 		mViewPager = (HeightWrappingViewPager) findViewById(R.id.viewPager_Activity_Data);
@@ -120,9 +121,27 @@ public class BabyTimeDataActivity extends Activity{
 			}
 
 		});
-		
+
 		setActinbar();
-	
+	}
+
+	private void getLastTimeToday(){
+		try{
+			BabyTimeDbOpenHelper dbOpenHelper = new BabyTimeDbOpenHelper(this);
+			SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
+			String selection = "date ='"+ new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())) +"'";
+			Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, new String[]{Dbinfo.DB_E_TIME},
+					selection, null, Dbinfo.DB_E_TIME, null, Dbinfo.DB_E_TIME + " DESC");
+
+			if (cursor!= null && cursor.moveToFirst()){
+				mLastMillsTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
+			}
+			cursor.close();
+			db.close();
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	private void setActinbar() {
@@ -202,15 +221,15 @@ public class BabyTimeDataActivity extends Activity{
 				strMemo = strMemo + SEPERATOR + mEditeText_ml.getText() + "ml";
 		}
 
-        EditText mEditeText_Eating_memo = (EditText)fragmentE.getView().findViewById(R.id.editText_Eating_Memo);
-        strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
+		EditText mEditeText_Eating_memo = (EditText)fragmentE.getView().findViewById(R.id.editText_Eating_Memo);
+		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
 
 		TextView mTextView_stime = (TextView)fragmentE.getView().findViewById(R.id.txtView_Eating_stime);
 		TextView mTextView_etime = (TextView)fragmentE.getView().findViewById(R.id.txtView_Eating_etime);
 
 		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
 		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
-		
+
 		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
 		String strEtime = insertDateformat.format(new Date(etime));
 
@@ -226,13 +245,13 @@ public class BabyTimeDataActivity extends Activity{
 		db.close();
 	}
 
-	
+
 	private void getPlayingData() {
 		Fragment_Playing fragmentP = (Fragment_Playing) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
 
 		String strMemo = "";
 		String SEPERATOR = " / ";
-		
+
 		if( ((ToggleButton)fragmentP.getView().findViewById(R.id.tBtn_Playing_mom)).isChecked() )
 			strMemo = getResources().getString(R.string.mom);
 		if( ((ToggleButton)fragmentP.getView().findViewById(R.id.tBtn_Playing_daddy)).isChecked() )
@@ -242,8 +261,8 @@ public class BabyTimeDataActivity extends Activity{
 		if( ((ToggleButton)fragmentP.getView().findViewById(R.id.tBtn_Playing_friend)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.friend);
 
-        EditText mEditeText_Eating_memo = (EditText)fragmentP.getView().findViewById(R.id.editText_Playing_Memo);
-        strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
+		EditText mEditeText_Eating_memo = (EditText)fragmentP.getView().findViewById(R.id.editText_Playing_Memo);
+		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
 
 		TextView mTextView_stime = (TextView)fragmentP.getView().findViewById(R.id.txtView_Playing_stime);
 		TextView mTextView_etime = (TextView)fragmentP.getView().findViewById(R.id.txtView_Playing_etime);
@@ -252,7 +271,7 @@ public class BabyTimeDataActivity extends Activity{
 
 		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
 		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
-		
+
 		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
 		String strEtime = insertDateformat.format(new Date(etime));
 
@@ -267,27 +286,27 @@ public class BabyTimeDataActivity extends Activity{
 		db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
 		db.close();
 	}
-	
+
 	private void getSleepingData() {
 		Fragment_Sleeping fragmentS = (Fragment_Sleeping) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
 
 		String strMemo = "";
 		String SEPERATOR = " / ";
-		
+
 		if( ((RadioButton)fragmentS.getView().findViewById(R.id.rBtn_Sleeping_nap)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.nap);
 		else if( ((RadioButton)fragmentS.getView().findViewById(R.id.rBtn_Sleeping_night)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.night_sleep);
 
-        EditText mEditeText_Eating_memo = (EditText)fragmentS.getView().findViewById(R.id.editText_Sleeping_Memo);
-        strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
+		EditText mEditeText_Eating_memo = (EditText)fragmentS.getView().findViewById(R.id.editText_Sleeping_Memo);
+		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
 
 		TextView mTextView_stime = (TextView)fragmentS.getView().findViewById(R.id.txtView_Sleeping_stime);
 		TextView mTextView_etime = (TextView)fragmentS.getView().findViewById(R.id.txtView_Sleeping_etime);
 
 		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
 		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
-		
+
 		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
 		String strEtime = insertDateformat.format(new Date(etime));
 
@@ -308,62 +327,62 @@ public class BabyTimeDataActivity extends Activity{
 
 		String strMemo = "";
 		String SEPERATOR = " / ";
-		
+
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_bath)).isChecked() )
 			strMemo = getResources().getString(R.string.bath);
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_bath)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.babypoop);
 
-        EditText mEditeText_Eating_memo = (EditText)fragmentE.getView().findViewById(R.id.editText_Etc_Memo);
-        strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
+		EditText mEditeText_Eating_memo = (EditText)fragmentE.getView().findViewById(R.id.editText_Etc_Memo);
+		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
 
-        inserDataToDB(fragmentE, Dbinfo.DB_TYPE_ETC, strMemo);
+		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_ETC, strMemo);
 	}
 
-    public void inserDataToDB(Fragment fm, String type, String memo){
+	public void inserDataToDB(Fragment fm, String type, String memo){
 
-        TextView mTextView_stime = (TextView)fm.getView().findViewById(R.id.txtView_Etc_stime);
-        TextView mTextView_etime = (TextView)fm.getView().findViewById(R.id.txtView_Etc_etime);
+		TextView mTextView_stime = (TextView)fm.getView().findViewById(R.id.txtView_Etc_stime);
+		TextView mTextView_etime = (TextView)fm.getView().findViewById(R.id.txtView_Etc_etime);
 
-        long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
-        long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
+		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
+		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
 
-        SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat dateformat = new SimpleDateFormat("dd");
+		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateformat = new SimpleDateFormat("dd");
 
-        String strEtime = insertDateformat.format(new Date(etime));
-        String strStime = insertDateformat.format(new Date(stime));
+		String strEtime = insertDateformat.format(new Date(etime));
+		String strStime = insertDateformat.format(new Date(stime));
 
-        String strStimedd = dateformat.format(new Date(stime));
-        String strEtimedd = dateformat.format(new Date(etime));
+		String strStimedd = dateformat.format(new Date(stime));
+		String strEtimedd = dateformat.format(new Date(etime));
 
-        try{
-            BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
-            SQLiteDatabase db = dbhelper.getWritableDatabase();
-            ContentValues contentValues = new ContentValues();
+		try{
+			BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
+			SQLiteDatabase db = dbhelper.getWritableDatabase();
+			ContentValues contentValues = new ContentValues();
 
-            if( Integer.parseInt( strEtimedd ) != Integer.parseInt( strStimedd ) ){
-                contentValues.clear();
-                contentValues.put(Dbinfo.DB_TYPE, type );
-                contentValues.put(Dbinfo.DB_DATE, strStime );
-                contentValues.put(Dbinfo.DB_S_TIME, stime );
-                contentValues.put(Dbinfo.DB_E_TIME, etime );
-                contentValues.put(Dbinfo.DB_MEMO, memo );
-                db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-            }
+			if( Integer.parseInt( strEtimedd ) != Integer.parseInt( strStimedd ) ){
+				contentValues.clear();
+				contentValues.put(Dbinfo.DB_TYPE, type );
+				contentValues.put(Dbinfo.DB_DATE, strStime );
+				contentValues.put(Dbinfo.DB_S_TIME, stime );
+				contentValues.put(Dbinfo.DB_E_TIME, etime );
+				contentValues.put(Dbinfo.DB_MEMO, memo );
+				db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
+			}
 
-            contentValues.clear();
-            contentValues.put(Dbinfo.DB_TYPE, type );
-            contentValues.put(Dbinfo.DB_DATE, strEtime );
-            contentValues.put(Dbinfo.DB_S_TIME, stime );
-            contentValues.put(Dbinfo.DB_E_TIME, etime );
-            contentValues.put(Dbinfo.DB_MEMO, memo );
-            db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-            db.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
+			contentValues.clear();
+			contentValues.put(Dbinfo.DB_TYPE, type );
+			contentValues.put(Dbinfo.DB_DATE, strEtime );
+			contentValues.put(Dbinfo.DB_S_TIME, stime );
+			contentValues.put(Dbinfo.DB_E_TIME, etime );
+			contentValues.put(Dbinfo.DB_MEMO, memo );
+			db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
+			db.close();
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 
 	public void addTabs(){
 		mTabs.add(new ViewPagerItem(
@@ -401,13 +420,13 @@ public class BabyTimeDataActivity extends Activity{
 		public Fragment getItem(int position) {
 			switch( position ){
 			case 0:
-				return Fragment_Eating.newInstance(position + 1);
+				return Fragment_Eating.newInstance(position + 1, mLastMillsTime);
 			case 1:
-				return Fragment_Playing.newInstance(position + 1);
+				return Fragment_Playing.newInstance(position + 1, mLastMillsTime);
 			case 2:
-				return Fragment_Sleeping.newInstance(position + 1);
+				return Fragment_Sleeping.newInstance(position + 1, mLastMillsTime);
 			case 3:
-				return Fragment_Etc.newInstance(position + 1);
+				return Fragment_Etc.newInstance(position + 1, mLastMillsTime);
 			default:
 				return null;
 			}

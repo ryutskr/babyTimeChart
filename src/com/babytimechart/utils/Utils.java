@@ -200,7 +200,7 @@ public class Utils{
 		long[] arrtime = {time1,time2, time3, time4, time5, time6};
 		String[] arrType = {"eat", "play", "sleep", "etc","play"};
 		ContentValues contentValues = new ContentValues();
-		for(int i=0; i< 5; i++)
+		for(int i=5; i>0; i--)
 		{
 			strToday1 = insertDateformat1.format(new Date(time -(i* 24*60*60*1000)));
 			for(int k=0; k<5; k++){

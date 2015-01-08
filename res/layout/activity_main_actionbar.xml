@@ -2,32 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    tools:showIn="@layout/styles">
-
+    android:gravity="center" >
 
     <TextView
         android:id="@+id/actionbar_Babyname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:textSize="@dimen/text_size_20"
         android:text="@string/action_text1"
-        android:layout_centerVertical="true"/>
+        android:textSize="@dimen/text_size_20" />
 
     <Spinner
         android:id="@+id/actionbar_spinner_Today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/spinner_prompt"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/actionbar_Babyname"
-        android:layout_centerVertical="true"/>
+        android:entries="@array/spinner_prompt" />
 
     <Spinner
         android:id="@+id/actionbar_spinner_Otherday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/spinner_prompt"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/actionbar_spinner_Today"
-        android:visibility="gone"
-        android:layout_centerVertical="true"/>
+        android:entries="@array/spinner_prompt"
+        android:visibility="gone" />
+
 </RelativeLayout>
