@@ -24,6 +24,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -132,12 +133,12 @@ public class BabyTimeSetting extends ListActivity {
 		case MENU_SLEEP:
 		case MENU_ETC:
 
-			ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(
+			ColorPickerDialog colorpicker = ColorPickerDialog.newInstance(
 					R.string.color_picker_default_title, mColorChoices,
 					item.colorSquare, 5,ColorPickerDialog.SIZE_SMALL);
 
-			colorcalendar.setOnColorSelectedListener(colorcalendarListener);
-			colorcalendar.show(getFragmentManager(), "");
+			colorpicker.setOnColorSelectedListener(colorpickerListener);
+			colorpicker.show(getFragmentManager(), "");
 			break;
 		case MENU_PROFILE:
 		case MENU_BACKUP_DATA:
@@ -158,6 +159,7 @@ public class BabyTimeSetting extends ListActivity {
 		View view = null;
 		String title = null;
 		int dividerColor = 0;
+		int titleColor = 0;
 		mSelectedDialog = id;
 		AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
@@ -165,7 +167,8 @@ public class BabyTimeSetting extends ListActivity {
 		case MENU_PROFILE:
 			view = getLayoutInflater().inflate(R.layout.activity_setting_profile, null);
 			title = mContext.getString(R.string.baby_profile);
-			dividerColor = Color.BLACK;
+			titleColor = getResources().getColor(R.color.setting_dialog_profile_title);
+			dividerColor = getResources().getColor(R.color.setting_dialog_profile_divider);
 			builder.setPositiveButton(mContext.getString(R.string.confirm), mOnDialogBtnClickListener)
 			.setView(view);
 
@@ -184,7 +187,9 @@ public class BabyTimeSetting extends ListActivity {
 		case DATE_PICKER:
 			view = getLayoutInflater().inflate(R.layout.activity_setting_profile_datepicker, null);
 			title = mContext.getString(R.string.selectdate);
-			dividerColor = Color.BLACK;
+			titleColor = getResources().getColor(R.color.setting_dialog_datepicker_title);
+			dividerColor = getResources().getColor(R.color.setting_dialog_datepicker_divider);
+			
 			builder.setPositiveButton(mContext.getString(R.string.save), mOnDialogBtnClickListener)
 			.setNegativeButton(mContext.getString(R.string.cancel), mOnDialogBtnClickListener)
 			.setView(view);
@@ -193,21 +198,24 @@ public class BabyTimeSetting extends ListActivity {
 			break;
 		case MENU_BACKUP_DATA:
 			title = mContext.getString(R.string.data_backup);
-			dividerColor = Color.BLACK;
+			titleColor = getResources().getColor(R.color.setting_dialog_backup_title);
+			dividerColor = getResources().getColor(R.color.setting_dialog_backup_divider);
 			builder.setPositiveButton(mContext.getString(R.string.confirm), mOnDialogBtnClickListener)
 			.setNegativeButton(mContext.getString(R.string.cancel), mOnDialogBtnClickListener)
 			.setMessage(R.string.data_backup_message);
 			break;
 		case MENU_RESTORE_DATA:
 			title = mContext.getString(R.string.data_restore);
-			dividerColor = Color.BLACK;
+			titleColor = getResources().getColor(R.color.setting_dialog_restore_title);
+			dividerColor = getResources().getColor(R.color.setting_dialog_restore_divider);
 			builder.setPositiveButton(mContext.getString(R.string.confirm), mOnDialogBtnClickListener)
 			.setNegativeButton(mContext.getString(R.string.cancel), mOnDialogBtnClickListener)
 			.setMessage(R.string.data_restore_message);
 			break;
 		case MENU_INITIALIZATION_DATA:
 			title = mContext.getString(R.string.data_initialization);
-			dividerColor = Color.BLACK;
+			titleColor = getResources().getColor(R.color.setting_dialog_reset_title);
+			dividerColor = getResources().getColor(R.color.setting_dialog_reset_divider);
 			builder.setPositiveButton(mContext.getString(R.string.confirm), mOnDialogBtnClickListener)
 			.setNegativeButton(mContext.getString(R.string.cancel), mOnDialogBtnClickListener)
 			.setMessage(R.string.data_initialization_message);
@@ -220,10 +228,16 @@ public class BabyTimeSetting extends ListActivity {
 		mAlertDialog.show();
 
 		int titleId = getResources().getIdentifier("alertTitle", "id", "android");
-		((TextView)mAlertDialog.findViewById(titleId)).setTextColor(Color.BLACK);
+		((TextView)mAlertDialog.findViewById(titleId)).setTextColor(titleColor);
 
 		int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
 		mAlertDialog.findViewById(titleDividerId).setBackgroundColor(dividerColor);
+		
+		int btn = getResources().getIdentifier("button1", "id", "android");
+		((Button)mAlertDialog.findViewById(btn)).setTextColor(dividerColor);
+		
+		
+		setResult(RESULT_OK, new Intent("DATA_CHANGE"));
 	}
 
 	android.content.DialogInterface.OnClickListener mOnDialogBtnClickListener = new android.content.DialogInterface.OnClickListener() {
@@ -472,7 +486,7 @@ public class BabyTimeSetting extends ListActivity {
 	}
 
 	// Implement listener to get selected color value
-	ColorPickerSwatch.OnColorSelectedListener colorcalendarListener = new ColorPickerSwatch.OnColorSelectedListener(){
+	ColorPickerSwatch.OnColorSelectedListener colorpickerListener = new ColorPickerSwatch.OnColorSelectedListener(){
 		@Override
 		public void onColorSelected(int color) {
 			BabyTimeSettingMenuAdapter.MenuItemModel item = mAdapter.getItem(mLastPosition);
@@ -480,6 +494,7 @@ public class BabyTimeSetting extends ListActivity {
 				item.colorSquare = color;
 				mAdapter.notifyDataSetChanged();
 				mUtils.setChangeColor(item._id, color);
+				setResult(RESULT_OK);
 			}
 		}
 	};

@@ -133,9 +133,9 @@ public class ColorPickerDialog extends DialogFragment implements OnColorSelected
 		super.onStart();
 		// Custome Color Dialog Title
 		int titleId = getResources().getIdentifier("alertTitle", "id", "android");
-		((TextView)mAlertDialog.findViewById(titleId)).setTextColor(Color.BLACK);
+		((TextView)mAlertDialog.findViewById(titleId)).setTextColor(mSelectedColor);
 		int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
-        mAlertDialog.findViewById(titleDividerId).setBackgroundColor(Color.BLACK);
+        mAlertDialog.findViewById(titleDividerId).setBackgroundColor(mSelectedColor);
 	}
 
 	@Override

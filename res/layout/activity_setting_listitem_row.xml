@@ -41,6 +41,6 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
-        android:background="#DADADC" />
+        android:background="@color/setting_row_divider" />
 
 </LinearLayout>

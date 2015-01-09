@@ -65,6 +65,28 @@ public class DrawArcData {
 //		LogData();
     }
 
+    public void refreshPaint()
+    {
+        for(ArcData data : mListData )
+        {
+            Paint paint = new Paint();
+            paint.setAntiAlias(true);
+            paint.setAlpha(ARC_ALPHA);
+            paint.setStyle(Paint.Style.FILL);
+
+            if( data.mType.equals(Dbinfo.DB_TYPE_EAT) )
+                paint.setColor(Utils.mEatColor);
+            else if( data.mType.equals(Dbinfo.DB_TYPE_PLAY) )
+                paint.setColor(Utils.mPlayColor);
+            else if( data.mType.equals(Dbinfo.DB_TYPE_SLEEP))
+                paint.setColor(Utils.mSleepColor);
+            else if( data.mType.equals(Dbinfo.DB_TYPE_ETC))
+                paint.setColor(Utils.mEtcColor);
+            
+            data.mPaint = paint;
+        }
+    	
+    }
     private void makeArcData()
     {
         for(ArcData data : mListData )

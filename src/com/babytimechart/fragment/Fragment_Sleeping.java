@@ -98,7 +98,7 @@ public class Fragment_Sleeping extends Fragment {
 		mTextView_stime.setContentDescription("" + mMillsSTime);
 		mTextView_etime.setContentDescription("" + mMillsETime);
 
-		mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
+		mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
 
 		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Sleeping_minus_small_time);
 		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_Sleeping_minus_big_time);
@@ -191,12 +191,12 @@ public class Fragment_Sleeping extends Fragment {
 				break;
 
 			case R.id.txtView_Sleeping_stime:
-				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
-				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.papayawhip));
+				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
 				break;
 			case R.id.txtView_Sleeping_etime:
-				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.papayawhip));
-				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.peachpuff));
+				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
+				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
 				break;
 			}
 		}

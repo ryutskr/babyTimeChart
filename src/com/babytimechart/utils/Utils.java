@@ -63,11 +63,15 @@ public class Utils{
 	}
 
 	public void getColorFromPref(Context context){
-		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-		mEatColor = pref.getInt("eatcolor", context.getResources().getColor(R.color.eat_default));
-		mPlayColor = pref.getInt("playcolor", context.getResources().getColor(R.color.play_default));
-		mSleepColor = pref.getInt("sleepcolor", context.getResources().getColor(R.color.sleep_default));
-		mEtcColor = pref.getInt("etccolor", context.getResources().getColor(R.color.etc_default));
+		int [] mColorChoices = getColorsForPicker(context); 
+
+		if(  mColorChoices.length > 0 ){
+			SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+			mEatColor = pref.getInt("eatcolor", mColorChoices[0]);
+			mPlayColor = pref.getInt("playcolor", mColorChoices[1]);
+			mSleepColor = pref.getInt("sleepcolor", mColorChoices[2]);
+			mEtcColor = pref.getInt("etccolor", mColorChoices[3]);
+		}
 	}
 
 	public void deletePreference(Context context){
@@ -100,10 +104,16 @@ public class Utils{
 	}
 
 	public void clearUtilsValues(Context context){
-		mEatColor =  context.getResources().getColor(R.color.eat_default);
-		mPlayColor = context.getResources().getColor(R.color.play_default);
-		mSleepColor = context.getResources().getColor(R.color.sleep_default);
-		mEtcColor = context.getResources().getColor(R.color.etc_default);
+
+		int [] mColorChoices = getColorsForPicker(context); 
+
+		if(  mColorChoices.length > 0 ){
+			mEatColor =  mColorChoices[0];
+			mPlayColor = mColorChoices[1];
+			mSleepColor = mColorChoices[2];
+			mEtcColor = mColorChoices[3];
+		}
+
 		mLastTime = 0;
 		deletePreference(context);
 	}

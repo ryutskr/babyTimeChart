@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/papayawhip"
+    android:background="@color/fragment_background"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -38,7 +38,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="2dip"
-        android:background="@color/mistyrose"/>
+        android:background="@color/black"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -137,7 +137,7 @@
         <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="2dip"
-        android:background="@color/mistyrose"/>
+        android:background="@color/black"/>
         
     <LinearLayout
         android:layout_width="fill_parent"
