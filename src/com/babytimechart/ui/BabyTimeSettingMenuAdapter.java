@@ -42,9 +42,9 @@ public class BabyTimeSettingMenuAdapter extends ArrayAdapter<MenuItemModel>{
 	public class ViewHolderRow {
 		public final TextView titleHolder;
 		public final TextView title_explainHolder;
-		public final CalendarColorSquare squareHolder;
+		public final ColorSquare squareHolder;
 
-		public ViewHolderRow(TextView title, TextView title_explain, CalendarColorSquare squareHolder) {
+		public ViewHolderRow(TextView title, TextView title_explain, ColorSquare squareHolder) {
 			this.titleHolder = title;
 			this.title_explainHolder = title_explain;
 			this.squareHolder=squareHolder;
@@ -85,7 +85,7 @@ public class BabyTimeSettingMenuAdapter extends ArrayAdapter<MenuItemModel>{
 
 				TextView title = (TextView) view.findViewById(R.id.row_title);
 				TextView title_explain = (TextView) view.findViewById(R.id.row_explain);
-				CalendarColorSquare square = (CalendarColorSquare) view.findViewById(R.id.colorsquare);
+				ColorSquare square = (ColorSquare) view.findViewById(R.id.colorsquare);
 
 				title.setText(item.title);
 				title_explain.setText(item.title_explain);

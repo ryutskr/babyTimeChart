@@ -1,10 +1,5 @@
 package com.babytimechart.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -21,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -34,6 +30,11 @@ import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.ui.SlidingTabLayout;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 public class BabyTimeDataActivity extends Activity{
@@ -93,6 +94,7 @@ public class BabyTimeDataActivity extends Activity{
 
 		addTabs();
 
+        RelativeLayout mainLayout =  (RelativeLayout)findViewById(R.id.main_layout);
 		mBtnSave = (Button)findViewById(R.id.btn_Activity_Data_Save);
 		mBtnCancel = (Button)findViewById(R.id.btn_Activity_Data_Cancel);
 		mBtnSave.setOnClickListener(mOnClickListener);
@@ -123,6 +125,7 @@ public class BabyTimeDataActivity extends Activity{
 		});
 
 		setActinbar();
+        new Utils().AddBanner(this, mainLayout);
 	}
 
 	private void getLastTimeToday(){

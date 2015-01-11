@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -26,6 +26,7 @@ import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.fragment.Fragment_Chart;
 import com.babytimechart.ui.BabyTimeSpinnerAdapter;
+import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
 
@@ -37,224 +38,222 @@ import java.util.Locale;
 
 public class BabyTimeMainActivity extends Activity {
 
-	SectionsPagerAdapter mSectionsPagerAdapter;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private HeightWrappingViewPager mViewPager;
+    private Spinner mSpinnerToday = null;
+    private Spinner mSpinnerOtherDay = null;
+    private TextView mTextViewBabyName = null;
+    private Context mContext = null;
+    private ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
+    private String mLastSelectedToday = "";
+    private String mLastSelectedOtherday = "";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mContext = this;
 
-	private ViewPager mViewPager;
-	private Spinner mSpinnerToday = null;
-	private Spinner mSpinnerOtherDay = null;
-	private TextView mTextViewBabyName = null;
-	private Context mContext = null;
-	private ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
-	private String mLastSelectedToday = "";
-	private String mLastSelectedOtherday = "";
+        RelativeLayout main_layout = (RelativeLayout)findViewById(R.id.main_layout);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		mContext = this;
+        mViewPager = (HeightWrappingViewPager) findViewById(R.id.pagermain);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setOnPageChangeListener(mOnPageChangeListener);
 
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mTextViewBabyName = (TextView)getActionBar().getCustomView().findViewById(R.id.actionbar_Babyname);
 
-		mViewPager = (ViewPager) findViewById(R.id.pagermain);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
-		mViewPager.setOnPageChangeListener(mOnPageChangeListener);
+        mSpinnerToday = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Today);
+        mSpinnerOtherDay = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Otherday);
+        mSpinnerToday.setOnItemSelectedListener(mOnItemSelectedListener);
+        mSpinnerOtherDay.setOnItemSelectedListener(mOnItemSelectedListener);
 
-		mTextViewBabyName = (TextView)getActionBar().getCustomView().findViewById(R.id.actionbar_Babyname);
+        addDotIndicator();
 
-		mSpinnerToday = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Today);
-		mSpinnerOtherDay = (Spinner) getActionBar().getCustomView().findViewById(R.id.actionbar_spinner_Otherday);
-		mSpinnerToday.setOnItemSelectedListener(mOnItemSelectedListener);
-		mSpinnerOtherDay.setOnItemSelectedListener(mOnItemSelectedListener);
+        Utils utils = new Utils();
+        utils.getColorFromPref(this);
+        utils.AddBanner(this, main_layout);
+        setSpinnerData();
+    }
 
-		addDotIndicator();
+    private void addDotIndicator() {
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dotindicater);
 
-		new Utils().getColorFromPref(this);
+        for(int i = 0; i <mSectionsPagerAdapter.getCount(); i++){
+            ImageView imageView = new ImageView(this);
+            if( i== 0)
+                imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
+            else
+                imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
+            linearLayout.addView(imageView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            mDotIndicator.add(imageView);
+        }
+    }
 
-		setSpinnerData();
-	}
+    AdapterView.OnItemSelectedListener mOnItemSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+            if( adapterView.equals(mSpinnerToday)){
+                mLastSelectedToday = adapterView.getSelectedItem().toString();
+                fragmentC.changeChartDate(0, mLastSelectedToday);
 
-	private void addDotIndicator() {
-		LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dotindicater);
+                if( mLastSelectedToday.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))))
+                    fragmentC.setEnableBtn(true);
+                else
+                    fragmentC.setEnableBtn(false);
 
-		for(int i = 0; i <mSectionsPagerAdapter.getCount(); i++){
-			ImageView imageView = new ImageView(this);
-			if( i== 0)
-				imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
-			else
-				imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
-			linearLayout.addView(imageView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-			mDotIndicator.add(imageView);
-		}
-	}
+            }else if(adapterView.equals(mSpinnerOtherDay)){
+                mLastSelectedOtherday = adapterView.getSelectedItem().toString();
+                fragmentC.changeChartDate(1, mLastSelectedOtherday);
+            }
+        }
 
-	AdapterView.OnItemSelectedListener mOnItemSelectedListener = new AdapterView.OnItemSelectedListener() {
-		@Override
-		public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-			Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
-			if( adapterView.equals(mSpinnerToday)){
-				mLastSelectedToday = adapterView.getSelectedItem().toString();
-				fragmentC.changeChartDate(0, mLastSelectedToday);
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+        }
+    };
 
-				if( mLastSelectedToday.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))))
-					fragmentC.setEnableBtn(true);
-				else
-					fragmentC.setEnableBtn(false);
+    ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int i, float v, int i2) {
+        }
 
-			}else if(adapterView.equals(mSpinnerOtherDay)){
-				mLastSelectedOtherday = adapterView.getSelectedItem().toString();
-				fragmentC.changeChartDate(1, mLastSelectedOtherday);
-			}
-		}
+        @Override
+        public void onPageSelected(int i) {
+            Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
 
-		@Override
-		public void onNothingSelected(AdapterView<?> adapterView) {
-		}
-	};
+            for(int k=0; k<mDotIndicator.size();k++){
+                if( k == i)
+                    mDotIndicator.get(i).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
+                else
+                    mDotIndicator.get(k).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
+            }
 
-	ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
-		@Override
-		public void onPageScrolled(int i, float v, int i2) {
-		}
+            if( i == 0 ){
+                mSpinnerOtherDay.setVisibility(View.GONE);
+                mTextViewBabyName.setVisibility(View.VISIBLE);
+                fragmentC.changeChartDate(0, mLastSelectedToday);
 
-		@Override
-		public void onPageSelected(int i) {
-			Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+                if( mLastSelectedToday.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))))
+                    fragmentC.setEnableBtn(true);
+                else
+                    fragmentC.setEnableBtn(false);
+            }else if( i == 1 ){
+                mTextViewBabyName.setVisibility(View.GONE);
+                mSpinnerOtherDay.setVisibility(View.VISIBLE);
+                fragmentC.addChart(1, mLastSelectedOtherday);
+                fragmentC.changeChartDate(0, mLastSelectedToday);
+            }
+        }
 
-			for(int k=0; k<mDotIndicator.size();k++){
-				if( k == i)
-					mDotIndicator.get(i).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
-				else
-					mDotIndicator.get(k).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
-			}
-
-			if( i == 0 ){
-				mSpinnerOtherDay.setVisibility(View.GONE);
-				mTextViewBabyName.setVisibility(View.VISIBLE);
-				fragmentC.changeChartDate(0, mLastSelectedToday);
-
-				if( mLastSelectedToday.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))))
-					fragmentC.setEnableBtn(true);
-				else
-					fragmentC.setEnableBtn(false);
-			}else if( i == 1 ){
-				mTextViewBabyName.setVisibility(View.GONE);
-				mSpinnerOtherDay.setVisibility(View.VISIBLE);
-				fragmentC.addChart(1, mLastSelectedOtherday);
-				fragmentC.changeChartDate(0, mLastSelectedToday);
-			}
-		}
-
-		@Override
-		public void onPageScrollStateChanged(int i) {
-		}
-	};
-
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
-
-	public void setSpinnerData(){
-		new Handler().post(new Runnable() {
-			@Override
-			public void run() {
-				BabyTimeSpinnerAdapter adapter = new BabyTimeSpinnerAdapter(getApplicationContext());
-				try{
-					adapter.addItem(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
-					BabyTimeDbOpenHelper dbOpenHelper = new BabyTimeDbOpenHelper(mContext);
-					SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
-
-					Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, new String[]{Dbinfo.DB_DATE,Dbinfo.DB_E_TIME},
-							null, null, Dbinfo.DB_DATE, null, Dbinfo.DB_DATE + " DESC");
-
-					if( cursor != null ){
-						cursor.moveToFirst();
-						
-						if( !cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE)).equals(adapter.getItem(0))){
-							adapter.addItem(cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE)));
-						}
-						
-						while (cursor.moveToNext()){
-							adapter.addItem(cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE)));
-						}
-						cursor.close();
-					}
-					db.close();
-
-				}catch (Exception e){
-					e.printStackTrace();
-				}finally {
-					mSpinnerToday.setAdapter(adapter);
-					mSpinnerOtherDay.setAdapter(adapter);
-					mTextViewBabyName.setText(new Utils().getBabyName(getApplicationContext()));
-				}
-			}
-		});
-	}
+        @Override
+        public void onPageScrollStateChanged(int i) {
+        }
+    };
 
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
-		getMenuInflater().inflate(R.menu.main_menu, menu);
-		return true;
-	}
+    public void setSpinnerData(){
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                BabyTimeSpinnerAdapter adapter = new BabyTimeSpinnerAdapter(getApplicationContext());
+                try{
+                    BabyTimeDbOpenHelper dbOpenHelper = new BabyTimeDbOpenHelper(mContext);
+                    SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			Intent intent = new Intent(this, BabyTimeSetting.class);
-			startActivityForResult(intent, 10);
+                    Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, new String[]{Dbinfo.DB_DATE,Dbinfo.DB_E_TIME},
+                            null, null, Dbinfo.DB_DATE, null, Dbinfo.DB_DATE + " DESC");
 
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+                    while (cursor != null && cursor.moveToNext()) {
+                        if( adapter.getCount() == 0 && !cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE))
+                                .equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))) )
+                            adapter.addItem(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+                        adapter.addItem(cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE)));
+                    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		// color Change
-		if( requestCode == 10 && resultCode == RESULT_OK){
-			Fragment_Chart fg = (Fragment_Chart)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
-			fg.refreshChart();
+                    cursor.close();
+                    db.close();
 
-			if( data != null && data.getAction().equals("DATA_CHANGE"))
-				setSpinnerData();
-		}
-	}
+                }catch (Exception e){
+                    e.printStackTrace();
+                }finally {
+                    if( adapter.getCount() == 0 )
+                        adapter.addItem(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+                }
+
+                mSpinnerToday.setAdapter(adapter);
+                mSpinnerOtherDay.setAdapter(adapter);
+                mTextViewBabyName.setText(new Utils().getBabyName(getApplicationContext()));
+            }
+        });
+    }
 
 
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-		public SectionsPagerAdapter(FragmentManager fm){
-			super(fm);
-		}
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-		@Override
-		public Fragment getItem(int position) {
-			Fragment_Chart fm = Fragment_Chart.newInstance(position + 1);
-			return fm;
-		}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, BabyTimeSetting.class);
+            startActivityForResult(intent, 10);
 
-		@Override
-		public int getCount() {
-			return 2;
-		}
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-		@Override
-		public CharSequence getPageTitle(int position) {
-			Locale l = Locale.getDefault();
-			switch (position) {
-			case 0:
-				return getString(R.string.x).toUpperCase(l);
-			case 1:
-				return getString(R.string.y).toUpperCase(l);
-			}
-			return null;
-		}
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // color Change
+        if( requestCode == 10 && resultCode == RESULT_OK){
+            Fragment_Chart fg = (Fragment_Chart)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+            fg.refreshChart();
+
+            if( data != null && data.getAction().equals("DATA_CHANGE"))
+                setSpinnerData();
+        }
+    }
+
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm){
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Fragment_Chart fm = Fragment_Chart.newInstance(position + 1);
+            return fm;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            Locale l = Locale.getDefault();
+            switch (position) {
+                case 0:
+                    return getString(R.string.x).toUpperCase(l);
+                case 1:
+                    return getString(R.string.y).toUpperCase(l);
+            }
+            return null;
+        }
+    }
 }

@@ -25,7 +25,7 @@
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:textSize="@dimen/text_size_10" />
 
-        <com.babytimechart.ui.CalendarColorSquare
+        <com.babytimechart.ui.ColorSquare
             android:id="@+id/colorsquare"
             android:layout_width="28dip"
             android:layout_height="28dip"

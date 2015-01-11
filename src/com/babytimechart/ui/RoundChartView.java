@@ -1,7 +1,5 @@
 package com.babytimechart.ui;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,17 +13,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.DrawArcData.ArcData;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.util.ArrayList;
 
 public class RoundChartView extends View {
 
@@ -44,7 +42,7 @@ public class RoundChartView extends View {
 
 	private static final int SELECT_ARC_COLOR = Color.BLACK;
 	private static final int SELECT_ARC_STROKE_WIDTH = 2; 	// dip
-	private static final int ADD_RECT_DIVISION = 6;
+	private static final int ADD_RECT_DIVISION = 4;
 
 	private Paint mDefaultPaint;
 	private RectF mDefaultRect;

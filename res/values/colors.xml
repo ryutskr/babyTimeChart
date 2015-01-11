@@ -8,24 +8,24 @@
     <color name="fragment_background">#ffffff</color>
 
     <!-- Seeting Color -->
-    <color name="setting_heder">#8fbe00</color>
-    <color name="setting_header_divider">#8fbe00</color>
+    <color name="setting_heder">#bb00ff</color>
+    <color name="setting_header_divider">#bb00ff</color>
     <color name="setting_row_divider">#80DADADC</color>
 
-    <color name="setting_dialog_profile_title">#f9d423</color>
-    <color name="setting_dialog_profile_divider">#f9d423</color>
+    <color name="setting_dialog_profile_title">#bb00ff</color>
+    <color name="setting_dialog_profile_divider">#bb00ff</color>
     
-    <color name="setting_dialog_datepicker_title">#33b5e5</color>
-    <color name="setting_dialog_datepicker_divider">#33b5e5</color>
+    <color name="setting_dialog_datepicker_title">#bb00ff</color>
+    <color name="setting_dialog_datepicker_divider">#bb00ff</color>
     
-    <color name="setting_dialog_backup_title">#00dffc</color>
-    <color name="setting_dialog_backup_divider">#00dffc</color>
+    <color name="setting_dialog_backup_title">#bb00ff</color>
+    <color name="setting_dialog_backup_divider">#bb00ff</color>
 
     <color name="setting_dialog_restore_title">#bb00ff</color>
     <color name="setting_dialog_restore_divider">#bb00ff</color>
     
-    <color name="setting_dialog_reset_title">#c02942</color>
-    <color name="setting_dialog_reset_divider">#c02942</color>
+    <color name="setting_dialog_reset_title">#bb00ff</color>
+    <color name="setting_dialog_reset_divider">#bb00ff</color>
     
     <color name="tab_divider">#888888</color>
     <color name="horizen_divider">#000000</color>

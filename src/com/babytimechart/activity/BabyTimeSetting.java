@@ -1,13 +1,5 @@
 package com.babytimechart.activity;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-
 import android.accounts.AccountManager;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -17,11 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -48,6 +37,14 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.ryutskr.babytimechart.R;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 
 public class BabyTimeSetting extends ListActivity {
 
@@ -80,7 +77,6 @@ public class BabyTimeSetting extends ListActivity {
 	// Google Drive 
 	private GoogleAccountCredential mCredential;
 	static final int 				REQUEST_ACCOUNT_PICKER = 1;
-	static final int 				REQUEST_AUTHORIZATION = 2;
 	private Drive 			mService;
 	private Uri 				mFileUri;
 
@@ -90,6 +86,7 @@ public class BabyTimeSetting extends ListActivity {
 		setActinbar();
 		initMenu();
 		mContext = this;
+        getListView().getParent()
 	}
 
 	private void setActinbar() {
@@ -233,8 +230,11 @@ public class BabyTimeSetting extends ListActivity {
 		int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
 		mAlertDialog.findViewById(titleDividerId).setBackgroundColor(dividerColor);
 		
-		int btn = getResources().getIdentifier("button1", "id", "android");
-		((Button)mAlertDialog.findViewById(btn)).setTextColor(dividerColor);
+		int btn1 = getResources().getIdentifier("button1", "id", "android");
+		((Button)mAlertDialog.findViewById(btn1)).setTextColor(dividerColor);
+
+        int btn2 = getResources().getIdentifier("button2", "id", "android");
+        ((Button)mAlertDialog.findViewById(btn2)).setTextColor(dividerColor);
 		
 		
 		setResult(RESULT_OK, new Intent("DATA_CHANGE"));
