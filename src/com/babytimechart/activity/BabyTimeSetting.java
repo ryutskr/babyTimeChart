@@ -86,7 +86,6 @@ public class BabyTimeSetting extends ListActivity {
 		setActinbar();
 		initMenu();
 		mContext = this;
-        getListView().getParent()
 	}
 
 	private void setActinbar() {
