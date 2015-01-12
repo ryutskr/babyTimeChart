@@ -8,41 +8,34 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="4" >
+        android:gravity="center">
 
-        <ToggleButton
-            android:id="@+id/tBtn_Playing_mom"
+        <CheckBox
+            android:id="@+id/cBox_Playing_mom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="@string/mom"
-            android:textOn="@string/mom" />
+            android:checked="true"
+            android:text="@string/mom" />
 
-        <ToggleButton
-            android:id="@+id/tBtn_Playing_daddy"
+        <CheckBox
+            android:id="@+id/cBox_Playing_daddy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="@string/daddy"
-            android:textOn="@string/daddy" />
-
-        <ToggleButton
-            android:id="@+id/tBtn_Playing_family"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/daddy" />
+        <CheckBox
+            android:id="@+id/cBox_Playing_family"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textOff="@string/family"
-            android:textOn="@string/family" />
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/family" />
 
-        <ToggleButton
-            android:id="@+id/tBtn_Playing_friend"
+        <CheckBox
+            android:id="@+id/cBox_Playing_friend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"            
-            android:textOff="@string/friend"
-            android:textOn="@string/friend" />
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/friend" />
     </LinearLayout>
 
     <LinearLayout

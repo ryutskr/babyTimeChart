@@ -1,8 +1,5 @@
 package com.babytimechart.fragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +8,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -106,7 +105,7 @@ public class Fragment_Sleeping extends Fragment {
 		mTextView_stime.setContentDescription("" + mMillsSTime);
 		mTextView_etime.setContentDescription("" + mMillsETime);
 
-		mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+		mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 
 		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Sleeping_minus_small_time);
 		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_Sleeping_minus_big_time);
@@ -216,12 +215,12 @@ public class Fragment_Sleeping extends Fragment {
 				break;
 
 			case R.id.txtView_Sleeping_stime:
-				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+				mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
 				break;
 			case R.id.txtView_Sleeping_etime:
 				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
-				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+				mTextView_etime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 				break;
 			}
 		}

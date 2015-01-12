@@ -13,7 +13,6 @@
     <dimen name="deiver_height_2">2dp</dimen>
     <dimen name="deiver_height_4">4dp</dimen>
     <dimen name="toast_yoffset">70dp</dimen>
-    
-    
 
+    <dimen name="btn_stoke_size">8dip</dimen>
 </resources>

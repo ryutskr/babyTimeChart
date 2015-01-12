@@ -1,22 +1,19 @@
 package com.babytimechart.fragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -32,8 +29,6 @@ public class Fragment_Playing extends Fragment {
 	private static final int ONE_MIN = 1 * 60 * 1000;
 	private static final int SPACE_IN_TIME_SMALL 	= 5 * 60 * 1000;
 	private static final int SPACE_IN_TIME_BIG 		= 20 * 60 * 1000;
-
-	private ToggleButton tbtn_mom = null;
 
 	private TextView mTextView_stime = null;
 	private TextView mTextView_etime = null;
@@ -76,8 +71,6 @@ public class Fragment_Playing extends Fragment {
 
 	public void initView(View rootView)
 	{
-		tbtn_mom  = (ToggleButton)rootView.findViewById(R.id.tBtn_Playing_mom);
-
 		mTextView_stime = (TextView)rootView.findViewById(R.id.txtView_Playing_stime);
 		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_Playing_etime);    
 		mTextView_stime.setOnClickListener(mOnClickListener);
@@ -112,7 +105,7 @@ public class Fragment_Playing extends Fragment {
 		mTextView_stime.setContentDescription("" + mMillsSTime);
 		mTextView_etime.setContentDescription("" + mMillsETime);
 
-		mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color. selected_time));
+		mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 
 		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Playing_minus_small_time);
 		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_Playing_minus_big_time);
@@ -123,7 +116,6 @@ public class Fragment_Playing extends Fragment {
 		mButton_time_plus_small.setOnClickListener(mOnClickListener);
 		mButton_time_plus_big.setOnClickListener(mOnClickListener);
 
-		tbtn_mom.setChecked(true);
 	}
 
 
@@ -225,12 +217,12 @@ public class Fragment_Playing extends Fragment {
 				break;
 
 			case R.id.txtView_Playing_stime:
-				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+				mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
 				break;
 			case R.id.txtView_Playing_etime:
 				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
-				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+				mTextView_etime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 				break;
 			}
 		}

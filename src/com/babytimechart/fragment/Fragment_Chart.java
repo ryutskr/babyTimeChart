@@ -1,8 +1,5 @@
 package com.babytimechart.fragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -11,11 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.babytimechart.activity.BabyTimeDataActivity;
 import com.babytimechart.activity.BabyTimeMainActivity;
 import com.babytimechart.ui.RoundChartView;
+import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -29,6 +31,13 @@ public class Fragment_Chart extends Fragment {
 	private RoundChartView mPieChart = null;
 	private int mSelectionNum = -1;
 	private View rootView = null;
+
+    private ImageView mImageViewLegend_eat;
+    private ImageView mImageViewLegend_play;
+    private ImageView mImageViewLegend_sleep;
+    private ImageView mImageViewLegend_etc;
+
+
 
 	/**
 	 * Returns a new instance of this fragment for the given section number.
@@ -54,6 +63,12 @@ public class Fragment_Chart extends Fragment {
 
 		mPieChart = (RoundChartView)rootView.findViewById(R.id.roundchartview);
 
+        mImageViewLegend_eat = (ImageView)rootView.findViewById(R.id.imgview_legend_eat);
+        mImageViewLegend_play = (ImageView)rootView.findViewById(R.id.imgview_legend_play);
+        mImageViewLegend_sleep = (ImageView)rootView.findViewById(R.id.imgview_legend_sleep);
+        mImageViewLegend_etc = (ImageView)rootView.findViewById(R.id.imgview_legend_etc);
+        setLegendColor();
+
 		if( mSelectionNum == 1) {
 			rootView.findViewById(R.id.feedingBtn).setOnClickListener(mOnClickListener);
 			rootView.findViewById(R.id.playingBtn).setOnClickListener(mOnClickListener);
@@ -68,6 +83,12 @@ public class Fragment_Chart extends Fragment {
 		return rootView;
 	}
 
+    public void setLegendColor(){
+        mImageViewLegend_eat.setBackgroundColor(Utils.mEatColor);
+        mImageViewLegend_play.setBackgroundColor(Utils.mPlayColor);
+        mImageViewLegend_sleep.setBackgroundColor(Utils.mSleepColor);
+        mImageViewLegend_etc.setBackgroundColor(Utils.mEtcColor);
+    }
 	public void setEnableBtn(boolean enabled){
 		if( mSelectionNum == 2 )
 			return;

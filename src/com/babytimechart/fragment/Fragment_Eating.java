@@ -1,9 +1,5 @@
 package com.babytimechart.fragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,11 +14,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -39,9 +36,9 @@ public class Fragment_Eating extends Fragment {
 	private static final int SPACE_IN_TIME_SMALL 	= 5 * 60 * 1000;
 	private static final int SPACE_IN_TIME_BIG 		= 20 * 60 * 1000;
 
-	private ToggleButton tbtn_mm = null;
-	private ToggleButton tbtn_mp = null;
-	private ToggleButton tbtn_bf = null;
+	private RadioButton mRadio_mm = null;
+	private RadioButton mRadio_mp = null;
+	private RadioButton mRadio_bf = null;
 
 	private RadioButton mRadio_direct = null;
 	private RadioButton mRadio_bottle = null;
@@ -97,12 +94,12 @@ public class Fragment_Eating extends Fragment {
 
 	public void initView(View rootView)
 	{
-		tbtn_mm  = (ToggleButton)rootView.findViewById(R.id.tBtn_Eating_mm);
-		tbtn_mp  = (ToggleButton)rootView.findViewById(R.id.tBtn_Eating_mp);
-		tbtn_bf  = (ToggleButton)rootView.findViewById(R.id.tBtn_Eating_bf);
-		tbtn_mm.setOnCheckedChangeListener(mOnCheckedChangeListener);
-		tbtn_mp.setOnCheckedChangeListener(mOnCheckedChangeListener);
-		tbtn_bf.setOnCheckedChangeListener(mOnCheckedChangeListener);
+		mRadio_mm  = (RadioButton)rootView.findViewById(R.id.rBtn_Eating_mm);
+		mRadio_mp  = (RadioButton)rootView.findViewById(R.id.rBtn_Eating_mp);
+		mRadio_bf  = (RadioButton)rootView.findViewById(R.id.rBtn_Eating_bf);
+		mRadio_mm.setOnCheckedChangeListener(mOnCheckedChangeListener);
+        mRadio_mp.setOnCheckedChangeListener(mOnCheckedChangeListener);
+		mRadio_bf.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
 		mRadio_direct = (RadioButton)rootView.findViewById(R.id.rBtn_Eating_direct);
 		mRadio_bottle = (RadioButton)rootView.findViewById(R.id.rBtn_Eating_bottle);
@@ -157,7 +154,7 @@ public class Fragment_Eating extends Fragment {
 		mTextView_stime.setContentDescription("" + mMillsSTime);
 		mTextView_etime.setContentDescription("" + mMillsETime);
 
-		mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+        mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 
 		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Eating_minus_small_time);
 		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_Eating_minus_big_time);
@@ -168,7 +165,7 @@ public class Fragment_Eating extends Fragment {
 		mButton_time_plus_small.setOnClickListener(mOnClickListener);
 		mButton_time_plus_big.setOnClickListener(mOnClickListener);
 
-		tbtn_mm.setChecked(true);
+		mRadio_mm.setChecked(true);
 	}
 
 	OnCheckedChangeListener mOnCheckedChangeListener = new OnCheckedChangeListener() {
@@ -180,30 +177,29 @@ public class Fragment_Eating extends Fragment {
 
 			switch( buttonView.getId())
 			{
-			case R.id.tBtn_Eating_mm:
+			case R.id.rBtn_Eating_mm:
 				mLinearLayout_radio.setVisibility(View.VISIBLE);
 				mLinearLayout_volume.setVisibility(View.GONE);
 
-				tbtn_mp.setChecked(false);
-				tbtn_bf.setChecked(false);
+				mRadio_mp.setChecked(false);
+				mRadio_bf.setChecked(false);
 				mRadio_direct.setChecked(true);
 				mRadio_bottle.setChecked(false);
 
 				break;
-			case R.id.tBtn_Eating_mp:
+			case R.id.rBtn_Eating_mp:
 				mLinearLayout_radio.setVisibility(View.GONE);
 				mLinearLayout_volume.setVisibility(View.VISIBLE);
 
-
-				tbtn_mm.setChecked(false);
-				tbtn_bf.setChecked(false);
+				mRadio_mm.setChecked(false);
+				mRadio_bf.setChecked(false);
 				break;
-			case R.id.tBtn_Eating_bf:
+			case R.id.rBtn_Eating_bf:
 				mLinearLayout_radio.setVisibility(View.GONE);
 				mLinearLayout_volume.setVisibility(View.VISIBLE);
 
-				tbtn_mm.setChecked(false);
-				tbtn_mp.setChecked(false);
+				mRadio_mm.setChecked(false);
+				mRadio_mp.setChecked(false);
 				break;
 			case R.id.rBtn_Eating_direct:
 				mLinearLayout_volume.setVisibility(View.GONE);
@@ -329,12 +325,13 @@ public class Fragment_Eating extends Fragment {
 				break;
 
 			case R.id.txtView_Eating_stime:
-				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+                mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
+
 				break;
 			case R.id.txtView_Eating_etime:
 				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
-				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.selected_time));
+				mTextView_etime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
 				break;
 			}
 		}

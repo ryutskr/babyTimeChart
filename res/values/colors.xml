@@ -5,13 +5,16 @@
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="gray">#555152</color>
     <color name="fragment_background">#ffffff</color>
+    <color name="theme_color">#c7f464</color>
 
-    <!--  Action Bar  #669900 -->
-    <color name="ab_spinner1">#ffffff</color>
-    <color name="ab_spinner2">#ffffff</color>
+    <!--  Action Bar  #c7f464 -->
+    <color name="ab_spinner1">#555152</color>
+    <color name="ab_spinner2">#555152</color>
     <!-- Main Activity -->
-    <color name="main_divider">#669900</color>
+    <color name="main_divider">#c7f464</color>
+    <color name="chart_btn_text_color">#555152</color>
 
     <!-- Setting Color -->
     <color name="setting_heder">#bb00ff</color>

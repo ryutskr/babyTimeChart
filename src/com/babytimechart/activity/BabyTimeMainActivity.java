@@ -1,10 +1,5 @@
 package com.babytimechart.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -33,8 +28,12 @@ import com.babytimechart.fragment.Fragment_Chart;
 import com.babytimechart.ui.BabyTimeSpinnerAdapter;
 import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.utils.Utils;
-import com.google.android.gms.ads.InterstitialAd;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class BabyTimeMainActivity extends Activity {
@@ -49,7 +48,7 @@ public class BabyTimeMainActivity extends Activity {
     private String mLastSelectedToday = "";
     private String mLastSelectedOtherday = "";
     
-    private InterstitialAd mInterstitial;
+//    private InterstitialAd mInterstitial;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,25 +147,14 @@ public class BabyTimeMainActivity extends Activity {
                 fragmentC.addChart(1, mLastSelectedOtherday);
                 fragmentC.changeChartDate(0, mLastSelectedToday);
             }
+
+            fragmentC.setLegendColor();
         }
 
         @Override
         public void onPageScrollStateChanged(int i) {
         }
     };
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        
-//        mInterstitial = new Utils().addInterstitialAd(this);
-//        
-//        if (mInterstitial.isLoaded()) {
-//        	mInterstitial.show();
-//          }
-    }
-
     public void setSpinnerData(){
         new Handler().post(new Runnable() {
             @Override
@@ -230,11 +218,23 @@ public class BabyTimeMainActivity extends Activity {
         if( requestCode == 10 && resultCode == RESULT_OK){
             Fragment_Chart fg = (Fragment_Chart)mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
             fg.refreshChart();
+            fg.setLegendColor();
 
             if( data != null && data.getAction().equals("DATA_CHANGE"))
                 setSpinnerData();
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        mInterstitial = new Utils().addInterstitialAd(this);
+//
+//        if (mInterstitial.isLoaded()) {
+//        	mInterstitial.show();
+//          }
+    }
+
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

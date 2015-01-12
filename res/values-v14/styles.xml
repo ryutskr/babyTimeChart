@@ -3,10 +3,16 @@
     <!--
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.    -->
+        res/values-v11/styles.xml on API 14+ devices.
+    -->
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
         <!-- API 14 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
+
+        <item name="android:listChoiceIndicatorMultiple">@drawable/green_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/green_btn_radio_holo_light</item>
+        <item name="android:buttonStyle">@style/Buttongreen</item>
+
     </style>
     
     <style name="Widget.ActionBar" parent="android:Widget.ActionBar">
@@ -15,5 +21,9 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:customNavigationLayout">@layout/activity_main_actionbar</item>
     </style>
-    
+
+    <style name="Buttongreen" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/green_btn_default_holo_light</item>
+    </style>
+
 </resources>

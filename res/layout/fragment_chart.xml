@@ -14,23 +14,59 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <ImageView
+            android:id="@+id/imgview_legend_eat"
             android:layout_width="15dip"
-            android:layout_height="15dip"
-            android:layout_centerVertical="true"
-            android:background="@color/setting_dialog_backup_divider" />
+            android:layout_height="15dip" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
             android:text="@string/eating" />
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/imgview_legend_play"
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
+            android:text="@string/playing" />
+
+        <ImageView
+            android:id="@+id/imgview_legend_sleep"
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
+            android:text="@string/sleeping" />
+
+
+        <ImageView
+            android:id="@+id/imgview_legend_etc"
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
+            android:text="@string/etc" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewMemo"
@@ -60,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/eating"
-            android:textColor="@color/white"
+            android:textColor="@color/chart_btn_text_color"
             android:textSize="15dip" />
 
         <Button
@@ -68,9 +104,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/apptheme_btn_default_normal_holo_light"
             android:text="@string/playing"
-            android:textColor="@color/white"
+            android:textColor="@color/chart_btn_text_color"
             android:textSize="15dip" />
 
         <Button
@@ -79,7 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sleeping"
-            android:textSize="15dip" />
+            android:textSize="15dip"
+            android:textColor="@color/chart_btn_text_color"/>
 
         <Button
             android:id="@+id/etcBtn"
@@ -87,7 +123,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/etc"
-            android:textSize="15dip" />
+            android:textSize="15dip"
+            android:textColor="@color/chart_btn_text_color"/>
     </LinearLayout>
 
 </LinearLayout>

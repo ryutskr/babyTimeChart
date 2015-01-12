@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
@@ -196,11 +195,11 @@ public class BabyTimeDataActivity extends Activity{
 		String strMemo = "";
 		String SEPERATOR = " / ";
 
-		if( ((ToggleButton)fragmentE.getView().findViewById(R.id.tBtn_Eating_mm)).isChecked() )
+		if( ((RadioButton)fragmentE.getView().findViewById(R.id.rBtn_Eating_mm)).isChecked() )
 			strMemo = getResources().getString(R.string.mothersmilk);
-		else if( ((ToggleButton)fragmentE.getView().findViewById(R.id.tBtn_Eating_mp)).isChecked() )
+		else if( ((RadioButton)fragmentE.getView().findViewById(R.id.rBtn_Eating_mp)).isChecked() )
 			strMemo = getResources().getString(R.string.milkpowder);
-		else if( ((ToggleButton)fragmentE.getView().findViewById(R.id.tBtn_Eating_bf)).isChecked() )
+		else if( ((RadioButton)fragmentE.getView().findViewById(R.id.rBtn_Eating_bf)).isChecked() )
 			strMemo = getResources().getString(R.string.babyfood);
 
 		LinearLayout linearLayout_radio = (LinearLayout)fragmentE.getView().findViewById(R.id.linear_Eating_mm_radio);  
@@ -255,13 +254,13 @@ public class BabyTimeDataActivity extends Activity{
 		String strMemo = "";
 		String SEPERATOR = " / ";
 
-		if( ((ToggleButton)fragmentP.getView().findViewById(R.id.tBtn_Playing_mom)).isChecked() )
+		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_mom)).isChecked() )
 			strMemo = getResources().getString(R.string.mom);
-		if( ((ToggleButton)fragmentP.getView().findViewById(R.id.tBtn_Playing_daddy)).isChecked() )
+		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_daddy)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.daddy);
-		if( ((ToggleButton)fragmentP.getView().findViewById(R.id.tBtn_Playing_family)).isChecked() )
+		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_family)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.family);
-		if( ((ToggleButton)fragmentP.getView().findViewById(R.id.tBtn_Playing_friend)).isChecked() )
+		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_friend)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.friend);
 
 		EditText mEditeText_Eating_memo = (EditText)fragmentP.getView().findViewById(R.id.editText_Playing_Memo);

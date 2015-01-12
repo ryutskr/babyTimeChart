@@ -13,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +21,6 @@ import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.DrawArcData.ArcData;
 import com.babytimechart.utils.Utils;
-import com.google.android.gms.internal.cn;
 import com.ryutskr.babytimechart.R;
 
 import java.util.ArrayList;
@@ -76,7 +74,11 @@ public class RoundChartView extends View {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+
+        if( widthMeasureSpec > heightMeasureSpec)
+        	super.onMeasure(heightMeasureSpec, heightMeasureSpec);
+        else
+            super.onMeasure(widthMeasureSpec, widthMeasureSpec);
 	}
 
 	@Override
@@ -191,22 +193,6 @@ public class RoundChartView extends View {
 		}
 
 	}
-//
-//	public void drawLegend(Canvas canvas){
-//
-//		Paint customePaint = new Paint();
-//		customePaint.setColor(CUSTOME_CIRCLE_COLOR);
-//		customePaint.setStyle(Paint.Style.FILL_AND_STROKE);
-//		customePaint.setAntiAlias(true);
-//		customePaint.setTextSize(50f);
-//
-//		RectF rect = new RectF();
-//		for( int i=0; i<4; i++){
-//			rect.set(mDefaultRect.left, mDefaultRect.bottom-(50f*(i+1)), mDefaultRect.left+50f, mDefaultRect.bottom-(50F*i));
-//			canvas.drawOval(rect, customePaint);
-//			canvas.drawText("먹기", mDefaultRect.left+50f, mDefaultRect.bottom-(50f*i), customePaint);
-//		}
-//	}
 
 	public void addChart(int chartIndex, String lastSelecteDate){
 		if( mChartDataArrayList.size() == (chartIndex+1))
