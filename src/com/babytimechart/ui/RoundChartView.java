@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.DrawArcData.ArcData;
 import com.babytimechart.utils.Utils;
+import com.google.android.gms.internal.cn;
 import com.ryutskr.babytimechart.R;
 
 import java.util.ArrayList;
@@ -86,7 +88,7 @@ public class RoundChartView extends View {
 				canvas.drawOval(data.mRect, mDefaultPaint);
 				for( ArcData arcData : data.mDrawArcData.getData() ) {
 					canvas.drawArc(data.mRect, arcData.getStartAngle(),arcData.getSweepAngle(), true, arcData.getPaint());
-					
+
 					// selected ARC
 					if( arcData.mId == mSelectArcId ) {
 						DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -135,23 +137,26 @@ public class RoundChartView extends View {
 		path.lineTo(getWidth()-DEFAULT_CIRCLE_LEFT_MARGIN, mDefaultRect.centerY());
 		canvas.drawPath(path, customePaint);
 		// ^
+		path.reset();
 		path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
 		path.lineTo(mDefaultRect.centerX(), DEFAULT_CIRCLE_TOP_MARGIN);
 		canvas.drawPath(path, customePaint);
 		// <
+		path.reset();
 		path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
 		path.lineTo(DEFAULT_CIRCLE_LEFT_MARGIN, mDefaultRect.centerY());
 		canvas.drawPath(path, customePaint);
 		// v
+		path.reset();
 		path.moveTo(mDefaultRect.centerX(), mDefaultRect.centerY());
 		path.lineTo(mDefaultRect.centerX(), getWidth()-DEFAULT_CIRCLE_TOP_MARGIN);
 		canvas.drawPath(path, customePaint);
-		
+
 		RectF rect = new RectF();
 		if( mSelectArcId > 0 ){
 			rect.set(mDefaultRect.centerX()-CUSTOME_CENTER_REMOVE_CIRCLE_RADIUS,mDefaultRect.centerY()-CUSTOME_CENTER_REMOVE_CIRCLE_RADIUS,
 					mDefaultRect.centerX()+CUSTOME_CENTER_REMOVE_CIRCLE_RADIUS,mDefaultRect.centerY()+CUSTOME_CENTER_REMOVE_CIRCLE_RADIUS );
-			
+
 			customePaint.setColor(CUSTOME_CENTER_CIRCLE_COLOR);
 			customePaint.setStyle(Paint.Style.FILL);
 			canvas.drawOval(rect, customePaint);
@@ -169,7 +174,6 @@ public class RoundChartView extends View {
 			customePaint.setStyle(Paint.Style.FILL);
 			canvas.drawOval(rect, customePaint);
 		}
-			
 	}
 
 	private void init() {
@@ -187,6 +191,23 @@ public class RoundChartView extends View {
 		}
 
 	}
+//
+//	public void drawLegend(Canvas canvas){
+//
+//		Paint customePaint = new Paint();
+//		customePaint.setColor(CUSTOME_CIRCLE_COLOR);
+//		customePaint.setStyle(Paint.Style.FILL_AND_STROKE);
+//		customePaint.setAntiAlias(true);
+//		customePaint.setTextSize(50f);
+//
+//		RectF rect = new RectF();
+//		for( int i=0; i<4; i++){
+//			rect.set(mDefaultRect.left, mDefaultRect.bottom-(50f*(i+1)), mDefaultRect.left+50f, mDefaultRect.bottom-(50F*i));
+//			canvas.drawOval(rect, customePaint);
+//			canvas.drawText("먹기", mDefaultRect.left+50f, mDefaultRect.bottom-(50f*i), customePaint);
+//		}
+//	}
+
 	public void addChart(int chartIndex, String lastSelecteDate){
 		if( mChartDataArrayList.size() == (chartIndex+1))
 			return;
@@ -266,37 +287,37 @@ public class RoundChartView extends View {
 
 			float x = event.getX() - mDefaultRect.centerX();
 			float y = event.getY() -  mDefaultRect.centerY();
-			
+
 			if( Math.abs(x) < CUSTOME_CENTER_REMOVE_CIRCLE_RADIUS && Math.abs(y) < CUSTOME_CENTER_REMOVE_CIRCLE_RADIUS){
 				new Handler().post(new Runnable(){
-					
+
 					@Override
 					public void run() {
-						
+
 						BabyTimeDbOpenHelper dbOpenHelper = new BabyTimeDbOpenHelper(getContext());
-	                    SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
-	                    db.delete(Dbinfo.DB_TABLE_NAME, "_id=" + mSelectArcId, null);
-	                    db.close();
-	                    makeChartDatas();
+						SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
+						db.delete(Dbinfo.DB_TABLE_NAME, "_id=" + mSelectArcId, null);
+						db.close();
+						makeChartDatas();
 						mSelectArcId = 0;
-						
+
 					}
 				});
-				
+
 				((TextView) ((View)getParent()).findViewById(R.id.textViewMemo)).setText("");
 				return super.onTouchEvent(event);
 			}
-			
+
 			mSelectArcId = 0;
 			double dAngle = Math.toDegrees( Math.atan2(y, x) );
-			
+
 			if( dAngle < 0 )
 				dAngle = dAngle +360;
 
 			double dTempAngle = 0;
 			String strMemo =  "";
 			for( ArcData data :  mChartDataArrayList.get(0).mDrawArcData.getData()){
-				
+
 				if( data.mStartAngle > dAngle )
 					dTempAngle = dAngle + 360;
 				else 

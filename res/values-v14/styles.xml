@@ -11,7 +11,7 @@
     
     <style name="Widget.ActionBar" parent="android:Widget.ActionBar">
         <item name="android:displayOptions">showHome|showCustom</item>
-        <item name="android:background">@drawable/actionbar_background</item>
+        <item name="android:background">@drawable/ab_solid_background</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:customNavigationLayout">@layout/activity_main_actionbar</item>
     </style>

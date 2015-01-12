@@ -49,10 +49,10 @@ public class BabyTimeSpinnerAdapter extends ArrayAdapter<String> {
 
             TextView title = (TextView) view.findViewById(R.id.row_top);
             TextView title_explain = (TextView) view.findViewById(R.id.row_bottom);
-
+            
             title.setText(new Utils().countDays(getContext(), item));
             title_explain.setText(item);
-
+            
             view.setTag(new ViewHolder(title, title_explain));
         } else {
             ViewHolder viewHolderRow = (ViewHolder) view.getTag();
@@ -72,7 +72,9 @@ public class BabyTimeSpinnerAdapter extends ArrayAdapter<String> {
             TextView title_explain = (TextView) view.findViewById(R.id.row_bottom);
 
             title.setText(new Utils().countDays(getContext(), item));
+            title.setTextColor(getContext().getResources().getColor(R.color.ab_spinner1));
             title_explain.setVisibility(View.GONE);
+            title_explain.setTextColor(getContext().getResources().getColor(R.color.ab_spinner2));
 
             view.setTag(new ViewHolder(title, title_explain));
         } else {

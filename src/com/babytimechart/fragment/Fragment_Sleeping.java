@@ -27,9 +27,10 @@ public class Fragment_Sleeping extends Fragment {
 	private static final String ARG_SECTION_NUMBER = "section_number";
 	private static final String ARG_TODAY_LAST_TIME = "lasttime";
 	private static final int SPACE_IN_TIME = 30 * 60 * 1000;
+	private static final int ONE_MIN = 1 * 60 * 1000;
 	private static final int SPACE_IN_TIME_SMALL 	= 5 * 60 * 1000;
 	private static final int SPACE_IN_TIME_BIG 		= 20 * 60 * 1000;
-	
+
 	private TextView mTextView_stime = null;
 	private TextView mTextView_etime = null;
 
@@ -57,7 +58,7 @@ public class Fragment_Sleeping extends Fragment {
 
 	public Fragment_Sleeping() {
 	}
-	
+
 	@Override 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -79,7 +80,14 @@ public class Fragment_Sleeping extends Fragment {
 		if( mLastMillsTime != 0)
 		{
 			mMillsSTime = mLastMillsTime;
-			if( mLastMillsTime > System.currentTimeMillis() )
+			
+			SimpleDateFormat datedd = new SimpleDateFormat("dd");
+			int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsSTime + SPACE_IN_TIME)) );
+			int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsSTime)));
+			
+			if( iNextDay > iNowDay ){
+				mMillsETime = mMillsSTime + ONE_MIN;
+			}else if( mLastMillsTime > System.currentTimeMillis() )
 				mMillsETime = mMillsSTime + SPACE_IN_TIME;
 			else
 				mMillsETime = System.currentTimeMillis();
@@ -110,18 +118,19 @@ public class Fragment_Sleeping extends Fragment {
 		mButton_time_plus_big.setOnClickListener(mOnClickListener);
 
 	}
-	
+
 	OnClickListener mOnClickListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
+			Utils utils = new Utils();
 			switch(v.getId()){
 			case R.id.btn_Sleeping_minus_small_time:
 				if( mTextView_stime.isFocused() )
 				{
 					if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_BIG)
-						Toast.makeText(getActivity(), getResources().getString(R.string.time_err1), Toast.LENGTH_SHORT).show();
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
 					else{
 						mMillsSTime =  mMillsSTime - SPACE_IN_TIME_BIG;
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
@@ -129,7 +138,7 @@ public class Fragment_Sleeping extends Fragment {
 					}
 				}else if( mTextView_etime.isFocused() ){
 					if( mMillsSTime > mMillsETime - SPACE_IN_TIME_BIG)
-						Toast.makeText(getActivity(), getResources().getString(R.string.time_err2), Toast.LENGTH_SHORT).show();
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err2));
 					else{
 						mMillsETime =  mMillsETime - SPACE_IN_TIME_BIG; 
 						mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
@@ -141,7 +150,7 @@ public class Fragment_Sleeping extends Fragment {
 				if( mTextView_stime.isFocused() )
 				{
 					if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_SMALL)
-						Toast.makeText(getActivity(), getResources().getString(R.string.time_err1), Toast.LENGTH_SHORT).show();
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
 					else{
 						mMillsSTime =  mMillsSTime - SPACE_IN_TIME_SMALL;
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
@@ -149,7 +158,7 @@ public class Fragment_Sleeping extends Fragment {
 					}
 				}else if( mTextView_etime.isFocused() ){
 					if( mMillsSTime > mMillsETime - SPACE_IN_TIME_SMALL)
-						Toast.makeText(getActivity(), getResources().getString(R.string.time_err2), Toast.LENGTH_SHORT).show();
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err2));
 					else{
 						mMillsETime =  mMillsETime - SPACE_IN_TIME_SMALL; 
 						mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
@@ -161,32 +170,48 @@ public class Fragment_Sleeping extends Fragment {
 				if( mTextView_stime.isFocused() )
 				{
 					if( mMillsSTime + SPACE_IN_TIME_SMALL > mMillsETime )
-						Toast.makeText(getActivity(), getResources().getString(R.string.time_err3), Toast.LENGTH_SHORT).show();
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err3));
 					else{
 						mMillsSTime =  mMillsSTime + SPACE_IN_TIME_SMALL; 
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
 						mTextView_stime.setContentDescription("" + mMillsSTime);
 					}
 				}else if( mTextView_etime.isFocused() ){
-					mMillsETime =  mMillsETime + SPACE_IN_TIME_SMALL; 
-					mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
-					mTextView_etime.setContentDescription("" + mMillsETime);
+					SimpleDateFormat datedd = new SimpleDateFormat("dd");
+					int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsETime + SPACE_IN_TIME_SMALL)) );
+					int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsETime)));
+
+					if( iNextDay > iNowDay )
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err4));
+					else{
+						mMillsETime =  mMillsETime + SPACE_IN_TIME_SMALL; 
+						mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
+						mTextView_etime.setContentDescription("" + mMillsETime);
+					}
 				}
 				break;
 			case R.id.btn_Sleeping_plus_big_time:
 				if( mTextView_stime.isFocused() )
 				{
 					if( mMillsSTime + SPACE_IN_TIME_SMALL > mMillsETime )
-						Toast.makeText(getActivity(), getResources().getString(R.string.time_err3), Toast.LENGTH_SHORT).show();
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err3));
 					else{
 						mMillsSTime =  mMillsSTime + SPACE_IN_TIME_BIG; 
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
 						mTextView_stime.setContentDescription("" + mMillsSTime);
 					}
 				}else if( mTextView_etime.isFocused() ){
-					mMillsETime =  mMillsETime + SPACE_IN_TIME_BIG; 
-					mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
-					mTextView_etime.setContentDescription("" + mMillsETime);
+					SimpleDateFormat datedd = new SimpleDateFormat("dd");
+					int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsETime + SPACE_IN_TIME_BIG)) );
+					int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsETime)));
+
+					if( iNextDay > iNowDay )
+						utils.makeToast(getActivity(), getResources().getString(R.string.time_err4));
+					else{
+						mMillsETime =  mMillsETime + SPACE_IN_TIME_BIG; 
+						mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
+						mTextView_etime.setContentDescription("" + mMillsETime);
+					}
 				}
 				break;
 

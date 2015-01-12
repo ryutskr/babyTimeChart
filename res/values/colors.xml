@@ -7,26 +7,28 @@
     <color name="white">#ffffff</color>
     <color name="fragment_background">#ffffff</color>
 
-    <!-- Seeting Color -->
+    <!--  Action Bar  #669900 -->
+    <color name="ab_spinner1">#ffffff</color>
+    <color name="ab_spinner2">#ffffff</color>
+    <!-- Main Activity -->
+    <color name="main_divider">#669900</color>
+
+    <!-- Setting Color -->
     <color name="setting_heder">#bb00ff</color>
     <color name="setting_header_divider">#bb00ff</color>
     <color name="setting_row_divider">#80DADADC</color>
-
     <color name="setting_dialog_profile_title">#bb00ff</color>
     <color name="setting_dialog_profile_divider">#bb00ff</color>
-    
     <color name="setting_dialog_datepicker_title">#bb00ff</color>
     <color name="setting_dialog_datepicker_divider">#bb00ff</color>
-    
     <color name="setting_dialog_backup_title">#bb00ff</color>
     <color name="setting_dialog_backup_divider">#bb00ff</color>
-
     <color name="setting_dialog_restore_title">#bb00ff</color>
     <color name="setting_dialog_restore_divider">#bb00ff</color>
-    
     <color name="setting_dialog_reset_title">#bb00ff</color>
     <color name="setting_dialog_reset_divider">#bb00ff</color>
-    
+
+    <!-- Data Activity -->
     <color name="tab_divider">#888888</color>
     <color name="horizen_divider">#000000</color>
     <color name="selected_time">#DADADC</color>

@@ -1,5 +1,16 @@
 package com.babytimechart.utils;
 
+import static com.babytimechart.db.Dbinfo.DB_DATE;
+import static com.babytimechart.db.Dbinfo.DB_E_TIME;
+import static com.babytimechart.db.Dbinfo.DB_MEMO;
+import static com.babytimechart.db.Dbinfo.DB_S_TIME;
+import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
+import static com.babytimechart.db.Dbinfo.DB_TYPE;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,18 +27,8 @@ import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.ryutskr.babytimechart.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import static com.babytimechart.db.Dbinfo.DB_DATE;
-import static com.babytimechart.db.Dbinfo.DB_E_TIME;
-import static com.babytimechart.db.Dbinfo.DB_MEMO;
-import static com.babytimechart.db.Dbinfo.DB_S_TIME;
-import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
-import static com.babytimechart.db.Dbinfo.DB_TYPE;
 
 public class Utils{
 
@@ -146,6 +147,8 @@ public class Utils{
 
         return count + context.getString(R.string.count_day);
     }
+    
+    
 
     public String getBabyName(Context context) {
         SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
@@ -174,7 +177,7 @@ public class Utils{
         return pref.getString("birthday", "");
     }
 
-    public void AddBanner(Context context, ViewGroup viewGroup) {
+    public void addBanner(Context context, ViewGroup viewGroup) {
         TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String deviceID = telephony.getDeviceId();
 
@@ -191,6 +194,20 @@ public class Utils{
         adView.loadAd(request);
     }
 
+    public InterstitialAd addInterstitialAd(Context context){
+    	// 삽입 광고를 만듭니다.
+    	InterstitialAd interstitial = new InterstitialAd(context);
+        interstitial.setAdUnitId("ca-app-pub-5151751327714064/1814234437");
+
+        // 광고 요청을 만듭니다.
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        // 삽입 광고 로드를 시작합니다.
+        interstitial.loadAd(adRequest);
+        
+        return interstitial;
+    }
+    
     public void fakeDBData(Context context)
     {
         long time = System.currentTimeMillis();

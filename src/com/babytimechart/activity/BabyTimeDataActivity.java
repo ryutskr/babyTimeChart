@@ -125,7 +125,7 @@ public class BabyTimeDataActivity extends Activity{
 		});
 
 		setActinbar();
-        new Utils().AddBanner(this, mainLayout);
+        new Utils().addBanner(this, mainLayout);
 	}
 
 	private void getLastTimeToday(){

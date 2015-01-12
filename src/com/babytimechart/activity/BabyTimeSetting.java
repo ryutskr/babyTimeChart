@@ -1,8 +1,16 @@
 package com.babytimechart.activity;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,10 +21,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,15 +49,7 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.ryutskr.babytimechart.R;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-
-public class BabyTimeSetting extends ListActivity {
+public class BabyTimeSetting extends Activity {
 
 	private static final int MENU_EAT 		= 100;
 	private static final int MENU_PLAY 		= 101;
@@ -66,6 +69,7 @@ public class BabyTimeSetting extends ListActivity {
 	private Utils mUtils = null;
 	private Context mContext = null;
 	private int mSelectedDialog = 0;
+	private ListView mListView = null;
 
 	// dialog profile
 	private AlertDialog mAlertDialog = null;  // profile or datepicker
@@ -83,9 +87,13 @@ public class BabyTimeSetting extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_setting);
+		mListView = (ListView)findViewById(R.id.listview);
+		RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.main_layout);
 		setActinbar();
 		initMenu();
 		mContext = this;
+		new Utils().addBanner(this, mainLayout);
 	}
 
 	private void setActinbar() {
@@ -113,38 +121,40 @@ public class BabyTimeSetting extends ListActivity {
 		mAdapter.addItem(MENU_RESTORE_DATA, R.string.data_restore, R.string.data_restore_eplain, 0);
 		mAdapter.addItem(MENU_INITIALIZATION_DATA, R.string.data_initialization, R.string.data_initialization_explain, 0);
 
-		setListAdapter(mAdapter);
-		getListView().setDividerHeight(0);
+		mListView.setAdapter(mAdapter);
+		mListView.setDividerHeight(0);
+		mListView.setOnItemClickListener(mOnItemClickListener);
 	}
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
+	OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
 
-		mLastPosition = position;
-		BabyTimeSettingMenuAdapter.MenuItemModel item = mAdapter.getItem(position);
-		switch ( item._id ){
-		case MENU_EAT:
-		case MENU_PLAY:
-		case MENU_SLEEP:
-		case MENU_ETC:
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			mLastPosition = position;
+			BabyTimeSettingMenuAdapter.MenuItemModel item = mAdapter.getItem(position);
+			switch ( item._id ){
+			case MENU_EAT:
+			case MENU_PLAY:
+			case MENU_SLEEP:
+			case MENU_ETC:
 
-			ColorPickerDialog colorpicker = ColorPickerDialog.newInstance(
-					R.string.color_picker_default_title, mColorChoices,
-					item.colorSquare, 5,ColorPickerDialog.SIZE_SMALL);
+				ColorPickerDialog colorpicker = ColorPickerDialog.newInstance(
+						R.string.color_picker_default_title, mColorChoices,
+						item.colorSquare, 5,ColorPickerDialog.SIZE_SMALL);
 
-			colorpicker.setOnColorSelectedListener(colorpickerListener);
-			colorpicker.show(getFragmentManager(), "");
-			break;
-		case MENU_PROFILE:
-		case MENU_BACKUP_DATA:
-		case MENU_RESTORE_DATA:
-		case MENU_INITIALIZATION_DATA:
-			createAlerDialog(item._id);
-			break;
+				colorpicker.setOnColorSelectedListener(colorpickerListener);
+				colorpicker.show(getFragmentManager(), "");
+				break;
+			case MENU_PROFILE:
+			case MENU_BACKUP_DATA:
+			case MENU_RESTORE_DATA:
+			case MENU_INITIALIZATION_DATA:
+				createAlerDialog(item._id);
+				break;
+			}
 		}
-
-	}
+	};
 
 	OnClickListener mOnClickListener = new OnClickListener() {
 		@Override
@@ -185,7 +195,7 @@ public class BabyTimeSetting extends ListActivity {
 			title = mContext.getString(R.string.selectdate);
 			titleColor = getResources().getColor(R.color.setting_dialog_datepicker_title);
 			dividerColor = getResources().getColor(R.color.setting_dialog_datepicker_divider);
-			
+
 			builder.setPositiveButton(mContext.getString(R.string.save), mOnDialogBtnClickListener)
 			.setNegativeButton(mContext.getString(R.string.cancel), mOnDialogBtnClickListener)
 			.setView(view);
@@ -228,14 +238,14 @@ public class BabyTimeSetting extends ListActivity {
 
 		int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
 		mAlertDialog.findViewById(titleDividerId).setBackgroundColor(dividerColor);
-		
+
 		int btn1 = getResources().getIdentifier("button1", "id", "android");
 		((Button)mAlertDialog.findViewById(btn1)).setTextColor(dividerColor);
 
-        int btn2 = getResources().getIdentifier("button2", "id", "android");
-        ((Button)mAlertDialog.findViewById(btn2)).setTextColor(dividerColor);
-		
-		
+		int btn2 = getResources().getIdentifier("button2", "id", "android");
+		((Button)mAlertDialog.findViewById(btn2)).setTextColor(dividerColor);
+
+
 		setResult(RESULT_OK, new Intent("DATA_CHANGE"));
 	}
 
@@ -285,7 +295,7 @@ public class BabyTimeSetting extends ListActivity {
 				break;
 			case MENU_RESTORE_DATA:
 				mSelectedDialog = 0;
-//				googleDrive(MENU_RESTORE_DATA);
+				//				googleDrive(MENU_RESTORE_DATA);
 				new Utils().fakeDBData(mContext);
 				break;
 			case MENU_INITIALIZATION_DATA:
@@ -316,7 +326,7 @@ public class BabyTimeSetting extends ListActivity {
 		return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential)
 		.build();
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch(requestCode){
@@ -447,7 +457,7 @@ public class BabyTimeSetting extends ListActivity {
 		t.start();
 	}
 
-	
+
 	public void showToast(final String toast) {
 		runOnUiThread(new Runnable() {
 			@Override
@@ -456,7 +466,7 @@ public class BabyTimeSetting extends ListActivity {
 			}
 		});
 	}
-	
+
 	private void storeFile(java.io.File file, InputStream iStream)
 	{
 		try 

@@ -28,6 +28,7 @@
     <string name="time_err1">마지막으로 지정한 시간보다 빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err2">시작 시간보다  빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err3">종료 시간보다  늦은 시간으로 설정 할 수 없습니다.</string>
+    <string name="time_err4">종료 시간 입력은 오늘만 가능합니다.</string>
     
 
 

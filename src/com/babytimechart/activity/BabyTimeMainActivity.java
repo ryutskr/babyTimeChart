@@ -1,5 +1,10 @@
 package com.babytimechart.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -28,12 +33,8 @@ import com.babytimechart.fragment.Fragment_Chart;
 import com.babytimechart.ui.BabyTimeSpinnerAdapter;
 import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.utils.Utils;
+import com.google.android.gms.ads.InterstitialAd;
 import com.ryutskr.babytimechart.R;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class BabyTimeMainActivity extends Activity {
@@ -47,6 +48,9 @@ public class BabyTimeMainActivity extends Activity {
     private ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
     private String mLastSelectedToday = "";
     private String mLastSelectedOtherday = "";
+    
+    private InterstitialAd mInterstitial;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +75,7 @@ public class BabyTimeMainActivity extends Activity {
 
         Utils utils = new Utils();
         utils.getColorFromPref(this);
-        utils.AddBanner(this, main_layout);
+        utils.addBanner(this, main_layout);
         setSpinnerData();
     }
 
@@ -155,6 +159,12 @@ public class BabyTimeMainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        
+//        mInterstitial = new Utils().addInterstitialAd(this);
+//        
+//        if (mInterstitial.isLoaded()) {
+//        	mInterstitial.show();
+//          }
     }
 
     public void setSpinnerData(){
