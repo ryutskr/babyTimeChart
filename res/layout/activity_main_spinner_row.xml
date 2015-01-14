@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textSize="@dimen/text_size_18"
-            android:textColor="@android:color/black"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/setting_row" />
 
         <TextView
             android:id="@+id/row_bottom"
@@ -25,7 +25,7 @@
             android:layout_height="fill_parent"
             android:layout_below="@+id/row_top"
             android:textSize="@dimen/text_size_10"
-            android:textColor="@android:color/black"
+            android:textColor="@color/setting_row_explain"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 

@@ -16,7 +16,13 @@ UI
 http://android-holo-colors.com/
 
 
+ICON 
+http://simpleicon.com/page/2/?s=chart+
+http://www.hongkiat.com/blog/free-high-quality-android-icons/
 
+
+보색 
+http://blog.naver.com/jin9007242/220187817685
 
 백업 key생성 - 부적합
 https://developer.android.com/google/backup/signup.html

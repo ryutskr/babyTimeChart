@@ -11,6 +11,7 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:text="@string/action_text1"
+        android:textColor="@color/ab_name"
         android:textSize="@dimen/text_size_20" />
 
     <Spinner

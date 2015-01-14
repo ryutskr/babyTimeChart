@@ -42,6 +42,8 @@ public class Fragment_Etc extends Fragment {
 	private long mMillsETime = 0;
 	private long mLastMillsTime = 0;
 	private SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
+	private boolean mIsTimeClick = true;
+	
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
@@ -70,8 +72,8 @@ public class Fragment_Etc extends Fragment {
 
 	public void initView(View rootView)
 	{
-		mTextView_stime = (TextView)rootView.findViewById(R.id.txtView_Etc_stime);
-		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_Etc_etime);    
+		mTextView_stime = (TextView)rootView.findViewById(R.id.txtView_stime);
+		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_etime);    
 		mTextView_stime.setOnClickListener(mOnClickListener);
 		mTextView_etime.setOnClickListener(mOnClickListener);
 
@@ -104,12 +106,12 @@ public class Fragment_Etc extends Fragment {
 		mTextView_stime.setContentDescription("" + mMillsSTime);
 		mTextView_etime.setContentDescription("" + mMillsETime);
 
-		mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
+		mTextView_stime.setBackgroundResource(R.drawable.rounded_timebackground);
 
-		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_Etc_minus_small_time);
-		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_Etc_minus_big_time);
-		mButton_time_plus_small = (Button)rootView.findViewById(R.id.btn_Etc_plus_small_time);
-		mButton_time_plus_big = (Button)rootView.findViewById(R.id.btn_Etc_plus_big_time);
+		mButton_time_minus_small = (Button)rootView.findViewById(R.id.btn_minus_small_time);
+		mButton_time_minus_big = (Button)rootView.findViewById(R.id.btn_minus_big_time);
+		mButton_time_plus_small = (Button)rootView.findViewById(R.id.btn_plus_small_time);
+		mButton_time_plus_big = (Button)rootView.findViewById(R.id.btn_plus_big_time);
 		mButton_time_minus_small.setOnClickListener(mOnClickListener);
 		mButton_time_minus_big.setOnClickListener(mOnClickListener);
 		mButton_time_plus_small.setOnClickListener(mOnClickListener);
@@ -124,7 +126,7 @@ public class Fragment_Etc extends Fragment {
 			SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 			Utils utils = new Utils();
 			switch(v.getId()){
-			case R.id.btn_Etc_minus_small_time:
+			case R.id.btn_minus_small_time:
 				if( mTextView_stime.isFocused() )
 				{
 					if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_BIG)
@@ -144,8 +146,8 @@ public class Fragment_Etc extends Fragment {
 					}
 				}
 				break;
-			case R.id.btn_Etc_minus_big_time:
-				if( mTextView_stime.isFocused() )
+			case R.id.btn_minus_big_time:
+				if( mIsTimeClick )
 				{
 					if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_SMALL)
 						utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
@@ -154,7 +156,7 @@ public class Fragment_Etc extends Fragment {
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
 						mTextView_stime.setContentDescription("" + mMillsSTime);
 					}
-				}else if( mTextView_etime.isFocused() ){
+				}else{
 					if( mMillsSTime > mMillsETime - SPACE_IN_TIME_SMALL)
 						utils.makeToast(getActivity(), getResources().getString(R.string.time_err2));
 					else{
@@ -164,8 +166,8 @@ public class Fragment_Etc extends Fragment {
 					}
 				}
 				break;
-			case R.id.btn_Etc_plus_small_time:
-				if( mTextView_stime.isFocused() )
+			case R.id.btn_plus_small_time:
+				if( mIsTimeClick )
 				{
 					if( mMillsSTime + SPACE_IN_TIME_SMALL > mMillsETime )
 						utils.makeToast(getActivity(), getResources().getString(R.string.time_err3));
@@ -174,7 +176,7 @@ public class Fragment_Etc extends Fragment {
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
 						mTextView_stime.setContentDescription("" + mMillsSTime);
 					}
-				}else if( mTextView_etime.isFocused() ){
+				}else {
 					SimpleDateFormat datedd = new SimpleDateFormat("dd");
 					int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsETime + SPACE_IN_TIME_SMALL)) );
 					int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsETime)));
@@ -188,17 +190,17 @@ public class Fragment_Etc extends Fragment {
 					}
 				}
 				break;
-			case R.id.btn_Etc_plus_big_time:
-				if( mTextView_stime.isFocused() )
+			case R.id.btn_plus_big_time:
+				if( mIsTimeClick )
 				{
-					if( mMillsSTime + SPACE_IN_TIME_SMALL > mMillsETime )
+					if( mMillsSTime + SPACE_IN_TIME_BIG > mMillsETime )
 						utils.makeToast(getActivity(), getResources().getString(R.string.time_err3));
 					else{
 						mMillsSTime =  mMillsSTime + SPACE_IN_TIME_BIG; 
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
 						mTextView_stime.setContentDescription("" + mMillsSTime);
 					}
-				}else if( mTextView_etime.isFocused() ){
+				}else {
 					SimpleDateFormat datedd = new SimpleDateFormat("dd");
 					int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsETime + SPACE_IN_TIME_BIG)) );
 					int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsETime)));
@@ -213,13 +215,15 @@ public class Fragment_Etc extends Fragment {
 				}
 				break;
 
-			case R.id.txtView_Etc_stime:
-				mTextView_stime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
+			case R.id.txtView_stime:
+				mIsTimeClick = true;
+				mTextView_stime.setBackgroundResource(R.drawable.rounded_timebackground);
 				mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
 				break;
-			case R.id.txtView_Etc_etime:
+			case R.id.txtView_etime:
+				mIsTimeClick = false;
 				mTextView_stime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
-				mTextView_etime.setBackgroundResource(R.drawable.green_btn_default_focused_holo_light);
+				mTextView_etime.setBackgroundResource(R.drawable.rounded_timebackground);
 				break;
 			}
 		}

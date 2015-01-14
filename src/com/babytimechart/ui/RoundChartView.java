@@ -176,6 +176,8 @@ public class RoundChartView extends View {
 			customePaint.setStyle(Paint.Style.FILL);
 			canvas.drawOval(rect, customePaint);
 		}
+		
+		
 	}
 
 	private void init() {

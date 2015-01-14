@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--  Shadow -->
+    <item
+        android:bottom="@dimen/btn_padding"
+        android:left="@dimen/btn_padding"
+        android:right="@dimen/btn_padding"
+        android:top="@dimen/btn_padding">
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/shadow" />
+            <corners android:radius="@dimen/btn_radius" />
+        </shape>
+    </item>
+    <!-- Button  -->
+    <item
+        android:bottom="@dimen/btn_padding_bottom"
+        android:left="@dimen/btn_padding"
+        android:right="@dimen/btn_padding"
+        android:top="@dimen/btn_padding">
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/theme" />
+
+            <corners android:radius="@dimen/btn_radius" />
+
+            <stroke
+                android:width="1dip"
+                android:color="@color/btn_border" />
+        </shape>
+    </item>
+    <!-- Select/Press Border -->
+    <item
+        android:bottom="@dimen/btn_press_border"
+        android:left="@dimen/btn_press_border"
+        android:right="@dimen/btn_press_border"
+        android:top="@dimen/btn_press_border">
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/theme_alpha" />
+            <corners android:radius="@dimen/btn_radius" />
+        </shape>
+    </item>
+
+</layer-list>

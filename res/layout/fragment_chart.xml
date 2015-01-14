@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:paddingTop="@dimen/activity_vertical_margin_half" >
 
     <com.babytimechart.ui.RoundChartView
         android:id="@+id/roundchartview"
@@ -17,7 +17,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center" >
 
         <ImageView
             android:id="@+id/imgview_legend_eat"
@@ -28,19 +28,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
-            android:text="@string/eating" />
+            android:text="@string/eating"
+            android:textColor="@color/chart_legend_text" />
 
         <ImageView
             android:id="@+id/imgview_legend_play"
             android:layout_width="15dip"
             android:layout_height="15dip"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:textColor="@color/chart_legend_text" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
-            android:text="@string/playing" />
+            android:text="@string/playing"
+            android:textColor="@color/chart_legend_text" />
 
         <ImageView
             android:id="@+id/imgview_legend_sleep"
@@ -52,8 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
-            android:text="@string/sleeping" />
-
+            android:text="@string/sleeping"
+            android:textColor="@color/chart_legend_text" />
 
         <ImageView
             android:id="@+id/imgview_legend_etc"
@@ -65,22 +68,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_vertical_margin_qhalf"
-            android:text="@string/etc" />
+            android:text="@string/etc"
+            android:textColor="@color/chart_legend_text" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/textViewMemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:text="@string/notice"
+        android:textColor="@color/chart_memo_text"
         android:textSize="15dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="3dip"
-        android:layout_marginBottom="10dip"
-        android:layout_marginTop="10dip"
+        android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
         android:background="@color/main_divider" />
 
     <LinearLayout
@@ -96,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/eating"
-            android:textColor="@color/chart_btn_text_color"
+            android:textColor="@color/chart_btn_text"
             android:textSize="15dip" />
 
         <Button
@@ -105,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/playing"
-            android:textColor="@color/chart_btn_text_color"
+            android:textColor="@color/chart_btn_text"
             android:textSize="15dip" />
 
         <Button
@@ -114,8 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sleeping"
-            android:textSize="15dip"
-            android:textColor="@color/chart_btn_text_color"/>
+            android:textColor="@color/chart_btn_text"
+            android:textSize="15dip" />
 
         <Button
             android:id="@+id/etcBtn"
@@ -123,8 +127,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/etc"
-            android:textSize="15dip"
-            android:textColor="@color/chart_btn_text_color"/>
+            android:textColor="@color/chart_btn_text"
+            android:textSize="15dip" />
     </LinearLayout>
 
 </LinearLayout>

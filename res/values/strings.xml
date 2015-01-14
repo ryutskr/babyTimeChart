@@ -95,7 +95,7 @@
 
 
     <!-- Color Picker -->
-    <string name="select_color">색상 선택</string>
+    <string name="select">색상 선택</string>
     <string name="title_activity_calender">CalenderActivity</string>
     
 </resources>

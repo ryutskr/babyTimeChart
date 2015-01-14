@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -147,10 +148,35 @@ public class BabyTimeDataActivity extends Activity{
 	}
 
 	private void setActinbar() {
-		getActionBar().setTitle(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
-		getActionBar().setDisplayShowCustomEnabled(false);
-		getActionBar().setDisplayShowTitleEnabled(true);
+		if( getActionBar() != null ){
+			String StrTemp;
+			String strToday = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+			String strCountDay = new Utils().countDays(this, strToday);
+			
+			if( strCountDay.equals(strToday))
+				StrTemp = strCountDay;
+			else
+				StrTemp = strCountDay + "("+strToday+")";
+			
+			getActionBar().setTitle(StrTemp);
+			getActionBar().setDisplayShowCustomEnabled(false);
+			getActionBar().setDisplayShowTitleEnabled(true);
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+			
+			int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+			TextView abTitle = (TextView) findViewById(titleId);
+			abTitle.setTextColor(getResources().getColor(R.color.data_ab_title));
+		}
 	}
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 	OnClickListener mOnClickListener = new OnClickListener() {
 
@@ -223,28 +249,7 @@ public class BabyTimeDataActivity extends Activity{
 				strMemo = strMemo + SEPERATOR + mEditeText_ml.getText() + "ml";
 		}
 
-		EditText mEditeText_Eating_memo = (EditText)fragmentE.getView().findViewById(R.id.editText_Eating_Memo);
-		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
-
-		TextView mTextView_stime = (TextView)fragmentE.getView().findViewById(R.id.txtView_Eating_stime);
-		TextView mTextView_etime = (TextView)fragmentE.getView().findViewById(R.id.txtView_Eating_etime);
-
-		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
-		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
-
-		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
-		String strEtime = insertDateformat.format(new Date(etime));
-
-		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(Dbinfo.DB_TYPE, Dbinfo.DB_TYPE_EAT );
-		contentValues.put(Dbinfo.DB_DATE, strEtime );
-		contentValues.put(Dbinfo.DB_S_TIME, stime );
-		contentValues.put(Dbinfo.DB_E_TIME, etime );
-		contentValues.put(Dbinfo.DB_MEMO, strMemo );
-		db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-		db.close();
+		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_EAT, strMemo);
 	}
 
 
@@ -263,70 +268,25 @@ public class BabyTimeDataActivity extends Activity{
 		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_friend)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.friend);
 
-		EditText mEditeText_Eating_memo = (EditText)fragmentP.getView().findViewById(R.id.editText_Playing_Memo);
-		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
-
-		TextView mTextView_stime = (TextView)fragmentP.getView().findViewById(R.id.txtView_Playing_stime);
-		TextView mTextView_etime = (TextView)fragmentP.getView().findViewById(R.id.txtView_Playing_etime);
-
-
-
-		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
-		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
-
-		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
-		String strEtime = insertDateformat.format(new Date(etime));
-
-		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(Dbinfo.DB_TYPE, Dbinfo.DB_TYPE_PLAY );
-		contentValues.put(Dbinfo.DB_DATE, strEtime );
-		contentValues.put(Dbinfo.DB_S_TIME, stime );
-		contentValues.put(Dbinfo.DB_E_TIME, etime );
-		contentValues.put(Dbinfo.DB_MEMO, strMemo );
-		db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-		db.close();
+		inserDataToDB(fragmentP, Dbinfo.DB_TYPE_PLAY, strMemo);
 	}
 
 	private void getSleepingData() {
 		Fragment_Sleeping fragmentS = (Fragment_Sleeping) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
 
 		String strMemo = "";
-		String SEPERATOR = " / ";
 
 		if( ((RadioButton)fragmentS.getView().findViewById(R.id.rBtn_Sleeping_nap)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.nap);
 		else if( ((RadioButton)fragmentS.getView().findViewById(R.id.rBtn_Sleeping_night)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.night_sleep);
 
-		EditText mEditeText_Eating_memo = (EditText)fragmentS.getView().findViewById(R.id.editText_Sleeping_Memo);
-		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
-
-		TextView mTextView_stime = (TextView)fragmentS.getView().findViewById(R.id.txtView_Sleeping_stime);
-		TextView mTextView_etime = (TextView)fragmentS.getView().findViewById(R.id.txtView_Sleeping_etime);
-
-		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
-		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
-
-		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
-		String strEtime = insertDateformat.format(new Date(etime));
-
-		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(Dbinfo.DB_TYPE, Dbinfo.DB_TYPE_SLEEP );
-		contentValues.put(Dbinfo.DB_DATE, strEtime );
-		contentValues.put(Dbinfo.DB_S_TIME, stime );
-		contentValues.put(Dbinfo.DB_E_TIME, etime );
-		contentValues.put(Dbinfo.DB_MEMO, strMemo );
-		db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-		db.close();
+		inserDataToDB(fragmentS, Dbinfo.DB_TYPE_SLEEP, strMemo);
 	}
 
 	private void getEtcData() {
 		Fragment_Etc fragmentE = (Fragment_Etc) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
-
+		
 		String strMemo = "";
 		String SEPERATOR = " / ";
 
@@ -335,16 +295,18 @@ public class BabyTimeDataActivity extends Activity{
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_bath)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.babypoop);
 
-		EditText mEditeText_Eating_memo = (EditText)fragmentE.getView().findViewById(R.id.editText_Etc_Memo);
-		strMemo =  strMemo +"\n"+ mEditeText_Eating_memo.getText();
-
 		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_ETC, strMemo);
 	}
 
 	public void inserDataToDB(Fragment fm, String type, String memo){
+		
+		
+		EditText mEditeText_Eating_memo = (EditText)fm.getView().findViewById(R.id.editText_Memo);
+		if( mEditeText_Eating_memo.getText().length() > 0)
+			memo =  memo +"\n"+ mEditeText_Eating_memo.getText();
 
-		TextView mTextView_stime = (TextView)fm.getView().findViewById(R.id.txtView_Etc_stime);
-		TextView mTextView_etime = (TextView)fm.getView().findViewById(R.id.txtView_Etc_etime);
+		TextView mTextView_stime = (TextView)fm.getView().findViewById(R.id.txtView_stime);
+		TextView mTextView_etime = (TextView)fm.getView().findViewById(R.id.txtView_etime);
 
 		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
 		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );

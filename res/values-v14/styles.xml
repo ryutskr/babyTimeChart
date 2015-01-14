@@ -9,21 +9,22 @@
         <!-- API 14 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
 
-        <item name="android:listChoiceIndicatorMultiple">@drawable/green_btn_check_holo_light</item>
-        <item name="android:listChoiceIndicatorSingle">@drawable/green_btn_radio_holo_light</item>
-        <item name="android:buttonStyle">@style/Buttongreen</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/color_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/color_btn_radio_holo_light</item>
+        <item name="android:editTextBackground">@drawable/color_edit_text_holo_light</item>
+        <item name="android:buttonStyle">@style/ColorButton</item>
 
     </style>
     
     <style name="Widget.ActionBar" parent="android:Widget.ActionBar">
         <item name="android:displayOptions">showHome|showCustom</item>
-        <item name="android:background">@drawable/ab_solid_background</item>
+        <item name="android:background">@drawable/actionbar_background</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:customNavigationLayout">@layout/activity_main_actionbar</item>
     </style>
 
-    <style name="Buttongreen" parent="android:Widget.Holo.Light.Button">
-        <item name="android:background">@drawable/green_btn_default_holo_light</item>
+    <style name="ColorButton" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/color_btn_default_holo_light</item>
     </style>
 
 </resources>

@@ -16,20 +16,24 @@
             android:id="@+id/cBox_Etc_bath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bath" />
+            android:text="@string/bath"
+            android:textColor="@color/data_btn_text" />
 
         <CheckBox
             android:id="@+id/cBox_Etc_babypoop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/babypoop" />
+            android:text="@string/babypoop"
+            android:textColor="@color/data_btn_text" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="2dip"
-        android:background="@color/black"/>
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@color/divider" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -41,22 +45,24 @@
         android:weightSum="2" >
 
         <TextView
-            android:id="@+id/txtView_Etc_stime_title"
+            android:id="@+id/txtView_stime_title"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center"
             android:text="@string/stime_titile"
+            android:textColor="@color/data_time1_text"
             android:textSize="@dimen/text_size_10" />
 
         <TextView
-            android:id="@+id/txtView_Etc_etime_title"
+            android:id="@+id/txtView_etime_title"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/etime_titile"
+            android:textColor="@color/data_time1_text"
             android:textSize="@dimen/text_size_10" />
     </LinearLayout>
 
@@ -69,83 +75,90 @@
         android:weightSum="2" >
 
         <TextView
-            android:id="@+id/txtView_Etc_stime"
+            android:id="@+id/txtView_stime"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:clickable="true"
             android:gravity="center"
+            android:textColor="@color/data_time2_text"
             android:textSize="@dimen/text_size_25" />
 
         <TextView
-            android:id="@+id/txtView_Etc_etime"
+            android:id="@+id/txtView_etime"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:clickable="true"
             android:gravity="center"
+            android:textColor="@color/data_time2_text"
             android:textSize="@dimen/text_size_25" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf"
         android:gravity="center"
-        android:orientation="horizontal" 
-        android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf">
+        android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/btn_Etc_minus_small_time"
+            android:id="@+id/btn_minus_small_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_small_time"
+            android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_Etc_minus_big_time"
+            android:id="@+id/btn_minus_big_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_big_time"
+            android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_Etc_plus_small_time"
+            android:id="@+id/btn_plus_small_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_small_time"
+            android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_Etc_plus_big_time"
+            android:id="@+id/btn_plus_big_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_big_time"
+            android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
     </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="2dip"
-        android:background="@color/black"/>
-        
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@color/divider" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
         android:gravity="left"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/activity_vertical_margin_qhalf" >
+        android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/txtView_Etc_Memo"
+            android:id="@+id/txtView_Memo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memo"
+            android:textColor="@color/data_memo_text"
             android:textSize="@dimen/text_size_20" />
 
         <EditText
-            android:id="@+id/editText_Etc_Memo"
+            android:id="@+id/editText_Memo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/memo_hint" />

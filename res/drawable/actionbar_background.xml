@@ -2,16 +2,17 @@
 <layer-list
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- divider -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/black"/>
+            <solid android:color="@color/ab_divider"/>
         </shape>
     </item>
 
-    <item android:bottom="2dp"
-        android:top="2dp">
+    <!-- background -->
+    <item android:bottom="2dp">
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/white" />
+            <solid android:color="@color/theme" />
         </shape>
     </item>
 

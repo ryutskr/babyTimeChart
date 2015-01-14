@@ -19,6 +19,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -97,9 +99,16 @@ public class BabyTimeSetting extends Activity {
 	}
 
 	private void setActinbar() {
-		getActionBar().setTitle(getString(R.string.setting));
-		getActionBar().setDisplayShowCustomEnabled(false);
-		getActionBar().setDisplayShowTitleEnabled(true);
+		if( getActionBar() != null ){
+			getActionBar().setTitle(getString(R.string.setting));
+			getActionBar().setDisplayShowCustomEnabled(false);
+			getActionBar().setDisplayShowTitleEnabled(true);
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+			
+			int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+			TextView abTitle = (TextView) findViewById(titleId);
+			abTitle.setTextColor(getResources().getColor(R.color.setting_ab_title));
+		}
 	}
 
 	private void initMenu() {
@@ -125,6 +134,26 @@ public class BabyTimeSetting extends Activity {
 		mListView.setDividerHeight(0);
 		mListView.setOnItemClickListener(mOnItemClickListener);
 	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.setting_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id ){
+        	case android.R.id.home :
+            finish();
+            break;
+        	case R.id.action_help:
+        		break;
+        }
+        return true;
+    }
 
 	OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
 

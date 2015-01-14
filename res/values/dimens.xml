@@ -14,5 +14,12 @@
     <dimen name="deiver_height_4">4dp</dimen>
     <dimen name="toast_yoffset">70dp</dimen>
 
-    <dimen name="btn_stoke_size">8dip</dimen>
+    <dimen name="btn_press_border">5dip</dimen>
+    <dimen name="btn_padding">8dip</dimen>
+    <dimen name="btn_padding_bottom">9dip</dimen>
+    <dimen name="btn_radius">8dip</dimen>
+    
+    <dimen name="dot_indicator_nomal">4dip</dimen>
+    <dimen name="dot_indicator_sel">8dip</dimen>
+    
 </resources>

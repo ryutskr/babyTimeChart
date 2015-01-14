@@ -1,5 +1,10 @@
 package com.babytimechart.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -14,10 +19,10 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,11 +35,6 @@ import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
 
 public class BabyTimeMainActivity extends Activity {
 
@@ -44,9 +44,10 @@ public class BabyTimeMainActivity extends Activity {
     private Spinner mSpinnerOtherDay = null;
     private TextView mTextViewBabyName = null;
     private Context mContext = null;
-    private ArrayList<ImageView> mDotIndicator = new ArrayList<ImageView>();
     private String mLastSelectedToday = "";
     private String mLastSelectedOtherday = "";
+    private LinearLayout mDotLinearLayout;
+    
     
 //    private InterstitialAd mInterstitial;
     
@@ -70,6 +71,7 @@ public class BabyTimeMainActivity extends Activity {
         mSpinnerToday.setOnItemSelectedListener(mOnItemSelectedListener);
         mSpinnerOtherDay.setOnItemSelectedListener(mOnItemSelectedListener);
 
+        mDotLinearLayout = (LinearLayout) findViewById(R.id.dotindicater);
         addDotIndicator();
 
         Utils utils = new Utils();
@@ -79,16 +81,17 @@ public class BabyTimeMainActivity extends Activity {
     }
 
     private void addDotIndicator() {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.dotindicater);
 
         for(int i = 0; i <mSectionsPagerAdapter.getCount(); i++){
             ImageView imageView = new ImageView(this);
-            if( i== 0)
-                imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
+            LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+            params.leftMargin = (int) getResources().getDimension(R.dimen.activity_vertical_margin_qhalf);
+            imageView.setLayoutParams(params);
+            if( i == mViewPager.getCurrentItem() )
+            	imageView.setBackgroundResource(R.drawable.dot_sel);
             else
-                imageView.setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
-            linearLayout.addView(imageView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            mDotIndicator.add(imageView);
+            	imageView.setBackgroundResource(R.drawable.dot_normal);
+            mDotLinearLayout.addView(imageView);
         }
     }
 
@@ -125,14 +128,15 @@ public class BabyTimeMainActivity extends Activity {
         public void onPageSelected(int i) {
             Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
 
-            for(int k=0; k<mDotIndicator.size();k++){
-                if( k == i)
-                    mDotIndicator.get(i).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected);
-                else
-                    mDotIndicator.get(k).setBackgroundResource(R.drawable.gd_page_indicator_dot_selected_normal);
+            for( int k =0; k <mDotLinearLayout.getChildCount(); k++){
+            	if( k == i)
+            		mDotLinearLayout.getChildAt(k).setBackgroundResource(R.drawable.dot_sel);
+            	else
+            		mDotLinearLayout.getChildAt(k).setBackgroundResource(R.drawable.dot_normal);
             }
-
+            
             if( i == 0 ){
+            	mSpinnerToday.setSelection(0);
                 mSpinnerOtherDay.setVisibility(View.GONE);
                 mTextViewBabyName.setVisibility(View.VISIBLE);
                 fragmentC.changeChartDate(0, mLastSelectedToday);
