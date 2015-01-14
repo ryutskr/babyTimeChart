@@ -3,15 +3,23 @@
 <resources>
 
     <!--  application  -->
+    <color name="theme">#70A7C6</color>
+    <color name="theme_alpha">#70A7C6</color>
+    <color name="ab_divider">#70A7C6</color>
+    <color name="main_divider">#70A7C6</color>
+
+    <color name="fragment_background">#F6D3D7</color>
+
+    <!--
     <color name="theme">#c7f464</color>
     <color name="theme_alpha">#80c7f464</color>
     <color name="ab_divider">#AFD758</color>
 	<color name="main_divider">#c7f464</color>
-    
+    -->
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="gray">#555152</color>
-    <color name="fragment_background">#ffffff</color>
+
     <color name="shadow">#40000000</color>
     <color name="btn_border">#80000000</color>
     <color name="btn_diable">#E6E6DF</color>
@@ -23,8 +31,8 @@
     <color name="ab_spinner2">#555152</color>
     
     <color name="chart_legend_text">#555152</color>
-    <color name="chart_memo_text">#555152</color>
-    <color name="chart_btn_text">#555152</color>
+    <color name="chart_memo_text">#000000</color>
+    <color name="chart_btn_text">#000000</color>
     <color name="dot_indicate">#bb00ff</color>
 
     <!-- Setting Color -->
