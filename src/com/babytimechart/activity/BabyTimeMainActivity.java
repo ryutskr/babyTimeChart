@@ -263,9 +263,9 @@ public class BabyTimeMainActivity extends Activity {
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.x).toUpperCase(l);
+                    return getString(R.string.first).toUpperCase(l);
                 case 1:
-                    return getString(R.string.y).toUpperCase(l);
+                    return getString(R.string.second).toUpperCase(l);
             }
             return null;
         }

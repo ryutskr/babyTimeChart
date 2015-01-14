@@ -5,39 +5,39 @@
     <string name="app_name">아기 시간표</string>
     <string name="first">first</string>
     <string name="second">second</string>
-    <string name="count_day">일</string>
+    <string name="count_day">days</string>
     <string name="action_text1">`s</string>
-    <string name="action_settings">설정</string>
-    <string name="action_help">도움말</string>
+    <string name="action_settings">Setting</string>
+    <string name="action_help">Help</string>
     
-    <string name="save">저 장</string>
-    <string name="cancel">취 소</string>
-    <string name="confirm">확 인</string>
-    <string name="stime_titile">시작 시간</string>
-    <string name="etime_titile">종료 시간</string>
-    <string name="minus_small_time">-20분</string>
-    <string name="minus_big_time">-5분</string>
-    <string name="plus_small_time">+5분</string>
-    <string name="plus_big_time">+20분</string>
-    <string name="memo">메 모</string>
-    <string name="memo_hint">메모를 입력하세요</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">O K</string>
+    <string name="stime_titile">Start time</string>
+    <string name="etime_titile">End time</string>
+    <string name="minus_small_time">-20min</string>
+    <string name="minus_big_time">-5min</string>
+    <string name="plus_small_time">+5min</string>
+    <string name="plus_big_time">+20min</string>
+    <string name="memo">M e m o</string>
+    <string name="memo_hint">Please enter a comment</string>
     <string name="notice">* 수유와 놀이 수면만 그래프에 표시 됩니다.</string>
-    <string name="empty_data">아래 버튼을 눌러 아기의 패턴을 입력하세요.</string>
+    <string name="empty_data">Click the button below to enter your baby`s pattern.</string>
     <string name="time_err1">마지막으로 지정한 시간보다 빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err2">시작 시간보다  빠른 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err3">종료 시간보다  늦은 시간으로 설정 할 수 없습니다.</string>
     <string name="time_err4">종료 시간 입력은 오늘만 가능합니다.</string>
 
     <!-- Tab Title -->
-    <string name="eating">먹 기</string>
-    <string name="playing">놀 기</string>
-    <string name="sleeping">잠 자 기</string>
-    <string name="etc">기 타</string>
+    <string name="eating">Eat</string>
+    <string name="playing">Play</string>
+    <string name="sleeping">Sleep</string>
+    <string name="etc">Etc</string>
 
     <!-- 먹기 Tab -->
-    <string name="mothersmilk">모 유</string>
-    <string name="milkpowder">분 유</string>
-    <string name="babyfood">이 유 식</string>
+    <string name="mothersmilk">Breastfeeding</string>
+    <string name="milkpowder">Powdered milk</string>
+    <string name="babyfood">Baby food</string>
     <string name="eating_type_direct">직접 수유</string>
     <string name="eating_type_bottle">유축 수유</string>
     <string name="minus_small_ml">-20ml</string>
