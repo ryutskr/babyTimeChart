@@ -23,4 +23,32 @@
         <item>#f8ca00</item>
         <item>#8a9b0f</item>
     </string-array>
+    
+    
+    <string-array name="time_dot" translatable="false">
+        <item>#FF0000</item>
+        <item>#FC4700</item>
+        <item>#FC6600</item>
+        <item>#fccc00</item>
+        <item>#ffff00</item>
+        
+        <item>#ccff66</item>
+        <item>#7dcd00</item>
+        <item>#36b700</item>
+        <item>#009900</item>
+        <item>#008080</item>
+        
+        <item>#006666</item>
+        <item>#009297</item>
+        <item>#0611f2</item>
+        <item>#003a9a</item>
+        <item>#00007e</item>
+        
+        <item>#4d009a</item>
+        <item>#80007f</item>
+        <item>#770055</item>
+        <item>#e80074</item>
+        <item>#ff0066</item>
+    </string-array>
+    
 </resources>

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -102,7 +103,6 @@ public class BabyTimeMainActivity extends Activity {
             if( adapterView.equals(mSpinnerToday)){
                 mLastSelectedToday = adapterView.getSelectedItem().toString();
                 fragmentC.changeChartDate(0, mLastSelectedToday);
-
                 if( mLastSelectedToday.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))))
                     fragmentC.setEnableBtn(true);
                 else
@@ -148,8 +148,9 @@ public class BabyTimeMainActivity extends Activity {
             }else if( i == 1 ){
                 mTextViewBabyName.setVisibility(View.GONE);
                 mSpinnerOtherDay.setVisibility(View.VISIBLE);
-                fragmentC.addChart(1, mLastSelectedOtherday);
                 fragmentC.changeChartDate(0, mLastSelectedToday);
+                fragmentC.addChart(1, mLastSelectedOtherday);
+                
             }
 
             fragmentC.setLegendColor();

@@ -3,12 +3,12 @@
 <resources>
 
     <!--  application  -->
-    <color name="theme">#70A7C6</color>
-    <color name="theme_alpha">#70A7C6</color>
-    <color name="ab_divider">#70A7C6</color>
-    <color name="main_divider">#70A7C6</color>
+    <color name="theme">#fcb8d1</color>
+    <color name="theme_alpha">#fcb8d1</color>
+    <color name="ab_divider">#fcb8d1</color>
+    <color name="main_divider">#fcb8d1</color>
 
-    <color name="fragment_background">#F6D3D7</color>
+    <color name="fragment_background">#e6e6e6</color>
 
     <!--
     <color name="theme">#c7f464</color>
@@ -24,6 +24,18 @@
     <color name="btn_border">#80000000</color>
     <color name="btn_diable">#E6E6DF</color>
 
+    <!--  Chart Color  -->
+    <color name="time_circle_fill">#ffffff</color>
+    <color name="time_circle_stroke">#000000</color>
+    <color name="time_text_color">#000000</color>
+    
+    <color name="circle_fill">#ffffff</color>
+    <color name="circle_strok">#000000</color>
+    
+    <color name="center_circle_fill_strok">#000000</color>
+    <color name="arc_select">#000000</color>
+    
+    
     <!-- Action Bar  #c7f464 -->
     <!-- Main Activity -->
     <color name="ab_name">#555152</color>
@@ -33,7 +45,6 @@
     <color name="chart_legend_text">#555152</color>
     <color name="chart_memo_text">#000000</color>
     <color name="chart_btn_text">#000000</color>
-    <color name="dot_indicate">#bb00ff</color>
 
     <!-- Setting Color -->
     <color name="setting_ab_title">#555152</color>
