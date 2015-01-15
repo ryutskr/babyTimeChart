@@ -3,12 +3,12 @@
 <resources>
 
     <!--  application  -->
-    <color name="theme">#fcb8d1</color>
-    <color name="theme_alpha">#fcb8d1</color>
-    <color name="ab_divider">#fcb8d1</color>
-    <color name="main_divider">#fcb8d1</color>
+    <color name="theme">#C5A5CA</color>
+    <color name="theme_alpha">#80C5A5CA</color>
+    <color name="ab_divider">#C5A5CA</color>
+    <color name="main_divider">#C5A5CA</color>
 
-    <color name="fragment_background">#e6e6e6</color>
+    <color name="fragment_background">#FDEAAF</color>
 
     <!--
     <color name="theme">#c7f464</color>
@@ -27,7 +27,7 @@
     <!--  Chart Color  -->
     <color name="time_circle_fill">#ffffff</color>
     <color name="time_circle_stroke">#000000</color>
-    <color name="time_text_color">#000000</color>
+    <color name="time_text_color">#ff0000</color>
     
     <color name="circle_fill">#ffffff</color>
     <color name="circle_strok">#000000</color>
@@ -39,8 +39,8 @@
     <!-- Action Bar  #c7f464 -->
     <!-- Main Activity -->
     <color name="ab_name">#555152</color>
-    <color name="ab_spinner1">#555152</color>
-    <color name="ab_spinner2">#555152</color>
+    <color name="ab_spinner1">#000000</color>
+    <color name="ab_spinner2">#000000</color>
     
     <color name="chart_legend_text">#555152</color>
     <color name="chart_memo_text">#000000</color>
@@ -52,7 +52,7 @@
     <color name="setting_header_divider">#000000</color>
     <color name="setting_row">#000000</color>
     <color name="setting_row_explain">#000000</color>
-    <color name="setting_row_divider">#80DADADC</color>
+    <color name="setting_row_divider">#80000000</color>
     <color name="setting_dialog_profile_title">#bb00ff</color>
     <color name="setting_dialog_profile_divider">#bb00ff</color>
     <color name="setting_dialog_datepicker_title">#bb00ff</color>

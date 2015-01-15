@@ -1,7 +1,5 @@
 package com.babytimechart.ui;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,8 +12,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -25,6 +21,8 @@ import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.DrawArcData.ArcData;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.util.ArrayList;
 
 public class RoundChartView extends View {
 
@@ -232,38 +230,55 @@ public class RoundChartView extends View {
 		
 		Paint textPaint = new Paint();
 		paint.setAntiAlias(true);
-		textPaint.setColor(getResources().getColor(R.color.time_text_color));
 		textPaint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.LINEAR_TEXT_FLAG);
 		textPaint.setTextSize(getResources().getDimension(R.dimen.time_text));
-		
-		canvas.drawText("24", rect.centerX()-(textPaint.getTextSize()/2),
-				rect.top + (TIME_CIRCLE_FILL/3)*2, textPaint);
-		canvas.drawText("6", rect.right -(TIME_CIRCLE_FILL/3)*2,
-				rect.centerY()+(textPaint.getTextSize()/3), textPaint);
-		canvas.drawText("12", rect.centerX()-(textPaint.getTextSize()/2),
-				rect.bottom - (TIME_CIRCLE_FILL/3), textPaint);
-		
-		canvas.drawText("18", rect.left + (TIME_CIRCLE_FILL/6),
-				rect.centerY()+(textPaint.getTextSize()/3), textPaint);
-		
-		Paint dotPaint = new Paint();
-		dotPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-		dotPaint.setAntiAlias(true);
-		
-		RectF timeRect = new RectF();
-		float fRadius = rect.centerX() - (TIME_CIRCLE_FILL/2);
-		String[] time_dot = getResources().getStringArray(R.array.time_dot);
-		int iColorIndex = 0;
-		for( int i =1; i<25; i++){
-			if( i%6 != 0 ){
-			timeRect.set( rect.centerX() + fRadius*(float)Math.cos(i*Math.PI/12) - getResources().getDimension(R.dimen.time_dot)/2,
-					rect.centerY() + fRadius*(float)Math.sin(i*Math.PI/12) - getResources().getDimension(R.dimen.time_dot)/2,
-					rect.centerX() + fRadius*(float)Math.cos(i*Math.PI/12) + getResources().getDimension(R.dimen.time_dot)/2,  
-					rect.centerY() + fRadius*(float)Math.sin(i*Math.PI/12) + getResources().getDimension(R.dimen.time_dot)/2);
-			dotPaint.setColor(Color.parseColor(time_dot[iColorIndex++]));
-			canvas.drawOval(timeRect, dotPaint);
-			}
+
+        RectF timeRect = new RectF();
+        float fRadius = rect.centerX() - (TIME_CIRCLE_FILL/2);
+        String[] time_dot = getResources().getStringArray(R.array.time_dot);
+        int iColorIndex = 0;
+
+        for( int i =1; i<25; i++){
+
+			timeRect.set( rect.centerX() + fRadius*(float)Math.cos((i-6)*Math.PI/12) - textPaint.getTextSize()/2,
+					rect.centerY() + fRadius*(float)Math.sin((i-6)*Math.PI/12) - textPaint.getTextSize()/2,
+					rect.centerX() + fRadius*(float)Math.cos((i-6)*Math.PI/12) + textPaint.getTextSize()/2,
+					rect.centerY() + fRadius*(float)Math.sin((i-6)*Math.PI/12) + textPaint.getTextSize()/2);
+            if( i%6 != 0 )
+                textPaint.setColor(Color.parseColor(time_dot[iColorIndex++]));
+            else
+                textPaint.setColor(getResources().getColor(R.color.time_text_color));
+			canvas.drawText(""+i, timeRect.left, timeRect.bottom, textPaint);
 		}
+
+		
+//		canvas.drawText("24", rect.centerX()-(textPaint.getTextSize()/2),
+//				rect.top + (TIME_CIRCLE_FILL/3)*2, textPaint);
+//		canvas.drawText("6", rect.right -(TIME_CIRCLE_FILL/3)*2,
+//				rect.centerY()+(textPaint.getTextSize()/3), textPaint);
+//		canvas.drawText("12", rect.centerX()-(textPaint.getTextSize()/2),
+//				rect.bottom - (TIME_CIRCLE_FILL/3), textPaint);
+//		canvas.drawText("18", rect.left + (TIME_CIRCLE_FILL/6),
+//				rect.centerY()+(textPaint.getTextSize()/3), textPaint);
+		
+//		Paint dotPaint = new Paint();
+//		dotPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+//		dotPaint.setAntiAlias(true);
+//
+//		RectF timeRect = new RectF();
+//		float fRadius = rect.centerX() - (TIME_CIRCLE_FILL/2);
+//		String[] time_dot = getResources().getStringArray(R.array.time_dot);
+//		int iColorIndex = 0;
+//		for( int i =1; i<25; i++){
+//			if( i%6 != 0 ){
+//			timeRect.set( rect.centerX() + fRadius*(float)Math.cos(i*Math.PI/12) - getResources().getDimension(R.dimen.time_dot)/2,
+//					rect.centerY() + fRadius*(float)Math.sin(i*Math.PI/12) - getResources().getDimension(R.dimen.time_dot)/2,
+//					rect.centerX() + fRadius*(float)Math.cos(i*Math.PI/12) + getResources().getDimension(R.dimen.time_dot)/2,
+//					rect.centerY() + fRadius*(float)Math.sin(i*Math.PI/12) + getResources().getDimension(R.dimen.time_dot)/2);
+//			dotPaint.setColor(Color.parseColor(time_dot[iColorIndex++]));
+//			canvas.drawOval(timeRect, dotPaint);
+//			}
+//		}
 		
 	}
 
