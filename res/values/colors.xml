@@ -3,19 +3,13 @@
 <resources>
 
     <!--  application  -->
-    <color name="theme">#C5A5CA</color>
-    <color name="theme_alpha">#80C5A5CA</color>
-    <color name="ab_divider">#C5A5CA</color>
-    <color name="main_divider">#C5A5CA</color>
+    <color name="theme">#CCEBF9</color>
+    <color name="theme_alpha">#80CCEBF9</color>
+    <color name="ab_divider">#B9E0F9</color>
+    <color name="main_divider">#CCEBF9</color>
 
-    <color name="fragment_background">#FDEAAF</color>
+    <color name="fragment_background">#90FFF0F5</color>
 
-    <!--
-    <color name="theme">#c7f464</color>
-    <color name="theme_alpha">#80c7f464</color>
-    <color name="ab_divider">#AFD758</color>
-	<color name="main_divider">#c7f464</color>
-    -->
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="gray">#555152</color>
@@ -25,15 +19,15 @@
     <color name="btn_diable">#E6E6DF</color>
 
     <!--  Chart Color  -->
-    <color name="time_circle_fill">#ffffff</color>
-    <color name="time_circle_stroke">#000000</color>
+    <color name="time_circle_fill">#90C3F4FD</color>
+    <color name="time_circle_stroke">#B9E0F9</color>
     <color name="time_text_color">#ff0000</color>
     
-    <color name="circle_fill">#ffffff</color>
-    <color name="circle_strok">#000000</color>
+    <color name="circle_fill">#E8F4FD</color>
+    <color name="circle_strok">#B9E0F9</color>
     
     <color name="center_circle_fill_strok">#000000</color>
-    <color name="arc_select">#000000</color>
+    <color name="arc_select">#1D90FF</color>
     
     
     <!-- Action Bar  #c7f464 -->

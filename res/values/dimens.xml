@@ -19,17 +19,16 @@
     <dimen name="btn_padding_bottom">9dip</dimen>
     <dimen name="btn_radius">8dip</dimen>
     
-    <dimen name="dot_indicator_nomal">4dip</dimen>
-    <dimen name="dot_indicator_sel">8dip</dimen>
+    <dimen name="dot_indicator_size">6dip</dimen>
     
     <!--  Chart Dimen  -->
     <dimen name="time_circle_fill">30dip</dimen>
-    <dimen name="time_circle_stroke">4dip</dimen>
+    <dimen name="time_circle_stroke">2dip</dimen>
     <dimen name="time_text">15dip</dimen>
     <dimen name="time_dot">8dip</dimen>
     
     <dimen name="circle_fill">20dip</dimen>
-    <dimen name="circle_stroke">3dip</dimen>
+    <dimen name="circle_stroke">1dip</dimen>
     
     <dimen name="center_circle_fill">4dip</dimen>
     <dimen name="center_circle_radius">4dip</dimen>

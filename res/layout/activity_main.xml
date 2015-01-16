@@ -1,25 +1,27 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ryutskr="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_layout"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/fragment_background">
+    android:layout_height="fill_parent">
 
     <LinearLayout
         android:id="@+id/dotindicater"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin_half"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin_half"/>
+        android:orientation="horizontal" />
 
-    <com.babytimechart.ui.HeightWrappingViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/pagermain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/dotindicater"
-        ryutskr:isAdView="true"/>
+        android:layout_below="@+id/dotindicater" />
+
+    <ImageView
+        android:id="@+id/screenshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/camera" />
 
 </RelativeLayout>
