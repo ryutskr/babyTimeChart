@@ -1,12 +1,5 @@
-1. 차트 클릭시 삭제 구현.
- - DB의 내용 삭제 할수 있는 UI 제공.
- 
-2. Setting 부분 구현.
- - Chart Color 선택 할 수 있게 구현.
-
-3. 디자인 입히기.
-4. 광고 달기.
-5. 메모 보여 줄수 있는 UI 구현
+1. 11:30분일때 예외 처리.
+2. 전면 광고 게재
 
 
 칼라 피커 참고 소스
@@ -31,6 +24,7 @@ https://developer.android.com/google/backup/signup.html
 <resources>
     <integer name="google_play_services_version">4242000</integer>
 </resources>
+--------------------------------------------------------------------
 
 
 App name 
