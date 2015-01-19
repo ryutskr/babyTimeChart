@@ -123,11 +123,10 @@ public class Fragment_Etc extends Fragment {
 
 		@Override
 		public void onClick(View v) {
-			SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 			Utils utils = new Utils();
 			switch(v.getId()){
 			case R.id.btn_minus_small_time:
-				if( mTextView_stime.isFocused() )
+				if(mIsTimeClick)
 				{
 					if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_BIG)
 						utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
@@ -136,7 +135,7 @@ public class Fragment_Etc extends Fragment {
 						mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
 						mTextView_stime.setContentDescription("" + mMillsSTime);
 					}
-				}else if( mTextView_etime.isFocused() ){
+				}else {
 					if( mMillsSTime > mMillsETime - SPACE_IN_TIME_BIG)
 						utils.makeToast(getActivity(), getResources().getString(R.string.time_err2));
 					else{
@@ -204,11 +203,10 @@ public class Fragment_Etc extends Fragment {
 					SimpleDateFormat datedd = new SimpleDateFormat("dd");
 					int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsETime + SPACE_IN_TIME_BIG)) );
 					int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsETime)));
-
 					if( iNextDay > iNowDay )
 						utils.makeToast(getActivity(), getResources().getString(R.string.time_err4));
 					else{
-						mMillsETime =  mMillsETime + SPACE_IN_TIME_BIG; 
+                        mMillsETime =  mMillsETime + SPACE_IN_TIME_BIG;
 						mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
 						mTextView_etime.setContentDescription("" + mMillsETime);
 					}
@@ -230,6 +228,8 @@ public class Fragment_Etc extends Fragment {
 	};
 
 }
+
+
 
 
 

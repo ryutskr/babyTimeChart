@@ -296,6 +296,14 @@ public class RoundChartView extends View {
 		makeChartDatas();
 	}
 
+    public boolean isInterstitial(){
+        if( mChartDataArrayList != null && mChartDataArrayList.size() > 0){
+            if( mChartDataArrayList.get(0).mDrawArcData != null )
+                        return true;
+        }
+        return false;
+    }
+
 	public void removeChart(int chartIndex){
 
 		if( mChartDataArrayList.size() < (chartIndex+1))

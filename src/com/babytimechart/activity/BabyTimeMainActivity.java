@@ -1,14 +1,5 @@
 package com.babytimechart.activity;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -43,6 +34,15 @@ import com.babytimechart.ui.BabyTimeSpinnerAdapter;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class BabyTimeMainActivity extends Activity {
 
@@ -56,8 +56,6 @@ public class BabyTimeMainActivity extends Activity {
 	private String mLastSelectedOtherday = "";
 	private LinearLayout mDotLinearLayout;
 	private ImageView mScreenShot;
-
-	//    private InterstitialAd mInterstitial;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -283,11 +281,6 @@ public class BabyTimeMainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		//        mInterstitial = new Utils().addInterstitialAd(this);
-		//
-		//        if (mInterstitial.isLoaded()) {
-		//        	mInterstitial.show();
-		//          }
 	}
 
 

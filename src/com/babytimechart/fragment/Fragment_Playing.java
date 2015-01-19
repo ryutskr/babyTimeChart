@@ -124,7 +124,6 @@ public class Fragment_Playing extends Fragment {
 
 		@Override
 		public void onClick(View v) {
-			SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 			Utils utils = new Utils();
 			switch(v.getId()){
 			case R.id.btn_minus_small_time:

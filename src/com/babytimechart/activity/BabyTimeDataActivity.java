@@ -299,17 +299,21 @@ public class BabyTimeDataActivity extends Activity{
 	}
 
 	public void inserDataToDB(Fragment fm, String type, String memo){
-		
-		
+
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
+
+        TextView mTextView_stime = (TextView)fm.getView().findViewById(R.id.txtView_stime);
+        TextView mTextView_etime = (TextView)fm.getView().findViewById(R.id.txtView_etime);
+
+        long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
+        long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
+
+        memo =  memo + " / " + time.format(stime) + " - " + time.format(etime);
+
 		EditText mEditeText_Eating_memo = (EditText)fm.getView().findViewById(R.id.editText_Memo);
 		if( mEditeText_Eating_memo.getText().length() > 0)
 			memo =  memo +"\n"+ mEditeText_Eating_memo.getText();
 
-		TextView mTextView_stime = (TextView)fm.getView().findViewById(R.id.txtView_stime);
-		TextView mTextView_etime = (TextView)fm.getView().findViewById(R.id.txtView_etime);
-
-		long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
-		long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
 
 		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd");

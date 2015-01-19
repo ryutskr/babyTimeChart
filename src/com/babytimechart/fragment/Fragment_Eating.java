@@ -131,7 +131,7 @@ public class Fragment_Eating extends Fragment {
 		{
 			mMillsSTime = mLastMillsTime;
 			
-			SimpleDateFormat datedd = new SimpleDateFormat("dd");
+			SimpleDateFormat datedd = new SimpleDateFormat("HH:mm");
 			int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsSTime + SPACE_IN_TIME)) );
 			int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsSTime)));
 			
@@ -218,7 +218,6 @@ public class Fragment_Eating extends Fragment {
 		@Override
 		public void onClick(View v) {
 			int iValue = 0;
-			SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
 			Utils utils = new Utils();
 			switch(v.getId()){
 			case R.id.btn_Eating_minus_small_ml:

@@ -1,16 +1,5 @@
 package com.babytimechart.utils;
 
-import static com.babytimechart.db.Dbinfo.DB_DATE;
-import static com.babytimechart.db.Dbinfo.DB_E_TIME;
-import static com.babytimechart.db.Dbinfo.DB_MEMO;
-import static com.babytimechart.db.Dbinfo.DB_S_TIME;
-import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
-import static com.babytimechart.db.Dbinfo.DB_TYPE;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,7 +7,6 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -30,6 +18,17 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.babytimechart.db.Dbinfo.DB_DATE;
+import static com.babytimechart.db.Dbinfo.DB_E_TIME;
+import static com.babytimechart.db.Dbinfo.DB_MEMO;
+import static com.babytimechart.db.Dbinfo.DB_S_TIME;
+import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
+import static com.babytimechart.db.Dbinfo.DB_TYPE;
 
 public class Utils{
 
@@ -195,13 +194,17 @@ public class Utils{
         adView.loadAd(request);
     }
 
-    public InterstitialAd addInterstitialAd(Context context){
+    public InterstitialAd loadInterstitialAd(Context context){
+
+        TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String deviceID = telephony.getDeviceId();
+
     	// 삽입 광고를 만듭니다.
     	InterstitialAd interstitial = new InterstitialAd(context);
         interstitial.setAdUnitId("ca-app-pub-5151751327714064/1814234437");
 
         // 광고 요청을 만듭니다.
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(deviceID).build();
 
         // 삽입 광고 로드를 시작합니다.
         interstitial.loadAd(adRequest);

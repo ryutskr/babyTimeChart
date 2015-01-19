@@ -14,6 +14,7 @@ import com.babytimechart.activity.BabyTimeDataActivity;
 import com.babytimechart.activity.BabyTimeMainActivity;
 import com.babytimechart.ui.RoundChartView;
 import com.babytimechart.utils.Utils;
+import com.google.android.gms.ads.InterstitialAd;
 import com.ryutskr.babytimechart.R;
 
 import java.text.SimpleDateFormat;
@@ -141,6 +142,8 @@ public class Fragment_Chart extends Fragment {
 		super.onDestroy();
 	}
 
+    private InterstitialAd mInterstitial;
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -148,6 +151,14 @@ public class Fragment_Chart extends Fragment {
 		if( resultCode == Activity.RESULT_OK){
 			((BabyTimeMainActivity) getActivity()).setSpinnerData();
 			changeChartDate(0, new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+
+            if( mPieChart.isInterstitial() ){
+                if (mInterstitial !=null && mInterstitial.isLoaded()) {
+                    mInterstitial.show();
+                }
+
+                new Utils().loadInterstitialAd(getActivity());
+            }
 		}
 	}
 
