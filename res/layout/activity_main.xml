@@ -22,7 +22,8 @@
         android:id="@+id/screenshot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/activity_vertical_margin_half"
         android:layout_alignParentRight="true"
-        android:background="@drawable/camera" />
+        android:background="@drawable/selector_screenshot" />
 
 </RelativeLayout>

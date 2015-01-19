@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
-    <string-array name="spinner_prompt">
+    <string-array name="spinner_prompt" translatable="false">
         <item>1983-06-10</item>
     </string-array>
     <string-array name="color_picker_values" translatable="false">
