@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 공통 -->
+    <string name="app_name">아기 시간표</string>
+    <string name="first">first</string>
+    <string name="second">second</string>
+    <string name="count_day">th day</string>
+    <string name="action_text1">\'s</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_help">Help</string>
+    
+    <string name="save">Save</string>
+    <string name="cancel"> Cancel </string>
+    <string name="confirm">O  K</string>
+    <string name="stime_titile">Start Time</string>
+    <string name="etime_titile">End Time</string>
+    <string name="minus_small_time">-20min</string>
+    <string name="minus_big_time">-5min</string>
+    <string name="plus_small_time">+5min</string>
+    <string name="plus_big_time">+20min</string>
+    <string name="memo">M e m o</string>
+    <string name="memo_hint">Please enter a Memo</string>
+    <string name="notice">* Click the chart, show the Memo * </string>
+    <string name="empty_data">Click the button to enter your baby\'s pattern.</string>
+    <string name="time_err1">you can not set faster than the last input time.</string>
+    <string name="time_err2">It can not be set faster than the Start time.</string>
+    <string name="time_err3">It can not be set later than the End time.</string>
+    <string name="time_err4">The End Time input only today possible.</string>
+
+    <!-- Tab Title -->
+    <string name="eating">Eat</string>
+    <string name="playing">Play</string>
+    <string name="sleeping">Sleep</string>
+    <string name="etc">Etc.</string>
+
+    <!-- 먹기 Tab -->
+    <string name="mothersmilk">Mother\'s Milk</string>
+    <string name="milkpowder">Milk Powder</string>
+    <string name="babyfood">Baby Food</string>
+    <string name="eating_type_direct">Breast Feeding</string>
+    <string name="eating_type_bottle">Bottle Feeding</string>
+    <string name="minus_small_ml">-20ml</string>
+    <string name="minus_big_ml">-10ml</string>
+    <string name="plus_small_ml">+10ml</string>
+    <string name="plus_big_ml">+20ml</string>
+
+    <!-- 놀기 Tab -->
+    <string name="mom">Mom</string>
+    <string name="daddy">Daddy</string>
+    <string name="toy">With Toy</string>
+
+    <!-- 잠자기 Tab -->
+    <string name="nap">Nap</string>
+    <string name="night_sleep">Night Sleep</string>
+
+    <!-- 기타 Tab -->
+    <string name="bath">Bath</string>
+    <string name="babypoo">Baby Poo</string>
+
+    <!-- 설정 -->
+    <string name="setting">Settings</string>
+    <string name="normal">Colors and Profile</string>
+    <string name="manege">Data Management</string>
+
+    <string name="data_backup">Data Save</string>
+    <string name="data_backup_explain">Save your data on Google Drive.</string>
+    <string name="data_backup_message">Save your data on Google Drive.\nDo you want to save?</string>
+    <string name="upload_complete">Save completed</string>
+    
+
+    <string name="data_restore">Data Recovery</string>
+    <string name="data_restore_eplain">To recover the data stored in Google Drive.</string>
+    <string name="data_restore_message">The current data disappears during recovery.\nDo you want to recover?</string>
+    <string name="download_complete">Recovery is complete.</string>
+
+    <string name="data_initialization">Initialization data</string>
+    <string name="data_initialization_explain">Initialize the data.</string>
+    <string name="data_initialization_message">To initialize the data, all data will be lost when you initialize.\nDo you want to initialize?</string>
+
+    <string name="eat_eplain">Change the colors shown in the Chart of Eating.</string>
+    <string name="play_eplain">Change the colors shown in the Chart of Playing.</string>
+    <string name="sleep_eplain">Change the colors shown in the Chart of Sleeping</string>
+    <string name="etc_eplain">Change the colors shown in the Chart of Etc.</string>
+    <string name="baby_profile">Baby Profile</string>
+    <string name="baby_profile_eplain">Enter the name, date of birth.</string>
+    <string name="baby_name">Name</string>
+    <string name="birthday">BirthDay</string>
+    <string name="selectdate">Selection</string>
+    
+</resources>
