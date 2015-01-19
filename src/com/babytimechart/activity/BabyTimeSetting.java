@@ -139,7 +139,7 @@ public class BabyTimeSetting extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.setting_menu, menu);
+//        getMenuInflater().inflate(R.menu.setting_menu, menu);
         return true;
     }
     
@@ -369,7 +369,7 @@ public class BabyTimeSetting extends Activity {
 					mService = getDriveService(mCredential);
 					saveFileToDrive();
 				}
-			}else {
+			}else if( resultCode != RESULT_CANCELED ){
 				startActivityForResult(mCredential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
 			}
 
@@ -383,7 +383,7 @@ public class BabyTimeSetting extends Activity {
 					mService = getDriveService(mCredential);
 					getDownloadFileFromDrive();
 				}
-			}else {
+			}else if( resultCode != RESULT_CANCELED ){
 				startActivityForResult(mCredential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
 			}
 			break;

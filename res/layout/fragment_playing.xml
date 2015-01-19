@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center"
+        android:weightSum="3"  >
 
         <CheckBox
             android:id="@+id/cBox_Playing_mom"
@@ -16,7 +17,8 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/mom"
-            android:textColor="@color/data_btn_text" />
+            android:textColor="@color/data_btn_text"
+            android:layout_weight="1" />
 
         <CheckBox
             android:id="@+id/cBox_Playing_daddy"
@@ -24,23 +26,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="@string/daddy"
-            android:textColor="@color/data_btn_text" />
+            android:textColor="@color/data_btn_text"
+            android:layout_weight="1" />
 
         <CheckBox
-            android:id="@+id/cBox_Playing_family"
+            android:id="@+id/cBox_Playing_toy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/family"
-            android:textColor="@color/data_btn_text" />
+            android:text="@string/toy"
+            android:textColor="@color/data_btn_text"
+            android:layout_weight="1" />
 
-        <CheckBox
-            android:id="@+id/cBox_Playing_friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/friend"
-            android:textColor="@color/data_btn_text" />
     </LinearLayout>
 
     <LinearLayout
@@ -161,6 +158,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:gravity="left"
         android:orientation="vertical" >
 

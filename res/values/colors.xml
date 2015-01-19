@@ -30,11 +30,12 @@
     
     <color name="center_circle_fill_strok">#000000</color>
     <color name="arc_select">#1D90FF</color>
+    <color name="legend_background">#FF8800</color>
     
     
     <!-- Action Bar  #c7f464 -->
     <!-- Main Activity -->
-    <color name="ab_name">#555152</color>
+    <color name="ab_name">#000000</color>
     <color name="ab_spinner1">#000000</color>
     <color name="ab_spinner2">#000000</color>
     
@@ -42,28 +43,28 @@
     <color name="chart_memo_text">#000000</color>
     <color name="chart_btn_text">#000000</color>
 
-    <!-- Setting Color -->
-    <color name="setting_ab_title">#555152</color>
+    <!-- Setting Color bb00ff-->
+    <color name="setting_ab_title">#000000</color>
     <color name="setting_heder">#000000</color>
     <color name="setting_header_divider">#000000</color>
     <color name="setting_row">#000000</color>
     <color name="setting_row_explain">#000000</color>
     <color name="setting_row_divider">#80000000</color>
-    <color name="setting_dialog_profile_title">#bb00ff</color>
-    <color name="setting_dialog_profile_divider">#bb00ff</color>
-    <color name="setting_dialog_datepicker_title">#bb00ff</color>
-    <color name="setting_dialog_datepicker_divider">#bb00ff</color>
-    <color name="setting_dialog_backup_title">#bb00ff</color>
-    <color name="setting_dialog_backup_divider">#bb00ff</color>
-    <color name="setting_dialog_restore_title">#bb00ff</color>
-    <color name="setting_dialog_restore_divider">#bb00ff</color>
-    <color name="setting_dialog_reset_title">#bb00ff</color>
-    <color name="setting_dialog_reset_divider">#bb00ff</color>
+    <color name="setting_dialog_profile_title">#000000</color>
+    <color name="setting_dialog_profile_divider">#000000</color>
+    <color name="setting_dialog_datepicker_title">#000000</color>
+    <color name="setting_dialog_datepicker_divider">#000000</color>
+    <color name="setting_dialog_backup_title">#000000</color>
+    <color name="setting_dialog_backup_divider">#000000</color>
+    <color name="setting_dialog_restore_title">#000000</color>
+    <color name="setting_dialog_restore_divider">#000000</color>
+    <color name="setting_dialog_reset_title">#000000</color>
+    <color name="setting_dialog_reset_divider">#000000</color>
 
     <!-- Data Activity -->
-    <color name="data_ab_title">#555152</color>
-    <color name="tab_divider">#20bb00ff</color>
-    <color name="tab_bottom_border">#bb00ff</color>
+    <color name="data_ab_title">#000000</color>
+    <color name="tab_divider">#000000</color>
+    <color name="tab_bottom_border">#000000</color>
     <color name="divider">#000000</color>
     <color name="data_btn_text">#000000</color>
     <color name="data_time1_text">#000000</color>

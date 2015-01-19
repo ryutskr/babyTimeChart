@@ -389,7 +389,7 @@ public class RoundChartView extends View {
 				dAngle = dAngle +360;
 
 			double dTempAngle = 0;
-			String strMemo =  "";
+			String strMemo = getResources().getString(R.string.notice);
 			for( ArcData data :  mChartDataArrayList.get(0).mDrawArcData.getData()){
 
 				if( data.mStartAngle > dAngle )

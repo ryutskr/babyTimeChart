@@ -155,6 +155,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:gravity="left"
         android:orientation="vertical" >
 

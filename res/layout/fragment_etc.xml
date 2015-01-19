@@ -20,11 +20,19 @@
             android:textColor="@color/data_btn_text" />
 
         <CheckBox
-            android:id="@+id/cBox_Etc_babypoop"
+            android:id="@+id/cBox_Etc_babypoo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/babypoop"
+            android:text="@string/babypoo"
+            android:textColor="@color/data_btn_text" />
+
+        <CheckBox
+            android:id="@+id/cBox_Etc_etc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/etc"
             android:textColor="@color/data_btn_text" />
     </LinearLayout>
 
@@ -146,6 +154,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:gravity="left"
         android:orientation="vertical" >
 

@@ -3,19 +3,19 @@
     <!--
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
+        res/values-v11/styles.xml on API 14+ devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+
         <!-- API 14 theme customizations can go here. -->
         <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
-
         <item name="android:listChoiceIndicatorMultiple">@drawable/color_btn_check_holo_light</item>
         <item name="android:listChoiceIndicatorSingle">@drawable/color_btn_radio_holo_light</item>
         <item name="android:editTextBackground">@drawable/color_edit_text_holo_light</item>
         <item name="android:buttonStyle">@style/ColorButton</item>
-
+        <item name="android:dropDownSpinnerStyle">@style/Spinnercolor</item>
     </style>
-    
+
     <style name="Widget.ActionBar" parent="android:Widget.ActionBar">
         <item name="android:displayOptions">showHome|showCustom</item>
         <item name="android:background">@drawable/actionbar_background</item>
@@ -25,6 +25,11 @@
 
     <style name="ColorButton" parent="android:Widget.Holo.Light.Button">
         <item name="android:background">@drawable/color_btn_default_holo_light</item>
+    </style>
+
+    <style name="Spinnercolor" parent="android:Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/color_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/color_list_selector_holo_light</item>
     </style>
 
 </resources>

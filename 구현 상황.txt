@@ -31,3 +31,15 @@ https://developer.android.com/google/backup/signup.html
 <resources>
     <integer name="google_play_services_version">4242000</integer>
 </resources>
+
+
+App name 
+아기 시간표
+My Baby Diary
+Baby's Diary
+Baby's Day
+Baby Days
+
+
+
+

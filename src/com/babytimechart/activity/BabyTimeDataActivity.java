@@ -156,7 +156,7 @@ public class BabyTimeDataActivity extends Activity{
 			if( strCountDay.equals(strToday))
 				StrTemp = strCountDay;
 			else
-				StrTemp = strCountDay + "("+strToday+")";
+				StrTemp = strCountDay + " ( "+strToday+" )";
 			
 			getActionBar().setTitle(StrTemp);
 			getActionBar().setDisplayShowCustomEnabled(false);
@@ -263,10 +263,8 @@ public class BabyTimeDataActivity extends Activity{
 			strMemo = getResources().getString(R.string.mom);
 		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_daddy)).isChecked() )
 			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.daddy);
-		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_family)).isChecked() )
-			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.family);
-		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_friend)).isChecked() )
-			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.friend);
+		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_toy)).isChecked() )
+			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.toy);
 
 		inserDataToDB(fragmentP, Dbinfo.DB_TYPE_PLAY, strMemo);
 	}
@@ -292,8 +290,10 @@ public class BabyTimeDataActivity extends Activity{
 
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_bath)).isChecked() )
 			strMemo = getResources().getString(R.string.bath);
-		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_bath)).isChecked() )
-			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.babypoop);
+		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_babypoo)).isChecked() )
+			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.babypoo);
+		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_etc)).isChecked() )
+			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.etc);
 
 		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_ETC, strMemo);
 	}
