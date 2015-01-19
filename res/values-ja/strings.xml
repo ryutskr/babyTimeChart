@@ -27,6 +27,8 @@
     <string name="time_err2">開始時間よりも早い時間に設定することはできません。</string>
     <string name="time_err3">終了時間より遅い時間に設定することはできません。</string>
     <string name="time_err4">終了時刻の入力は、今日だけ可能です。</string>
+    <string name="screenshot">The screenshots have been saved.</string>
+    <string name="share">Share</string>
 
     <!-- Tab Title -->
     <string name="eating">食べる</string>

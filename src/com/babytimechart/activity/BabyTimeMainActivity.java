@@ -236,7 +236,7 @@ public class BabyTimeMainActivity extends Activity {
 				e.printStackTrace();
 			}
 
-			new Utils().makeToast(mContext, "스크린샷이 저장되었습니다.");
+			new Utils().makeToast(mContext, getString(R.string.screenshot));
 			MediaScannerConnection.scanFile(mContext, new String[] { imgFile.getPath() }, new String[] { "image/jpeg" }, null);
 			
 			Uri uri = Uri.fromFile(imgFile);
@@ -244,7 +244,7 @@ public class BabyTimeMainActivity extends Activity {
 			shareIntent.setAction(Intent.ACTION_SEND);
 			shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
 			shareIntent.setType("image/jpeg");
-			startActivity(Intent.createChooser(shareIntent, "공유하기"));
+			startActivity(Intent.createChooser(shareIntent, getString(R.string.share)));
 		}
 	};
 

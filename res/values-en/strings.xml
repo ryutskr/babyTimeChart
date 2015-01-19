@@ -27,6 +27,8 @@
     <string name="time_err2">It can not be set faster than the Start time.</string>
     <string name="time_err3">It can not be set later than the End time.</string>
     <string name="time_err4">The End Time input only today possible.</string>
+    <string name="screenshot">The screenshots have been saved.</string>
+    <string name="share">Share</string>
 
     <!-- Tab Title -->
     <string name="eating">Eat</string>
