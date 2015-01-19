@@ -1,3 +1,15 @@
 D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug
-D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\achartengine-1.1.0-adc02237e3e2669276eb4b6eb5f0979cd2b7b4c1.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-http-client-jackson2-1.19.0-533b06254b058d5145077b02f68ab198b32973d9.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-api-client-android-1.17.0-rc-c2bd900a776069841adb6f285d7d13a68e59ec7f.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-http-client-gson-1.17.0-rc-6cb41aba2230d09511c641b6b07b31d420c44f41.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-http-client-android-1.17.0-rc-c80ef45f481419f5936ef0c52e082256fb0e8a87.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\jsr305-1.3.9-939f5b190db8def56671dee6e40d1e225feb03bc.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-oauth-client-1.19.0-d7f980bcff76ff82ed5b4cd8308c7194737a5b5c.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-api-services-drive-v2-rev155-1.19.1-c5e4eb89df4475d3c8adeeafb77fa18c9204ee62.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\gson-2.1-9125c4c1a56c7b5438d7eb7bf9d93c5bc60e68cf.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-api-client-1.19.1-55e70d5d00aa2a4f7111ddc0d501ec2ddb620410.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\google-http-client-1.19.0-4808cd2c2588b3c1ca1ac4c24011021ecf5d043b.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\jackson-core-2.1.3-c901c509a551a34623eb3d073dad9950d2297cf7.jar
 D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\android-support-v13-3e4eab29a4190f2a846fcecf9069ff27373cf498.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\guava-jdk5-13.0-cf910b831a189b64c23fb3e871feaac04f4c11da.jar
+D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\classes-02857f5b40399fc0940f181ebe18260521d9eb5b.jar
