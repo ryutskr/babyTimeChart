@@ -77,26 +77,25 @@ public class Fragment_Playing extends Fragment {
 		mTextView_stime.setOnClickListener(mOnClickListener);
 		mTextView_etime.setOnClickListener(mOnClickListener);
 
-		if( mLastMillsTime != 0)
-		{
-			mMillsSTime = mLastMillsTime;
-			
-			SimpleDateFormat datedd = new SimpleDateFormat("dd");
-			int iNextDay = Integer.parseInt( datedd.format(new Date(mMillsSTime + SPACE_IN_TIME)) );
-			int iNowDay = Integer.parseInt( datedd.format(new Date(mMillsSTime)));
-			
-			if( iNextDay > iNowDay ){
-				mMillsETime = mMillsSTime + ONE_MIN;
-			}else if( mLastMillsTime > System.currentTimeMillis() )
-				mMillsETime = mMillsSTime + SPACE_IN_TIME;
-			else
-				mMillsETime = System.currentTimeMillis();
-		}
-		else
-		{
-			mMillsSTime = System.currentTimeMillis();
-			mMillsETime = mMillsSTime + SPACE_IN_TIME;
-		}
+        if( mLastMillsTime != 0)
+            mMillsSTime = mLastMillsTime;
+        else {
+            mMillsSTime = System.currentTimeMillis();
+            mMillsETime = mMillsSTime + SPACE_IN_TIME;
+        }
+
+        SimpleDateFormat dateHH = new SimpleDateFormat("HH");
+        SimpleDateFormat datemm = new SimpleDateFormat("mm");
+
+        int iHH = Integer.parseInt( dateHH.format(new Date(mMillsSTime)) );
+        int imm = Integer.parseInt( datemm.format(new Date(mMillsSTime)));
+
+        if( iHH >= 23 && imm >=55  )
+            mMillsETime = mMillsSTime;
+        else if(iHH >= 23 && imm >=30 )
+            mMillsETime = mMillsSTime + SPACE_IN_TIME_SMALL;
+        else if( mMillsSTime > System.currentTimeMillis() )
+            mMillsETime = mMillsSTime + SPACE_IN_TIME;
 
 		String sTime = dateformat.format(new Date(mMillsSTime));
 		String eTime = dateformat.format(new Date(mMillsETime));

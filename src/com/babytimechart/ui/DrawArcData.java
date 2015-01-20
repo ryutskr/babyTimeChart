@@ -14,7 +14,7 @@ import java.util.Date;
 public class DrawArcData {
 
     private static final int 	ANGLE_PER_HOUR = 15;
-    private static final float  ANGLE_PER_TENMIN = (float)15/6 ;
+    private static final float  ANGLE_PER_FIVEMIN = (float)15/12 ;
     private static final float  STANDARD_ANGLE = 6 ;
 
     private static final int ARC_ALPHA = 120; 	// 0 ~ 255
@@ -108,10 +108,10 @@ public class DrawArcData {
             data.mPaint = paint;
 
             data.mStartAngle = ((Integer.parseInt(new SimpleDateFormat("HH").format(new Date(data.mStime))) - STANDARD_ANGLE )* ANGLE_PER_HOUR) +
-                    Math.round(Integer.parseInt(new SimpleDateFormat("mm").format(new Date(data.mStime)))/10) * ANGLE_PER_TENMIN;
+                    Math.round(Integer.parseInt(new SimpleDateFormat("mm").format(new Date(data.mStime)))/5) * ANGLE_PER_FIVEMIN;
 
             float fEndAngle = ((Integer.parseInt(new SimpleDateFormat("HH").format(new Date(data.mEtime))) - STANDARD_ANGLE )* ANGLE_PER_HOUR) +
-                    Math.round(Integer.parseInt(new SimpleDateFormat("mm").format(new Date(data.mEtime)))/10) * ANGLE_PER_TENMIN;
+                    Math.round(Integer.parseInt(new SimpleDateFormat("mm").format(new Date(data.mEtime)))/5) * ANGLE_PER_FIVEMIN;
 
             if( data.mStartAngle < 0 )
                 data.mStartAngle = 360 + data.mStartAngle;

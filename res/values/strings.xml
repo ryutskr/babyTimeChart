@@ -2,7 +2,7 @@
 <resources>
 
     <!-- 공통 -->
-    <string name="app_name">아기 시간표</string>
+    <string name="app_name">Baby\'s Diary</string>
     <string name="first">first</string>
     <string name="second">second</string>
     <string name="count_day">th day</string>

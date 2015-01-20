@@ -29,10 +29,9 @@ https://developer.android.com/google/backup/signup.html
 
 App name 
 아기 시간표
-My Baby Diary
+
 Baby's Diary
-Baby's Day
-Baby Days
+
 
 
 

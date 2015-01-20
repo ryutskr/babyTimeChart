@@ -81,6 +81,7 @@ public class Fragment_Chart extends Fragment {
 			rootView.findViewById(R.id.sleepingBtn).setEnabled(false);
 			rootView.findViewById(R.id.etcBtn).setEnabled(false);
 		}
+
 		return rootView;
 	}
 
@@ -131,9 +132,10 @@ public class Fragment_Chart extends Fragment {
 				Intent intent_etc = new Intent(getActivity(), BabyTimeDataActivity.class);
 				intent_etc.putExtra(ARG_SECTION_NUMBER, 3);
 				startActivityForResult(intent_etc, 3);
-
 				break;
 			}
+            if( mInterstitial == null )
+                mInterstitial = new Utils().loadInterstitialAd(getActivity());
 		}
 	};
 
@@ -155,9 +157,8 @@ public class Fragment_Chart extends Fragment {
             if( mPieChart.isInterstitial() ){
                 if (mInterstitial !=null && mInterstitial.isLoaded()) {
                     mInterstitial.show();
+                    mInterstitial = new Utils().loadInterstitialAd(getActivity());
                 }
-
-                new Utils().loadInterstitialAd(getActivity());
             }
 		}
 	}
