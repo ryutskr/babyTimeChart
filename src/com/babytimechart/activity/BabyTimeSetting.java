@@ -1,14 +1,5 @@
 package com.babytimechart.activity;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Locale;
-
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -52,6 +43,14 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.ryutskr.babytimechart.R;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
 public class BabyTimeSetting extends Activity {
 
 	private static final int MENU_EAT 		= 100;
@@ -93,13 +92,13 @@ public class BabyTimeSetting extends Activity {
 		setContentView(R.layout.activity_setting);
 		mListView = (ListView)findViewById(R.id.listview);
 		RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.main_layout);
-		setActinbar();
+        setActionbar();
 		initMenu();
 		mContext = this;
 		new Utils().addBanner(this, mainLayout);
 	}
 
-	private void setActinbar() {
+	private void setActionbar() {
 		if( getActionBar() != null ){
 			getActionBar().setTitle(getString(R.string.setting));
 			getActionBar().setDisplayShowCustomEnabled(false);
@@ -180,7 +179,7 @@ public class BabyTimeSetting extends Activity {
 			case MENU_BACKUP_DATA:
 			case MENU_RESTORE_DATA:
 			case MENU_INITIALIZATION_DATA:
-				createAlerDialog(item._id);
+                createAlertDialog(item._id);
 				break;
 			}
 		}
@@ -188,11 +187,11 @@ public class BabyTimeSetting extends Activity {
 
 	OnClickListener mOnClickListener = new OnClickListener() {
 		@Override
-		public void onClick(View v) { createAlerDialog(DATE_PICKER); }
+		public void onClick(View v) { createAlertDialog(DATE_PICKER); }
 	};
 
-	public void createAlerDialog(int id){
-		View view = null;
+	public void createAlertDialog(int id){
+		View view;
 		String title = null;
 		int dividerColor = 0;
 		int titleColor = 0;
@@ -454,7 +453,7 @@ public class BabyTimeSetting extends Activity {
 					} while (request.getPageToken() != null && request.getPageToken().length() > 0);
 
 
-					if (downloadFile.getDownloadUrl() != null && downloadFile.getDownloadUrl().length() >0)
+					if (downloadFile != null && downloadFile.getDownloadUrl() != null && downloadFile.getDownloadUrl().length() >0)
 					{
 						try
 						{

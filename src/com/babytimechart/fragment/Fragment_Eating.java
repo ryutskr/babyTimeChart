@@ -216,7 +216,7 @@ public class Fragment_Eating extends Fragment {
 
         @Override
         public void onClick(View v) {
-            int iValue = 0;
+            int iValue;
             Utils utils = new Utils();
             switch(v.getId()){
                 case R.id.btn_Eating_minus_small_ml:

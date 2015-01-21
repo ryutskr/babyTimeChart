@@ -124,7 +124,7 @@ public class BabyTimeDataActivity extends Activity{
 
 		});
 
-		setActinbar();
+        setActionbar();
         new Utils().addBanner(this, mainLayout);
 	}
 
@@ -138,8 +138,8 @@ public class BabyTimeDataActivity extends Activity{
 
 			if (cursor!= null && cursor.moveToFirst()){
 				mLastMillsTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
+                cursor.close();
 			}
-			cursor.close();
 			db.close();
 
 		}catch (Exception e){
@@ -147,7 +147,7 @@ public class BabyTimeDataActivity extends Activity{
 		}
 	}
 
-	private void setActinbar() {
+	private void setActionbar() {
 		if( getActionBar() != null ){
 			String StrTemp;
 			String strToday = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
@@ -249,7 +249,7 @@ public class BabyTimeDataActivity extends Activity{
 				strMemo = strMemo + SEPERATOR + mEditeText_ml.getText() + "ml";
 		}
 
-		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_EAT, strMemo + " / ");
+        insertDataToDB(fragmentE, Dbinfo.DB_TYPE_EAT, strMemo + " / ");
 	}
 
 
@@ -266,7 +266,7 @@ public class BabyTimeDataActivity extends Activity{
 		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_toy)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.toy) + SEPERATOR;
 
-		inserDataToDB(fragmentP, Dbinfo.DB_TYPE_PLAY, strMemo );
+        insertDataToDB(fragmentP, Dbinfo.DB_TYPE_PLAY, strMemo);
 	}
 
 	private void getSleepingData() {
@@ -279,7 +279,7 @@ public class BabyTimeDataActivity extends Activity{
 		else if( ((RadioButton)fragmentS.getView().findViewById(R.id.rBtn_Sleeping_night)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.night_sleep);
 
-		inserDataToDB(fragmentS, Dbinfo.DB_TYPE_SLEEP, strMemo + " / ");
+        insertDataToDB(fragmentS, Dbinfo.DB_TYPE_SLEEP, strMemo + " / ");
 	}
 
 	private void getEtcData() {
@@ -295,10 +295,10 @@ public class BabyTimeDataActivity extends Activity{
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_etc)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.etc) + SEPERATOR;
 
-		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_ETC, strMemo);
+        insertDataToDB(fragmentE, Dbinfo.DB_TYPE_ETC, strMemo);
 	}
 
-	public void inserDataToDB(Fragment fm, String type, String memo){
+	public void insertDataToDB(Fragment fm, String type, String memo){
 
         SimpleDateFormat time = new SimpleDateFormat("HH:mm");
 
@@ -310,9 +310,9 @@ public class BabyTimeDataActivity extends Activity{
 
         memo =  memo + time.format(stime) + " - " + time.format(etime);
 
-		EditText mEditeText_Eating_memo = (EditText)fm.getView().findViewById(R.id.editText_Memo);
-		if( mEditeText_Eating_memo.getText().length() > 0)
-			memo =  memo +"\n"+ mEditeText_Eating_memo.getText();
+		EditText mEditText_Eating_memo = (EditText)fm.getView().findViewById(R.id.editText_Memo);
+		if( mEditText_Eating_memo.getText().length() > 0)
+			memo =  memo +"\n"+ mEditText_Eating_memo.getText();
 
 
 		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");

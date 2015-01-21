@@ -1,14 +1,13 @@
 package com.babytimechart.db;
 
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.util.Log;
+
+import java.util.ArrayList;
 
 public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 
@@ -31,14 +30,13 @@ public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// Drop table, DataBackup
 		if( newVersion > oldVersion ){
-			Cursor cursor = null;
 			ArrayList<Bundle> arrBundle = new ArrayList<Bundle>();
 
-			cursor = db.query(Dbinfo.DB_TABLE_NAME, null, null, null, null, null, "_id ASC");
+            Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, null, null, null, null, null, "_id ASC");
 
 			if( cursor != null )
 			{
-                while (cursor != null && cursor.moveToNext()){
+                while ( cursor.moveToNext()){
 					Bundle bundle = new Bundle();
 					bundle.putString(Dbinfo.DB_TYPE, cursor.getString(cursor.getColumnIndex(Dbinfo.DB_TYPE)));
 					bundle.putString(Dbinfo.DB_DATE, cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE)));

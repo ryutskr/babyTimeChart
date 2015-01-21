@@ -55,9 +55,8 @@ public class BabyTimeMainActivity extends Activity {
 	private String mLastSelectedToday = "";
 	private String mLastSelectedOtherday = "";
 	private LinearLayout mDotLinearLayout;
-	private ImageView mScreenShot;
 
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -66,7 +65,7 @@ public class BabyTimeMainActivity extends Activity {
 		RelativeLayout main_layout = (RelativeLayout)findViewById(R.id.main_layout);
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
-		mScreenShot = (ImageView)findViewById(R.id.screenshot);
+        ImageView mScreenShot = (ImageView) findViewById(R.id.screenshot);
 		mScreenShot.setOnClickListener(mOnClickListener);
 		mViewPager = (ViewPager) findViewById(R.id.pagermain);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -188,7 +187,8 @@ public class BabyTimeMainActivity extends Activity {
 						adapter.addItem(cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE)));
 					}
 
-					cursor.close();
+                    if( cursor != null )
+					    cursor.close();
 					db.close();
 
 				}catch (Exception e){
@@ -216,7 +216,7 @@ public class BabyTimeMainActivity extends Activity {
 			bitmap = Bitmap.createBitmap(v1.getDrawingCache());
 			v1.setDrawingCacheEnabled(false);
 
-			OutputStream fout = null;
+			OutputStream fout;
 			File dir = new File(mPath);
 			File imgFile = new File(mPath + System.currentTimeMillis() + ".jpg");
 			try {
@@ -293,8 +293,7 @@ public class BabyTimeMainActivity extends Activity {
 
 		@Override
 		public Fragment getItem(int position) {
-			Fragment_Chart fm = Fragment_Chart.newInstance(position + 1);
-			return fm;
+            return Fragment_Chart.newInstance(position + 1);
 		}
 
 		@Override

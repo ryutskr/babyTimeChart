@@ -12,7 +12,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -213,8 +212,7 @@ public class RoundChartView extends View {
 	}
 
 	private void drawTimeCircle(Canvas canvas){
-		Paint paint = new Paint();
-		paint = new Paint();
+        Paint paint = new Paint();
 		paint.setColor(TIME_CIRCLE_FILL_COLOR);
 		paint.setStyle(Paint.Style.FILL);
 		paint.setAntiAlias(true);
@@ -375,7 +373,7 @@ public class RoundChartView extends View {
 			float y = event.getY() -  mDefaultRect.centerY();
 			float radius = (mDefaultRect.centerX()-TIME_CIRCLE_FILL);
 
-			// Remove Circlr Touch
+			// Remove Circle Touch
 			if( Math.abs(x) < CENTER_REMOVE_CIRCLE_RADIUS && Math.abs(y) < CENTER_REMOVE_CIRCLE_RADIUS){
 				new Handler().post(new Runnable(){
 
@@ -402,7 +400,7 @@ public class RoundChartView extends View {
 			if( dAngle < 0 )
 				dAngle = dAngle +360;
 
-			double dTempAngle = 0;
+			double dTempAngle;
 			String strMemo = getResources().getString(R.string.notice);
 			if( Math.abs(x) <  radius && Math.abs(y) < radius ){
 				for( ArcData data :  mChartDataArrayList.get(0).mDrawArcData.getData()){
@@ -411,6 +409,7 @@ public class RoundChartView extends View {
 						dTempAngle = dAngle + 360;
 					else
 						dTempAngle = dAngle;
+
 					if ( (dTempAngle - data.mStartAngle)>0 && (dTempAngle - data.mStartAngle) <data.mSweepAngle ){
 						strMemo = data.mMemo;
 						mSelectArcId = data.mId;
