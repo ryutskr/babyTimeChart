@@ -324,7 +324,7 @@ public class BabyTimeSetting extends Activity {
 				break;
 			case MENU_RESTORE_DATA:
 				mSelectedDialog = 0;
-				//				googleDrive(MENU_RESTORE_DATA);
+//				googleDrive(MENU_RESTORE_DATA);
 				new Utils().fakeDBData(mContext);
 				break;
 			case MENU_INITIALIZATION_DATA:
