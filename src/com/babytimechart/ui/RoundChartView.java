@@ -101,6 +101,7 @@ public class RoundChartView extends View {
 		super.onDraw(canvas);
 
 		drawTimeCircle(canvas);
+		
 		if( mDefaultRect != null )
 			canvas.drawOval(mDefaultRect, mDefaultPaint);
 
@@ -126,7 +127,8 @@ public class RoundChartView extends View {
 						canvas.drawArc(rect, arcData.getStartAngle(), arcData.getSweepAngle(), true, selectArcPaint);
 					}
 				}
-			}
+			}else if( data.mRect != null )
+				canvas.drawOval(data.mRect, mDefaultPaint);
 		}
 
 		if( mChartDataArrayList.size() != 0)
