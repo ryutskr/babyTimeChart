@@ -249,7 +249,7 @@ public class BabyTimeDataActivity extends Activity{
 				strMemo = strMemo + SEPERATOR + mEditeText_ml.getText() + "ml";
 		}
 
-		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_EAT, strMemo);
+		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_EAT, strMemo + " / ");
 	}
 
 
@@ -260,13 +260,13 @@ public class BabyTimeDataActivity extends Activity{
 		String SEPERATOR = " / ";
 
 		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_mom)).isChecked() )
-			strMemo = getResources().getString(R.string.mom);
+			strMemo = getResources().getString(R.string.mom) + SEPERATOR;
 		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_daddy)).isChecked() )
-			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.daddy);
+			strMemo = strMemo + getResources().getString(R.string.daddy) + SEPERATOR;
 		if( ((CheckBox)fragmentP.getView().findViewById(R.id.cBox_Playing_toy)).isChecked() )
-			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.toy);
+			strMemo = strMemo + getResources().getString(R.string.toy) + SEPERATOR;
 
-		inserDataToDB(fragmentP, Dbinfo.DB_TYPE_PLAY, strMemo);
+		inserDataToDB(fragmentP, Dbinfo.DB_TYPE_PLAY, strMemo );
 	}
 
 	private void getSleepingData() {
@@ -279,7 +279,7 @@ public class BabyTimeDataActivity extends Activity{
 		else if( ((RadioButton)fragmentS.getView().findViewById(R.id.rBtn_Sleeping_night)).isChecked() )
 			strMemo = strMemo + getResources().getString(R.string.night_sleep);
 
-		inserDataToDB(fragmentS, Dbinfo.DB_TYPE_SLEEP, strMemo);
+		inserDataToDB(fragmentS, Dbinfo.DB_TYPE_SLEEP, strMemo + " / ");
 	}
 
 	private void getEtcData() {
@@ -289,11 +289,11 @@ public class BabyTimeDataActivity extends Activity{
 		String SEPERATOR = " / ";
 
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_bath)).isChecked() )
-			strMemo = getResources().getString(R.string.bath);
+			strMemo = getResources().getString(R.string.bath) + SEPERATOR;
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_babypoo)).isChecked() )
-			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.babypoo);
+			strMemo = strMemo + getResources().getString(R.string.babypoo) + SEPERATOR;
 		if( ((CheckBox)fragmentE.getView().findViewById(R.id.cBox_Etc_etc)).isChecked() )
-			strMemo = strMemo + SEPERATOR + getResources().getString(R.string.etc);
+			strMemo = strMemo + getResources().getString(R.string.etc) + SEPERATOR;
 
 		inserDataToDB(fragmentE, Dbinfo.DB_TYPE_ETC, strMemo);
 	}
@@ -308,7 +308,7 @@ public class BabyTimeDataActivity extends Activity{
         long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
         long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
 
-        memo =  memo + " / " + time.format(stime) + " - " + time.format(etime);
+        memo =  memo + time.format(stime) + " - " + time.format(etime);
 
 		EditText mEditeText_Eating_memo = (EditText)fm.getView().findViewById(R.id.editText_Memo);
 		if( mEditeText_Eating_memo.getText().length() > 0)

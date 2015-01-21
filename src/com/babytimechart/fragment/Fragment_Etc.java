@@ -79,10 +79,10 @@ public class Fragment_Etc extends Fragment {
 
         if( mLastMillsTime != 0)
             mMillsSTime = mLastMillsTime;
-        else {
+        else
             mMillsSTime = System.currentTimeMillis();
-            mMillsETime = mMillsSTime + SPACE_IN_TIME;
-        }
+            
+        mMillsETime = mMillsSTime + SPACE_IN_TIME;
 
         SimpleDateFormat dateHH = new SimpleDateFormat("HH");
         SimpleDateFormat datemm = new SimpleDateFormat("mm");

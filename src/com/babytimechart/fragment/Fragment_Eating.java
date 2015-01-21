@@ -128,11 +128,11 @@ public class Fragment_Eating extends Fragment {
         mTextView_etime.setOnClickListener(mOnClickListener);
 
         if( mLastMillsTime != 0)
-            mMillsSTime = mLastMillsTime;
-        else {
+        	mMillsSTime = mLastMillsTime;
+        else
             mMillsSTime = System.currentTimeMillis();
-            mMillsETime = mMillsSTime + SPACE_IN_TIME;
-        }
+        
+    	mMillsETime = mMillsSTime + SPACE_IN_TIME;
 
         SimpleDateFormat dateHH = new SimpleDateFormat("HH");
         SimpleDateFormat datemm = new SimpleDateFormat("mm");

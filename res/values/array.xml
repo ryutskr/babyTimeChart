@@ -5,6 +5,25 @@
         <item>1983-06-10</item>
     </string-array>
     <string-array name="color_picker_values" translatable="false">
+        <item>#6ED746</item>
+        <item>#4ecdc4</item>
+        <item>#FFE145</item>
+        <item>#ff6b6b</item>
+        <item>#C83399</item>
+        
+        <item>#c7f464</item>
+        <item>#c8c8a9</item>
+        <item>#f9cdad</item>
+        <item>#00A4FE</item>
+        <item>#8183E9</item>
+  
+        <item>#bb00ff</item>
+        <item>#bd1150</item>
+        <item>#e97f02</item>
+        <item>#f8ca00</item>
+        <item>#8a9b0f</item>
+        
+        <!-- 
         <item>#7fc7af</item>
         <item>#4ecdc4</item>
         <item>#c7f464</item>
@@ -22,6 +41,8 @@
         <item>#e97f02</item>
         <item>#f8ca00</item>
         <item>#8a9b0f</item>
+         -->
+        
     </string-array>
     
     
