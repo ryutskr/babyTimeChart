@@ -283,8 +283,6 @@ public class BabyTimeMainActivity extends Activity {
 		super.onResume();
 	}
 
-
-
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm){

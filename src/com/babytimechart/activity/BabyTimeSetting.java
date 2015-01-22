@@ -138,7 +138,7 @@ public class BabyTimeSetting extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-//        getMenuInflater().inflate(R.menu.setting_menu, menu);
+        getMenuInflater().inflate(R.menu.setting_menu, menu);
         return true;
     }
     
