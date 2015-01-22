@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:layout_height="2dip"
         android:layout_below="@+id/viewPager_Activity_Data"
-        android:background="@color/divider"
+        android:background="@color/bottom_divider"
         android:orientation="horizontal" />
 
     <LinearLayout

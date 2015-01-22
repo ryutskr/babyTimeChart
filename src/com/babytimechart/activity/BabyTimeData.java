@@ -37,7 +37,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class BabyTimeDataActivity extends Activity{
+public class BabyTimeData extends Activity{
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
