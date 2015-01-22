@@ -1,5 +1,13 @@
 package com.babytimechart.activity;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,6 +36,7 @@ import android.widget.Toast;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.BabyTimeSettingMenuAdapter;
+import com.babytimechart.ui.ColorPickerDialog;
 import com.babytimechart.ui.ColorPickerSwatch;
 import com.babytimechart.utils.Utils;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -42,14 +51,6 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.ryutskr.babytimechart.R;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 
 public class BabyTimeSetting extends Activity {
 
@@ -137,7 +138,6 @@ public class BabyTimeSetting extends Activity {
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.setting_menu, menu);
         return true;
     }
@@ -150,6 +150,7 @@ public class BabyTimeSetting extends Activity {
             finish();
             break;
         	case R.id.action_help:
+        		startActivity(new Intent(mContext, BabyTimeHelp.class));
         		break;
         }
         return true;

@@ -90,4 +90,13 @@
     <string name="birthday">BirthDay</string>
     <string name="selectdate">Selection</string>
     
+    <string name="developer">개발자에게 문의 하기</string>
+    <string name="developer_explain">사진, 재현경로, 폰정보 등을 알려주시면 많은 도움이 됩니다.</string>
+    
+    <string name="license">오픈소스 라이센스</string>
+    <string name="license_explain">오픈소스 라이센스 세부정보</string>
+    
+    <string name="version">Version</string>
+    <string name="version_explain">version 1.0</string>
+    
 </resources>

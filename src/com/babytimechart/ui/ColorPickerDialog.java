@@ -1,4 +1,4 @@
-package com.babytimechart.activity;
+package com.babytimechart.ui;
 
 /*
  * Copyright (C) 2013 The Android Open Source Project
@@ -29,7 +29,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.babytimechart.ui.ColorPickerPalette;
 import com.babytimechart.ui.ColorPickerSwatch.OnColorSelectedListener;
 import com.ryutskr.babytimechart.R;
 

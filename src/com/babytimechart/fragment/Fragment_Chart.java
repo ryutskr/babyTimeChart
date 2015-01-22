@@ -10,8 +10,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.babytimechart.activity.BabyTimeDataActivity;
-import com.babytimechart.activity.BabyTimeMainActivity;
+import com.babytimechart.activity.BabyTimeData;
+import com.babytimechart.activity.BabyTimeMain;
 import com.babytimechart.ui.RoundChartView;
 import com.babytimechart.utils.Utils;
 import com.google.android.gms.ads.InterstitialAd;
@@ -114,22 +114,22 @@ public class Fragment_Chart extends Fragment {
 		public void onClick(View v) {
 			switch( v.getId() ){
 			case R.id.feedingBtn:
-				Intent intent_eat = new Intent(getActivity(), BabyTimeDataActivity.class);
+				Intent intent_eat = new Intent(getActivity(), BabyTimeData.class);
 				intent_eat.putExtra(ARG_SECTION_NUMBER, 0);
 				startActivityForResult(intent_eat, 0);
 				break;
 			case R.id.playingBtn:
-				Intent intent_play = new Intent(getActivity(), BabyTimeDataActivity.class);
+				Intent intent_play = new Intent(getActivity(), BabyTimeData.class);
 				intent_play.putExtra(ARG_SECTION_NUMBER, 1);
 				startActivityForResult(intent_play, 1);
 				break;
 			case R.id.sleepingBtn:
-				Intent intent_sleep = new Intent(getActivity(), BabyTimeDataActivity.class);
+				Intent intent_sleep = new Intent(getActivity(), BabyTimeData.class);
 				intent_sleep.putExtra(ARG_SECTION_NUMBER, 2);
 				startActivityForResult(intent_sleep, 2);
 				break;
 			case R.id.etcBtn:
-				Intent intent_etc = new Intent(getActivity(), BabyTimeDataActivity.class);
+				Intent intent_etc = new Intent(getActivity(), BabyTimeData.class);
 				intent_etc.putExtra(ARG_SECTION_NUMBER, 3);
 				startActivityForResult(intent_etc, 3);
 				break;
@@ -151,7 +151,7 @@ public class Fragment_Chart extends Fragment {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if( resultCode == Activity.RESULT_OK){
-			((BabyTimeMainActivity) getActivity()).setSpinnerData();
+			((BabyTimeMain) getActivity()).setSpinnerData();
 			changeChartDate(0, new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
             if( mPieChart.isInterstitial() ){

@@ -44,7 +44,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class BabyTimeMainActivity extends Activity {
+public class BabyTimeMain extends Activity {
 
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
