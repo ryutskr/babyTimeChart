@@ -300,29 +300,23 @@ public class BabyTimeData extends Activity{
 
 	public void insertDataToDB(Fragment fm, String type, String memo){
 
-        SimpleDateFormat time = new SimpleDateFormat("HH:mm");
-
         TextView mTextView_stime = (TextView)fm.getView().findViewById(R.id.txtView_stime);
         TextView mTextView_etime = (TextView)fm.getView().findViewById(R.id.txtView_etime);
 
         long stime = Long.parseLong( mTextView_stime.getContentDescription().toString() );
         long etime = Long.parseLong( mTextView_etime.getContentDescription().toString() );
 
-        memo =  memo + time.format(stime) + " - " + time.format(etime);
+        memo =  memo + new SimpleDateFormat("HH:mm").format(stime) + " - " + new SimpleDateFormat("HH:mm").format(etime);
 
 		EditText mEditText_Eating_memo = (EditText)fm.getView().findViewById(R.id.editText_Memo);
 		if( mEditText_Eating_memo.getText().length() > 0)
 			memo =  memo +"\n"+ mEditText_Eating_memo.getText();
 
+		String strEtime = new SimpleDateFormat("yyyy-MM-dd").format(new Date(etime));
+		String strStime = new SimpleDateFormat("yyyy-MM-dd").format(new Date(stime));
 
-		SimpleDateFormat insertDateformat = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat dateformat = new SimpleDateFormat("dd");
-
-		String strEtime = insertDateformat.format(new Date(etime));
-		String strStime = insertDateformat.format(new Date(stime));
-
-		String strStimedd = dateformat.format(new Date(stime));
-		String strEtimedd = dateformat.format(new Date(etime));
+		String strStimedd = new SimpleDateFormat("dd").format(new Date(stime));
+		String strEtimedd = new SimpleDateFormat("dd").format(new Date(etime));
 
 		try{
 			BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);

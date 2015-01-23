@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -147,8 +149,6 @@ public class Utils{
 
         return count + context.getString(R.string.count_day);
     }
-    
-    
 
     public String getBabyName(Context context) {
         SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
@@ -218,6 +218,7 @@ public class Utils{
 
         SimpleDateFormat insertDateformat1 = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat insertDateformat2 = new SimpleDateFormat("dd");
+        
         String strToday1 = "";
         String strToday2 = insertDateformat2.format(new Date(time));
 
@@ -247,15 +248,15 @@ public class Utils{
         long[] arrtime = {time1,time2, time3, time4, time5, time6};
         String[] arrType = {"eat", "play", "sleep", "etc","play"};
         ContentValues contentValues = new ContentValues();
-        for(int i=5; i>0; i--)
+        for(int i=90; i>0; i--)
         {
-            strToday1 = insertDateformat1.format(new Date(time -(i* 24*60*60*1000)));
+            strToday1 = insertDateformat1.format(new Date(time -(i* 24l*60*60*1000)));
             for(int k=0; k<5; k++){
                 contentValues.clear();
                 contentValues.put(DB_TYPE, arrType[k] );
                 contentValues.put(DB_DATE, strToday1 );
-                contentValues.put(DB_S_TIME, arrtime[k]+(k*60*60*1000) + (i*60*60*1000) );
-                contentValues.put(DB_E_TIME, arrtime[k+1] + (k*60*60*1000) + (i*60*60*1000) );
+                contentValues.put(DB_S_TIME, arrtime[k]+(k*60l*60*1000) + (i*60l*60*1000) );
+                contentValues.put(DB_E_TIME, arrtime[k+1] + (k*60l*60*1000) + (i*60l*60*1000) );
                 contentValues.put(DB_MEMO, "" + i +k  );
                 db.insert(DB_TABLE_NAME, null, contentValues);
             }

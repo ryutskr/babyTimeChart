@@ -20,7 +20,7 @@ public class BabyTimeDbOpenHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Dbinfo.DB_TABLE_NAME + "(" +
 				"_id 	INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				Dbinfo.DB_TYPE 		+ " TEXT, " +
-				Dbinfo.DB_DATE		+ " TEXT, " + 
+				Dbinfo.DB_DATE		+ " DATE, " + 
 				Dbinfo.DB_S_TIME 	+ " INTEGER, " +			
 				Dbinfo.DB_E_TIME 	+ " INTEGER, " +			
 				Dbinfo.DB_MEMO 		+ " TEXT );");		

@@ -39,4 +39,9 @@
     <dimen name="dot_line_width">1dip</dimen>
     <dimen name="dot_line_interval">5dip</dimen>
     
+    <dimen name="timeslider_padding">10dip</dimen>
+    <dimen name="timeslider_padding_bottom">24dip</dimen>
+    <dimen name="timeslider_triangle_size">8dip</dimen>
+    <dimen name="timeslider_rect_radius">12dip</dimen>
+    
 </resources>

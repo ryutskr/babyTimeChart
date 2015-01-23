@@ -1,5 +1,8 @@
 package com.babytimechart.fragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +20,6 @@ import android.widget.TextView;
 
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -238,13 +238,13 @@ public class Fragment_Eating extends Fragment {
                 case R.id.btn_minus_small_time:
                     if( mIsTimeClick )
                     {
-                        if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_BIG)
-                            utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
-                        else{
+//                        if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_BIG)
+//                            utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
+//                        else{
                             mMillsSTime =  mMillsSTime - SPACE_IN_TIME_BIG;
                             mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
                             mTextView_stime.setContentDescription("" + mMillsSTime);
-                        }
+//                        }
                     }else {
                         if( mMillsSTime > mMillsETime - SPACE_IN_TIME_BIG)
                             utils.makeToast(getActivity(), getResources().getString(R.string.time_err2));
@@ -258,13 +258,13 @@ public class Fragment_Eating extends Fragment {
                 case R.id.btn_minus_big_time:
                     if( mIsTimeClick )
                     {
-                        if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_SMALL)
-                            utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
-                        else{
+//                        if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_SMALL)
+//                            utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
+//                        else{
                             mMillsSTime =  mMillsSTime - SPACE_IN_TIME_SMALL;
                             mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
                             mTextView_stime.setContentDescription("" + mMillsSTime);
-                        }
+//                        }
                     }else {
                         if( mMillsSTime > mMillsETime - SPACE_IN_TIME_SMALL)
                             utils.makeToast(getActivity(), getResources().getString(R.string.time_err2));
@@ -328,7 +328,6 @@ public class Fragment_Eating extends Fragment {
                     mIsTimeClick= true;
                     mTextView_stime.setBackgroundResource(R.drawable.rounded_timebackground);
                     mTextView_etime.setBackgroundColor(getActivity().getResources().getColor(R.color.fragment_background));
-
                     break;
                 case R.id.txtView_etime:
                     mIsTimeClick = false;
@@ -341,7 +340,6 @@ public class Fragment_Eating extends Fragment {
 
     @Override
     public void onDestroy() {
-        Log.i("babytime", getActivity().getComponentName() + "  / onDestroy() ");
         super.onDestroy();
     }
 }     

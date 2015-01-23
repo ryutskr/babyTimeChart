@@ -45,7 +45,7 @@ public class RoundChartView extends View {
 	private final float SELECT_ARC_STROKE_WIDTH;
 
 	private final int ADD_RECT_DIVISION = 4;
-	private final int INTERSTITIAL_PATTERN_COUNT= 3;
+	private final int INTERSTITIAL_PATTERN_COUNT= 4;
 
 	private Paint mDefaultPaint;
 	private RectF mDefaultRect;

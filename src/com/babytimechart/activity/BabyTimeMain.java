@@ -177,8 +177,8 @@ public class BabyTimeMain extends Activity {
 					BabyTimeDbOpenHelper dbOpenHelper = new BabyTimeDbOpenHelper(mContext);
 					SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
 
-					Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, new String[]{Dbinfo.DB_DATE,Dbinfo.DB_E_TIME},
-							null, null, Dbinfo.DB_DATE, null, Dbinfo.DB_DATE + " DESC");
+					Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, new String[]{Dbinfo.DB_DATE},
+							null, null, Dbinfo.DB_DATE, null, Dbinfo.DB_DATE + " DESC limit 90");
 
 					while (cursor != null && cursor.moveToNext()) {
 						if( adapter.getCount() == 0 && !cursor.getString(cursor.getColumnIndex(Dbinfo.DB_DATE))
@@ -208,7 +208,7 @@ public class BabyTimeMain extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			String mPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/babychart/";
+			String mPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/BabyTimeChart/";
 			// create bitmap screen capture
 			Bitmap bitmap;
 			View v1 = getWindow().getDecorView().getRootView();

@@ -305,7 +305,7 @@ public class BabyTimeSetting extends Activity {
 				if( mDatePicker != null ) {
 
 					String strTemp = mDatePicker.getYear() + "/";
-					if (mDatePicker.getMonth() < 10)
+					if (mDatePicker.getMonth() < 9) // january : 0
 						strTemp = strTemp + "0" + (mDatePicker.getMonth() + 1) + "/";
 					else
 						strTemp = strTemp + (mDatePicker.getMonth() + 1) + "/";

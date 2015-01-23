@@ -29,7 +29,7 @@ public class Fragment_Chart extends Fragment {
 	 * fragment.
 	 */
 	private static final String ARG_SECTION_NUMBER = "section_number";
-	private RoundChartView mPieChart = null;
+	private RoundChartView mRoundChartView = null;
 	private int mSelectionNum = -1;
 	private View rootView = null;
 
@@ -37,8 +37,7 @@ public class Fragment_Chart extends Fragment {
     private ImageView mImageViewLegend_play;
     private ImageView mImageViewLegend_sleep;
     private ImageView mImageViewLegend_etc;
-
-
+    private InterstitialAd mInterstitial;
 
 	/**
 	 * Returns a new instance of this fragment for the given section number.
@@ -62,7 +61,7 @@ public class Fragment_Chart extends Fragment {
 
 		rootView = inflater.inflate(R.layout.fragment_chart, container,false);
 
-		mPieChart = (RoundChartView)rootView.findViewById(R.id.roundchartview);
+		mRoundChartView = (RoundChartView)rootView.findViewById(R.id.roundchartview);
 
         mImageViewLegend_eat = (ImageView)rootView.findViewById(R.id.imgview_legend_eat);
         mImageViewLegend_play = (ImageView)rootView.findViewById(R.id.imgview_legend_play);
@@ -144,8 +143,6 @@ public class Fragment_Chart extends Fragment {
 		super.onDestroy();
 	}
 
-    private InterstitialAd mInterstitial;
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -154,7 +151,7 @@ public class Fragment_Chart extends Fragment {
 			((BabyTimeMain) getActivity()).setSpinnerData();
 			changeChartDate(0, new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 
-            if( mPieChart.isInterstitial() ){
+            if( mRoundChartView.isInterstitial() ){
                 if (mInterstitial !=null && mInterstitial.isLoaded()) {
                     mInterstitial.show();
                     mInterstitial = new Utils().loadInterstitialAd(getActivity());
@@ -163,10 +160,10 @@ public class Fragment_Chart extends Fragment {
 		}
 	}
 
-	public void addChart(int chartIndex, String lastSelecteDate){ mPieChart.addChart(chartIndex, lastSelecteDate);}
-	public void removeChart(int chartIndex){ mPieChart.removeChart(chartIndex);}
-	public void changeChartDate(int chartIndex, String selecteDate ){ mPieChart.changeChartDate(chartIndex, selecteDate);}
-	public void refreshChart(){ mPieChart.refreshChart();}
+	public void addChart(int chartIndex, String lastSelecteDate){ mRoundChartView.addChart(chartIndex, lastSelecteDate);}
+	public void removeChart(int chartIndex){ mRoundChartView.removeChart(chartIndex);}
+	public void changeChartDate(int chartIndex, String selecteDate ){ mRoundChartView.changeChartDate(chartIndex, selecteDate);}
+	public void refreshChart(){ mRoundChartView.refreshChart();}
 
 }
 
