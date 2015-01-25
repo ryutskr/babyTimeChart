@@ -3,8 +3,6 @@ package com.babytimechart.activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -41,14 +39,6 @@ public class BabyTimeHelp extends ListActivity {
 	}
 
 	private void initMenu() {
-        String version;
-        PackageInfo i = null;
-        try {
-            i = getPackageManager().getPackageInfo(getPackageName(), 0);
-            version = i.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
 
 		mAdapter = new BabyTimeSettingMenuAdapter(this);
 
