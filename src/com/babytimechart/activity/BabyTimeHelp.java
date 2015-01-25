@@ -3,6 +3,8 @@ package com.babytimechart.activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,6 +41,15 @@ public class BabyTimeHelp extends ListActivity {
 	}
 
 	private void initMenu() {
+        String version;
+        PackageInfo i = null;
+        try {
+            i = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = i.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
 		mAdapter = new BabyTimeSettingMenuAdapter(this);
 
 		// nomal
@@ -57,12 +68,13 @@ public class BabyTimeHelp extends ListActivity {
 		// TODO Auto-generated method stub
 		switch ((int)id){
 		case 0:
-			Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-			sendIntent.setType("plain/text");
-			sendIntent.setData(Uri.parse("ryutskr@gmail.com"));
-			sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
-			startActivity(sendIntent);
+            Intent email = new Intent(Intent.ACTION_SENDTO);
+            email.setData(Uri.parse("mailto:ryutskr@gmail.com"));
+            email.putExtra(Intent.EXTRA_EMAIL, new String[]{"ryutskr@gmail.com"});
+
+            startActivity(email);
 			break;
+
 		case 1:
 			View view = LayoutInflater.from(this).inflate(R.layout.license, null);
 			new AlertDialog.Builder(this)

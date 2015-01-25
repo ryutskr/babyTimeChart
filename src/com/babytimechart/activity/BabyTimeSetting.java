@@ -1,13 +1,5 @@
 package com.babytimechart.activity;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -51,6 +43,14 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.ryutskr.babytimechart.R;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 
 public class BabyTimeSetting extends Activity {
 
@@ -325,8 +325,8 @@ public class BabyTimeSetting extends Activity {
 				break;
 			case MENU_RESTORE_DATA:
 				mSelectedDialog = 0;
-//				googleDrive(MENU_RESTORE_DATA);
-				new Utils().fakeDBData(mContext);
+				googleDrive(MENU_RESTORE_DATA);
+//				new Utils().fakeDBData(mContext);
 				break;
 			case MENU_INITIALIZATION_DATA:
 				try {
