@@ -1,10 +1,11 @@
 package com.babytimechart.ui;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -21,8 +22,6 @@ import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.DrawArcData.ArcData;
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
-
-import java.util.ArrayList;
 
 public class RoundChartView extends View {
 
@@ -50,6 +49,8 @@ public class RoundChartView extends View {
 	private Paint mDefaultPaint;
 	private RectF mDefaultRect;
 	private int mSelectArcId = 0;
+	private float mSelectArcAngle = 0;
+	private float mSelectArcSweepAngle = 0;
 
 	private ArrayList<ChartData> mChartDataArrayList = new ArrayList<ChartData>();
 
@@ -113,27 +114,38 @@ public class RoundChartView extends View {
 
 					// selected ARC
 					if( arcData.mId == mSelectArcId ) {
-						Paint selectArcPaint = new Paint();
-						selectArcPaint.setColor(SELECT_ARC_COLOR);
-						selectArcPaint.setStyle(Paint.Style.STROKE);
-						selectArcPaint.setAntiAlias(true);
-						selectArcPaint.setStrokeWidth(SELECT_ARC_STROKE_WIDTH);
-
-						RectF rect = new RectF();
-						float width = getWidth()- (CIRCLE_STROKE_WIDTH);
-
-						rect.set(CIRCLE_STROKE_WIDTH, CIRCLE_STROKE_WIDTH,
-								width, width);
-						canvas.drawArc(rect, arcData.getStartAngle(), arcData.getSweepAngle(), true, selectArcPaint);
+						mSelectArcAngle = arcData.getStartAngle();
+						mSelectArcSweepAngle = arcData.getSweepAngle();
 					}
 				}
 			}else if( data.mRect != null )
 				canvas.drawOval(data.mRect, mDefaultPaint);
 		}
-
+		
+		drawSelectArc(canvas);
+		
 		if( mChartDataArrayList.size() != 0)
 			customeCircle(canvas);
 	}
+	
+	private void drawSelectArc(Canvas canvas){
+		// selected ARC
+		if( mSelectArcId != 0) {
+			Paint selectArcPaint = new Paint();
+			selectArcPaint.setColor(SELECT_ARC_COLOR);
+			selectArcPaint.setStyle(Paint.Style.STROKE);
+			selectArcPaint.setAntiAlias(true);
+			selectArcPaint.setStrokeWidth(SELECT_ARC_STROKE_WIDTH);
+
+			RectF rect = new RectF();
+			float width = getWidth()- (CIRCLE_STROKE_WIDTH);
+
+			rect.set(CIRCLE_STROKE_WIDTH, CIRCLE_STROKE_WIDTH,
+					width, width);
+			canvas.drawArc(rect, mSelectArcAngle, mSelectArcSweepAngle, true, selectArcPaint);
+		}
+	}
+	
 	private void customeCircle(Canvas canvas)
 	{
 		// Custome Stroke Draw
@@ -237,8 +249,9 @@ public class RoundChartView extends View {
 
 		RectF timeRect = new RectF();
 		float fRadius = rect.centerX() - (TIME_CIRCLE_FILL/2);
-		String[] time_dot = getResources().getStringArray(R.array.time_dot);
-		int iColorIndex = 0;
+		
+		int iColor1 = getResources().getColor(R.color.time_text_color1);
+		int iColor2 = getResources().getColor(R.color.time_text_color2);
 
 		for( int i =1; i<25; i++){
 
@@ -247,9 +260,9 @@ public class RoundChartView extends View {
 					rect.centerX() + fRadius*(float)Math.cos((i-6)*Math.PI/12) + textPaint.getTextSize()/2,
 					rect.centerY() + fRadius*(float)Math.sin((i-6)*Math.PI/12) + textPaint.getTextSize()/2);
 			if( i%6 != 0 )
-				textPaint.setColor(Color.parseColor(time_dot[iColorIndex++]));
+				textPaint.setColor(iColor2);
 			else
-				textPaint.setColor(getResources().getColor(R.color.time_text_color));
+				textPaint.setColor(iColor1);
 			canvas.drawText(""+i, timeRect.left, timeRect.bottom, textPaint);
 		}
 
@@ -371,6 +384,8 @@ public class RoundChartView extends View {
 		if( mChartDataArrayList.size() == 1
 				&& mChartDataArrayList.get(0).mDrawArcData != null){
 
+			String strMemo = getResources().getString(R.string.notice);
+			
 			float x = event.getX() - mDefaultRect.centerX();
 			float y = event.getY() -  mDefaultRect.centerY();
 			float radius = (mDefaultRect.centerX()-TIME_CIRCLE_FILL);
@@ -392,7 +407,7 @@ public class RoundChartView extends View {
 					}
 				});
 
-				((TextView) ((View)getParent()).findViewById(R.id.textViewMemo)).setText("");
+				((TextView) ((View)getParent()).findViewById(R.id.textViewMemo)).setText(strMemo);
 				return super.onTouchEvent(event);
 			}
 
@@ -403,9 +418,11 @@ public class RoundChartView extends View {
 				dAngle = dAngle +360;
 
 			double dTempAngle;
-			String strMemo = getResources().getString(R.string.notice);
+			
 			if( Math.abs(x) <  radius && Math.abs(y) < radius ){
-				for( ArcData data :  mChartDataArrayList.get(0).mDrawArcData.getData()){
+				ArcData data = null;
+				for( int i = mChartDataArrayList.get(0).mDrawArcData.getData().size();i>0;i--){
+					data = mChartDataArrayList.get(0).mDrawArcData.getData().get(i-1);
 
 					if( data.mStartAngle > dAngle )
 						dTempAngle = dAngle + 360;

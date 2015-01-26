@@ -29,6 +29,7 @@ public class Fragment_Chart extends Fragment {
 	 * fragment.
 	 */
 	private static final String ARG_SECTION_NUMBER = "section_number";
+	private static final String ARG_TODAY_LAST_DAY = "lastdate";
 	private RoundChartView mRoundChartView = null;
 	private int mSelectionNum = -1;
 	private View rootView = null;
@@ -90,6 +91,7 @@ public class Fragment_Chart extends Fragment {
         mImageViewLegend_sleep.setBackgroundColor(Utils.mSleepColor);
         mImageViewLegend_etc.setBackgroundColor(Utils.mEtcColor);
     }
+    
 	public void setEnableBtn(boolean enabled){
 		if( mSelectionNum == 2 )
 			return;
@@ -115,21 +117,25 @@ public class Fragment_Chart extends Fragment {
 			case R.id.feedingBtn:
 				Intent intent_eat = new Intent(getActivity(), BabyTimeData.class);
 				intent_eat.putExtra(ARG_SECTION_NUMBER, 0);
+				intent_eat.putExtra(ARG_TODAY_LAST_DAY, ((BabyTimeMain) getActivity()).mLastSelectedToday);
 				startActivityForResult(intent_eat, 0);
 				break;
 			case R.id.playingBtn:
 				Intent intent_play = new Intent(getActivity(), BabyTimeData.class);
 				intent_play.putExtra(ARG_SECTION_NUMBER, 1);
+				intent_play.putExtra(ARG_TODAY_LAST_DAY, ((BabyTimeMain) getActivity()).mLastSelectedToday);
 				startActivityForResult(intent_play, 1);
 				break;
 			case R.id.sleepingBtn:
 				Intent intent_sleep = new Intent(getActivity(), BabyTimeData.class);
 				intent_sleep.putExtra(ARG_SECTION_NUMBER, 2);
+				intent_sleep.putExtra(ARG_TODAY_LAST_DAY, ((BabyTimeMain) getActivity()).mLastSelectedToday);
 				startActivityForResult(intent_sleep, 2);
 				break;
 			case R.id.etcBtn:
 				Intent intent_etc = new Intent(getActivity(), BabyTimeData.class);
 				intent_etc.putExtra(ARG_SECTION_NUMBER, 3);
+				intent_etc.putExtra(ARG_TODAY_LAST_DAY, ((BabyTimeMain) getActivity()).mLastSelectedToday);
 				startActivityForResult(intent_etc, 3);
 				break;
 			}
@@ -148,8 +154,8 @@ public class Fragment_Chart extends Fragment {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if( resultCode == Activity.RESULT_OK){
-			((BabyTimeMain) getActivity()).setSpinnerData();
-			changeChartDate(0, new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
+			setSpinnerData();
+			changeChartDate(0, ((BabyTimeMain) getActivity()).mLastSelectedToday);
 
             if( mRoundChartView.isInterstitial() ){
                 if (mInterstitial !=null && mInterstitial.isLoaded()) {
@@ -159,7 +165,7 @@ public class Fragment_Chart extends Fragment {
             }
 		}
 	}
-
+	public void setSpinnerData(){ ((BabyTimeMain) getActivity()).setSpinnerData(); }
 	public void addChart(int chartIndex, String lastSelecteDate){ mRoundChartView.addChart(chartIndex, lastSelecteDate);}
 	public void removeChart(int chartIndex){ mRoundChartView.removeChart(chartIndex);}
 	public void changeChartDate(int chartIndex, String selecteDate ){ mRoundChartView.changeChartDate(chartIndex, selecteDate);}

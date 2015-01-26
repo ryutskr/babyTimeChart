@@ -55,7 +55,6 @@ public class BabyTimeHelp extends ListActivity {
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO Auto-generated method stub
 		switch ((int)id){
 		case 0:
             Intent email = new Intent(Intent.ACTION_SENDTO);

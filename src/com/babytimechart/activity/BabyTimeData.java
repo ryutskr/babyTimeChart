@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,6 +41,9 @@ import java.util.List;
 public class BabyTimeData extends Activity{
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
+	private static final String ARG_TODAY_LAST_DAY = "lastdate";
+	private static final int SPACE_IN_TIME_24H 		= 24 * 60 * 60 * 1000;
+	
 
 	private HeightWrappingViewPager mViewPager = null;
 	private SectionsPagerAdapter mSectionsPagerAdapter = null;
@@ -49,6 +53,7 @@ public class BabyTimeData extends Activity{
 	private Button mBtnCancel = null;
 	private int mFragmentIndex = 0;
 	private long mLastMillsTime = 0;
+	public String mLastSelectedDay = "";
 
 	static class ViewPagerItem {
 		private final CharSequence mTitle;
@@ -89,8 +94,10 @@ public class BabyTimeData extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_data);
 
-		if( getIntent() != null )
+		if( getIntent() != null ){
 			mFragmentIndex = getIntent().getIntExtra(ARG_SECTION_NUMBER, 0);
+			mLastSelectedDay = getIntent().getStringExtra(ARG_TODAY_LAST_DAY);
+		}
 
 		addTabs();
 
@@ -132,7 +139,7 @@ public class BabyTimeData extends Activity{
 		try{
 			BabyTimeDbOpenHelper dbOpenHelper = new BabyTimeDbOpenHelper(this);
 			SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
-			String selection = "date ='"+ new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())) +"'";
+			String selection = "date ='"+ mLastSelectedDay +"'";
 			Cursor cursor = db.query(Dbinfo.DB_TABLE_NAME, new String[]{Dbinfo.DB_E_TIME},
 					selection, null, Dbinfo.DB_E_TIME, null, Dbinfo.DB_E_TIME + " DESC");
 
@@ -140,6 +147,14 @@ public class BabyTimeData extends Activity{
 				mLastMillsTime = cursor.getLong(cursor.getColumnIndex(Dbinfo.DB_E_TIME));
                 cursor.close();
 			}
+			
+			if( mLastMillsTime == 0 && !mLastSelectedDay.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())))){
+				Log.i("1111", " mLastSelectedDay : " + mLastSelectedDay);
+				long count = new Utils().compareDays(this, mLastSelectedDay);
+				Log.i("1111", " count : " + count);
+				mLastMillsTime =  System.currentTimeMillis() - SPACE_IN_TIME_24H*count;
+			}
+			 
 			db.close();
 
 		}catch (Exception e){
@@ -150,13 +165,12 @@ public class BabyTimeData extends Activity{
 	private void setActionbar() {
 		if( getActionBar() != null ){
 			String StrTemp;
-			String strToday = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
-			String strCountDay = new Utils().countDays(this, strToday);
+			String strCountDay = new Utils().countDays(this, mLastSelectedDay);
 			
-			if( strCountDay.equals(strToday))
+			if( strCountDay.equals(mLastSelectedDay))
 				StrTemp = strCountDay;
 			else
-				StrTemp = strCountDay + " ( "+strToday+" )";
+				StrTemp = strCountDay + " ( "+mLastSelectedDay+" )";
 			
 			getActionBar().setTitle(StrTemp);
 			getActionBar().setDisplayShowCustomEnabled(false);
@@ -313,25 +327,11 @@ public class BabyTimeData extends Activity{
 			memo =  memo +"\n"+ mEditText_Eating_memo.getText();
 
 		String strEtime = new SimpleDateFormat("yyyy-MM-dd").format(new Date(etime));
-		String strStime = new SimpleDateFormat("yyyy-MM-dd").format(new Date(stime));
-
-		String strStimedd = new SimpleDateFormat("dd").format(new Date(stime));
-		String strEtimedd = new SimpleDateFormat("dd").format(new Date(etime));
 
 		try{
 			BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(this);
 			SQLiteDatabase db = dbhelper.getWritableDatabase();
 			ContentValues contentValues = new ContentValues();
-
-			if( Integer.parseInt( strEtimedd ) != Integer.parseInt( strStimedd ) ){
-				contentValues.clear();
-				contentValues.put(Dbinfo.DB_TYPE, type );
-				contentValues.put(Dbinfo.DB_DATE, strStime );
-				contentValues.put(Dbinfo.DB_S_TIME, stime );
-				contentValues.put(Dbinfo.DB_E_TIME, etime );
-				contentValues.put(Dbinfo.DB_MEMO, memo );
-				db.insert(Dbinfo.DB_TABLE_NAME, null, contentValues);
-			}
 
 			contentValues.clear();
 			contentValues.put(Dbinfo.DB_TYPE, type );

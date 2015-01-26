@@ -15,17 +15,21 @@
     <string name="confirm">O  K</string>
     <string name="stime_titile">Start Time</string>
     <string name="etime_titile">End Time</string>
-    <string name="minus_small_time">-20min</string>
-    <string name="minus_big_time">-5min</string>
-    <string name="plus_small_time">+5min</string>
-    <string name="plus_big_time">+20min</string>
+
+    <string name="minus_3">-1H</string>
+    <string name="minus_2">-20min</string>
+    <string name="minus_1">-5min</string>
+    <string name="plus_1">+5min</string>
+    <string name="plus_2">+20min</string>
+    <string name="plus_3">+1H</string>
+    
     <string name="memo">M e m o</string>
     <string name="memo_hint">Please enter a Memo</string>
     <string name="notice">* Click the chart, show the Memo * </string>
     <string name="empty_data">Click the button to enter your baby\'s pattern.</string>
     <string name="time_err1">you can not set faster than the last input time.</string>
-    <string name="time_err2">It can not be set faster than the Start time.</string>
-    <string name="time_err3">It can not be set later than the End time.</string>
+    <string name="time_err2">It can not be set faster than the Start Time.</string>
+    <string name="time_err3">It can not be set later than the End Time.</string>
     <string name="time_err4">The End Time input only today possible.</string>
     <string name="screenshot">The screenshots have been saved.</string>
     <string name="share">Share</string>

@@ -52,9 +52,10 @@ public class BabyTimeMain extends Activity {
 	private Spinner mSpinnerOtherDay = null;
 	private TextView mTextViewBabyName = null;
 	private Context mContext = null;
-	private String mLastSelectedToday = "";
 	private String mLastSelectedOtherday = "";
 	private LinearLayout mDotLinearLayout;
+	public String mLastSelectedToday = "";
+	private int mLastSpinnerSelection = -1;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,12 +111,8 @@ public class BabyTimeMain extends Activity {
 			Fragment_Chart fragmentC = (Fragment_Chart) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
 			if( adapterView.equals(mSpinnerToday)){
 				mLastSelectedToday = adapterView.getSelectedItem().toString();
+				mLastSpinnerSelection = i;
 				fragmentC.changeChartDate(0, mLastSelectedToday);
-				if( mLastSelectedToday.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))))
-					fragmentC.setEnableBtn(true);
-				else
-					fragmentC.setEnableBtn(false);
-
 			}else if(adapterView.equals(mSpinnerOtherDay)){
 				mLastSelectedOtherday = adapterView.getSelectedItem().toString();
 				fragmentC.changeChartDate(1, mLastSelectedOtherday);
@@ -148,11 +145,7 @@ public class BabyTimeMain extends Activity {
 				mSpinnerOtherDay.setVisibility(View.GONE);
 				mTextViewBabyName.setVisibility(View.VISIBLE);
 				fragmentC.changeChartDate(0, mLastSelectedToday);
-
-				if( mLastSelectedToday.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))))
-					fragmentC.setEnableBtn(true);
-				else
-					fragmentC.setEnableBtn(false);
+				fragmentC.setEnableBtn(true);
 			}else if( i == 1 ){
 				mTextViewBabyName.setVisibility(View.GONE);
 				mSpinnerOtherDay.setVisibility(View.VISIBLE);
@@ -197,10 +190,16 @@ public class BabyTimeMain extends Activity {
 					if( adapter.getCount() == 0 )
 						adapter.addItem(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())));
 				}
-
 				mSpinnerToday.setAdapter(adapter);
 				mSpinnerOtherDay.setAdapter(adapter);
+				
+				if( mLastSpinnerSelection != -1 && mLastSpinnerSelection < adapter.getCount())
+					mSpinnerToday.setSelection(mLastSpinnerSelection);
+				else
+					mLastSpinnerSelection = -1;
+				
 				mTextViewBabyName.setText(new Utils().getBabyName(getApplicationContext()));
+				
 			}
 		});
 	}

@@ -14,10 +14,14 @@
     <string name="confirm">확 인</string>
     <string name="stime_titile">시작 시간</string>
     <string name="etime_titile">종료 시간</string>
-    <string name="minus_small_time">-20분</string>
-    <string name="minus_big_time">-5분</string>
-    <string name="plus_small_time">+5분</string>
-    <string name="plus_big_time">+20분</string>
+    
+    <string name="minus_3">-1H</string>
+    <string name="minus_2">-20분</string>
+    <string name="minus_1">-5분</string>
+    <string name="plus_1">+5분</string>
+    <string name="plus_2">+20분</string>
+    <string name="plus_3">+1H</string>
+    
     <string name="memo">메 모</string>
     <string name="memo_hint">메모를 입력하세요</string>
     <string name="notice">* 수유와 놀이 수면만 그래프에 표시 됩니다.</string>

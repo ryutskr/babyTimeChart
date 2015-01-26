@@ -108,39 +108,62 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:weightSum="6" >
 
         <Button
-            android:id="@+id/btn_minus_small_time"
+            android:id="@+id/btn_minus_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minus_small_time"
+            android:text="@string/minus_3"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10" />
+            android:textSize="@dimen/text_size_10"
+            android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_minus_big_time"
+            android:id="@+id/btn_minus_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minus_big_time"
+            android:text="@string/minus_2"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10" />
+            android:textSize="@dimen/text_size_10"
+            android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_plus_small_time"
+            android:id="@+id/btn_minus_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plus_small_time"
+            android:text="@string/minus_1"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10" />
+            android:textSize="@dimen/text_size_10"
+            android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_plus_big_time"
+            android:id="@+id/btn_plus_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plus_big_time"
+            android:text="@string/plus_1"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10" />
+            android:textSize="@dimen/text_size_10"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_plus_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_2"
+            android:textColor="@color/data_btn_text"
+            android:textSize="@dimen/text_size_10"
+            android:layout_weight="1" />
+        
+        <Button
+            android:id="@+id/btn_plus_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_3"
+            android:textColor="@color/data_btn_text"
+            android:textSize="@dimen/text_size_10"
+            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout

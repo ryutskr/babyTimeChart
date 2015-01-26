@@ -132,11 +132,10 @@ public class Utils{
             Calendar inputDate = Calendar.getInstance();
             Calendar birthday = Calendar.getInstance();
 
-            inputDate.set(Integer.parseInt(date.substring(0,4)), Integer.parseInt(date.substring(5,7))
-                    , Integer.parseInt(date.substring(8,10)));
-
-            birthday.set(Integer.parseInt(strBirthday.substring(0,4)), Integer.parseInt(strBirthday.substring(5,7))
-                    , Integer.parseInt(strBirthday.substring(8,10)));
+            inputDate.set(Integer.parseInt(date.substring(0,4)), Integer.parseInt(date.substring(5,7)) -1,
+            		Integer.parseInt(date.substring(8,10)));
+            birthday.set(Integer.parseInt(strBirthday.substring(0,4)), Integer.parseInt(strBirthday.substring(5,7)) -1,
+            		Integer.parseInt(strBirthday.substring(8,10)));
 
             long inputdayCount = inputDate.getTimeInMillis() / (24*60*60*1000);
             long birthdayCount = birthday.getTimeInMillis() / (24*60*60*1000);
@@ -148,6 +147,35 @@ public class Utils{
         }
 
         return count + context.getString(R.string.count_day);
+    }
+    
+    public long compareDays(Context context, String date) {
+    	long count = 0;
+        try {
+            Calendar inputDate = Calendar.getInstance();
+
+            inputDate.set(Integer.parseInt(date.substring(0,4)), Integer.parseInt(date.substring(5,7))-1,
+            		Integer.parseInt(date.substring(8,10)));
+
+            Log.i("1111", " compareDays Integer.parseInt(date.substring(0,4)) : " + Integer.parseInt(date.substring(0,4)));
+            Log.i("1111", " compareDays Integer.parseInt(date.substring(5,7)) : " + Integer.parseInt(date.substring(5,7)));
+            Log.i("1111", " compareDays Integer.parseInt(date.substring(8,10)) : " + Integer.parseInt(date.substring(8,10)));
+            
+            
+            long inputdayCount = inputDate.getTimeInMillis() / (24*60*60*1000);
+            long todayCount = System.currentTimeMillis() / (24*60*60*1000);
+
+            Log.i("1111", " compareDays inputDate.getTime().toString() : " + inputDate.getTime().toString());
+            
+            Log.i("1111", " compareDays inputdayCount : " + inputdayCount);
+            Log.i("1111", " compareDays todayCount : " + todayCount);
+            count = Math.abs( inputdayCount - todayCount );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return count;
     }
 
     public String getBabyName(Context context) {
