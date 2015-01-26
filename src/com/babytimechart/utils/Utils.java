@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
@@ -214,7 +213,7 @@ public class Utils{
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         adView.setLayoutParams(layoutParams);
 
-        adView.setAdUnitId("ca-app-pub-5151751327714064/5326104034");
+        adView.setAdUnitId("ca-app-pub-5151751327714064/3723542439");
         adView.setAdSize(AdSize.BANNER);
 
         viewGroup.addView(adView);
@@ -229,7 +228,7 @@ public class Utils{
 
     	// 삽입 광고를 만듭니다.
     	InterstitialAd interstitial = new InterstitialAd(context);
-        interstitial.setAdUnitId("ca-app-pub-5151751327714064/1814234437");
+        interstitial.setAdUnitId("ca-app-pub-5151751327714064/9770076032");
 
         // 광고 요청을 만듭니다.
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(deviceID).build();
