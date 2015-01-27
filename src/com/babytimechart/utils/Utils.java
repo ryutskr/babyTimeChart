@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -215,8 +214,8 @@ public class Utils{
     }
 
     public void addBanner(Context context, ViewGroup viewGroup) {
-        TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String deviceID = telephony.getDeviceId();
+//        TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//        String deviceID = telephony.getDeviceId();
 
         AdView adView = new AdView(context);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -227,21 +226,23 @@ public class Utils{
         adView.setAdSize(AdSize.BANNER);
 
         viewGroup.addView(adView);
-        AdRequest request = new AdRequest.Builder().addTestDevice(deviceID).build();
+//        AdRequest request = new AdRequest.Builder().addTestDevice(deviceID).build();
+        AdRequest request = new AdRequest.Builder().build();
         adView.loadAd(request);
     }
 
     public InterstitialAd loadInterstitialAd(Context context){
 
-        TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String deviceID = telephony.getDeviceId();
+//        TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//        String deviceID = telephony.getDeviceId();
 
     	// 삽입 광고를 만듭니다.
     	InterstitialAd interstitial = new InterstitialAd(context);
         interstitial.setAdUnitId("ca-app-pub-5151751327714064/9770076032");
 
         // 광고 요청을 만듭니다.
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(deviceID).build();
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice(deviceID).build();
+        AdRequest adRequest = new AdRequest.Builder().build();
 
         // 삽입 광고 로드를 시작합니다.
         interstitial.loadAd(adRequest);

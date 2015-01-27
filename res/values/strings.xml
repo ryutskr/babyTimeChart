@@ -111,7 +111,7 @@
     <string name="measure_eplain">Volume measure select.( mL, fl.oz. )</string>
     
     <string name="developer">Contact for developers</string>
-    <string name="developer_explain">screenshot, reproduction path, device information, etc. will help a lot.</string>
+    <string name="developer_explain">screenshot, reproduction path, device model, etc. will help a lot.</string>
     
     <string name="license">Open Source License</string>
     <string name="license_explain">Open Source License Details</string>

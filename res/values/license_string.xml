@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="license_info1">Notices for Files:</string>
-    <string name="license_info2">
+    <string name="license_info1" translatable="false">Notices for Files:</string>
+    <string name="license_info2" translatable="false">
         ColorPickerDialog.java\n
         ColorPickerPalette.java\n
         ColorPickerSwatch.java\n
         ColorStateDrawable.java\n
         SlidingTabLayout.java\n
         SlidingTabStrip.java</string>
-    <string name="license_info3"> 
+    <string name="license_info3" translatable="false">
         Copyright (C) 2013 The Android Open Source Project\n
 
  		Licensed under the Apache License, Version 2.0 (the "License");\n

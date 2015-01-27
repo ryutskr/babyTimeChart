@@ -111,7 +111,7 @@
     <string name="measure_eplain">부피 단위를 선택합니다.( mL, fl.oz. )</string>
     
     <string name="developer">개발자에게 문의 하기</string>
-    <string name="developer_explain">사진, 재현경로, 폰정보 등을 알려주시면 많은 도움이 됩니다.</string>
+    <string name="developer_explain">사진, 재현경로, 폰 종류 등을 알려주시면 많은 도움이 됩니다.</string>
     
     <string name="license">오픈소스 라이센스</string>
     <string name="license_explain">오픈소스 라이센스 세부정보</string>
