@@ -5,6 +5,7 @@ import java.util.Date;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.babytimechart.utils.Utils;
@@ -43,13 +45,14 @@ public class Fragment_Eating extends Fragment {
 	private RadioButton mRadio_bottle = null;
 
 	private LinearLayout mLinearLayout_radio = null;
-	private LinearLayout mLinearLayout_volume = null;
+	private RelativeLayout mLinearLayout_volume = null;
 
-	private Button mButton_ml_minus_small = null;
-	private Button mButton_ml_minus_big = null;
-	private Button mButton_ml_plus_small = null;
-	private Button mButton_ml_plus_big = null;
-	private EditText mEditeText_ml = null;
+	private Button mButton_volume_minus_small = null;
+	private Button mButton_volume_minus_big = null;
+	private Button mButton_volume_plus_small = null;
+	private Button mButton_volume_plus_big = null;
+	private EditText mEditeText_volume = null;
+	private String mVolumeMeasure = null;
 
 	private TextView mTextView_stime = null;
 	private TextView mTextView_etime = null;
@@ -88,7 +91,7 @@ public class Fragment_Eating extends Fragment {
 
 		if( getArguments() != null )
 			mLastMillsTime = getArguments().getLong(ARG_TODAY_LAST_TIME, 0);
-		
+
 		View rootView = inflater.inflate(R.layout.fragment_eating, container, false);
 		initView(rootView);
 		return rootView;
@@ -109,19 +112,36 @@ public class Fragment_Eating extends Fragment {
 		mRadio_bottle.setOnCheckedChangeListener(mOnCheckedChangeListener);
 
 		mLinearLayout_radio = (LinearLayout)rootView.findViewById(R.id.linear_Eating_mm_radio);
-		mLinearLayout_volume = (LinearLayout)rootView.findViewById(R.id.linear_Eating_volume);
+		mLinearLayout_volume = (RelativeLayout)rootView.findViewById(R.id.Eating_volume_layout);
 
-		mButton_ml_minus_small = (Button)rootView.findViewById(R.id.btn_Eating_minus_small_ml);
-		mButton_ml_minus_big = (Button)rootView.findViewById(R.id.btn_Eating_minus_big_ml);
-		mButton_ml_plus_small = (Button)rootView.findViewById(R.id.btn_Eating_plus_small_ml);
-		mButton_ml_plus_big = (Button)rootView.findViewById(R.id.btn_Eating_plus_big_ml);
+		mButton_volume_minus_small = (Button)rootView.findViewById(R.id.btn_Eating_minus_small_volume);
+		mButton_volume_minus_big = (Button)rootView.findViewById(R.id.btn_Eating_minus_big_volume);
+		mButton_volume_plus_small = (Button)rootView.findViewById(R.id.btn_Eating_plus_small_volume);
+		mButton_volume_plus_big = (Button)rootView.findViewById(R.id.btn_Eating_plus_big_volume);
+
+		mButton_volume_minus_small.setOnClickListener(mOnClickListener);
+		mButton_volume_minus_big.setOnClickListener(mOnClickListener);
+		mButton_volume_plus_small.setOnClickListener(mOnClickListener);
+		mButton_volume_plus_big.setOnClickListener(mOnClickListener);
+
+		mEditeText_volume = (EditText)rootView.findViewById(R.id.editText_Eating_volume);
 		
-		mButton_ml_minus_small.setOnClickListener(mOnClickListener);
-		mButton_ml_minus_big.setOnClickListener(mOnClickListener);
-		mButton_ml_plus_small.setOnClickListener(mOnClickListener);
-		mButton_ml_plus_big.setOnClickListener(mOnClickListener);
-
-		mEditeText_ml = (EditText)rootView.findViewById(R.id.editText_Eating_ml);
+		mVolumeMeasure = new Utils().getMeasureFromPref(getActivity());
+		((TextView)rootView.findViewById(R.id.textview_volume_measure)).setText(mVolumeMeasure);
+		
+		if( mVolumeMeasure.equals(getString(R.string.measure_ml)) ){ //mL
+			mButton_volume_minus_small.setText(getString(R.string.minus_small_ml));
+			mButton_volume_minus_big.setText(getString(R.string.minus_big_ml));
+			mButton_volume_plus_small.setText(getString(R.string.plus_small_ml));
+			mButton_volume_plus_big.setText(getString(R.string.plus_big_ml));
+			mEditeText_volume.setText(getString(R.string.default_ml));
+		}else{ // fl.oz
+			mButton_volume_minus_small.setText(getString(R.string.minus_small_oz));
+			mButton_volume_minus_big.setText(getString(R.string.minus_big_oz));
+			mButton_volume_plus_small.setText(getString(R.string.plus_small_oz));
+			mButton_volume_plus_big.setText(getString(R.string.plus_big_oz));
+			mEditeText_volume.setText(getString(R.string.default_fl_oz));
+		}
 
 		mTextView_stime = (TextView)rootView.findViewById(R.id.txtView_stime);
 		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_etime);
@@ -158,13 +178,13 @@ public class Fragment_Eating extends Fragment {
 
 		mTextView_stime.setBackgroundResource(R.drawable.rounded_timebackground);
 
-		mButton_time_minus_3 = (Button)rootView.findViewById(R.id.btn_minus_3);
-		mButton_time_minus_2 = (Button)rootView.findViewById(R.id.btn_minus_2);
-		mButton_time_minus_1 = (Button)rootView.findViewById(R.id.btn_minus_1);
-		mButton_time_plus_1  = (Button)rootView.findViewById(R.id.btn_plus_1);
-		mButton_time_plus_2  = (Button)rootView.findViewById(R.id.btn_plus_2);
-		mButton_time_plus_3  = (Button)rootView.findViewById(R.id.btn_plus_3);
-		
+		mButton_time_minus_3 = (Button)rootView.findViewById(R.id.btn_time_minus_3);
+		mButton_time_minus_2 = (Button)rootView.findViewById(R.id.btn_time_minus_2);
+		mButton_time_minus_1 = (Button)rootView.findViewById(R.id.btn_time_minus_1);
+		mButton_time_plus_1  = (Button)rootView.findViewById(R.id.btn_time_plus_1);
+		mButton_time_plus_2  = (Button)rootView.findViewById(R.id.btn_time_plus_2);
+		mButton_time_plus_3  = (Button)rootView.findViewById(R.id.btn_time_plus_3);
+
 		mButton_time_minus_3.setOnClickListener(mOnClickListener);
 		mButton_time_minus_2.setOnClickListener(mOnClickListener);
 		mButton_time_minus_1.setOnClickListener(mOnClickListener);
@@ -222,41 +242,54 @@ public class Fragment_Eating extends Fragment {
 
 		@Override
 		public void onClick(View v) {
-			int iValue;
-			Utils utils = new Utils();
+			float fvalue = 0f;
 			switch(v.getId()){
-			case R.id.btn_Eating_minus_small_ml:
-				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
-				mEditeText_ml.setText("" + (iValue - 20) + "ml");
+			case R.id.btn_Eating_minus_small_volume:
+				
+				if( !(mEditeText_volume.getText().toString().length() == 0))
+					fvalue = Float.parseFloat( mEditeText_volume.getText().toString());
+
+				mEditeText_volume.setText(""+ (fvalue
+						+ Float.parseFloat( mButton_volume_minus_small.getText().toString())));
 				break;
-			case R.id.btn_Eating_minus_big_ml:
-				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
-				mEditeText_ml.setText("" + (iValue - 10) + "ml");
+			case R.id.btn_Eating_minus_big_volume:
+				
+				if( !(mEditeText_volume.getText().toString().length() == 0))
+					fvalue = Float.parseFloat( mEditeText_volume.getText().toString());
+
+				mEditeText_volume.setText(""+ (fvalue
+						+ Float.parseFloat( mButton_volume_minus_big.getText().toString())));
 				break;
-			case R.id.btn_Eating_plus_small_ml:
-				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
-				mEditeText_ml.setText("" + (iValue + 10) + "ml");
+			case R.id.btn_Eating_plus_small_volume:
+				if( !(mEditeText_volume.getText().toString().length() == 0))
+					fvalue = Float.parseFloat( mEditeText_volume.getText().toString());
+
+				mEditeText_volume.setText(""+ (fvalue
+						+ Float.parseFloat( mButton_volume_plus_small.getText().toString())));
 				break;
-			case R.id.btn_Eating_plus_big_ml:
-				iValue = Integer.parseInt( mEditeText_ml.getText().toString().replace("ml", ""));
-				mEditeText_ml.setText("" + (iValue + 20) + "ml");
+			case R.id.btn_Eating_plus_big_volume:
+				if( !(mEditeText_volume.getText().toString().length() == 0))
+					fvalue = Float.parseFloat( mEditeText_volume.getText().toString());
+
+				mEditeText_volume.setText(""+ (fvalue
+						+ Float.parseFloat( mButton_volume_plus_big.getText().toString())));
 				break;
-			case R.id.btn_minus_3:
+			case R.id.btn_time_minus_3:
 				minusTime(SPACE_IN_TIME_60);
 				break;
-			case R.id.btn_minus_2:
+			case R.id.btn_time_minus_2:
 				minusTime(SPACE_IN_TIME_20);
 				break;
-			case R.id.btn_minus_1:
+			case R.id.btn_time_minus_1:
 				minusTime(SPACE_IN_TIME_5);
 				break;
-			case R.id.btn_plus_1:
+			case R.id.btn_time_plus_1:
 				plusTime(SPACE_IN_TIME_5);
 				break;
-			case R.id.btn_plus_2:
+			case R.id.btn_time_plus_2:
 				plusTime(SPACE_IN_TIME_20);
 				break;
-			case R.id.btn_plus_3:
+			case R.id.btn_time_plus_3:
 				plusTime(SPACE_IN_TIME_60);
 				break;
 			case R.id.txtView_stime:

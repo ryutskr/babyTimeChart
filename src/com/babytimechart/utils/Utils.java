@@ -74,6 +74,16 @@ public class Utils{
             mEtcColor = pref.getInt("etccolor", mColorChoices[3]);
         }
     }
+    
+    public void setMeasureToPref(Context context, String measure){
+        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+        pref.edit().putString("measure", measure).apply();
+    }
+    
+    public String getMeasureFromPref(Context context){
+        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+        return pref.getString("measure", context.getString(R.string.measure_ml));
+    }
 
     public void deletePreference(Context context){
         SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);

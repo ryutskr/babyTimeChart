@@ -12,14 +12,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="3" >
+            android:orientation="horizontal" >
 
             <RadioButton
                 android:id="@+id/rBtn_Eating_mm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:checked="true"
                 android:ellipsize="marquee"
                 android:text="@string/mothersmilk"
@@ -30,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
                 android:ellipsize="marquee"
                 android:text="@string/milkpowder"
                 android:textColor="@color/data_btn_text" />
@@ -40,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
                 android:ellipsize="marquee"
                 android:text="@string/babyfood"
                 android:textColor="@color/data_btn_text" />
@@ -76,59 +72,70 @@
         </RadioGroup>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linear_Eating_volume"
+    <RelativeLayout
+        android:id="@+id/Eating_volume_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center"
         android:orientation="horizontal"
         android:visibility="gone" >
 
         <Button
-            android:id="@+id/btn_Eating_minus_small_ml"
+            android:id="@+id/btn_Eating_minus_small_volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minus_small_ml"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_Eating_minus_big_volume"
             android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_Eating_minus_big_ml"
+            android:id="@+id/btn_Eating_minus_big_volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/minus_big_ml"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/editText_Eating_volume"
             android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
 
         <EditText
-            android:id="@+id/editText_Eating_ml"
+            android:id="@+id/editText_Eating_volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center"
             android:inputType="number"
-            android:text="80ml"
             android:textSize="@dimen/text_size_15" />
 
-        <Button
-            android:id="@+id/btn_Eating_plus_small_ml"
+        <TextView
+            android:id="@+id/textview_volume_measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plus_small_ml"
+            android:layout_below="@+id/editText_Eating_volume"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
+            android:textSize="@dimen/text_size_10" />
+
+        <Button
+            android:id="@+id/btn_Eating_plus_small_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/editText_Eating_volume"
             android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_Eating_plus_big_ml"
+            android:id="@+id/btn_Eating_plus_big_volume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plus_big_ml"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_Eating_plus_small_volume"
             android:textColor="@color/data_btn_text"
             android:textSize="@dimen/text_size_10" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -207,59 +214,58 @@
         android:weightSum="6" >
 
         <Button
-            android:id="@+id/btn_minus_3"
+            android:id="@+id/btn_time_minus_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/minus_3"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10"
-            android:layout_weight="1" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_minus_2"
+            android:id="@+id/btn_time_minus_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/minus_2"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10"
-            android:layout_weight="1"/>
+            android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_minus_1"
+            android:id="@+id/btn_time_minus_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/minus_1"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10"
-            android:layout_weight="1" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_plus_1"
+            android:id="@+id/btn_time_plus_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/plus_1"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10"
-            android:layout_weight="1" />
+            android:textSize="@dimen/text_size_10" />
 
         <Button
-            android:id="@+id/btn_plus_2"
+            android:id="@+id/btn_time_plus_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/plus_2"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10"
-            android:layout_weight="1" />
-        
+            android:textSize="@dimen/text_size_10" />
+
         <Button
-            android:id="@+id/btn_plus_3"
+            android:id="@+id/btn_time_plus_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/plus_3"
             android:textColor="@color/data_btn_text"
-            android:textSize="@dimen/text_size_10"
-            android:layout_weight="1" />
-        
+            android:textSize="@dimen/text_size_10" />
     </LinearLayout>
 
     <LinearLayout
@@ -273,8 +279,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin_half"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:gravity="left"
         android:orientation="vertical" >
 

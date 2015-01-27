@@ -41,15 +41,28 @@
     <string name="etc">Etc.</string>
 
     <!-- 먹기 Tab -->
-    <string name="mothersmilk">Mother\'s Milk</string>
-    <string name="milkpowder">Milk Powder</string>
+    <string name="mothersmilk">Breast Milk</string>
+    <string name="milkpowder">Formula</string>
     <string name="babyfood">Baby Food</string>
     <string name="eating_type_direct">Breast Feeding</string>
     <string name="eating_type_bottle">Bottle Feeding</string>
-    <string name="minus_small_ml">-20ml</string>
-    <string name="minus_big_ml">-10ml</string>
-    <string name="plus_small_ml">+10ml</string>
-    <string name="plus_big_ml">+20ml</string>
+    
+    <string name="measure_fl_oz">fl.oz.</string>
+    <string name="measure_ml">mL</string>
+    
+    <string name="default_ml">80</string>
+    <string name="default_fl_oz">3</string>
+    
+    <string name="minus_small_ml">-20</string>
+    <string name="minus_big_ml">-10</string>
+    <string name="plus_small_ml">+10</string>
+    <string name="plus_big_ml">+20</string>
+    
+    <string name="minus_small_oz">-2</string>
+    <string name="minus_big_oz">-0.5</string>
+    <string name="plus_small_oz">+0.5</string>
+    <string name="plus_big_oz">+2</string>
+    
 
     <!-- 놀기 Tab -->
     <string name="mom">Mom</string>
@@ -93,6 +106,9 @@
     <string name="baby_name">Name</string>
     <string name="birthday">BirthDay</string>
     <string name="selectdate">Selection</string>
+    
+    <string name="measure">Select Measure</string>
+    <string name="measure_eplain">Volume measure select.( mL, fl.oz. )</string>
     
     <string name="developer">Contact for developers</string>
     <string name="developer_explain">screenshot, reproduction path, device information, etc. will help a lot.</string>

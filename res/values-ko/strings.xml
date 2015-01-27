@@ -46,10 +46,22 @@
     <string name="babyfood">이 유 식</string>
     <string name="eating_type_direct">직접 수유</string>
     <string name="eating_type_bottle">유축 수유</string>
-    <string name="minus_small_ml">-20ml</string>
-    <string name="minus_big_ml">-10ml</string>
-    <string name="plus_small_ml">+10ml</string>
-    <string name="plus_big_ml">+20ml</string>
+    
+    <string name="measure_fl_oz">fl.oz.</string>
+    <string name="measure_ml">mL</string>
+    
+    <string name="default_ml">80</string>
+    <string name="default_fl_oz">3</string>
+    
+    <string name="minus_small_ml">-20</string>
+    <string name="minus_big_ml">-10</string>
+    <string name="plus_small_ml">+10</string>
+    <string name="plus_big_ml">+20</string>
+    
+    <string name="minus_small_oz">-2</string>
+    <string name="minus_big_oz">-0.5</string>
+    <string name="plus_small_oz">+0.5</string>
+    <string name="plus_big_oz">+2</string>
 
     <!-- 놀기 Tab -->
     <string name="mom">엄 마</string>
@@ -94,6 +106,9 @@
     <string name="baby_name">이 름</string>
     <string name="birthday">생년월일</string>
     <string name="selectdate">날짜 설정</string>
+    
+    <string name="measure">단위 선택</string>
+    <string name="measure_eplain">부피 단위를 선택합니다.( mL, fl.oz. )</string>
     
     <string name="developer">개발자에게 문의 하기</string>
     <string name="developer_explain">사진, 재현경로, 폰정보 등을 알려주시면 많은 도움이 됩니다.</string>

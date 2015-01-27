@@ -109,12 +109,12 @@ public class Fragment_Playing extends Fragment {
 
 		mTextView_stime.setBackgroundResource(R.drawable.rounded_timebackground);
 
-		mButton_time_minus_3 = (Button)rootView.findViewById(R.id.btn_minus_3);
-		mButton_time_minus_2 = (Button)rootView.findViewById(R.id.btn_minus_2);
-		mButton_time_minus_1 = (Button)rootView.findViewById(R.id.btn_minus_1);
-		mButton_time_plus_1  = (Button)rootView.findViewById(R.id.btn_plus_1);
-		mButton_time_plus_2  = (Button)rootView.findViewById(R.id.btn_plus_2);
-		mButton_time_plus_3  = (Button)rootView.findViewById(R.id.btn_plus_3);
+		mButton_time_minus_3 = (Button)rootView.findViewById(R.id.btn_time_minus_3);
+		mButton_time_minus_2 = (Button)rootView.findViewById(R.id.btn_time_minus_2);
+		mButton_time_minus_1 = (Button)rootView.findViewById(R.id.btn_time_minus_1);
+		mButton_time_plus_1  = (Button)rootView.findViewById(R.id.btn_time_plus_1);
+		mButton_time_plus_2  = (Button)rootView.findViewById(R.id.btn_time_plus_2);
+		mButton_time_plus_3  = (Button)rootView.findViewById(R.id.btn_time_plus_3);
 		
 		mButton_time_minus_3.setOnClickListener(mOnClickListener);
 		mButton_time_minus_2.setOnClickListener(mOnClickListener);
@@ -132,22 +132,22 @@ public class Fragment_Playing extends Fragment {
 		public void onClick(View v) {
 			Utils utils = new Utils();
 			switch(v.getId()){
-			case R.id.btn_minus_3:
+			case R.id.btn_time_minus_3:
 				minusTime(SPACE_IN_TIME_60);
 				break;
-			case R.id.btn_minus_2:
+			case R.id.btn_time_minus_2:
 				minusTime(SPACE_IN_TIME_20);
 				break;
-			case R.id.btn_minus_1:
+			case R.id.btn_time_minus_1:
 				minusTime(SPACE_IN_TIME_5);
 				break;
-			case R.id.btn_plus_1:
+			case R.id.btn_time_plus_1:
 				plusTime(SPACE_IN_TIME_5);
 				break;
-			case R.id.btn_plus_2:
+			case R.id.btn_time_plus_2:
 				plusTime(SPACE_IN_TIME_20);
 				break;
-			case R.id.btn_plus_3:
+			case R.id.btn_time_plus_3:
 				plusTime(SPACE_IN_TIME_60);
 				break;
 			case R.id.txtView_stime:

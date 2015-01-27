@@ -111,7 +111,7 @@
         android:weightSum="6" >
 
         <Button
-            android:id="@+id/btn_minus_3"
+            android:id="@+id/btn_time_minus_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_3"
@@ -120,7 +120,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_minus_2"
+            android:id="@+id/btn_time_minus_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_2"
@@ -129,7 +129,7 @@
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_minus_1"
+            android:id="@+id/btn_time_minus_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/minus_1"
@@ -138,7 +138,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_plus_1"
+            android:id="@+id/btn_time_plus_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_1"
@@ -147,7 +147,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_plus_2"
+            android:id="@+id/btn_time_plus_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_2"
@@ -156,7 +156,7 @@
             android:layout_weight="1" />
         
         <Button
-            android:id="@+id/btn_plus_3"
+            android:id="@+id/btn_time_plus_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plus_3"

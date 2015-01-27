@@ -56,6 +56,8 @@
     <color name="setting_dialog_profile_divider">#000000</color>
     <color name="setting_dialog_datepicker_title">#000000</color>
     <color name="setting_dialog_datepicker_divider">#000000</color>
+    <color name="setting_dialog_measure_title">#000000</color>
+    <color name="setting_dialog_measure_divider">#000000</color>
     <color name="setting_dialog_backup_title">#000000</color>
     <color name="setting_dialog_backup_divider">#000000</color>
     <color name="setting_dialog_restore_title">#000000</color>

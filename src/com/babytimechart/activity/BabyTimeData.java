@@ -243,7 +243,7 @@ public class BabyTimeData extends Activity{
 			strMemo = getResources().getString(R.string.babyfood);
 
 		LinearLayout linearLayout_radio = (LinearLayout)fragmentE.getView().findViewById(R.id.linear_Eating_mm_radio);  
-		LinearLayout linearLayout_volume = (LinearLayout)fragmentE.getView().findViewById(R.id.linear_Eating_volume); 
+		RelativeLayout linearLayout_volume = (RelativeLayout)fragmentE.getView().findViewById(R.id.Eating_volume_layout); 
 
 		if( linearLayout_radio.getVisibility() == View.VISIBLE )
 		{
@@ -255,12 +255,18 @@ public class BabyTimeData extends Activity{
 
 		if( linearLayout_volume.getVisibility() == View.VISIBLE )
 		{
-			EditText mEditeText_ml = (EditText) fragmentE.getView().findViewById(R.id.editText_Eating_ml);
+			EditText mEditeText_volume = (EditText) fragmentE.getView().findViewById(R.id.editText_Eating_volume);
 
-			if( mEditeText_ml.getText().toString().contains("ml") )
-				strMemo = strMemo + SEPERATOR + mEditeText_ml.getText();
-			else
-				strMemo = strMemo + SEPERATOR + mEditeText_ml.getText() + "ml";
+			String measure = new Utils().getMeasureFromPref(this);
+			
+			if( measure.equals(getString(R.string.measure_ml)) ){
+				float value = Float.parseFloat( mEditeText_volume.getText().toString() );
+				strMemo = strMemo + SEPERATOR + (int)value + measure;
+			}
+			else{
+				float value = Float.parseFloat( mEditeText_volume.getText().toString() );
+				strMemo = strMemo + SEPERATOR + value +" "+ measure;
+			}
 		}
 
         insertDataToDB(fragmentE, Dbinfo.DB_TYPE_EAT, strMemo + " / ");
