@@ -1,5 +1,13 @@
 package com.babytimechart.activity;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,7 +19,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,15 +51,8 @@ import com.google.api.services.drive.Drive.Files;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.ryutskr.babytimechart.BuildConfig;
 import com.ryutskr.babytimechart.R;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 
 public class BabyTimeSetting extends Activity {
 
@@ -349,8 +349,11 @@ public class BabyTimeSetting extends Activity {
 				break;
 			case MENU_RESTORE_DATA:
 				mSelectedDialog = 0;
-				googleDrive(MENU_RESTORE_DATA);
-				//				new Utils().fakeDBData(mContext);
+				if( BuildConfig.DEBUG )
+					new Utils().fakeDBData(mContext);
+				else
+					googleDrive(MENU_RESTORE_DATA);
+				
 				break;
 			case MENU_INITIALIZATION_DATA:
 				try {

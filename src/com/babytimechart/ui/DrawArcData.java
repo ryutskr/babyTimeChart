@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.utils.Utils;
+import com.ryutskr.babytimechart.BuildConfig;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,7 +63,9 @@ public class DrawArcData {
             mListData.add(data);
         }
         makeArcData();
-//		LogData();
+        
+        if( BuildConfig.DEBUG )
+        	LogData();
     }
 
     public void refreshPaint()
@@ -131,15 +134,15 @@ public class DrawArcData {
     {
         for(ArcData data : mListData )
         {
-            Log.i("1111", "=============================");
-            Log.i("1111", "TYPE: "+data.mType);
-            Log.i("1111", "STIME: "+data.mStime + "  | " + new SimpleDateFormat("HH:mm").format(new Date(data.mStime)));
-            Log.i("1111", "ETIME: " + data.mEtime + "  | " + new SimpleDateFormat("HH:mm").format(new Date(data.mEtime)));
-            Log.i("1111", "MEMO: " + data.mMemo);
-            Log.i("1111", "StartAngle: " + data.mStartAngle);
-            Log.i("1111", "SweepAngle: " + data.mSweepAngle);
-            Log.i("1111", "Paint: " + data.mPaint.getColor());
-            Log.i("1111", "=============================");
+            Log.i("DrawArcData", "=============================");
+            Log.i("DrawArcData", "TYPE: "+data.mType);
+            Log.i("DrawArcData", "STIME: "+data.mStime + "  | " + new SimpleDateFormat("HH:mm").format(new Date(data.mStime)));
+            Log.i("DrawArcData", "ETIME: " + data.mEtime + "  | " + new SimpleDateFormat("HH:mm").format(new Date(data.mEtime)));
+            Log.i("DrawArcData", "MEMO: " + data.mMemo);
+            Log.i("DrawArcData", "StartAngle: " + data.mStartAngle);
+            Log.i("DrawArcData", "SweepAngle: " + data.mSweepAngle);
+            Log.i("DrawArcData", "Paint: " + data.mPaint.getColor());
+            Log.i("DrawArcData", "=============================");
         }
     }
 

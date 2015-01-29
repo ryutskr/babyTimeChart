@@ -1,11 +1,23 @@
 package com.babytimechart.utils;
 
+import static com.babytimechart.db.Dbinfo.DB_DATE;
+import static com.babytimechart.db.Dbinfo.DB_E_TIME;
+import static com.babytimechart.db.Dbinfo.DB_MEMO;
+import static com.babytimechart.db.Dbinfo.DB_S_TIME;
+import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
+import static com.babytimechart.db.Dbinfo.DB_TYPE;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -17,290 +29,275 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.ryutskr.babytimechart.BuildConfig;
 import com.ryutskr.babytimechart.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import static com.babytimechart.db.Dbinfo.DB_DATE;
-import static com.babytimechart.db.Dbinfo.DB_E_TIME;
-import static com.babytimechart.db.Dbinfo.DB_MEMO;
-import static com.babytimechart.db.Dbinfo.DB_S_TIME;
-import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
-import static com.babytimechart.db.Dbinfo.DB_TYPE;
 
 public class Utils{
 
-    public static int mEatColor;
-    public static int mPlayColor;
-    public static int mSleepColor;
-    public static int mEtcColor;
-    public static long mLastTime;
+	public static int mEatColor;
+	public static int mPlayColor;
+	public static int mSleepColor;
+	public static int mEtcColor;
+	public static long mLastTime;
 
-    // ColorPicker Colors
-    public int[] getColorsForPicker(Context context){
-        int[] mColorChoices=null;
-        String[] color_array = context.getResources().getStringArray(R.array.color_picker_values);
+	// ColorPicker Colors
+	public int[] getColorsForPicker(Context context){
+		int[] mColorChoices=null;
+		String[] color_array = context.getResources().getStringArray(R.array.color_picker_values);
 
-        if (color_array!=null && color_array.length>0) {
-            mColorChoices = new int[color_array.length];
-            for (int i = 0; i < color_array.length; i++) {
-                mColorChoices[i] = Color.parseColor(color_array[i]);
-            }
-        }
+		if (color_array!=null && color_array.length>0) {
+			mColorChoices = new int[color_array.length];
+			for (int i = 0; i < color_array.length; i++) {
+				mColorChoices[i] = Color.parseColor(color_array[i]);
+			}
+		}
 
-        return mColorChoices;
-    }
+		return mColorChoices;
+	}
 
-    public void setColorsToPref(Context context){
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        pref.edit()
-                .putInt("eatcolor", mEatColor)
-                .putInt("playcolor", mPlayColor)
-                .putInt("sleepcolor", mSleepColor)
-                .putInt("etccolor", mEtcColor).apply();
-    }
+	public void setColorsToPref(Context context){
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		pref.edit()
+		.putInt("eatcolor", mEatColor)
+		.putInt("playcolor", mPlayColor)
+		.putInt("sleepcolor", mSleepColor)
+		.putInt("etccolor", mEtcColor).apply();
+	}
 
-    public void getColorFromPref(Context context){
-        int [] mColorChoices = getColorsForPicker(context);
+	public void getColorFromPref(Context context){
+		int [] mColorChoices = getColorsForPicker(context);
 
-        if(  mColorChoices.length > 0 ){
-            SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-            mEatColor = pref.getInt("eatcolor", mColorChoices[0]);
-            mPlayColor = pref.getInt("playcolor", mColorChoices[1]);
-            mSleepColor = pref.getInt("sleepcolor", mColorChoices[2]);
-            mEtcColor = pref.getInt("etccolor", mColorChoices[3]);
-        }
-    }
-    
-    public void setMeasureToPref(Context context, String measure){
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        pref.edit().putString("measure", measure).apply();
-    }
-    
-    public String getMeasureFromPref(Context context){
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        return pref.getString("measure", context.getString(R.string.measure_ml));
-    }
+		if(  mColorChoices.length > 0 ){
+			SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+			mEatColor = pref.getInt("eatcolor", mColorChoices[0]);
+			mPlayColor = pref.getInt("playcolor", mColorChoices[1]);
+			mSleepColor = pref.getInt("sleepcolor", mColorChoices[2]);
+			mEtcColor = pref.getInt("etccolor", mColorChoices[3]);
+		}
+	}
 
-    public void deletePreference(Context context){
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        pref.edit().clear().apply();
-    }
+	public void setMeasureToPref(Context context, String measure){
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		pref.edit().putString("measure", measure).apply();
+	}
 
-    public void setChangeColor(int id, int color){
+	public String getMeasureFromPref(Context context){
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		return pref.getString("measure", context.getString(R.string.measure_ml));
+	}
 
-        switch(id){
-            case 100:
-                mEatColor = color;
-                break;
-            case 101:
-                mPlayColor = color;
-                break;
-            case 102:
-                mSleepColor = color;
-                break;
-            case 103:
-                mEtcColor = color;
-                break;
-        }
-    }
+	public void deletePreference(Context context){
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		pref.edit().clear().apply();
+	}
 
-    public void makeToast(Context context, String string){
-        Toast toast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, (int)context.getResources().getDimension(R.dimen.toast_yoffset));
-        toast.show();
-    }
+	public void setChangeColor(int id, int color){
 
-    public void clearUtilsValues(Context context){
+		switch(id){
+		case 100:
+			mEatColor = color;
+			break;
+		case 101:
+			mPlayColor = color;
+			break;
+		case 102:
+			mSleepColor = color;
+			break;
+		case 103:
+			mEtcColor = color;
+			break;
+		}
+	}
 
-        int [] mColorChoices = getColorsForPicker(context);
+	public void makeToast(Context context, String string){
+		Toast toast = Toast.makeText(context, string, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER, 0, (int)context.getResources().getDimension(R.dimen.toast_yoffset));
+		toast.show();
+	}
 
-        if(  mColorChoices.length > 0 ){
-            mEatColor =  mColorChoices[0];
-            mPlayColor = mColorChoices[1];
-            mSleepColor = mColorChoices[2];
-            mEtcColor = mColorChoices[3];
-        }
+	public void clearUtilsValues(Context context){
 
-        mLastTime = 0;
-        deletePreference(context);
-    }
+		int [] mColorChoices = getColorsForPicker(context);
 
-    public String countDays(Context context, String date) {
-        long count = 0;
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        String strBirthday = pref.getString("birthday", "No Data");
+		if(  mColorChoices.length > 0 ){
+			mEatColor =  mColorChoices[0];
+			mPlayColor = mColorChoices[1];
+			mSleepColor = mColorChoices[2];
+			mEtcColor = mColorChoices[3];
+		}
 
-        if( strBirthday.equals("No Data") )
-            return  date;
+		mLastTime = 0;
+		deletePreference(context);
+	}
 
-        try {
-            Calendar inputDate = Calendar.getInstance();
-            Calendar birthday = Calendar.getInstance();
+	public String countDays(Context context, String date) {
+		long count = 0;
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		String strBirthday = pref.getString("birthday", "No Data");
 
-            inputDate.set(Integer.parseInt(date.substring(0,4)), Integer.parseInt(date.substring(5,7)) -1,
-            		Integer.parseInt(date.substring(8,10)));
-            birthday.set(Integer.parseInt(strBirthday.substring(0,4)), Integer.parseInt(strBirthday.substring(5,7)) -1,
-            		Integer.parseInt(strBirthday.substring(8,10)));
+		if( strBirthday.equals("No Data") )
+			return  date;
 
-            long inputdayCount = inputDate.getTimeInMillis() / (24*60*60*1000);
-            long birthdayCount = birthday.getTimeInMillis() / (24*60*60*1000);
+		try {
+			Calendar inputDate = Calendar.getInstance();
+			Calendar birthday = Calendar.getInstance();
 
-            count = Math.abs( inputdayCount - birthdayCount ) + 1;
+			inputDate.set(Integer.parseInt(date.substring(0,4)), Integer.parseInt(date.substring(5,7)) -1,
+					Integer.parseInt(date.substring(8,10)));
+			birthday.set(Integer.parseInt(strBirthday.substring(0,4)), Integer.parseInt(strBirthday.substring(5,7)) -1,
+					Integer.parseInt(strBirthday.substring(8,10)));
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			long inputdayCount = inputDate.getTimeInMillis() / (24*60*60*1000);
+			long birthdayCount = birthday.getTimeInMillis() / (24*60*60*1000);
 
-        return count + context.getString(R.string.count_day);
-    }
-    
-    public long compareDays(Context context, String date) {
-    	long count = 0;
-        try {
-            Calendar inputDate = Calendar.getInstance();
+			count = Math.abs( inputdayCount - birthdayCount ) + 1;
 
-            inputDate.set(Integer.parseInt(date.substring(0,4)), Integer.parseInt(date.substring(5,7))-1,
-            		Integer.parseInt(date.substring(8,10)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-            Log.i("1111", " compareDays Integer.parseInt(date.substring(0,4)) : " + Integer.parseInt(date.substring(0,4)));
-            Log.i("1111", " compareDays Integer.parseInt(date.substring(5,7)) : " + Integer.parseInt(date.substring(5,7)));
-            Log.i("1111", " compareDays Integer.parseInt(date.substring(8,10)) : " + Integer.parseInt(date.substring(8,10)));
-            
-            
-            long inputdayCount = inputDate.getTimeInMillis() / (24*60*60*1000);
-            long todayCount = System.currentTimeMillis() / (24*60*60*1000);
+		return count + context.getString(R.string.count_day);
+	}
 
-            Log.i("1111", " compareDays inputDate.getTime().toString() : " + inputDate.getTime().toString());
-            
-            Log.i("1111", " compareDays inputdayCount : " + inputdayCount);
-            Log.i("1111", " compareDays todayCount : " + todayCount);
-            count = Math.abs( inputdayCount - todayCount );
+	public long compareDays(Context context, String date) {
+		long count = 0;
+		try {
+			Calendar inputDate = Calendar.getInstance();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			inputDate.set(Integer.parseInt(date.substring(0,4)), Integer.parseInt(date.substring(5,7))-1,
+					Integer.parseInt(date.substring(8,10)));
 
-        return count;
-    }
+			long inputdayCount = inputDate.getTimeInMillis() / (24*60*60*1000);
+			long todayCount = System.currentTimeMillis() / (24*60*60*1000);
 
-    public String getBabyName(Context context) {
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        String strBabyName = pref.getString("babyname", "");
+			count = Math.abs( inputdayCount - todayCount );
 
-        if( strBabyName.length() < 1)
-            return "";
-        else
-            return strBabyName + context.getString(R.string.action_text1);
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    public void setBabyProfileToPref(Context context, String name, String birthday){
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        pref.edit()
-                .putString("babyname", name)
-                .putString("birthday", birthday).apply();
-    }
+		return count;
+	}
 
-    public String getBabyNameFromPref(Context context){
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        return pref.getString("babyname", "");
-    }
+	public String getBabyName(Context context) {
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		String strBabyName = pref.getString("babyname", "");
 
-    public String getBabyBirthDayFromPref(Context context){
-        SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
-        return pref.getString("birthday", "");
-    }
+		if( strBabyName.length() < 1)
+			return "";
+		else
+			return strBabyName + context.getString(R.string.action_text1);
+	}
 
-    public void addBanner(Context context, ViewGroup viewGroup) {
-//        TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-//        String deviceID = telephony.getDeviceId();
+	public void setBabyProfileToPref(Context context, String name, String birthday){
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		pref.edit()
+		.putString("babyname", name)
+		.putString("birthday", birthday).apply();
+	}
 
-        AdView adView = new AdView(context);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        adView.setLayoutParams(layoutParams);
+	public String getBabyNameFromPref(Context context){
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		return pref.getString("babyname", "");
+	}
 
-        adView.setAdUnitId("ca-app-pub-5151751327714064/3723542439");
-        adView.setAdSize(AdSize.BANNER);
+	public String getBabyBirthDayFromPref(Context context){
+		SharedPreferences pref = context.getSharedPreferences("Setting", Activity.MODE_PRIVATE);
+		return pref.getString("birthday", "");
+	}
 
-        viewGroup.addView(adView);
-//        AdRequest request = new AdRequest.Builder().addTestDevice(deviceID).build();
-        AdRequest request = new AdRequest.Builder().build();
-        adView.loadAd(request);
-    }
+	public void addBanner(Context context, ViewGroup viewGroup) {
+		AdRequest request;
 
-    public InterstitialAd loadInterstitialAd(Context context){
+		AdView adView = new AdView(context);
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		adView.setLayoutParams(layoutParams);
 
-//        TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-//        String deviceID = telephony.getDeviceId();
+		adView.setAdUnitId("ca-app-pub-5151751327714064/3723542439");
+		adView.setAdSize(AdSize.BANNER);
 
-    	// 삽입 광고를 만듭니다.
-    	InterstitialAd interstitial = new InterstitialAd(context);
-        interstitial.setAdUnitId("ca-app-pub-5151751327714064/9770076032");
+		viewGroup.addView(adView);
+		
+		if(BuildConfig.DEBUG)
+			request = new AdRequest.Builder().addTestDevice("8158C822D8A743BE02070AB8CD364643")
+											 .addTestDevice("2D81572DE143C1F37081F39F81BD6003").build();
+		else
+			request = new AdRequest.Builder().build();
+		adView.loadAd(request);
+	}
 
-        // 광고 요청을 만듭니다.
-//        AdRequest adRequest = new AdRequest.Builder().addTestDevice(deviceID).build();
-        AdRequest adRequest = new AdRequest.Builder().build();
+	public InterstitialAd loadInterstitialAd(Context context){
+		AdRequest request;
 
-        // 삽입 광고 로드를 시작합니다.
-        interstitial.loadAd(adRequest);
-        
-        return interstitial;
-    }
-    
-    public void fakeDBData(Context context)
-    {
-        long time = System.currentTimeMillis();
+		// 삽입 광고를 만듭니다.
+		InterstitialAd interstitial = new InterstitialAd(context);
+		interstitial.setAdUnitId("ca-app-pub-5151751327714064/9770076032");
 
-        SimpleDateFormat insertDateformat1 = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat insertDateformat2 = new SimpleDateFormat("dd");
-        
-        String strToday1 = "";
-        String strToday2 = insertDateformat2.format(new Date(time));
+		// 광고 요청을 만듭니다.
+		if(BuildConfig.DEBUG)
+			request = new AdRequest.Builder().addTestDevice("8158C822D8A743BE02070AB8CD364643")
+											 .addTestDevice("2D81572DE143C1F37081F39F81BD6003").build();
+		else
+			request = new AdRequest.Builder().build();
 
-        BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(context);
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+		// 삽입 광고 로드를 시작합니다.
+		interstitial.loadAd(request);
 
-        Calendar today = Calendar.getInstance();
-        today.set(2014, 11, Integer.parseInt(strToday2)-1, 23, 30);
-        long time1 = today.getTimeInMillis();
+		return interstitial;
+	}
 
-        today.set(2014, 11, Integer.parseInt(strToday2), 3, 20);
-        long time2 = today.getTimeInMillis();
+	public void fakeDBData(Context context)
+	{
+		long time = System.currentTimeMillis();
 
-        today.set(2014, 11, Integer.parseInt(strToday2), 5, 40);
-        long time3 = today.getTimeInMillis();
+		SimpleDateFormat insertDateformat1 = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat insertDateformat2 = new SimpleDateFormat("dd");
 
-        today.set(2014, 11, Integer.parseInt(strToday2), 6, 30);
-        long time4 = today.getTimeInMillis();
+		String strToday1 = "";
+		String strToday2 = insertDateformat2.format(new Date(time));
 
-        today.set(2014, 11, Integer.parseInt(strToday2), 8, 10);
-        long time5 = today.getTimeInMillis();
+		BabyTimeDbOpenHelper dbhelper = new BabyTimeDbOpenHelper(context);
+		SQLiteDatabase db = dbhelper.getWritableDatabase();
 
-        today.set(2014, 11, Integer.parseInt(strToday2), 9, 50);
-        long time6 = today.getTimeInMillis();
+		Calendar today = Calendar.getInstance();
+		today.set(2014, 11, Integer.parseInt(strToday2)-1, 23, 30);
+		long time1 = today.getTimeInMillis();
+
+		today.set(2014, 11, Integer.parseInt(strToday2), 3, 20);
+		long time2 = today.getTimeInMillis();
+
+		today.set(2014, 11, Integer.parseInt(strToday2), 5, 40);
+		long time3 = today.getTimeInMillis();
+
+		today.set(2014, 11, Integer.parseInt(strToday2), 6, 30);
+		long time4 = today.getTimeInMillis();
+
+		today.set(2014, 11, Integer.parseInt(strToday2), 8, 10);
+		long time5 = today.getTimeInMillis();
+
+		today.set(2014, 11, Integer.parseInt(strToday2), 9, 50);
+		long time6 = today.getTimeInMillis();
 
 
-        long[] arrtime = {time1,time2, time3, time4, time5, time6};
-        String[] arrType = {"eat", "play", "sleep", "etc","play"};
-        ContentValues contentValues = new ContentValues();
-        for(int i=90; i>0; i--)
-        {
-            strToday1 = insertDateformat1.format(new Date(time -(i* 24l*60*60*1000)));
-            for(int k=0; k<5; k++){
-                contentValues.clear();
-                contentValues.put(DB_TYPE, arrType[k] );
-                contentValues.put(DB_DATE, strToday1 );
-                contentValues.put(DB_S_TIME, arrtime[k]+(k*60l*60*1000) + (i*60l*60*1000) );
-                contentValues.put(DB_E_TIME, arrtime[k+1] + (k*60l*60*1000) + (i*60l*60*1000) );
-                contentValues.put(DB_MEMO, "" + i +k  );
-                db.insert(DB_TABLE_NAME, null, contentValues);
-            }
-        }
-        db.close();
-    }
+		long[] arrtime = {time1,time2, time3, time4, time5, time6};
+		String[] arrType = {"eat", "play", "sleep", "etc","play"};
+		ContentValues contentValues = new ContentValues();
+		for(int i=90; i>0; i--)
+		{
+			strToday1 = insertDateformat1.format(new Date(time -(i* 24l*60*60*1000)));
+			for(int k=0; k<5; k++){
+				contentValues.clear();
+				contentValues.put(DB_TYPE, arrType[k] );
+				contentValues.put(DB_DATE, strToday1 );
+				contentValues.put(DB_S_TIME, arrtime[k]+(k*60l*60*1000) + (i*60l*60*1000) );
+				contentValues.put(DB_E_TIME, arrtime[k+1] + (k*60l*60*1000) + (i*60l*60*1000) );
+				contentValues.put(DB_MEMO, "" + i +k  );
+				db.insert(DB_TABLE_NAME, null, contentValues);
+			}
+		}
+		db.close();
+	}
 }
 
 

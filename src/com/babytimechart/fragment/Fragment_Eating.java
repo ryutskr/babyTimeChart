@@ -56,6 +56,9 @@ public class Fragment_Eating extends Fragment {
 
 	private TextView mTextView_stime = null;
 	private TextView mTextView_etime = null;
+	
+	private TextView mTextView_stime_date = null;
+	private TextView mTextView_etime_date = null;
 
 	private Button mButton_time_minus_3 = null;
 	private Button mButton_time_minus_2 = null;
@@ -67,7 +70,8 @@ public class Fragment_Eating extends Fragment {
 	private long mMillsSTime = 0;
 	private long mMillsETime = 0;
 	private long mLastMillsTime = 0;
-	private SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm");
+	private SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm");
+	private SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd");
 	private boolean mIsSTimeClick = true;
 
 	/**
@@ -147,6 +151,10 @@ public class Fragment_Eating extends Fragment {
 		mTextView_etime = (TextView)rootView.findViewById(R.id.txtView_etime);
 		mTextView_stime.setOnClickListener(mOnClickListener);
 		mTextView_etime.setOnClickListener(mOnClickListener);
+		
+		mTextView_stime_date = (TextView)rootView.findViewById(R.id.txtView_stime_date);
+		mTextView_etime_date = (TextView)rootView.findViewById(R.id.txtView_etime_date);
+		
 
 		if( mLastMillsTime != 0)
 			mMillsSTime = mLastMillsTime;
@@ -168,13 +176,16 @@ public class Fragment_Eating extends Fragment {
 		else if( mMillsSTime > System.currentTimeMillis() )
 			mMillsETime = mMillsSTime + SPACE_IN_TIME_30;
 
-		String sTime = dateformat.format(new Date(mMillsSTime));
-		String eTime = dateformat.format(new Date(mMillsETime));
+		String sTime = timeformat.format(new Date(mMillsSTime));
+		String eTime = timeformat.format(new Date(mMillsETime));
 
 		mTextView_stime.setText(sTime);
 		mTextView_etime.setText(eTime);
 		mTextView_stime.setContentDescription("" + mMillsSTime);
 		mTextView_etime.setContentDescription("" + mMillsETime);
+		
+		mTextView_stime_date.setText(dateformat.format(new Date(mMillsSTime)));
+		mTextView_etime_date.setText(dateformat.format(new Date(mMillsETime)));
 
 		mTextView_stime.setBackgroundResource(R.drawable.rounded_timebackground);
 
@@ -308,17 +319,15 @@ public class Fragment_Eating extends Fragment {
 
 	public void minusTime(int timeSpace){
 		if( mIsSTimeClick ){
-			//             if( mLastMillsTime > mMillsSTime - SPACE_IN_TIME_BIG)
-			//                 utils.makeToast(getActivity(), getResources().getString(R.string.time_err1));
-			//             else{
 			if( (mMillsSTime%timeSpace) != 0 )
 				mMillsSTime =  ((mMillsSTime/timeSpace))*timeSpace;
 			else
 				mMillsSTime =  ((mMillsSTime/timeSpace)-1)*timeSpace;
 
-			mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
+			mTextView_stime.setText( timeformat.format(new Date(mMillsSTime)) );
 			mTextView_stime.setContentDescription("" + mMillsSTime);
-			//             }
+			
+			mTextView_stime_date.setText(dateformat.format(new Date(mMillsSTime)));
 		}else {
 			if( mMillsSTime > mMillsETime - timeSpace)
 				new Utils().makeToast(getActivity(), getResources().getString(R.string.time_err2));
@@ -328,8 +337,10 @@ public class Fragment_Eating extends Fragment {
 				else
 					mMillsETime =  ((mMillsETime/timeSpace)-1)*timeSpace;
 
-				mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
+				mTextView_etime.setText( timeformat.format(new Date(mMillsETime)) );
 				mTextView_etime.setContentDescription("" + mMillsETime);
+				
+				mTextView_etime_date.setText(dateformat.format(new Date(mMillsETime)));
 			}
 		}
 	}
@@ -340,8 +351,9 @@ public class Fragment_Eating extends Fragment {
 			else{
 				mMillsSTime =  ((mMillsSTime/timeSpace)+1)*timeSpace;
 
-				mTextView_stime.setText( dateformat.format(new Date(mMillsSTime)) );
+				mTextView_stime.setText( timeformat.format(new Date(mMillsSTime)) );
 				mTextView_stime.setContentDescription("" + mMillsSTime);
+				mTextView_stime_date.setText(dateformat.format(new Date(mMillsSTime)));
 			}
 		}else {
 			SimpleDateFormat datedd = new SimpleDateFormat("dd");
@@ -353,8 +365,10 @@ public class Fragment_Eating extends Fragment {
 			else{
 				mMillsETime =  ((mMillsETime/timeSpace)+1)*timeSpace;
 
-				mTextView_etime.setText( dateformat.format(new Date(mMillsETime)) );
+				mTextView_etime.setText( timeformat.format(new Date(mMillsETime)) );
 				mTextView_etime.setContentDescription("" + mMillsETime);
+				
+				mTextView_etime_date.setText(dateformat.format(new Date(mMillsETime)));
 			}
 		}
 	}

@@ -149,9 +149,7 @@ public class BabyTimeData extends Activity{
 			}
 			
 			if( mLastMillsTime == 0 && !mLastSelectedDay.equals(new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis())))){
-				Log.i("1111", " mLastSelectedDay : " + mLastSelectedDay);
 				long count = new Utils().compareDays(this, mLastSelectedDay);
-				Log.i("1111", " count : " + count);
 				mLastMillsTime =  System.currentTimeMillis() - SPACE_IN_TIME_24H*count;
 			}
 			 
