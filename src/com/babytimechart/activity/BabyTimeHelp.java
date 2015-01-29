@@ -11,7 +11,10 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.babytimechart.BabytimeApplication;
 import com.babytimechart.ui.BabyTimeSettingMenuAdapter;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.ryutskr.babytimechart.R;
 
 public class BabyTimeHelp extends ListActivity {
@@ -21,6 +24,13 @@ public class BabyTimeHelp extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        // Get tracker.
+        Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+        // Set screen name.
+        t.setScreenName("BabyTimeHelp");
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
+
         setActionbar();
 		initMenu();
 	}

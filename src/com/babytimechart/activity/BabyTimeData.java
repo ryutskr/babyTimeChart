@@ -9,7 +9,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.babytimechart.BabytimeApplication;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.fragment.Fragment_Eating;
@@ -30,6 +30,8 @@ import com.babytimechart.fragment.Fragment_Sleeping;
 import com.babytimechart.ui.HeightWrappingViewPager;
 import com.babytimechart.ui.SlidingTabLayout;
 import com.babytimechart.utils.Utils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.ryutskr.babytimechart.R;
 
 import java.text.SimpleDateFormat;
@@ -92,6 +94,14 @@ public class BabyTimeData extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+        // Get tracker.
+        Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+        // Set screen name.
+        t.setScreenName("BabyTimeData");
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
+
 		setContentView(R.layout.activity_data);
 
 		if( getIntent() != null ){
@@ -199,6 +209,16 @@ public class BabyTimeData extends Activity{
 				addFragmentDataToDB();
 				setResult(RESULT_OK);
 				finish();
+
+                // Get tracker.
+                Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+                // Build and send an Event.
+                t.send(new HitBuilders.EventBuilder()
+                        .setCategory("Data_Save")
+                        .setAction("Button_Click")
+                        .setLabel("Save")
+                        .build());
+
 				break;
 			case R.id.btn_Activity_Data_Cancel:
 				finish();

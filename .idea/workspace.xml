@@ -6,6 +6,10 @@
         <option name="name" value="app: com.activity.babytimechart" />
         <option name="packageNamePattern" value="com.activity.babytimechart" />
       </filter>
+      <filter>
+        <option name="name" value="app: com.ryutskr.babytimechart" />
+        <option name="packageNamePattern" value="com.ryutskr.babytimechart" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidLayouts">
@@ -21,85 +25,32 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.activity.babytimechart" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.ryutskr.babytimechart" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="594d3f33-9248-46cd-b387-d062cfb7aa20" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\.idea\libraries\achartengine_1_1_0.xml" afterPath="" />
+    <list default="true" id="594d3f33-9248-46cd-b387-d062cfb7aa20" name="Default" comment="2015-01-28 12:16">
       <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\generated\source\buildConfig\debug\com\activity\babytimechart\BuildConfig.java" afterPath="" />
       <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\generated\source\r\debug\com\activity\babytimechart\R.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\activity\babytimechart\R.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\activity\BabyTimeDataActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\activity\BabyTimeDataActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\activity\BabyTimeDataActivity$SamplePagerItem.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\activity\BabyTimeDataActivity$SectionsPagerAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\activity\BabyTimeDataActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\activity\BabyTimeMainActivity$SectionsPagerAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\activity\BabyTimeMainActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\chartdata\AbstractDemoChart.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\chartdata\IDemoChart.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\db\BabyTimeDbOpenHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\BudgetDoughnutChart.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\DoughChartFragment$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\DoughChartFragment$2.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\DoughChartFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Chart_Pie$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Chart_Pie.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Etc$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Etc.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Feeding$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Feeding$2.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Feeding.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Playing$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Playing.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Sleeping$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\Fragment_Sleeping.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\PieChartBuilder$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\PieChartBuilder$2.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\fragment\PieChartBuilder.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\HeightWrappingViewPager.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\RoundChartView.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SectionsPagerAdapter_delay.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabLayout$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabLayout$InternalViewPagerListener.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabLayout$TabClickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabLayout$TabColorizer.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabStrip$1.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabStrip$SimpleTabColorizer.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\classes\debug\com\babytimechart\ui\SlidingTabStrip.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\dex-cache\cache.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\dex\debug\classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\model_data.bin" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\achartengine-1.1.0-adc02237e3e2669276eb4b6eb5f0979cd2b7b4c1.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\pre-dexed\debug\android-support-v13-3e4eab29a4190f2a846fcecf9069ff27373cf498.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\Android\AndroidstudioProjects\babyTimeChart\build\intermediates\tmp\dex\debug\inputList.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/camera_nor.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/camera_nor.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/camera_nor.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/camera_nor.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/camera_nor.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/camera_nor.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/camera_nor.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/camera_nor.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/camera_sel.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/camera_sel.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/camera_sel.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/camera_sel.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/camera_sel.png" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/camera_sel.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-xxhdpi/camera_sel.png" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/camera_sel.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/babyTimeChart.iml" afterPath="$PROJECT_DIR$/babyTimeChart.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeData.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeHelp.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeHelp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeMain.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeSetting.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeSetting.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/BabytimeApplication.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/BabytimeApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Eating.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Eating.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Etc.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Etc.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Playing.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Playing.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Sleeping.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Sleeping.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/babytimechart/utils/Utils.java" afterPath="$PROJECT_DIR$/src/com/babytimechart/utils/Utils.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_eating.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_eating.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_etc.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_etc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_playing.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_playing.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_sleeping.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_sleeping.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="babyTimeChart.iws" />
@@ -128,34 +79,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/babytimechart/utils/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="29.52" vertical-offset="1266" max-vertical-offset="2376">
-              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3894" max-vertical-offset="6358">
+              <caret line="231" column="15" selection-start-line="231" selection-start-column="15" selection-end-line="231" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="BabytimeApplication.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/babytimechart/BabytimeApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5365854" vertical-offset="0" max-vertical-offset="1254">
-              <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1056">
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
               <folding>
-                <element signature="e#838#856#0" expanded="true" />
-                <element signature="e#1006#1045#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#464#486#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values-ko/strings.xml">
+      <file leaf-file-name="BabyTimeMain.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="50.12" vertical-offset="1253" max-vertical-offset="2376">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5940">
+              <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BabyTimeData.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5008446" vertical-offset="3037" max-vertical-offset="8294">
+              <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
+              <folding>
+                <element signature="e#6563#7279#0" expanded="true" />
+                <element signature="e#7275#7276#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BabyTimeSetting.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeSetting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="11594">
+              <caret line="104" column="57" selection-start-line="104" selection-start-column="57" selection-end-line="104" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BabyTimeHelp.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeHelp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2530">
+              <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -167,6 +151,11 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="true" />
     </FindUsagesManager>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="D:\Android\signningkey\ryutskr_keystore.jks" />
+    <option name="KEY_ALIAS" value="tlgnsdl" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -598,7 +587,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="1421933519151" />
+        <entry key="$PROJECT_DIR$" value="1422167038336" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -701,10 +690,29 @@
         <option value="$PROJECT_DIR$/src/com/babytimechart/ui/SlidingTabStrip.java" />
         <option value="$PROJECT_DIR$/res/layout/activity_data.xml" />
         <option value="$PROJECT_DIR$/src/com/babytimechart/ui/SlidingTabLayout.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeDataActivity.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/ui/RoundChartView.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/res/values-ko/strings.xml" />
+        <option value="$PROJECT_DIR$/res/values/calendar_strings.xml" />
+        <option value="$PROJECT_DIR$/res/values/license_string.xml" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/res/layout/fragment_eating.xml" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Eating.java" />
+        <option value="$PROJECT_DIR$/res/layout/fragment_etc.xml" />
+        <option value="$PROJECT_DIR$/res/layout/fragment_playing.xml" />
+        <option value="$PROJECT_DIR$/res/layout/fragment_sleeping.xml" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Playing.java" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Sleeping.java" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Etc.java" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeMain.java" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeData.java" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeSetting.java" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeHelp.java" />
+        <option value="$PROJECT_DIR$/src/com/babytimechart/BabytimeApplication.java" />
       </list>
     </option>
   </component>
@@ -712,19 +720,19 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="315" />
-    <option name="y" value="45" />
-    <option name="width" value="1828" />
-    <option name="height" value="1334" />
+    <option name="x" value="144" />
+    <option name="y" value="25" />
+    <option name="width" value="1550" />
+    <option name="height" value="1383" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="false" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -743,6 +751,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -750,10 +759,6 @@
               <option name="myItemId" value="babyTimeChart" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -775,29 +780,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="values-v14" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babyTimeChart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babyTimeChart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values-ko" />
+              <option name="myItemId" value="babytimechart" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -811,25 +798,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babyTimeChart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="babyTimeChart" />
+              <option name="myItemId" value="babytimechart" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
+              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -843,12 +820,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="babytimechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="babyTimeChart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="babyTimeChart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="babytimechart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -891,8 +899,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -902,30 +908,33 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="recentsLimit" value="5" />
     <property name="android.project.structure.last.selected" value="babyTimeChart" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="IM-A850K01111118003262" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../signningkey/ryutskr_keystore.jks" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="11073093" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="107" />
     <property name="FullScreen" value="false" />
+    <property name="ExportApk.ApkPath" value="D:\Android\AndroidstudioProjects\babyTimeChart" />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.babytimechart.ui" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Android\AndroidstudioProjects\babyTimeChart\res" />
       <recent name="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-hdpi" />
       <recent name="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-mdpi" />
       <recent name="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-xhdpi" />
       <recent name="D:\Android\AndroidstudioProjects\babyTimeChart\res\drawable-xxhdpi" />
-      <recent name="D:\Android\AndroidstudioProjects\babyTimeChart\res\values" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Android\AndroidstudioProjects\babyTimeChart\src\com\babytimechart\ui" />
@@ -1108,41 +1117,82 @@
       <created>1418648386066</created>
       <updated>1418648386066</updated>
     </task>
+    <task id="LOCAL-00001" summary="fix project2">
+      <created>1421935691176</created>
+      <updated>1421935691176</updated>
+    </task>
+    <task id="LOCAL-00002" summary="2015-01-25">
+      <created>1422184657492</created>
+      <updated>1422184657492</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix project2">
+      <created>1422189911240</created>
+      <updated>1422189911240</updated>
+    </task>
+    <task id="LOCAL-00004" summary="2015-01-26 22:20">
+      <created>1422278512442</created>
+      <updated>1422278512442</updated>
+    </task>
+    <task id="LOCAL-00005" summary="2015-01-28 12:16">
+      <created>1422371779151</created>
+      <updated>1422371779151</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="315" y="45" width="1828" height="1334" extended-state="0" />
+    <frame x="144" y="25" width="1550" height="1383" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37846655" sideWeight="0.49941927" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949972" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956523" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.49941927" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956523" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32626426" sideWeight="0.5013423" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32880205" sideWeight="0.5016968" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32626426" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34747145" sideWeight="0.50201344" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13169074" sideWeight="0.49962658" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34749362" sideWeight="0.49830317" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24714519" sideWeight="0.49883857" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34747145" sideWeight="0.49798658" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298872" sideWeight="0.49971348" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.49915588" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289256" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16572398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32880205" sideWeight="0.49830317" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21140939" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32626426" sideWeight="0.4986577" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298872" sideWeight="0.5002865" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24830316" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949972" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32880205" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871124" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967373" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1157,9 +1207,15 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="2015-01-25" />
+    <MESSAGE value="fix project2" />
+    <MESSAGE value="2015-01-26 22:20" />
+    <MESSAGE value="2015-01-28 12:16" />
+    <option name="LAST_COMMIT_MESSAGE" value="2015-01-28 12:16" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1167,6 +1223,93 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2178" max-vertical-offset="2376">
+          <caret line="99" column="4" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2376">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="1254">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Eating.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="110" max-vertical-offset="7480">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-ko/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1253" max-vertical-offset="2376">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2376">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="1254">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-ko/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1253" max-vertical-offset="2376">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2376">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="1254">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-ko/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1253" max-vertical-offset="2376">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2376">
@@ -1179,7 +1322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="1159">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1190,7 +1332,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="2033">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1236,7 +1377,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.321428" vertical-offset="0" max-vertical-offset="1178">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1268,7 +1408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.46519825" vertical-offset="990" max-vertical-offset="2266">
           <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1276,7 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5298308" vertical-offset="131" max-vertical-offset="1254">
           <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1284,41 +1422,221 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.039180767" vertical-offset="0" max-vertical-offset="1123">
           <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/camera_nor.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/ui/BabyTimeSettingMenuAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="526" max-vertical-offset="2684">
+          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/array.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1166">
+          <caret line="6" column="65" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/res/values/license_string.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4790941" vertical-offset="0" max-vertical-offset="1342">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.72131145" vertical-offset="0" max-vertical-offset="793">
+          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/res/values/calendar_strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="29.52" vertical-offset="1266" max-vertical-offset="2376">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values-ko/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="50.12" vertical-offset="1253" max-vertical-offset="2376">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
+          <caret line="21" column="73" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5365854" vertical-offset="0" max-vertical-offset="1254">
-          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="242" max-vertical-offset="1254">
+          <caret line="11" column="70" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-ko/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2090" max-vertical-offset="2794">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.56" vertical-offset="1657" max-vertical-offset="2816">
+          <caret line="93" column="60" selection-start-line="93" selection-start-column="60" selection-end-line="93" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3864492" vertical-offset="198" max-vertical-offset="1672">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/ui/RoundChartView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1210" max-vertical-offset="9702">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/fragment_sleeping.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-44.892857" vertical-offset="1581" max-vertical-offset="5126">
+          <caret line="129" column="54" selection-start-line="129" selection-start-column="54" selection-end-line="129" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/fragment_playing.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.357142" vertical-offset="2948" max-vertical-offset="5192">
+          <caret line="151" column="40" selection-start-line="151" selection-start-column="40" selection-end-line="151" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/fragment_etc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2266" max-vertical-offset="5104">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/fragment_eating.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.091531225" vertical-offset="4771" max-vertical-offset="7326">
+          <caret line="212" column="23" selection-start-line="212" selection-start-column="23" selection-end-line="212" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Eating.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2671" max-vertical-offset="7898">
+          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="185" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Playing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="5060">
+          <caret line="117" column="79" selection-start-line="117" selection-start-column="79" selection-end-line="117" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Sleeping.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1650" max-vertical-offset="4994">
+          <caret line="117" column="79" selection-start-line="117" selection-start-column="79" selection-end-line="117" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/fragment/Fragment_Etc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9807956" vertical-offset="2013" max-vertical-offset="5500">
+          <caret line="124" column="83" selection-start-line="124" selection-start-column="83" selection-end-line="124" selection-end-column="83" />
           <folding>
-            <element signature="e#838#856#0" expanded="true" />
-            <element signature="e#1006#1045#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Fragment_Etc#0" expanded="true" />
+            <element signature="docComment;field#ARG_SECTION_NUMBER#0;class#Fragment_Etc#0" expanded="true" />
+            <element signature="docComment;method#newInstance#0;class#Fragment_Etc#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3894" max-vertical-offset="6358">
+          <caret line="231" column="15" selection-start-line="231" selection-start-column="15" selection-end-line="231" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeHelp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2530">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeSetting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="11594">
+          <caret line="104" column="57" selection-start-line="104" selection-start-column="57" selection-end-line="104" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5940">
+          <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/BabytimeApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1056">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#464#486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/babytimechart/activity/BabyTimeData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5008446" vertical-offset="3037" max-vertical-offset="8294">
+          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
+          <folding>
+            <element signature="e#6563#7279#0" expanded="true" />
+            <element signature="e#7275#7276#0" expanded="true" />
           </folding>
         </state>
       </provider>

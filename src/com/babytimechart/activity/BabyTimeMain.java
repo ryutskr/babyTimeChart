@@ -27,11 +27,14 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.babytimechart.BabytimeApplication;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.fragment.Fragment_Chart;
 import com.babytimechart.ui.BabyTimeSpinnerAdapter;
 import com.babytimechart.utils.Utils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.ryutskr.babytimechart.R;
 
 import java.io.File;
@@ -59,7 +62,14 @@ public class BabyTimeMain extends Activity {
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
+        // Get tracker.
+        Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+        // Set screen name.
+        t.setScreenName("BabyTimeMain");
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
+
 		setContentView(R.layout.activity_main);
 		mContext = this;
 

@@ -1,11 +1,7 @@
 package com.babytimechart.fragment;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +17,9 @@ import android.widget.TextView;
 
 import com.babytimechart.utils.Utils;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -71,7 +70,7 @@ public class Fragment_Eating extends Fragment {
 	private long mMillsETime = 0;
 	private long mLastMillsTime = 0;
 	private SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm");
-	private SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd");
+	private SimpleDateFormat dateformat = new SimpleDateFormat("(MM-dd)");
 	private boolean mIsSTimeClick = true;
 
 	/**
@@ -154,7 +153,6 @@ public class Fragment_Eating extends Fragment {
 		
 		mTextView_stime_date = (TextView)rootView.findViewById(R.id.txtView_stime_date);
 		mTextView_etime_date = (TextView)rootView.findViewById(R.id.txtView_etime_date);
-		
 
 		if( mLastMillsTime != 0)
 			mMillsSTime = mLastMillsTime;
@@ -326,7 +324,6 @@ public class Fragment_Eating extends Fragment {
 
 			mTextView_stime.setText( timeformat.format(new Date(mMillsSTime)) );
 			mTextView_stime.setContentDescription("" + mMillsSTime);
-			
 			mTextView_stime_date.setText(dateformat.format(new Date(mMillsSTime)));
 		}else {
 			if( mMillsSTime > mMillsETime - timeSpace)
@@ -339,7 +336,6 @@ public class Fragment_Eating extends Fragment {
 
 				mTextView_etime.setText( timeformat.format(new Date(mMillsETime)) );
 				mTextView_etime.setContentDescription("" + mMillsETime);
-				
 				mTextView_etime_date.setText(dateformat.format(new Date(mMillsETime)));
 			}
 		}
@@ -367,7 +363,6 @@ public class Fragment_Eating extends Fragment {
 
 				mTextView_etime.setText( timeformat.format(new Date(mMillsETime)) );
 				mTextView_etime.setContentDescription("" + mMillsETime);
-				
 				mTextView_etime_date.setText(dateformat.format(new Date(mMillsETime)));
 			}
 		}

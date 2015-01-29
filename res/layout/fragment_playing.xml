@@ -109,6 +109,34 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="0dip"
+        android:weightSum="2" >
+
+        <TextView
+            android:id="@+id/txtView_stime_date"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/data_time1_text"
+            android:textSize="@dimen/text_size_10"/>
+
+        <TextView
+            android:id="@+id/txtView_etime_date"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/data_time1_text"
+            android:textSize="@dimen/text_size_10"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin_qhalf"
         android:gravity="center"
         android:orientation="horizontal"

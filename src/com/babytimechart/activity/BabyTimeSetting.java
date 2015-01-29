@@ -1,13 +1,5 @@
 package com.babytimechart.activity;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -34,12 +26,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.babytimechart.BabytimeApplication;
 import com.babytimechart.db.BabyTimeDbOpenHelper;
 import com.babytimechart.db.Dbinfo;
 import com.babytimechart.ui.BabyTimeSettingMenuAdapter;
 import com.babytimechart.ui.ColorPickerDialog;
 import com.babytimechart.ui.ColorPickerSwatch;
 import com.babytimechart.utils.Utils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -53,6 +48,14 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.ryutskr.babytimechart.BuildConfig;
 import com.ryutskr.babytimechart.R;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 
 public class BabyTimeSetting extends Activity {
 
@@ -94,6 +97,13 @@ public class BabyTimeSetting extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        // Get tracker.
+        Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+        // Set screen name.
+        t.setScreenName("BabyTimeSetting");
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
+
 		setContentView(R.layout.activity_setting);
 		mListView = (ListView)findViewById(R.id.listview);
 		RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.main_layout);

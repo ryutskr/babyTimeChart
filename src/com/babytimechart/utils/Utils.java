@@ -1,24 +1,11 @@
 package com.babytimechart.utils;
 
-import static com.babytimechart.db.Dbinfo.DB_DATE;
-import static com.babytimechart.db.Dbinfo.DB_E_TIME;
-import static com.babytimechart.db.Dbinfo.DB_MEMO;
-import static com.babytimechart.db.Dbinfo.DB_S_TIME;
-import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
-import static com.babytimechart.db.Dbinfo.DB_TYPE;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -31,6 +18,17 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.ryutskr.babytimechart.BuildConfig;
 import com.ryutskr.babytimechart.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.babytimechart.db.Dbinfo.DB_DATE;
+import static com.babytimechart.db.Dbinfo.DB_E_TIME;
+import static com.babytimechart.db.Dbinfo.DB_MEMO;
+import static com.babytimechart.db.Dbinfo.DB_S_TIME;
+import static com.babytimechart.db.Dbinfo.DB_TABLE_NAME;
+import static com.babytimechart.db.Dbinfo.DB_TYPE;
 
 public class Utils{
 
@@ -220,8 +218,7 @@ public class Utils{
 		viewGroup.addView(adView);
 		
 		if(BuildConfig.DEBUG)
-			request = new AdRequest.Builder().addTestDevice("8158C822D8A743BE02070AB8CD364643")
-											 .addTestDevice("2D81572DE143C1F37081F39F81BD6003").build();
+			request = new AdRequest.Builder().addTestDevice("8158C822D8A743BE02070AB8CD364643").build();
 		else
 			request = new AdRequest.Builder().build();
 		adView.loadAd(request);
@@ -236,8 +233,7 @@ public class Utils{
 
 		// 광고 요청을 만듭니다.
 		if(BuildConfig.DEBUG)
-			request = new AdRequest.Builder().addTestDevice("8158C822D8A743BE02070AB8CD364643")
-											 .addTestDevice("2D81572DE143C1F37081F39F81BD6003").build();
+			request = new AdRequest.Builder().addTestDevice("8158C822D8A743BE02070AB8CD364643").build();
 		else
 			request = new AdRequest.Builder().build();
 

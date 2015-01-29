@@ -116,8 +116,7 @@
             android:layout_below="@+id/editText_Eating_volume"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/activity_vertical_margin_qhalf"
-            android:textSize="@dimen/text_size_10"
-            android:background="@drawable/legend_background" />
+            android:textSize="@dimen/text_size_10"/>
 
         <Button
             android:id="@+id/btn_Eating_plus_small_volume"
@@ -222,8 +221,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/data_time1_text"
-            android:textSize="@dimen/text_size_10"
-            android:background="@drawable/legend_background" />
+            android:textSize="@dimen/text_size_10"/>
 
         <TextView
             android:id="@+id/txtView_etime_date"
@@ -232,8 +230,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/data_time1_text"
-            android:textSize="@dimen/text_size_10" 
-            android:background="@drawable/legend_background" />
+            android:textSize="@dimen/text_size_10"/>
     </LinearLayout>
 
     <LinearLayout
