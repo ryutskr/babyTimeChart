@@ -8,17 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import com.babytimechart.BabytimeApplication;
 import com.babytimechart.activity.BabyTimeData;
 import com.babytimechart.activity.BabyTimeMain;
 import com.babytimechart.ui.RoundChartView;
 import com.babytimechart.utils.Utils;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.ryutskr.babytimechart.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -141,6 +142,14 @@ public class Fragment_Chart extends Fragment {
 			}
             if( mInterstitial == null )
                 mInterstitial = new Utils().loadInterstitialAd(getActivity());
+            
+            // Get tracker.
+            Tracker t = ((BabytimeApplication)getActivity().getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+            t.send(new HitBuilders.EventBuilder()
+            .setCategory("BUTTON")
+            .setAction("Button_Click")
+            .setLabel(((Button)v).getText().toString())
+            .build());
 		}
 	};
 

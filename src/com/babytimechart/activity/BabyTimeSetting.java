@@ -11,6 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -197,6 +198,14 @@ public class BabyTimeSetting extends Activity {
 			case MENU_RESTORE_DATA:
 			case MENU_INITIALIZATION_DATA:
 				createAlertDialog(item._id);
+				
+	            // Get tracker.
+	            Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+	            t.send(new HitBuilders.EventBuilder()
+	            .setCategory("SETTIN_MENU")
+	            .setAction("Click")
+	            .setLabel(getString( item.title) )
+	            .build());
 				break;
 			}
 		}
@@ -571,6 +580,15 @@ public class BabyTimeSetting extends Activity {
 				mAdapter.notifyDataSetChanged();
 				mUtils.setChangeColor(item._id, color);
 				setResult(RESULT_OK);
+				
+	            // Get tracker.
+	            Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+	            t.send(new HitBuilders.EventBuilder()
+	            .setCategory("COLOR")
+	            .setAction("Color_Change")
+	            .setLabel(getString( item.title) )
+	            .setValue(item.colorSquare)
+	            .build());
 			}
 		}
 	};

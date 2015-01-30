@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -163,8 +164,14 @@ public class BabyTimeMain extends Activity {
 				fragmentC.addChart(1, mLastSelectedOtherday);
 
 			}
-
 			fragmentC.setLegendColor();
+			
+	        // Get tracker.
+	        Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+	        // Set screen name.
+	        t.setScreenName("BabyTimeMain " + i);
+	        // Send a screen view.
+	        t.send(new HitBuilders.AppViewBuilder().build());
 		}
 
 		@Override
@@ -252,6 +259,15 @@ public class BabyTimeMain extends Activity {
 			shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
 			shareIntent.setType("image/jpeg");
 			startActivity(Intent.createChooser(shareIntent, getString(R.string.share)));
+
+			// Get tracker.
+            Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+            t.send(new HitBuilders.EventBuilder()
+            .setCategory("BUTTON")
+            .setAction("Button_Click")
+            .setLabel("SceenShot")
+            .build());
+            
 		}
 	};
 

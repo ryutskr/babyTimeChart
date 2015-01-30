@@ -209,21 +209,22 @@ public class BabyTimeData extends Activity{
 				addFragmentDataToDB();
 				setResult(RESULT_OK);
 				finish();
-
-                // Get tracker.
-                Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
-                // Build and send an Event.
-                t.send(new HitBuilders.EventBuilder()
-                        .setCategory("Data_Save")
-                        .setAction("Button_Click")
-                        .setLabel("Save")
-                        .build());
-
 				break;
 			case R.id.btn_Activity_Data_Cancel:
 				finish();
 				break;
 			}
+			
+			int viewPagerIndex = mViewPager.getCurrentItem();
+			
+            // Get tracker.
+            Tracker t = ((BabytimeApplication)getApplication()).getTracker(BabytimeApplication.TrackerName.APP_TRACKER);
+            t.send(new HitBuilders.EventBuilder()
+            .setCategory("BUTTON")
+            .setAction("Button_Click")
+            .setLabel(((Button)v).getText().toString())
+            .setValue(viewPagerIndex)
+            .build());
 		}
 	};
 

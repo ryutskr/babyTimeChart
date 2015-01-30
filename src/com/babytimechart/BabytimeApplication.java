@@ -10,7 +10,7 @@ import com.ryutskr.babytimechart.BuildConfig;
 import java.util.HashMap;
 
 public class BabytimeApplication extends Application{
-    private static final String PROPERTY_ID = "UA-59115607-4";
+    private static final String PROPERTY_ID = "UA-59115607-6";
 
     HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
 
@@ -33,10 +33,10 @@ public class BabytimeApplication extends Application{
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
 
 
-            if(BuildConfig.DEBUG) {
-                analytics.setDryRun(true);
-                analytics.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
-            }
+//            if(BuildConfig.DEBUG) {
+//                analytics.setDryRun(true);
+//                analytics.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
+//            }
             Tracker t = analytics.newTracker(PROPERTY_ID);
 //			Tracker t = (trackerId == TrackerName.APP_TRACKER) ? analytics.newTracker(PROPERTY_ID)
 //					: (trackerId == TrackerName.GLOBAL_TRACKER) ? analytics.newTracker(R.xml.global_tracker)
